@@ -1,0 +1,141 @@
+entity Band {
+	id Integer,
+	nombre String,
+    fNaci LocalDate,
+    bio String,
+    foto ImageBlob
+}
+
+entity Artist {
+	id Integer,
+	nombre String,
+    fNaci LocalDate,
+    bio String,
+    foto ImageBlob
+}
+
+entity Album {
+	id Integer,
+	nombre String,
+    fNaci LocalDate,
+    foto ImageBlob
+}
+
+entity AlbumType {
+	tipo String
+}
+
+entity Song {
+	id Integer,
+	nombre String,
+    duracion Double
+}
+
+entity Review {
+	descripcion String
+}
+
+entity Label {
+	nombre String,
+    foto ImageBlob
+    descricpion String,
+    cosasNazis String
+}
+
+entity Status {
+	id Integer,
+ 	descripcion String
+}
+
+entity Country {
+	id Integer,
+	nombre String
+}
+
+entity Genere {
+	id Integer,
+	nombre String
+}
+
+entity Sex {
+	type Boolean
+}
+
+entity Social {
+	url String,
+    official Boolean,
+    facebook String,
+    twitter String,
+    youTube String,
+    instagram String
+}
+
+entity Instrument {
+	id Integer,
+	nombre String
+}
+
+entity RatingArtist{
+	date ZonedDateTime,
+	rating Integer
+}
+
+entity RatingAlbum{
+	date ZonedDateTime,
+	rating Integer
+}
+
+entity RatingSong{
+	date ZonedDateTime,
+	rating Integer
+}
+
+entity FavouriteBand{
+	liked Boolean,
+    date LocalDate
+}
+
+entity FavouriteAlbum{
+	liked Boolean,
+    date LocalDate
+}
+
+entity FavouriteSong{
+	liked Boolean,
+    date LocalDate
+}
+relationship ManyToMany {
+    Artist{band(id)} to Band,
+    Genere{band(id)} to Band,
+    AlbumType{album(id)} to Album,
+    Song{album(id)} to Album,
+    Instrument{artist(id)} to Artist
+}
+
+relationship ManyToOne{
+	Country{band(id)} to Band,
+    Label{band(id)} to Band,
+    Social{band(id)} to Band,  
+    Album{band(id)} to Band,
+    //Sex{user(login)} to User,
+    //Status payo
+    Status{band(id)} to Band,
+    //Reviews y tal
+	Review{user(login)} to User,
+    Review{band(id)} to Band,
+    Review{album(id)} to Album,
+    //Ratings tronco
+    //RatingArtist{user(login)} to User{rating},
+    RatingArtist{artist(nombre)} to Artist{rating},
+    //RatingAlbum{user(login)} to User{rating},
+    RatingAlbum{album(id)} to Album{rating},
+    //RatingSong{user(login)} to User{rating},
+    RatingSong{song(id)} to Song{rating},
+    //Favs y eso
+    //FavouriteBand{user(login)} to User,
+    FavouriteBand{band(id)} to Band,
+    //FavouriteAlbum{user(login)} to User,
+    FavouriteAlbum{album(id)} to Album,
+    //FavouriteSong{user(login)} to User,
+    FavouriteSong{song(id)} to Song
+}

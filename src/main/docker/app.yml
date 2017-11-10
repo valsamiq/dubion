@@ -1,0 +1,14 @@
+version: '2'
+services:
+    dubion-app:
+        image: dubion
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://dubion-mysql:3306/dubion?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    dubion-mysql:
+        extends:
+            file: mysql.yml
+            service: dubion-mysql
