@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "band",
+            "otherEntityName": "band",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "album",
+            "relationshipName": "genre",
+            "otherEntityName": "genre",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "rating",
+            "otherEntityName": "ratingAlbum",
+            "otherEntityRelationshipName": "album"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "favourite",
+            "otherEntityName": "favouriteAlbum",
+            "otherEntityRelationshipName": "album"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "song",
+            "otherEntityName": "song",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "album"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "releaseDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20171130104628",
+    "entityTableName": "album",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

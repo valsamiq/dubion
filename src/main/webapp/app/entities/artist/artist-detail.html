@@ -1,0 +1,52 @@
+
+<div>
+    <h2><span data-translate="dubionApp.artist.detail.title">Artist</span> {{vm.artist.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.artist.name">Name</span></dt>
+        <dd>
+            <span>{{vm.artist.name}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.artist.birthDate">Birth Date</span></dt>
+        <dd>
+            <span>{{vm.artist.birthDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.artist.bio">Bio</span></dt>
+        <dd>
+            <span>{{vm.artist.bio}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.artist.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.artist.photo">
+                <a ng-click="vm.openFile(vm.artist.photoContentType, vm.artist.photo)">
+                    <img data-ng-src="{{'data:' + vm.artist.photoContentType + ';base64,' + vm.artist.photo}}" style="max-width: 100%;" alt="artist image"/>
+                </a>
+                {{vm.artist.photoContentType}}, {{vm.byteSize(vm.artist.photo)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dubionApp.artist.band">Band</span></dt>
+        <dd>
+            <span ng-repeat="band in vm.artist.bands">
+                <a ui-sref="band-detail({id: band.id})">{{band.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="dubionApp.artist.instrument">Instrument</span></dt>
+        <dd>
+            <span ng-repeat="instrument in vm.artist.instruments">
+                <a ui-sref="instrument-detail({id: instrument.id})">{{instrument.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="artist-detail.edit({id:vm.artist.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

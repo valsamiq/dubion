@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "song",
+            "relationshipName": "album",
+            "otherEntityName": "album",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "rating",
+            "otherEntityName": "ratingSong",
+            "otherEntityRelationshipName": "song"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "favourite",
+            "otherEntityName": "favouriteSong",
+            "otherEntityRelationshipName": "song"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20171130104629",
+    "entityTableName": "song",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

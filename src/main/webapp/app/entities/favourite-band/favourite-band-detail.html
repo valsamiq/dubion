@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="dubionApp.favouriteBand.detail.title">Favourite Band</span> {{vm.favouriteBand.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.favouriteBand.liked">Liked</span></dt>
+        <dd>
+            <span>{{vm.favouriteBand.liked}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.favouriteBand.date">Date</span></dt>
+        <dd>
+            <span>{{vm.favouriteBand.date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.favouriteBand.user">User</span></dt>
+        <dd>
+            {{vm.favouriteBand.user.login}}
+        </dd>
+        <dt><span data-translate="dubionApp.favouriteBand.band">Band</span></dt>
+        <dd>
+            <a ui-sref="band-detail({id:vm.favouriteBand.band.id})">{{vm.favouriteBand.band.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="favourite-band-detail.edit({id:vm.favouriteBand.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

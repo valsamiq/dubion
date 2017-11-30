@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "ratingBand" : {
+            "home": {
+                "title": "Rating Bands",
+                "createLabel": "Create a new Rating Band",
+                "createOrEditLabel": "Create or edit a Rating Band"
+            },
+            "created": "A new Rating Band is created with identifier {{ param }}",
+            "updated": "A Rating Band is updated with identifier {{ param }}",
+            "deleted": "A Rating Band is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Rating Band {{ id }}?"
+            },
+            "detail": {
+                "title": "Rating Band"
+            },
+            "date": "Date",
+            "rating": "Rating",
+            "user": "User",
+            "band": "Band"
+        }
+    }
+}

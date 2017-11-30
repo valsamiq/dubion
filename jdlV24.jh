@@ -1,0 +1,149 @@
+entity Band {
+	name String,
+    birthDate LocalDate,
+    bio String,
+    photo ImageBlob,
+    status Status
+}
+
+entity Artist {
+	name String,
+    birthDate LocalDate,
+    bio String,
+    photo ImageBlob
+}
+
+entity Album {
+	name String,
+    releaseDate LocalDate,
+    photo ImageBlob
+}
+
+entity Song {
+	name String,
+    duration Double
+}
+
+entity Review {
+	description String
+}
+
+entity Label {
+	name String,
+    photo ImageBlob
+    description String,
+}
+
+enum Status {
+ 	ACTIVE, INACTIVE, DISSOLVED
+}
+
+entity Country {
+	name String,
+    latitude Double,
+    longitude Double,
+    urlGoogleMaps String
+}
+
+entity Genre {
+	name String
+}
+
+entity Sex {
+	orientation String
+}
+
+entity Social {
+	url String,
+    official Boolean,
+    facebook String,
+    twitter String,
+    youTube String,
+    googlePlus String,
+    instagram String
+}
+
+entity Instrument {
+	name String
+}
+
+entity RatingArtist{
+	date ZonedDateTime,
+	rating Integer
+}
+
+entity RatingAlbum{
+	date ZonedDateTime,
+	rating Integer
+}
+
+entity RatingSong{
+	date ZonedDateTime,
+	rating Integer
+}
+
+entity RatingBand{
+	date ZonedDateTime,
+	rating Integer
+}
+
+entity FavouriteBand{
+	liked Boolean,
+    date LocalDate
+}
+
+entity FavouriteAlbum{
+	liked Boolean,
+    date LocalDate
+}
+
+entity FavouriteSong{
+	liked Boolean,
+    date LocalDate
+}
+relationship ManyToMany {
+    Artist{band(name)} to Band{artist},
+    Band{genre(name)} to Genre{band},
+    Album{genre(name)} to Genre{album},
+    Song{album(name)} to Album{song},
+    Artist{instrument(name)} to Instrument{artist}
+}
+
+entity UserExt{
+	photo ImageBlob,
+    latitude Double,
+    longitude Double,
+    location String
+}
+
+relationship OneToOne{
+	UserExt{user(login)} to User
+}
+
+relationship ManyToOne{
+	Band{country(name)} to Country,
+    Band{label(name)} to Label,
+    Band{social(url)} to Social,
+    Album{band(name)} to Band,
+    UserExt{sex(orientation)} to Sex{user},
+    //Reviews y tal
+	Review{user(login)} to User,
+    Review{band(name)} to Band,
+    Review{album(name)} to Album,
+    //Ratings tronco
+    RatingArtist{user(login)} to User,
+    RatingArtist{artist(name)} to Artist{rating}, //ok
+    RatingAlbum{user(login)} to User,
+    RatingAlbum{album(name)} to Album{rating}, //ok
+    RatingSong{user(login)} to User,
+    RatingSong{song(name)} to Song{rating}, //ok
+    RatingBand{user(login)} to User,
+    RatingBand{band(name)} to Band{rating},
+    //Favs y eso
+    FavouriteBand{user(login)} to User,
+    FavouriteBand{band(name)} to Band{favourite}, //ok
+    FavouriteAlbum{user(login)} to User,
+    FavouriteAlbum{album(name)} to Album{favourite}, //ok
+    FavouriteSong{user(login)} to User,
+    FavouriteSong{song(name)} to Song{favourite} //ok
+}

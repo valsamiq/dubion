@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myUserExtLabel" data-translate="dubionApp.userExt.home.createOrEditLabel">Create or edit a User Ext</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.userExt.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.userExt.id" readonly />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.userExt)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dubionApp.userExt.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.userExt.photoContentType + ';base64,' + vm.userExt.photo}}" style="max-height: 100px;" ng-if="vm.userExt.photo" alt="userExt image"/>
+                <div ng-if="vm.userExt.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.userExt.photoContentType}}, {{vm.byteSize(vm.userExt.photo)}}</span>
+                    <button type="button" ng-click="vm.userExt.photo=null;vm.userExt.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.userExt)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.userExt.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.userExt.photoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.userExt.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                    ng-model="vm.userExt.latitude"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.userExt.longitude" for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                    ng-model="vm.userExt.longitude"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.userExt.location" for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                    ng-model="vm.userExt.location"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="dubionApp.userExt.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.userExt.user" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="dubionApp.userExt.sex" for="field_sex">Sex</label>
+            <select class="form-control" id="field_sex" name="sex" ng-model="vm.userExt.sex" ng-options="sex as sex.orientation for sex in vm.sexes track by sex.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

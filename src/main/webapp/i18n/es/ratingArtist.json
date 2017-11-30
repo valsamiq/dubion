@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "ratingArtist" : {
+            "home": {
+                "title": "Rating Artists",
+                "createLabel": "Crear nuevo Rating Artist",
+                "createOrEditLabel": "Crear o editar Rating Artist"
+            },
+            "created": "Un nuevo Rating Artist ha sido creado con el identificador {{ param }}",
+            "updated": "Un Rating Artist ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Rating Artist ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Rating Artist {{ id }}?"
+            },
+            "detail": {
+                "title": "Rating Artist"
+            },
+            "date": "Date",
+            "rating": "Rating",
+            "user": "User",
+            "artist": "Artist"
+        }
+    }
+}

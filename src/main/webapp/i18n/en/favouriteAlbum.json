@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "favouriteAlbum" : {
+            "home": {
+                "title": "Favourite Albums",
+                "createLabel": "Create a new Favourite Album",
+                "createOrEditLabel": "Create or edit a Favourite Album"
+            },
+            "created": "A new Favourite Album is created with identifier {{ param }}",
+            "updated": "A Favourite Album is updated with identifier {{ param }}",
+            "deleted": "A Favourite Album is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Favourite Album {{ id }}?"
+            },
+            "detail": {
+                "title": "Favourite Album"
+            },
+            "liked": "Liked",
+            "date": "Date",
+            "user": "User",
+            "album": "Album"
+        }
+    }
+}

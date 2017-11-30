@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Song.
+    -->
+    <changeSet id="20171130104629-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="songs_id"
+                                 baseTableName="song_album"
+                                 constraintName="fk_song_album_songs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="song"/>
+        <addForeignKeyConstraint baseColumnNames="albums_id"
+                                 baseTableName="song_album"
+                                 constraintName="fk_song_album_albums_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="album"/>
+        
+    </changeSet>
+</databaseChangeLog>

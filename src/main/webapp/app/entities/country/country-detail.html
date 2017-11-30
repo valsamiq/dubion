@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="dubionApp.country.detail.title">Country</span> {{vm.country.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.country.name">Name</span></dt>
+        <dd>
+            <span>{{vm.country.name}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.country.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{vm.country.latitude}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.country.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{vm.country.longitude}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.country.urlGoogleMaps">Url Google Maps</span></dt>
+        <dd>
+            <span>{{vm.country.urlGoogleMaps}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="country-detail.edit({id:vm.country.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span data-translate="dubionApp.song.detail.title">Song</span> {{vm.song.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.song.name">Name</span></dt>
+        <dd>
+            <span>{{vm.song.name}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.song.duration">Duration</span></dt>
+        <dd>
+            <span>{{vm.song.duration}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.song.album">Album</span></dt>
+        <dd>
+            <span ng-repeat="album in vm.song.albums">
+                <a ui-sref="album-detail({id: album.id})">{{album.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="song-detail.edit({id:vm.song.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,27 @@
+{
+    "dubionApp": {
+        "artist" : {
+            "home": {
+                "title": "Artists",
+                "createLabel": "Crear nuevo Artist",
+                "createOrEditLabel": "Crear o editar Artist"
+            },
+            "created": "Un nuevo Artist ha sido creado con el identificador {{ param }}",
+            "updated": "Un Artist ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Artist ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Artist {{ id }}?"
+            },
+            "detail": {
+                "title": "Artist"
+            },
+            "name": "Name",
+            "birthDate": "Birth Date",
+            "bio": "Bio",
+            "photo": "Photo",
+            "band": "Band",
+            "instrument": "Instrument",
+            "rating": "Rating"
+        }
+    }
+}

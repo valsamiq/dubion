@@ -1,0 +1,32 @@
+{
+    "dubionApp": {
+        "band" : {
+            "home": {
+                "title": "Bands",
+                "createLabel": "Crear nuevo Band",
+                "createOrEditLabel": "Crear o editar Band"
+            },
+            "created": "Un nuevo Band ha sido creado con el identificador {{ param }}",
+            "updated": "Un Band ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Band ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Band {{ id }}?"
+            },
+            "detail": {
+                "title": "Band"
+            },
+            "name": "Name",
+            "birthDate": "Birth Date",
+            "bio": "Bio",
+            "photo": "Photo",
+            "status": "Status",
+            "country": "Country",
+            "label": "Label",
+            "social": "Social",
+            "genre": "Genre",
+            "rating": "Rating",
+            "favourite": "Favourite",
+            "artist": "Artist"
+        }
+    }
+}

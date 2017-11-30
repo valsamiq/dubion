@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="dubionApp.ratingSong.detail.title">Rating Song</span> {{vm.ratingSong.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.ratingSong.date">Date</span></dt>
+        <dd>
+            <span>{{vm.ratingSong.date | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.ratingSong.rating">Rating</span></dt>
+        <dd>
+            <span>{{vm.ratingSong.rating}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.ratingSong.user">User</span></dt>
+        <dd>
+            {{vm.ratingSong.user.login}}
+        </dd>
+        <dt><span data-translate="dubionApp.ratingSong.song">Song</span></dt>
+        <dd>
+            <a ui-sref="song-detail({id:vm.ratingSong.song.id})">{{vm.ratingSong.song.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="rating-song-detail.edit({id:vm.ratingSong.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

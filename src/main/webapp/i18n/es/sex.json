@@ -1,0 +1,22 @@
+{
+    "dubionApp": {
+        "sex" : {
+            "home": {
+                "title": "Sexes",
+                "createLabel": "Crear nuevo Sex",
+                "createOrEditLabel": "Crear o editar Sex"
+            },
+            "created": "Un nuevo Sex ha sido creado con el identificador {{ param }}",
+            "updated": "Un Sex ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Sex ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Sex {{ id }}?"
+            },
+            "detail": {
+                "title": "Sex"
+            },
+            "orientation": "Orientation",
+            "user": "User"
+        }
+    }
+}

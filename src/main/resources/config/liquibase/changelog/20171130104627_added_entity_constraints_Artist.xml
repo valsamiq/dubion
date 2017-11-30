@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Artist.
+    -->
+    <changeSet id="20171130104627-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="artists_id"
+                                 baseTableName="artist_band"
+                                 constraintName="fk_artist_band_artists_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="artist"/>
+        <addForeignKeyConstraint baseColumnNames="bands_id"
+                                 baseTableName="artist_band"
+                                 constraintName="fk_artist_band_bands_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="band"/>
+        
+        <addForeignKeyConstraint baseColumnNames="artists_id"
+                                 baseTableName="artist_instrument"
+                                 constraintName="fk_artist_instrument_artists_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="artist"/>
+        <addForeignKeyConstraint baseColumnNames="instruments_id"
+                                 baseTableName="artist_instrument"
+                                 constraintName="fk_artist_instrument_instruments_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="instrument"/>
+        
+    </changeSet>
+</databaseChangeLog>

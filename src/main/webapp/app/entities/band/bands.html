@@ -1,0 +1,87 @@
+<div>
+    <h2 data-translate="dubionApp.band.home.title">Bands</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="band.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dubionApp.band.home.createLabel">
+                        Create new Band
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dubionApp.band.name">Name</span></th>
+                    <th><span data-translate="dubionApp.band.birthDate">Birth Date</span></th>
+                    <th><span data-translate="dubionApp.band.bio">Bio</span></th>
+                    <th><span data-translate="dubionApp.band.photo">Photo</span></th>
+                    <th><span data-translate="dubionApp.band.status">Status</span></th>
+                    <th><span data-translate="dubionApp.band.country">Country</span></th>
+                    <th><span data-translate="dubionApp.band.label">Label</span></th>
+                    <th><span data-translate="dubionApp.band.social">Social</span></th>
+                    <th><span data-translate="dubionApp.band.genre">Genre</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="band in vm.bands track by band.id">
+                    <td><a ui-sref="band-detail({id:band.id})">{{band.id}}</a></td>
+                    <td>{{band.name}}</td>
+                        <td>{{band.birthDate | date:'mediumDate'}}</td>
+                    <td>{{band.bio}}</td>
+                    <td>
+                        <a ng-if="band.photo" ng-click="vm.openFile(band.photoContentType, band.photo)">
+                            <img data-ng-src="{{'data:' + band.photoContentType + ';base64,' + band.photo}}" style="max-height: 30px;" alt="band image"/>
+                        </a>
+                        <span ng-if="band.photo">{{band.photoContentType}}, {{vm.byteSize(band.photo)}}</span>
+                    </td>
+                    <td data-translate="{{'dubionApp.Status.' + band.status}}">{{band.status}}</td>
+                    <td>
+                        <a ui-sref="country-detail({id:band.country.id})">{{band.country.name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="label-detail({id:band.label.id})">{{band.label.name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="social-detail({id:band.social.id})">{{band.social.url}}</a>
+                    </td>
+                    <td>
+                        <span ng-repeat="genre in band.genres">
+                            <a class="form-control-static" ui-sref="genre-detail({id: genre.id})">{{genre.name}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="band-detail({id:band.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="band.edit({id:band.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="band.delete({id:band.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

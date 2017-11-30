@@ -1,0 +1,25 @@
+{
+    "dubionApp": {
+        "song" : {
+            "home": {
+                "title": "Songs",
+                "createLabel": "Crear nuevo Song",
+                "createOrEditLabel": "Crear o editar Song"
+            },
+            "created": "Un nuevo Song ha sido creado con el identificador {{ param }}",
+            "updated": "Un Song ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Song ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Song {{ id }}?"
+            },
+            "detail": {
+                "title": "Song"
+            },
+            "name": "Name",
+            "duration": "Duration",
+            "album": "Album",
+            "rating": "Rating",
+            "favourite": "Favourite"
+        }
+    }
+}

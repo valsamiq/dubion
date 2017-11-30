@@ -1,0 +1,80 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "country",
+            "otherEntityName": "country",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "label",
+            "otherEntityName": "label",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "social",
+            "otherEntityName": "social",
+            "otherEntityField": "url"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "band",
+            "relationshipName": "genre",
+            "otherEntityName": "genre",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "rating",
+            "otherEntityName": "ratingBand",
+            "otherEntityRelationshipName": "band"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "favourite",
+            "otherEntityName": "favouriteBand",
+            "otherEntityRelationshipName": "band"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "artist",
+            "otherEntityName": "artist",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "band"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "birthDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "bio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE,DISSOLVED"
+        }
+    ],
+    "changelogDate": "20171130104626",
+    "entityTableName": "band",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

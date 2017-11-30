@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "ratingAlbum" : {
+            "home": {
+                "title": "Rating Albums",
+                "createLabel": "Crear nuevo Rating Album",
+                "createOrEditLabel": "Crear o editar Rating Album"
+            },
+            "created": "Un nuevo Rating Album ha sido creado con el identificador {{ param }}",
+            "updated": "Un Rating Album ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Rating Album ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Rating Album {{ id }}?"
+            },
+            "detail": {
+                "title": "Rating Album"
+            },
+            "date": "Date",
+            "rating": "Rating",
+            "user": "User",
+            "album": "Album"
+        }
+    }
+}

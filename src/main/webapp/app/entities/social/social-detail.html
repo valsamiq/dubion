@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="dubionApp.social.detail.title">Social</span> {{vm.social.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.social.url">Url</span></dt>
+        <dd>
+            <span>{{vm.social.url}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.social.official">Official</span></dt>
+        <dd>
+            <span>{{vm.social.official}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.social.facebook">Facebook</span></dt>
+        <dd>
+            <span>{{vm.social.facebook}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.social.twitter">Twitter</span></dt>
+        <dd>
+            <span>{{vm.social.twitter}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.social.youTube">You Tube</span></dt>
+        <dd>
+            <span>{{vm.social.youTube}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.social.googlePlus">Google Plus</span></dt>
+        <dd>
+            <span>{{vm.social.googlePlus}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.social.instagram">Instagram</span></dt>
+        <dd>
+            <span>{{vm.social.instagram}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="social-detail.edit({id:vm.social.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

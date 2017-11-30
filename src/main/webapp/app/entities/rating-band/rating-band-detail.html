@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="dubionApp.ratingBand.detail.title">Rating Band</span> {{vm.ratingBand.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.ratingBand.date">Date</span></dt>
+        <dd>
+            <span>{{vm.ratingBand.date | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.ratingBand.rating">Rating</span></dt>
+        <dd>
+            <span>{{vm.ratingBand.rating}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.ratingBand.user">User</span></dt>
+        <dd>
+            {{vm.ratingBand.user.login}}
+        </dd>
+        <dt><span data-translate="dubionApp.ratingBand.band">Band</span></dt>
+        <dd>
+            <a ui-sref="band-detail({id:vm.ratingBand.band.id})">{{vm.ratingBand.band.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="rating-band-detail.edit({id:vm.ratingBand.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

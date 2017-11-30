@@ -1,0 +1,66 @@
+<div>
+    <h2 data-translate="dubionApp.ratingSong.home.title">Rating Songs</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="rating-song.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dubionApp.ratingSong.home.createLabel">
+                        Create new Rating Song
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dubionApp.ratingSong.date">Date</span></th>
+                    <th><span data-translate="dubionApp.ratingSong.rating">Rating</span></th>
+                    <th><span data-translate="dubionApp.ratingSong.user">User</span></th>
+                    <th><span data-translate="dubionApp.ratingSong.song">Song</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ratingSong in vm.ratingSongs track by ratingSong.id">
+                    <td><a ui-sref="rating-song-detail({id:ratingSong.id})">{{ratingSong.id}}</a></td>
+                    <td>{{ratingSong.date | date:'medium'}}</td>
+                    <td>{{ratingSong.rating}}</td>
+                    <td>
+                        {{ratingSong.user.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="song-detail({id:ratingSong.song.id})">{{ratingSong.song.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="rating-song-detail({id:ratingSong.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="rating-song.edit({id:ratingSong.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="rating-song.delete({id:ratingSong.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+    "dubionApp": {
+        "instrument" : {
+            "home": {
+                "title": "Instruments",
+                "createLabel": "Crear nuevo Instrument",
+                "createOrEditLabel": "Crear o editar Instrument"
+            },
+            "created": "Un nuevo Instrument ha sido creado con el identificador {{ param }}",
+            "updated": "Un Instrument ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Instrument ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Instrument {{ id }}?"
+            },
+            "detail": {
+                "title": "Instrument"
+            },
+            "name": "Name",
+            "artist": "Artist"
+        }
+    }
+}

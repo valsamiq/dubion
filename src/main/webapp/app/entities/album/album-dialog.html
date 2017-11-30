@@ -1,0 +1,74 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAlbumLabel" data-translate="dubionApp.album.home.createOrEditLabel">Create or edit a Album</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.album.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.album.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.album.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.album.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.album.releaseDate" for="field_releaseDate">Release Date</label>
+                <div class="input-group">
+                    <input id="field_releaseDate" type="text" class="form-control" name="releaseDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.album.releaseDate" is-open="vm.datePickerOpenStatus.releaseDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('releaseDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.album)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dubionApp.album.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.album.photoContentType + ';base64,' + vm.album.photo}}" style="max-height: 100px;" ng-if="vm.album.photo" alt="album image"/>
+                <div ng-if="vm.album.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.album.photoContentType}}, {{vm.byteSize(vm.album.photo)}}</span>
+                    <button type="button" ng-click="vm.album.photo=null;vm.album.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.album)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.album.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.album.photoContentType" />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="dubionApp.album.band" for="field_band">Band</label>
+            <select class="form-control" id="field_band" name="band" ng-model="vm.album.band" ng-options="band as band.name for band in vm.bands track by band.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="dubionApp.album.genre" for="field_genre">Genre</label>
+            <select class="form-control" id="field_genre" multiple name="genre" ng-model="vm.album.genres" ng-options="genre as genre.name for genre in vm.genres track by genre.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

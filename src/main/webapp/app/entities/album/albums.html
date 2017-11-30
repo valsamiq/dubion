@@ -1,0 +1,75 @@
+<div>
+    <h2 data-translate="dubionApp.album.home.title">Albums</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="album.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dubionApp.album.home.createLabel">
+                        Create new Album
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dubionApp.album.name">Name</span></th>
+                    <th><span data-translate="dubionApp.album.releaseDate">Release Date</span></th>
+                    <th><span data-translate="dubionApp.album.photo">Photo</span></th>
+                    <th><span data-translate="dubionApp.album.band">Band</span></th>
+                    <th><span data-translate="dubionApp.album.genre">Genre</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="album in vm.albums track by album.id">
+                    <td><a ui-sref="album-detail({id:album.id})">{{album.id}}</a></td>
+                    <td>{{album.name}}</td>
+                        <td>{{album.releaseDate | date:'mediumDate'}}</td>
+                    <td>
+                        <a ng-if="album.photo" ng-click="vm.openFile(album.photoContentType, album.photo)">
+                            <img data-ng-src="{{'data:' + album.photoContentType + ';base64,' + album.photo}}" style="max-height: 30px;" alt="album image"/>
+                        </a>
+                        <span ng-if="album.photo">{{album.photoContentType}}, {{vm.byteSize(album.photo)}}</span>
+                    </td>
+                    <td>
+                        <a ui-sref="band-detail({id:album.band.id})">{{album.band.name}}</a>
+                    </td>
+                    <td>
+                        <span ng-repeat="genre in album.genres">
+                            <a class="form-control-static" ui-sref="genre-detail({id: genre.id})">{{genre.name}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="album-detail({id:album.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="album.edit({id:album.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="album.delete({id:album.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

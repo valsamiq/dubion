@@ -1,0 +1,66 @@
+<div>
+    <h2 data-translate="dubionApp.ratingArtist.home.title">Rating Artists</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="rating-artist.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dubionApp.ratingArtist.home.createLabel">
+                        Create new Rating Artist
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dubionApp.ratingArtist.date">Date</span></th>
+                    <th><span data-translate="dubionApp.ratingArtist.rating">Rating</span></th>
+                    <th><span data-translate="dubionApp.ratingArtist.user">User</span></th>
+                    <th><span data-translate="dubionApp.ratingArtist.artist">Artist</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ratingArtist in vm.ratingArtists track by ratingArtist.id">
+                    <td><a ui-sref="rating-artist-detail({id:ratingArtist.id})">{{ratingArtist.id}}</a></td>
+                    <td>{{ratingArtist.date | date:'medium'}}</td>
+                    <td>{{ratingArtist.rating}}</td>
+                    <td>
+                        {{ratingArtist.user.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="artist-detail({id:ratingArtist.artist.id})">{{ratingArtist.artist.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="rating-artist-detail({id:ratingArtist.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="rating-artist.edit({id:ratingArtist.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="rating-artist.delete({id:ratingArtist.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

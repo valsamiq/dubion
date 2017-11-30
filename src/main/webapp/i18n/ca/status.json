@@ -1,0 +1,10 @@
+{
+    "dubionApp": {
+        "Status" : {
+            "null": "",
+            "ACTIVE": "ACTIVE",
+            "INACTIVE": "INACTIVE",
+            "DISSOLVED": "DISSOLVED"
+        }
+    }
+}

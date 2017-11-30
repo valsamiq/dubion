@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "user",
+            "otherEntityName": "userExt",
+            "otherEntityRelationshipName": "sex"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "orientation",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171130104634",
+    "entityTableName": "sex",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

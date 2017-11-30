@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myArtistLabel" data-translate="dubionApp.artist.home.createOrEditLabel">Create or edit a Artist</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.artist.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.artist.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.artist.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.artist.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.artist.birthDate" for="field_birthDate">Birth Date</label>
+                <div class="input-group">
+                    <input id="field_birthDate" type="text" class="form-control" name="birthDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.artist.birthDate" is-open="vm.datePickerOpenStatus.birthDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('birthDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.artist.bio" for="field_bio">Bio</label>
+            <input type="text" class="form-control" name="bio" id="field_bio"
+                    ng-model="vm.artist.bio"
+                    />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.artist)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dubionApp.artist.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.artist.photoContentType + ';base64,' + vm.artist.photo}}" style="max-height: 100px;" ng-if="vm.artist.photo" alt="artist image"/>
+                <div ng-if="vm.artist.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.artist.photoContentType}}, {{vm.byteSize(vm.artist.photo)}}</span>
+                    <button type="button" ng-click="vm.artist.photo=null;vm.artist.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.artist)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.artist.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.artist.photoContentType" />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="dubionApp.artist.band" for="field_band">Band</label>
+            <select class="form-control" id="field_band" multiple name="band" ng-model="vm.artist.bands" ng-options="band as band.name for band in vm.bands track by band.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="dubionApp.artist.instrument" for="field_instrument">Instrument</label>
+            <select class="form-control" id="field_instrument" multiple name="instrument" ng-model="vm.artist.instruments" ng-options="instrument as instrument.name for instrument in vm.instruments track by instrument.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

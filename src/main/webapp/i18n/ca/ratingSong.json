@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "ratingSong" : {
+            "home": {
+                "title": "Rating Songs",
+                "createLabel": "Create a new Rating Song",
+                "createOrEditLabel": "Create or edit a Rating Song"
+            },
+            "created": "A new Rating Song is created with identifier {{ param }}",
+            "updated": "A Rating Song is updated with identifier {{ param }}",
+            "deleted": "A Rating Song is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Rating Song {{ id }}?"
+            },
+            "detail": {
+                "title": "Rating Song"
+            },
+            "date": "Date",
+            "rating": "Rating",
+            "user": "User",
+            "song": "Song"
+        }
+    }
+}

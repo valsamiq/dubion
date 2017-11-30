@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span data-translate="dubionApp.userExt.detail.title">User Ext</span> {{vm.userExt.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.userExt.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.userExt.photo">
+                <a ng-click="vm.openFile(vm.userExt.photoContentType, vm.userExt.photo)">
+                    <img data-ng-src="{{'data:' + vm.userExt.photoContentType + ';base64,' + vm.userExt.photo}}" style="max-width: 100%;" alt="userExt image"/>
+                </a>
+                {{vm.userExt.photoContentType}}, {{vm.byteSize(vm.userExt.photo)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dubionApp.userExt.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{vm.userExt.latitude}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.userExt.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{vm.userExt.longitude}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.userExt.location">Location</span></dt>
+        <dd>
+            <span>{{vm.userExt.location}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.userExt.user">User</span></dt>
+        <dd>
+            {{vm.userExt.user.login}}
+        </dd>
+        <dt><span data-translate="dubionApp.userExt.sex">Sex</span></dt>
+        <dd>
+            <a ui-sref="sex-detail({id:vm.userExt.sex.id})">{{vm.userExt.sex.orientation}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-ext-detail.edit({id:vm.userExt.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

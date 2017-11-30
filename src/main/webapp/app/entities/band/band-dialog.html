@@ -1,0 +1,100 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myBandLabel" data-translate="dubionApp.band.home.createOrEditLabel">Create or edit a Band</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.band.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.band.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.band.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.band.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.band.birthDate" for="field_birthDate">Birth Date</label>
+                <div class="input-group">
+                    <input id="field_birthDate" type="text" class="form-control" name="birthDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.band.birthDate" is-open="vm.datePickerOpenStatus.birthDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('birthDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.band.bio" for="field_bio">Bio</label>
+            <input type="text" class="form-control" name="bio" id="field_bio"
+                    ng-model="vm.band.bio"
+                    />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.band)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dubionApp.band.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.band.photoContentType + ';base64,' + vm.band.photo}}" style="max-height: 100px;" ng-if="vm.band.photo" alt="band image"/>
+                <div ng-if="vm.band.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.band.photoContentType}}, {{vm.byteSize(vm.band.photo)}}</span>
+                    <button type="button" ng-click="vm.band.photo=null;vm.band.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.band)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.band.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.band.photoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.band.status" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="vm.band.status" id="field_status">
+                <option value="ACTIVE" data-translate="dubionApp.Status.ACTIVE">ACTIVE</option>
+                <option value="INACTIVE" data-translate="dubionApp.Status.INACTIVE">INACTIVE</option>
+                <option value="DISSOLVED" data-translate="dubionApp.Status.DISSOLVED">DISSOLVED</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="dubionApp.band.country" for="field_country">Country</label>
+            <select class="form-control" id="field_country" name="country" ng-model="vm.band.country" ng-options="country as country.name for country in vm.countries track by country.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="dubionApp.band.label" for="field_label">Label</label>
+            <select class="form-control" id="field_label" name="label" ng-model="vm.band.label" ng-options="label as label.name for label in vm.labels track by label.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="dubionApp.band.social" for="field_social">Social</label>
+            <select class="form-control" id="field_social" name="social" ng-model="vm.band.social" ng-options="social as social.url for social in vm.socials track by social.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="dubionApp.band.genre" for="field_genre">Genre</label>
+            <select class="form-control" id="field_genre" multiple name="genre" ng-model="vm.band.genres" ng-options="genre as genre.name for genre in vm.genres track by genre.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

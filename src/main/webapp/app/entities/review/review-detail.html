@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="dubionApp.review.detail.title">Review</span> {{vm.review.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.review.description">Description</span></dt>
+        <dd>
+            <span>{{vm.review.description}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.review.user">User</span></dt>
+        <dd>
+            {{vm.review.user.login}}
+        </dd>
+        <dt><span data-translate="dubionApp.review.band">Band</span></dt>
+        <dd>
+            <a ui-sref="band-detail({id:vm.review.band.id})">{{vm.review.band.name}}</a>
+        </dd>
+        <dt><span data-translate="dubionApp.review.album">Album</span></dt>
+        <dd>
+            <a ui-sref="album-detail({id:vm.review.album.id})">{{vm.review.album.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="review-detail.edit({id:vm.review.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

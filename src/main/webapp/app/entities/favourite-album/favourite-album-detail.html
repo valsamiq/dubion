@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="dubionApp.favouriteAlbum.detail.title">Favourite Album</span> {{vm.favouriteAlbum.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.favouriteAlbum.liked">Liked</span></dt>
+        <dd>
+            <span>{{vm.favouriteAlbum.liked}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.favouriteAlbum.date">Date</span></dt>
+        <dd>
+            <span>{{vm.favouriteAlbum.date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.favouriteAlbum.user">User</span></dt>
+        <dd>
+            {{vm.favouriteAlbum.user.login}}
+        </dd>
+        <dt><span data-translate="dubionApp.favouriteAlbum.album">Album</span></dt>
+        <dd>
+            <a ui-sref="album-detail({id:vm.favouriteAlbum.album.id})">{{vm.favouriteAlbum.album.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="favourite-album-detail.edit({id:vm.favouriteAlbum.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

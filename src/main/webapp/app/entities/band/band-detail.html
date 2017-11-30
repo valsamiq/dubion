@@ -1,0 +1,62 @@
+
+<div>
+    <h2><span data-translate="dubionApp.band.detail.title">Band</span> {{vm.band.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.band.name">Name</span></dt>
+        <dd>
+            <span>{{vm.band.name}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.band.birthDate">Birth Date</span></dt>
+        <dd>
+            <span>{{vm.band.birthDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.band.bio">Bio</span></dt>
+        <dd>
+            <span>{{vm.band.bio}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.band.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.band.photo">
+                <a ng-click="vm.openFile(vm.band.photoContentType, vm.band.photo)">
+                    <img data-ng-src="{{'data:' + vm.band.photoContentType + ';base64,' + vm.band.photo}}" style="max-width: 100%;" alt="band image"/>
+                </a>
+                {{vm.band.photoContentType}}, {{vm.byteSize(vm.band.photo)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dubionApp.band.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'dubionApp.Status.' + vm.band.status}}">{{vm.band.status}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.band.country">Country</span></dt>
+        <dd>
+            <a ui-sref="country-detail({id:vm.band.country.id})">{{vm.band.country.name}}</a>
+        </dd>
+        <dt><span data-translate="dubionApp.band.label">Label</span></dt>
+        <dd>
+            <a ui-sref="label-detail({id:vm.band.label.id})">{{vm.band.label.name}}</a>
+        </dd>
+        <dt><span data-translate="dubionApp.band.social">Social</span></dt>
+        <dd>
+            <a ui-sref="social-detail({id:vm.band.social.id})">{{vm.band.social.url}}</a>
+        </dd>
+        <dt><span data-translate="dubionApp.band.genre">Genre</span></dt>
+        <dd>
+            <span ng-repeat="genre in vm.band.genres">
+                <a ui-sref="genre-detail({id: genre.id})">{{genre.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="band-detail.edit({id:vm.band.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

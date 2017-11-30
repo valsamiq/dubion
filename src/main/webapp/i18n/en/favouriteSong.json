@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "favouriteSong" : {
+            "home": {
+                "title": "Favourite Songs",
+                "createLabel": "Create a new Favourite Song",
+                "createOrEditLabel": "Create or edit a Favourite Song"
+            },
+            "created": "A new Favourite Song is created with identifier {{ param }}",
+            "updated": "A Favourite Song is updated with identifier {{ param }}",
+            "deleted": "A Favourite Song is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Favourite Song {{ id }}?"
+            },
+            "detail": {
+                "title": "Favourite Song"
+            },
+            "liked": "Liked",
+            "date": "Date",
+            "user": "User",
+            "song": "Song"
+        }
+    }
+}

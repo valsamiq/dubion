@@ -1,0 +1,75 @@
+<div>
+    <h2 data-translate="dubionApp.userExt.home.title">User Exts</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-ext.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dubionApp.userExt.home.createLabel">
+                        Create new User Ext
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dubionApp.userExt.photo">Photo</span></th>
+                    <th><span data-translate="dubionApp.userExt.latitude">Latitude</span></th>
+                    <th><span data-translate="dubionApp.userExt.longitude">Longitude</span></th>
+                    <th><span data-translate="dubionApp.userExt.location">Location</span></th>
+                    <th><span data-translate="dubionApp.userExt.user">User</span></th>
+                    <th><span data-translate="dubionApp.userExt.sex">Sex</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userExt in vm.userExts track by userExt.id">
+                    <td><a ui-sref="user-ext-detail({id:userExt.id})">{{userExt.id}}</a></td>
+                    <td>
+                        <a ng-if="userExt.photo" ng-click="vm.openFile(userExt.photoContentType, userExt.photo)">
+                            <img data-ng-src="{{'data:' + userExt.photoContentType + ';base64,' + userExt.photo}}" style="max-height: 30px;" alt="userExt image"/>
+                        </a>
+                        <span ng-if="userExt.photo">{{userExt.photoContentType}}, {{vm.byteSize(userExt.photo)}}</span>
+                    </td>
+                    <td>{{userExt.latitude}}</td>
+                    <td>{{userExt.longitude}}</td>
+                    <td>{{userExt.location}}</td>
+                    <td>
+                        {{userExt.user.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="sex-detail({id:userExt.sex.id})">{{userExt.sex.orientation}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-ext-detail({id:userExt.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-ext.edit({id:userExt.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-ext.delete({id:userExt.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
