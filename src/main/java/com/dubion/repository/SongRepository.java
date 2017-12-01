@@ -19,4 +19,6 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     @Query("select song from Song song left join fetch song.albums where song.id =:id")
     Song findOneWithEagerRelationships(@Param("id") Long id);
 
+    Song findByNameContaining(String songName);
+
 }
