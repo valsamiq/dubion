@@ -115,7 +115,7 @@ relationship ManyToMany {
 relationship ManyToOne{
 	Country{band(id)} to Band,
     Label{band(id)} to Band,
-    Social{band(id)} to Band,  
+    Social{band(id)} to Band,
     Album{band(id)} to Band,
     //Sex{user(login)} to User,
     //Status payo
@@ -139,3 +139,4 @@ relationship ManyToOne{
     //FavouriteSong{user(login)} to User,
     FavouriteSong{song(id)} to Song
 }
+//Comit de relleno
