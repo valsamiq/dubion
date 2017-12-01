@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.RatingAlbum;
 
 import com.dubion.repository.RatingAlbumRepository;
+import com.dubion.service.dto.StatsAlbumRating;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -115,5 +116,10 @@ public class RatingAlbumResource {
         log.debug("REST request to delete RatingAlbum : {}", id);
         ratingAlbumRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    @GetMapping("/rating-album-stats/{id}")
+    @Timed
+    public StatsAlbumRating getStats(@PathVariable Long id){
+        return ratingAlbumRepository.findAlbumStats(id);
     }
 }

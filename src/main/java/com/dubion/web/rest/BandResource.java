@@ -116,4 +116,10 @@ public class BandResource {
         bandRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/get-band-by-name/{bandName}")
+    public Band getBandByName(@PathVariable String bandName) {
+        return bandRepository.findByNameContaining(bandName);
+    }
+
 }

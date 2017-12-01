@@ -116,4 +116,9 @@ public class ArtistResource {
         artistRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/get-artist-name/{artistName}")
+    public Artist getArtistByName(@PathVariable String artistName) {
+        return artistRepository.findByNameContaining(artistName);
+    }
 }
