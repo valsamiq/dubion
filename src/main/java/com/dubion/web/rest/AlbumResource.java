@@ -116,4 +116,10 @@ public class AlbumResource {
         albumRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/get-album-name/{albumName}")
+    public Album getAlbumByName(@PathVariable String albumName){
+        return AlbumRepository.findByNameContaining(albumName);
+        //Intelliji seggests to make this static
+    }
 }
