@@ -87,7 +87,7 @@ public class SongResource {
     public List<Song> getAllSongs() {
         log.debug("REST request to get all Songs");
         return songRepository.findAllWithEagerRelationships();
-        }
+    }
 
     /**
      * GET  /songs/:id : get the "id" song.
@@ -115,5 +115,10 @@ public class SongResource {
         log.debug("REST request to delete Song : {}", id);
         songRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/get-song-name/{songName}")
+    public Song getSongByName(@PathVariable String songName) {
+        return songRepository.findByNameContaining(songName);
     }
 }
