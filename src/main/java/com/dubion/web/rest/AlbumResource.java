@@ -119,7 +119,7 @@ public class AlbumResource {
 
     @GetMapping("/get-album-name/{albumName}")
     public Album getAlbumByName(@PathVariable String albumName){
-        return AlbumRepository.findByNameContaining(albumName);
+        return albumRepository.findByNameContaining(albumName);
         //Intelliji seggests to make this static
     }
 }
