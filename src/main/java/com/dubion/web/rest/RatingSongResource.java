@@ -7,7 +7,6 @@ import com.dubion.repository.RatingSongRepository;
 import com.dubion.service.dto.StatsSongsRating;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
-import com.sun.org.glassfish.external.statistics.Stats;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

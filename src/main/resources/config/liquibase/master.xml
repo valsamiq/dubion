@@ -24,6 +24,7 @@
     <include file="config/liquibase/changelog/20171130104642_added_entity_FavouriteAlbum.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171130104643_added_entity_FavouriteSong.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171130104644_added_entity_UserExt.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171219113646_added_entity_BandPrueba.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20171130104626_added_entity_constraints_Band.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171130104627_added_entity_constraints_Artist.xml" relativeToChangelogFile="false"/>

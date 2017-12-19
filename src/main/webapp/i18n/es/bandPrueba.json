@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "bandPrueba" : {
+            "home": {
+                "title": "Band Pruebas",
+                "createLabel": "Crear nuevo Band Prueba",
+                "createOrEditLabel": "Crear o editar Band Prueba"
+            },
+            "created": "Un nuevo Band Prueba ha sido creado con el identificador {{ param }}",
+            "updated": "Un Band Prueba ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Band Prueba ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Band Prueba {{ id }}?"
+            },
+            "detail": {
+                "title": "Band Prueba"
+            },
+            "name": "Name",
+            "birthdate": "Birthdate",
+            "bio": "Bio",
+            "photo": "Photo"
+        }
+    }
+}

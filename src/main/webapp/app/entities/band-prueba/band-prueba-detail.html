@@ -1,0 +1,40 @@
+
+<div>
+    <h2><span data-translate="dubionApp.bandPrueba.detail.title">Band Prueba</span> {{vm.bandPrueba.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.bandPrueba.name">Name</span></dt>
+        <dd>
+            <span>{{vm.bandPrueba.name}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.bandPrueba.birthdate">Birthdate</span></dt>
+        <dd>
+            <span>{{vm.bandPrueba.birthdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.bandPrueba.bio">Bio</span></dt>
+        <dd>
+            <span>{{vm.bandPrueba.bio}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.bandPrueba.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.bandPrueba.photo">
+                <a ng-click="vm.openFile(vm.bandPrueba.photoContentType, vm.bandPrueba.photo)">
+                    <img data-ng-src="{{'data:' + vm.bandPrueba.photoContentType + ';base64,' + vm.bandPrueba.photo}}" style="max-width: 100%;" alt="bandPrueba image"/>
+                </a>
+                {{vm.bandPrueba.photoContentType}}, {{vm.byteSize(vm.bandPrueba.photo)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="band-prueba-detail.edit({id:vm.bandPrueba.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
