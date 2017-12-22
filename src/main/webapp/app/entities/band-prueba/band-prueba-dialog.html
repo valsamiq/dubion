@@ -1,0 +1,70 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myBandPruebaLabel" data-translate="dubionApp.bandPrueba.home.createOrEditLabel">Create or edit a Band Prueba</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.bandPrueba.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.bandPrueba.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.bandPrueba.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.bandPrueba.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.bandPrueba.birthdate" for="field_birthdate">Birthdate</label>
+                <div class="input-group">
+                    <input id="field_birthdate" type="text" class="form-control" name="birthdate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.bandPrueba.birthdate" is-open="vm.datePickerOpenStatus.birthdate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('birthdate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dubionApp.bandPrueba.bio" for="field_bio">Bio</label>
+            <input type="text" class="form-control" name="bio" id="field_bio"
+                    ng-model="vm.bandPrueba.bio"
+                    />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.bandPrueba)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dubionApp.bandPrueba.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.bandPrueba.photoContentType + ';base64,' + vm.bandPrueba.photo}}" style="max-height: 100px;" ng-if="vm.bandPrueba.photo" alt="bandPrueba image"/>
+                <div ng-if="vm.bandPrueba.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.bandPrueba.photoContentType}}, {{vm.byteSize(vm.bandPrueba.photo)}}</span>
+                    <button type="button" ng-click="vm.bandPrueba.photo=null;vm.bandPrueba.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.bandPrueba)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.bandPrueba.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.bandPrueba.photoContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

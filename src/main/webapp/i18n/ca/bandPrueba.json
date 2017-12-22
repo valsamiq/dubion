@@ -1,0 +1,24 @@
+{
+    "dubionApp": {
+        "bandPrueba" : {
+            "home": {
+                "title": "Band Pruebas",
+                "createLabel": "Create a new Band Prueba",
+                "createOrEditLabel": "Create or edit a Band Prueba"
+            },
+            "created": "A new Band Prueba is created with identifier {{ param }}",
+            "updated": "A Band Prueba is updated with identifier {{ param }}",
+            "deleted": "A Band Prueba is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Band Prueba {{ id }}?"
+            },
+            "detail": {
+                "title": "Band Prueba"
+            },
+            "name": "Name",
+            "birthdate": "Birthdate",
+            "bio": "Bio",
+            "photo": "Photo"
+        }
+    }
+}
