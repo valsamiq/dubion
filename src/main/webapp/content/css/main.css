@@ -1,5 +1,6 @@
 body {
-    background: #fafafa;
+
+    background: #8e908c;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -15,6 +16,7 @@ Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 Development Ribbon
 ========================================================================== */
 .ribbon {
+    visibility: hidden;
     background-color: #a00;
     box-shadow: 0 0 10px #888;
     left: -3.5em;
@@ -35,6 +37,7 @@ Development Ribbon
 }
 
 .ribbon a {
+    visibility: hidden;
     border: 1px solid #faa;
     color: #fff;
     display: block;

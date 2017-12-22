@@ -8,9 +8,9 @@
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider) {
-        $stateProvider.state('home', {
+        $stateProvider.state('banner', {
             parent: 'app',
-            url: '/',
+            url: '/banner',
             data: {
                 authorities: []
             },

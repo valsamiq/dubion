@@ -17,9 +17,11 @@
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
+    <link rel="stylesheet" href="content/css/secondary.css">
     <!-- endbuild -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
+    <script src="app/pages/test1/test1.controller.js"></script>
 </head>
 <body ng-app="dubionApp" ng-strict-di>
     <!--[if lt IE 9]>
@@ -28,6 +30,9 @@
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
+        <div class="well" ui-view="bannerImg">
+            <!-- Angular views -->
+        </div>
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
@@ -305,6 +310,22 @@
     <script src="app/account/activate/activate.state.js"></script>
     <script src="app/account/activate/activate.controller.js"></script>
     <script src="app/account/account.state.js"></script>
+
+    <!-- Test1 -->
+    <script src="app/pages/test1/test1.state.js"></script>
+    <script src="app/pages/test1/test1.controller.js"></script>
+    <!-- Test1 End-->
+
+    <!-- Test2 -->
+    <script src="app/pages/test2/test2.state.js"></script>
+    <script src="app/pages/test2/test2.controller.js"></script>
+    <!-- Test2 End-->
+
+    <!-- Banner -->
+    <script src="app/pages/banner/banner.state.js"></script>
+    <script src="app/pages/banner/banner.controller.js"></script>
+    <!-- Banner End-->
+
     <!-- endinject -->
     <!-- endbuild -->
 
