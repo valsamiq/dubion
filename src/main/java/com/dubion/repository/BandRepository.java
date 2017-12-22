@@ -12,7 +12,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface BandRepository extends JpaRepository<Band, Long> {
+public interface BandRepository extends JpaRepository<Band, Long>, JpaSpecificationExecutor<Band> {
     @Query("select distinct band from Band band left join fetch band.genres")
     List<Band> findAllWithEagerRelationships();
 
