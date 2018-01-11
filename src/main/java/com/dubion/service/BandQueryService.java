@@ -78,6 +78,9 @@ public class BandQueryService extends QueryService<Band> {
             if (criteria.getBio() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getBio(), Band_.bio));
             }
+//            if (criteria.getLabel() != null) {
+//                specification = specification.and(buildStringSpecification(criteria.getLabel(), Band_.label));
+//            }
         }
         return specification;
     }

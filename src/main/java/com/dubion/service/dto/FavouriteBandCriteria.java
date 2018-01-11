@@ -1,55 +1,93 @@
 package com.dubion.service.dto;
 
+import java.io.Serializable;
+import io.github.jhipster.service.filter.BooleanFilter;
+import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
-import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.FloatFilter;
+import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
 
-import java.io.Serializable;
+
+import io.github.jhipster.service.filter.LocalDateFilter;
 
 
-    /**
-     * Criteria class for the Band entity. This class is used in BandResource to
-     * receive all the possible filtering options from the Http GET request parameters.
-     * For example the following could be a valid requests:
-     * <code> /band-pruebas?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
-     * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
-     * fix type specific filters.
-     */
-    public class FavouriteBandCriteria implements Serializable {
-        private static final long serialVersionUID = 1L;
+
+/**
+ * Criteria class for the Favoband entity. This class is used in FavobandResource to
+ * receive all the possible filtering options from the Http GET request parameters.
+ * For example the following could be a valid requests:
+ * <code> /favobands?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
+ * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
+ * fix type specific filters.
+ */
+public class FavouriteBandCriteria implements Serializable {
+    private static final long serialVersionUID = 1L;
 
 
-        private Boolean liked;
+    private LongFilter id;
 
-        private LocalDateFilter date;
+    private BooleanFilter liked;
 
-        public FavouriteBandCriteria() {
-        }
+    private LocalDateFilter date;
 
-        public Boolean getId() {
-            return liked;
-        }
+    private LongFilter userId;
 
-        public void setId(Boolean id) {
-            this.liked = id;
-        }
+    private LongFilter bandId;
 
-        public LocalDateFilter getName() {
-            return date;
-        }
+    public FavouriteBandCriteria() {
+    }
 
-        public void setName(LocalDateFilter name) {
-            this.date = name;
-        }
+    public LongFilter getId() {
+        return id;
+    }
 
-        @Override
-        public String toString() {
-            return "FavouriteBandCriteria{" +
-                (liked != null ? "id=" + liked + ", " : "") +
-                (date != null ? "name=" + date + ", " : "") +
-                "}";
-        }
+    public void setId(LongFilter id) {
+        this.id = id;
+    }
 
+    public BooleanFilter getLiked() {
+        return liked;
+    }
+
+    public void setLiked(BooleanFilter liked) {
+        this.liked = liked;
+    }
+
+    public LocalDateFilter getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateFilter date) {
+        this.date = date;
+    }
+
+    public LongFilter getUserId() {
+        return userId;
+    }
+
+    public void setUserId(LongFilter userId) {
+        this.userId = userId;
+    }
+
+    public LongFilter getBandId() {
+        return bandId;
+    }
+
+    public void setBandId(LongFilter bandId) {
+        this.bandId = bandId;
+    }
+
+    @Override
+    public String toString() {
+        return "FavouriteBandCriteria{" +
+            (id != null ? "id=" + id + ", " : "") +
+            (liked != null ? "liked=" + liked + ", " : "") +
+            (date != null ? "date=" + date + ", " : "") +
+            (userId != null ? "userId=" + userId + ", " : "") +
+            (bandId != null ? "bandId=" + bandId + ", " : "") +
+            "}";
+    }
 
 }

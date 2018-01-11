@@ -128,5 +128,6 @@ public class BandResource {
     public Band getBandByName(@PathVariable String bandName) {
         return bandRepository.findByNameContaining(bandName);
     }
+    
 
 }
