@@ -80,7 +80,6 @@ public class CacheConfiguration {
             cm.createCache(com.dubion.domain.FavouriteSong.class.getName(), jcacheConfiguration);
             cm.createCache(com.dubion.domain.UserExt.class.getName(), jcacheConfiguration);
             cm.createCache(com.dubion.domain.BandPrueba.class.getName(), jcacheConfiguration);
-            cm.createCache(com.dubion.domain.Favoband.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
