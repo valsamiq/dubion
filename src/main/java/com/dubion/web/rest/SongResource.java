@@ -1,11 +1,16 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Band;
 import com.dubion.domain.Song;
-
+import com.dubion.service.BandQueryService;
+import com.dubion.service.BandService;
+import com.dubion.service.SongService;
 import com.dubion.repository.SongRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.SongCriteria;
+import com.dubion.service.SongQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +36,14 @@ public class SongResource {
 
     private final SongRepository songRepository;
 
-    public SongResource(SongRepository songRepository) {
+    private final SongService songService;
+
+    private final SongQueryService songQueryService;
+
+    public SongResource(SongRepository songRepository, SongService songService, SongQueryService songQueryService) {
         this.songRepository = songRepository;
+        this.songService = songService;
+        this.songQueryService = songQueryService;
     }
 
     /**
@@ -49,8 +60,8 @@ public class SongResource {
         if (song.getId() != null) {
             throw new BadRequestAlertException("A new song cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Song result = songRepository.save(song);
-        return ResponseEntity.created(new URI("/api/songs/" + result.getId()))
+        Song result = songService.save(song);
+        return ResponseEntity.created(new URI("/api/song/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -71,7 +82,7 @@ public class SongResource {
         if (song.getId() == null) {
             return createSong(song);
         }
-        Song result = songRepository.save(song);
+        Song result = songService.save(song);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, song.getId().toString()))
             .body(result);
@@ -84,9 +95,10 @@ public class SongResource {
      */
     @GetMapping("/songs")
     @Timed
-    public List<Song> getAllSongs() {
-        log.debug("REST request to get all Songs");
-        return songRepository.findAllWithEagerRelationships();
+    public ResponseEntity<List<Song>> getAllSongs(SongCriteria criteria) {
+        log.debug("REST request to get Songs by criteria: {}", criteria);
+        List<Song> entityList = songQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
     }
 
     /**
@@ -99,7 +111,7 @@ public class SongResource {
     @Timed
     public ResponseEntity<Song> getSong(@PathVariable Long id) {
         log.debug("REST request to get Song : {}", id);
-        Song song = songRepository.findOneWithEagerRelationships(id);
+        Song song = songService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
 
@@ -113,7 +125,7 @@ public class SongResource {
     @Timed
     public ResponseEntity<Void> deleteSong(@PathVariable Long id) {
         log.debug("REST request to delete Song : {}", id);
-        songRepository.delete(id);
+        songService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

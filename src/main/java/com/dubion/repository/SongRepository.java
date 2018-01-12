@@ -12,7 +12,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface SongRepository extends JpaRepository<Song, Long> {
+public interface SongRepository extends JpaRepository<Song, Long>,JpaSpecificationExecutor<Song> {
     @Query("select distinct song from Song song left join fetch song.albums")
     List<Song> findAllWithEagerRelationships();
 
