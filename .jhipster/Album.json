@@ -54,6 +54,6 @@
     "entityTableName": "album",
     "dto": "no",
     "pagination": "no",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "ServiceClass",
+    "jpaMetamodelFiltering": true
 }

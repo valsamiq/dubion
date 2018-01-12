@@ -84,5 +84,4 @@ public class BandPruebaQueryService extends QueryService<BandPrueba> {
         }
         return specification;
     }
-
 }
