@@ -11,7 +11,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface FavouriteBandRepository extends JpaRepository<FavouriteBand, Long> {
+public interface FavouriteBandRepository extends JpaRepository<FavouriteBand, Long>,JpaSpecificationExecutor<FavouriteBand> {
 
     @Query("select favourite_band from FavouriteBand favourite_band where favourite_band.user.login = ?#{principal.username}")
     List<FavouriteBand> findByUserIsCurrentUser();

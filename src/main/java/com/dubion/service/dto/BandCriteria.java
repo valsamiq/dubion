@@ -28,6 +28,8 @@ public class BandCriteria implements Serializable {
 
     private StringFilter bio;
 
+//    private StringFilter label;
+
     public BandCriteria() {
     }
 
@@ -63,6 +65,14 @@ public class BandCriteria implements Serializable {
         this.bio = bio;
     }
 
+//    public StringFilter getLabel() {
+//        return label;
+//    }
+//
+//    public void setLabel(StringFilter label) {
+//        this.label = label;
+//    }
+
     @Override
     public String toString() {
         return "BandCriteria{" +
@@ -70,6 +80,7 @@ public class BandCriteria implements Serializable {
                 (name != null ? "name=" + name + ", " : "") +
                 (birthdate != null ? "birthdate=" + birthdate + ", " : "") +
                 (bio != null ? "bio=" + bio + ", " : "") +
+//                (label != null ? "label=" + label + ", " : "") +
             "}";
     }
 
