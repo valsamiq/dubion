@@ -2,10 +2,13 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Album;
-
+import com.dubion.service.AlbumService;
 import com.dubion.repository.AlbumRepository;
+import com.dubion.service.dto.BandCriteria;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.AlbumCriteria;
+import com.dubion.service.AlbumQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +34,14 @@ public class AlbumResource {
 
     private final AlbumRepository albumRepository;
 
-    public AlbumResource(AlbumRepository albumRepository) {
+    private final AlbumService albumService;
+
+    private final AlbumQueryService albumQueryService;
+
+    public AlbumResource(AlbumRepository albumRepository, AlbumService albumService, AlbumQueryService albumQueryService) {
         this.albumRepository = albumRepository;
+        this.albumService = albumService;
+        this.albumQueryService = albumQueryService;
     }
 
     /**
@@ -49,8 +58,8 @@ public class AlbumResource {
         if (album.getId() != null) {
             throw new BadRequestAlertException("A new album cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Album result = albumRepository.save(album);
-        return ResponseEntity.created(new URI("/api/albums/" + result.getId()))
+        Album result = albumService.save(album);
+        return ResponseEntity.created(new URI("/api/album/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -71,7 +80,7 @@ public class AlbumResource {
         if (album.getId() == null) {
             return createAlbum(album);
         }
-        Album result = albumRepository.save(album);
+        Album result = albumService.save(album);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, album.getId().toString()))
             .body(result);
@@ -84,10 +93,11 @@ public class AlbumResource {
      */
     @GetMapping("/albums")
     @Timed
-    public List<Album> getAllAlbums() {
-        log.debug("REST request to get all Albums");
-        return albumRepository.findAllWithEagerRelationships();
-        }
+    public ResponseEntity<List<Album>> getAllAlbums(AlbumCriteria criteria) {
+        log.debug("REST request to get all Albums by Criteria {}", criteria);
+        List<Album> entityList = albumQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
 
     /**
      * GET  /albums/:id : get the "id" album.
@@ -99,7 +109,7 @@ public class AlbumResource {
     @Timed
     public ResponseEntity<Album> getAlbum(@PathVariable Long id) {
         log.debug("REST request to get Album : {}", id);
-        Album album = albumRepository.findOneWithEagerRelationships(id);
+        Album album = albumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
     }
 
@@ -113,7 +123,7 @@ public class AlbumResource {
     @Timed
     public ResponseEntity<Void> deleteAlbum(@PathVariable Long id) {
         log.debug("REST request to delete Album : {}", id);
-        albumRepository.delete(id);
+        albumService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

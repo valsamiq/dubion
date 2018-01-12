@@ -2,10 +2,12 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.FavouriteBand;
-
+import com.dubion.service.FavouriteBandService;
 import com.dubion.repository.FavouriteBandRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.FavouriteBandCriteria;
+import com.dubion.service.FavouriteBandQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +33,14 @@ public class FavouriteBandResource {
 
     private final FavouriteBandRepository favouriteBandRepository;
 
-    public FavouriteBandResource(FavouriteBandRepository favouriteBandRepository) {
+    private final FavouriteBandService favouriteBandService;
+
+    private final FavouriteBandQueryService favouriteBandQueryService;
+
+    public FavouriteBandResource(FavouriteBandRepository favouriteBandRepository, FavouriteBandService favouriteBandService, FavouriteBandQueryService favouriteBandQueryService) {
         this.favouriteBandRepository = favouriteBandRepository;
+        this.favouriteBandService = favouriteBandService;
+        this.favouriteBandQueryService = favouriteBandQueryService;
     }
 
     /**
@@ -49,7 +57,7 @@ public class FavouriteBandResource {
         if (favouriteBand.getId() != null) {
             throw new BadRequestAlertException("A new favouriteBand cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        FavouriteBand result = favouriteBandRepository.save(favouriteBand);
+        FavouriteBand result = favouriteBandService.save(favouriteBand);
         return ResponseEntity.created(new URI("/api/favourite-bands/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -71,7 +79,7 @@ public class FavouriteBandResource {
         if (favouriteBand.getId() == null) {
             return createFavouriteBand(favouriteBand);
         }
-        FavouriteBand result = favouriteBandRepository.save(favouriteBand);
+        FavouriteBand result = favouriteBandService.save(favouriteBand);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, favouriteBand.getId().toString()))
             .body(result);
@@ -84,10 +92,12 @@ public class FavouriteBandResource {
      */
     @GetMapping("/favourite-bands")
     @Timed
-    public List<FavouriteBand> getAllFavouriteBands() {
-        log.debug("REST request to get all FavouriteBands");
-        return favouriteBandRepository.findAll();
+    public ResponseEntity<List<FavouriteBand>> getAllFavouriteBands(FavouriteBandCriteria criteria) {
+        log.debug("REST request to get FavouriteBands by criteri: {}", criteria);
+        List<FavouriteBand> entityList = favouriteBandQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
         }
+
 
     /**
      * GET  /favourite-bands/:id : get the "id" favouriteBand.
@@ -99,7 +109,7 @@ public class FavouriteBandResource {
     @Timed
     public ResponseEntity<FavouriteBand> getFavouriteBand(@PathVariable Long id) {
         log.debug("REST request to get FavouriteBand : {}", id);
-        FavouriteBand favouriteBand = favouriteBandRepository.findOne(id);
+        FavouriteBand favouriteBand = favouriteBandService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(favouriteBand));
     }
 
@@ -113,7 +123,7 @@ public class FavouriteBandResource {
     @Timed
     public ResponseEntity<Void> deleteFavouriteBand(@PathVariable Long id) {
         log.debug("REST request to delete FavouriteBand : {}", id);
-        favouriteBandRepository.delete(id);
+        favouriteBandService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

@@ -2,10 +2,12 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Band;
-
+import com.dubion.service.BandService;
 import com.dubion.repository.BandRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.BandCriteria;
+import com.dubion.service.BandQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +33,14 @@ public class BandResource {
 
     private final BandRepository bandRepository;
 
-    public BandResource(BandRepository bandRepository) {
+    private final BandService bandService;
+
+    private final BandQueryService bandQueryService;
+
+    public BandResource(BandRepository bandRepository, BandService bandService, BandQueryService bandQueryService) {
         this.bandRepository = bandRepository;
+        this.bandService = bandService;
+        this.bandQueryService = bandQueryService;
     }
 
     /**
@@ -49,8 +57,8 @@ public class BandResource {
         if (band.getId() != null) {
             throw new BadRequestAlertException("A new band cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Band result = bandRepository.save(band);
-        return ResponseEntity.created(new URI("/api/bands/" + result.getId()))
+        Band result = bandService.save(band);
+        return ResponseEntity.created(new URI("/api/band/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -71,7 +79,7 @@ public class BandResource {
         if (band.getId() == null) {
             return createBand(band);
         }
-        Band result = bandRepository.save(band);
+        Band result = bandService.save(band);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, band.getId().toString()))
             .body(result);
@@ -84,11 +92,11 @@ public class BandResource {
      */
     @GetMapping("/bands")
     @Timed
-    public List<Band> getAllBands() {
-        log.debug("REST request to get all Bands");
-        return bandRepository.findAllWithEagerRelationships();
-        }
-
+    public ResponseEntity<List<Band>> getAllBands(BandCriteria criteria) {
+        log.debug("REST request to get Bands by criteria: {}", criteria);
+        List<Band> entityList = bandQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
     /**
      * GET  /bands/:id : get the "id" band.
      *
@@ -99,10 +107,9 @@ public class BandResource {
     @Timed
     public ResponseEntity<Band> getBand(@PathVariable Long id) {
         log.debug("REST request to get Band : {}", id);
-        Band band = bandRepository.findOneWithEagerRelationships(id);
+        Band band = bandService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(band));
     }
-
     /**
      * DELETE  /bands/:id : delete the "id" band.
      *
@@ -113,7 +120,7 @@ public class BandResource {
     @Timed
     public ResponseEntity<Void> deleteBand(@PathVariable Long id) {
         log.debug("REST request to delete Band : {}", id);
-        bandRepository.delete(id);
+        bandService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -121,5 +128,6 @@ public class BandResource {
     public Band getBandByName(@PathVariable String bandName) {
         return bandRepository.findByNameContaining(bandName);
     }
+    
 
 }

@@ -12,14 +12,14 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface AlbumRepository extends JpaRepository<Album, Long> {
+public interface AlbumRepository extends JpaRepository<Album, Long>, JpaSpecificationExecutor<Album> {
     @Query("select distinct album from Album album left join fetch album.genres")
     List<Album> findAllWithEagerRelationships();
 
     @Query("select album from Album album left join fetch album.genres where album.id =:id")
     Album findOneWithEagerRelationships(@Param("id") Long id);
 
-    @Query("select album from Album album left join fetch album.band where album.name=:name")
+    //@Query("select album from Album album left join fetch album.band where album.name=:name")
     Album findByNameContaining(String artistName);
 
 }
