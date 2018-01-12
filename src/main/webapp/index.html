@@ -17,6 +17,7 @@
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
+    <link rel="stylesheet" href="content/css/secundary.css">
     <!-- endbuild -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
@@ -28,11 +29,15 @@
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
+        <div class="well" ui-view="bannerImg">
+            <!-- Angular views -->
+        </div>
+
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
 
-        <div class="footer" ng-cloak>
+        <div class="footer well" ui-view="footer" ng-cloak>
             <p data-translate="footer">This is your footer</p>
         </div>
     </div>
@@ -313,6 +318,9 @@
     <script src="app/account/account.state.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
+    <script src="app/pages/Overlay/banner/banner.controller.js"></script>
+    <script src="app/pages/Overlay/banner/banner.state.js"></script>
+
 
 </body>
 </html>

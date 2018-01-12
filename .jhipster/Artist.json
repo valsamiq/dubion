@@ -47,6 +47,6 @@
     "entityTableName": "artist",
     "dto": "no",
     "pagination": "no",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "serviceClas",
+    "jpaMetamodelFiltering": true
 }
