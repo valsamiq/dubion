@@ -2,10 +2,12 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Artist;
-
+import com.dubion.service.ArtistService;
 import com.dubion.repository.ArtistRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.ArtistCriteria;
+import com.dubion.service.ArtistQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +33,14 @@ public class ArtistResource {
 
     private final ArtistRepository artistRepository;
 
-    public ArtistResource(ArtistRepository artistRepository) {
+    private final ArtistService artistService;
+
+    private final ArtistQueryService artistQueryService;
+
+    public ArtistResource(ArtistRepository artistRepository, ArtistService artistService, ArtistQueryService artistQueryService){
         this.artistRepository = artistRepository;
+        this.artistService = artistService;
+        this.artistQueryService = artistQueryService;
     }
 
     /**
@@ -49,8 +57,8 @@ public class ArtistResource {
         if (artist.getId() != null) {
             throw new BadRequestAlertException("A new artist cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Artist result = artistRepository.save(artist);
-        return ResponseEntity.created(new URI("/api/artists/" + result.getId()))
+        Artist result = artistService.save(artist);
+        return ResponseEntity.created(new URI("/api/artist/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -71,7 +79,7 @@ public class ArtistResource {
         if (artist.getId() == null) {
             return createArtist(artist);
         }
-        Artist result = artistRepository.save(artist);
+        Artist result = artistService.save(artist);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, artist.getId().toString()))
             .body(result);
@@ -84,11 +92,11 @@ public class ArtistResource {
      */
     @GetMapping("/artists")
     @Timed
-    public List<Artist> getAllArtists() {
-        log.debug("REST request to get all Artists");
-        return artistRepository.findAllWithEagerRelationships();
-        }
-
+    public ResponseEntity<List<Artist>> getAllArtist(ArtistCriteria criteria) {
+        log.debug("REST request to get Bands by criteria: {}", criteria);
+        List<Artist> entityList = artistQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
     /**
      * GET  /artists/:id : get the "id" artist.
      *
@@ -99,10 +107,9 @@ public class ArtistResource {
     @Timed
     public ResponseEntity<Artist> getArtist(@PathVariable Long id) {
         log.debug("REST request to get Artist : {}", id);
-        Artist artist = artistRepository.findOneWithEagerRelationships(id);
+        Artist artist = artistService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(artist));
     }
-
     /**
      * DELETE  /artists/:id : delete the "id" artist.
      *
@@ -113,7 +120,7 @@ public class ArtistResource {
     @Timed
     public ResponseEntity<Void> deleteArtist(@PathVariable Long id) {
         log.debug("REST request to delete Artist : {}", id);
-        artistRepository.delete(id);
+        artistService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

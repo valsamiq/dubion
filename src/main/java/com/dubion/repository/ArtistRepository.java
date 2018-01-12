@@ -12,7 +12,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ArtistRepository extends JpaRepository<Artist, Long> {
+public interface ArtistRepository extends JpaRepository<Artist, Long>, JpaSpecificationExecutor<Artist>{
     @Query("select distinct artist from Artist artist left join fetch artist.bands left join fetch artist.instruments")
     List<Artist> findAllWithEagerRelationships();
 
