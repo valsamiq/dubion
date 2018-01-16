@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Alpha.
+    -->
+    <changeSet id="20180116114721-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="alphas_id"
+                                 baseTableName="alpha_beta"
+                                 constraintName="fk_alpha_beta_alphas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alpha"/>
+        <addForeignKeyConstraint baseColumnNames="betas_id"
+                                 baseTableName="alpha_beta"
+                                 constraintName="fk_alpha_beta_betas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="beta"/>
+        
+    </changeSet>
+</databaseChangeLog>

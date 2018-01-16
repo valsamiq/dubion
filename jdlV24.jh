@@ -92,10 +92,7 @@ entity FavouriteBand{
     date LocalDate
 }
 
-entity FavouriteAlbum{
-	liked Boolean,
-    date LocalDate
-}
+ifd
 
 entity FavouriteSong{
 	liked Boolean,

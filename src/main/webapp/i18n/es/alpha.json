@@ -1,0 +1,22 @@
+{
+    "dubionApp": {
+        "alpha" : {
+            "home": {
+                "title": "Alphas",
+                "createLabel": "Crear nuevo Alpha",
+                "createOrEditLabel": "Crear o editar Alpha"
+            },
+            "created": "Un nuevo Alpha ha sido creado con el identificador {{ param }}",
+            "updated": "Un Alpha ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Alpha ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Alpha {{ id }}?"
+            },
+            "detail": {
+                "title": "Alpha"
+            },
+            "edad": "Edad",
+            "beta": "Beta"
+        }
+    }
+}
