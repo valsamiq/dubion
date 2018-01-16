@@ -1,5 +1,6 @@
 package com.dubion.repository;
 
+import com.dubion.domain.Band;
 import com.dubion.domain.FavouriteSong;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface FavouriteSongRepository extends JpaRepository<FavouriteSong, Long> {
+public interface FavouriteSongRepository extends JpaRepository<FavouriteSong, Long>, JpaSpecificationExecutor<FavouriteSong> {
 
     @Query("select favourite_song from FavouriteSong favourite_song where favourite_song.user.login = ?#{principal.username}")
     List<FavouriteSong> findByUserIsCurrentUser();
