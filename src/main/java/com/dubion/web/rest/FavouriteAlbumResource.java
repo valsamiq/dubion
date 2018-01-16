@@ -3,7 +3,13 @@ package com.dubion.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.FavouriteAlbum;
 
+// SEGUIR AQUI FROM COMPAIRSON
+
+
 import com.dubion.repository.FavouriteAlbumRepository;
+import com.dubion.service.FavouriteAlbumQueryService;
+import com.dubion.service.FavouriteAlbumService;
+import com.dubion.service.dto.FavouriteAlbumCriteria;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,8 +37,14 @@ public class FavouriteAlbumResource {
 
     private final FavouriteAlbumRepository favouriteAlbumRepository;
 
-    public FavouriteAlbumResource(FavouriteAlbumRepository favouriteAlbumRepository) {
+    private final FavouriteAlbumService favouriteAlbumService;
+
+    private final FavouriteAlbumQueryService favouriteAlbumQueryService;
+
+    public FavouriteAlbumResource(FavouriteAlbumRepository favouriteAlbumRepository, FavouriteAlbumService favouriteAlbumService, FavouriteAlbumQueryService favouriteAlbumQueryService) {
         this.favouriteAlbumRepository = favouriteAlbumRepository;
+        this.favouriteAlbumService = favouriteAlbumService;
+        this.favouriteAlbumQueryService = favouriteAlbumQueryService;
     }
 
     /**
@@ -49,7 +61,7 @@ public class FavouriteAlbumResource {
         if (favouriteAlbum.getId() != null) {
             throw new BadRequestAlertException("A new favouriteAlbum cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        FavouriteAlbum result = favouriteAlbumRepository.save(favouriteAlbum);
+        FavouriteAlbum result = favouriteAlbumService.save(favouriteAlbum);
         return ResponseEntity.created(new URI("/api/favourite-albums/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -71,7 +83,7 @@ public class FavouriteAlbumResource {
         if (favouriteAlbum.getId() == null) {
             return createFavouriteAlbum(favouriteAlbum);
         }
-        FavouriteAlbum result = favouriteAlbumRepository.save(favouriteAlbum);
+        FavouriteAlbum result = favouriteAlbumService.save(favouriteAlbum);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, favouriteAlbum.getId().toString()))
             .body(result);
@@ -84,9 +96,10 @@ public class FavouriteAlbumResource {
      */
     @GetMapping("/favourite-albums")
     @Timed
-    public List<FavouriteAlbum> getAllFavouriteAlbums() {
-        log.debug("REST request to get all FavouriteAlbums");
-        return favouriteAlbumRepository.findAll();
+    public ResponseEntity<List<FavouriteAlbum>> getAllFavouriteAlbums(FavouriteAlbumCriteria criteria) {
+        log.debug("REST request to get all FavouriteAlbums by criteria: {}", criteria);
+        List<FavouriteAlbum> entityList = favouriteAlbumQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
         }
 
     /**
@@ -99,7 +112,7 @@ public class FavouriteAlbumResource {
     @Timed
     public ResponseEntity<FavouriteAlbum> getFavouriteAlbum(@PathVariable Long id) {
         log.debug("REST request to get FavouriteAlbum : {}", id);
-        FavouriteAlbum favouriteAlbum = favouriteAlbumRepository.findOne(id);
+        FavouriteAlbum favouriteAlbum = favouriteAlbumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(favouriteAlbum));
     }
 
@@ -113,7 +126,7 @@ public class FavouriteAlbumResource {
     @Timed
     public ResponseEntity<Void> deleteFavouriteAlbum(@PathVariable Long id) {
         log.debug("REST request to delete FavouriteAlbum : {}", id);
-        favouriteAlbumRepository.delete(id);
+        favouriteAlbumService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }
