@@ -1,11 +1,16 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Band;
 import com.dubion.domain.FavouriteSong;
-
+import com.dubion.service.BandQueryService;
+import com.dubion.service.BandService;
+import com.dubion.service.FavouriteSongService;
 import com.dubion.repository.FavouriteSongRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.FavouriteSongCriteria;
+import com.dubion.service.FavouriteSongQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +36,14 @@ public class FavouriteSongResource {
 
     private final FavouriteSongRepository favouriteSongRepository;
 
-    public FavouriteSongResource(FavouriteSongRepository favouriteSongRepository) {
+    private final FavouriteSongService favouriteSongService;
+
+    private final FavouriteSongQueryService favouriteSongQueryService;
+
+    public FavouriteSongResource(FavouriteSongRepository favouriteSongRepository,FavouriteSongService favouriteSongService, FavouriteSongQueryService favouriteSongQueryService) {
         this.favouriteSongRepository = favouriteSongRepository;
+        this.favouriteSongService = favouriteSongService;
+        this.favouriteSongQueryService = favouriteSongQueryService;
     }
 
     /**
@@ -49,8 +60,8 @@ public class FavouriteSongResource {
         if (favouriteSong.getId() != null) {
             throw new BadRequestAlertException("A new favouriteSong cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        FavouriteSong result = favouriteSongRepository.save(favouriteSong);
-        return ResponseEntity.created(new URI("/api/favourite-songs/" + result.getId()))
+        FavouriteSong result = favouriteSongService.save(favouriteSong);
+        return ResponseEntity.created(new URI("/api/favourite-song/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -71,7 +82,7 @@ public class FavouriteSongResource {
         if (favouriteSong.getId() == null) {
             return createFavouriteSong(favouriteSong);
         }
-        FavouriteSong result = favouriteSongRepository.save(favouriteSong);
+        FavouriteSong result = favouriteSongService.save(favouriteSong);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, favouriteSong.getId().toString()))
             .body(result);
@@ -84,9 +95,10 @@ public class FavouriteSongResource {
      */
     @GetMapping("/favourite-songs")
     @Timed
-    public List<FavouriteSong> getAllFavouriteSongs() {
-        log.debug("REST request to get all FavouriteSongs");
-        return favouriteSongRepository.findAll();
+    public ResponseEntity <List<FavouriteSong>> getAllFavouriteSongs(FavouriteSongCriteria criteria) {
+        log.debug("REST request to get FavouriteSongs by criteria: {}", criteria);
+        List<FavouriteSong> entityList = favouriteSongQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
         }
 
     /**
@@ -99,7 +111,7 @@ public class FavouriteSongResource {
     @Timed
     public ResponseEntity<FavouriteSong> getFavouriteSong(@PathVariable Long id) {
         log.debug("REST request to get FavouriteSong : {}", id);
-        FavouriteSong favouriteSong = favouriteSongRepository.findOne(id);
+        FavouriteSong favouriteSong = favouriteSongService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(favouriteSong));
     }
 
@@ -113,7 +125,7 @@ public class FavouriteSongResource {
     @Timed
     public ResponseEntity<Void> deleteFavouriteSong(@PathVariable Long id) {
         log.debug("REST request to delete FavouriteSong : {}", id);
-        favouriteSongRepository.delete(id);
+        favouriteSongService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

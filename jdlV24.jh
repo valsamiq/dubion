@@ -1,4 +1,5 @@
 entity Band {
+entity Band {
 	name String,
     birthDate LocalDate,
     bio String,
