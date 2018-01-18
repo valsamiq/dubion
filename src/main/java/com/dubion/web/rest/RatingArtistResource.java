@@ -1,11 +1,16 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Band;
 import com.dubion.domain.RatingArtist;
-
+import com.dubion.service.BandQueryService;
+import com.dubion.service.BandService;
+import com.dubion.service.RatingArtistService;
 import com.dubion.repository.RatingArtistRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.RatingArtistCriteria;
+import com.dubion.service.RatingArtistQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +36,14 @@ public class RatingArtistResource {
 
     private final RatingArtistRepository ratingArtistRepository;
 
-    public RatingArtistResource(RatingArtistRepository ratingArtistRepository) {
+    private final RatingArtistService ratingArtistService;
+
+    private final RatingArtistQueryService ratingArtistQueryService;
+
+    public RatingArtistResource(RatingArtistRepository ratingArtistRepository,RatingArtistService ratingArtistService, RatingArtistQueryService ratingArtistQueryService) {
         this.ratingArtistRepository = ratingArtistRepository;
+        this.ratingArtistService = ratingArtistService;
+        this.ratingArtistQueryService = ratingArtistQueryService;
     }
 
     /**
@@ -49,8 +60,8 @@ public class RatingArtistResource {
         if (ratingArtist.getId() != null) {
             throw new BadRequestAlertException("A new ratingArtist cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        RatingArtist result = ratingArtistRepository.save(ratingArtist);
-        return ResponseEntity.created(new URI("/api/rating-artists/" + result.getId()))
+        RatingArtist result = ratingArtistService.save(ratingArtist);
+        return ResponseEntity.created(new URI("/api/rating-artist/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -71,7 +82,7 @@ public class RatingArtistResource {
         if (ratingArtist.getId() == null) {
             return createRatingArtist(ratingArtist);
         }
-        RatingArtist result = ratingArtistRepository.save(ratingArtist);
+        RatingArtist result = ratingArtistService.save(ratingArtist);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, ratingArtist.getId().toString()))
             .body(result);
@@ -84,9 +95,10 @@ public class RatingArtistResource {
      */
     @GetMapping("/rating-artists")
     @Timed
-    public List<RatingArtist> getAllRatingArtists() {
-        log.debug("REST request to get all RatingArtists");
-        return ratingArtistRepository.findAll();
+    public ResponseEntity<List<RatingArtist>> getAllRatingArtists(RatingArtistCriteria criteria) {
+        log.debug("REST request to get RatingArtists by criteria: {}", criteria);
+        List<RatingArtist> entityList = ratingArtistQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
         }
 
     /**
@@ -99,7 +111,7 @@ public class RatingArtistResource {
     @Timed
     public ResponseEntity<RatingArtist> getRatingArtist(@PathVariable Long id) {
         log.debug("REST request to get RatingArtist : {}", id);
-        RatingArtist ratingArtist = ratingArtistRepository.findOne(id);
+        RatingArtist ratingArtist = ratingArtistService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(ratingArtist));
     }
 
@@ -113,7 +125,7 @@ public class RatingArtistResource {
     @Timed
     public ResponseEntity<Void> deleteRatingArtist(@PathVariable Long id) {
         log.debug("REST request to delete RatingArtist : {}", id);
-        ratingArtistRepository.delete(id);
+        ratingArtistService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

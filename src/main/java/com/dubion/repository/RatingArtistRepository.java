@@ -11,7 +11,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface RatingArtistRepository extends JpaRepository<RatingArtist, Long> {
+public interface RatingArtistRepository extends JpaRepository<RatingArtist, Long>, JpaSpecificationExecutor<RatingArtist> {
 
     @Query("select rating_artist from RatingArtist rating_artist where rating_artist.user.login = ?#{principal.username}")
     List<RatingArtist> findByUserIsCurrentUser();
