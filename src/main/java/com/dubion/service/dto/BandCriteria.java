@@ -28,6 +28,10 @@ public class BandCriteria implements Serializable {
 
     private StringFilter bio;
 
+    private LongFilter genreId;
+
+    private StringFilter genreName;
+
 //    private StringFilter label;
 
     public BandCriteria() {
@@ -65,7 +69,23 @@ public class BandCriteria implements Serializable {
         this.bio = bio;
     }
 
-//    public StringFilter getLabel() {
+    public LongFilter getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(LongFilter genreId) {
+        this.genreId = genreId;
+    }
+
+    public StringFilter getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(StringFilter genreName) {
+        this.genreName = genreName;
+    }
+
+    //    public StringFilter getLabel() {
 //        return label;
 //    }
 //

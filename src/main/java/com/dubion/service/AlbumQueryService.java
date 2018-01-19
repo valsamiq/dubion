@@ -77,6 +77,13 @@ public class AlbumQueryService extends QueryService<Album>{
             if (criteria.getReleaseDate() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getReleaseDate(), Album_.releaseDate));
             }
+            if (criteria.getGenreId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getGenreId(), Album_.genres, Genre_.id));
+            }
+
+            if (criteria.getGenreName() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getGenreName(), Album_.genres, Genre_.name));
+            }
         }
         return specification;
     }

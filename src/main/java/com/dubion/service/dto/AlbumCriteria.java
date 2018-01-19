@@ -23,6 +23,10 @@ public class AlbumCriteria implements Serializable{
     private StringFilter name;
     private LocalDateFilter releaseDate;
 
+    private LongFilter genreId;
+
+    private StringFilter genreName;
+
     public AlbumCriteria() {
     }
 
@@ -48,6 +52,22 @@ public class AlbumCriteria implements Serializable{
 
     public void setReleaseDate(LocalDateFilter releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public LongFilter getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(LongFilter genreId) {
+        this.genreId = genreId;
+    }
+
+    public StringFilter getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(StringFilter genreName) {
+        this.genreName = genreName;
     }
 
     @Override
