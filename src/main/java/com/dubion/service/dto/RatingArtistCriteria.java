@@ -3,7 +3,7 @@ package com.dubion.service.dto;
 import io.github.jhipster.service.filter.*;
 
 import java.io.Serializable;
-
+//
 
 
 /**
