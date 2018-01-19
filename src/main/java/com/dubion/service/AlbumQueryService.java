@@ -2,6 +2,8 @@ package com.dubion.service;
 
 import com.dubion.domain.Album;
 import com.dubion.domain.Album_;
+import com.dubion.domain.Band_;
+import com.dubion.domain.Genre_;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.service.dto.AlbumCriteria;
 import io.github.jhipster.service.QueryService;

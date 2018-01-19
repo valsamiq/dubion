@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "beta",
+            "otherEntityName": "beta",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alpha"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "edad",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180116114721",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "alpha",
+    "jpaMetamodelFiltering": true,
+    "pagination": "no"
+}
