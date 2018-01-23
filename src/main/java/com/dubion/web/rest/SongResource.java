@@ -1,16 +1,12 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.dubion.domain.Band;
 import com.dubion.domain.Song;
-import com.dubion.service.BandQueryService;
-import com.dubion.service.BandService;
 import com.dubion.service.SongService;
 import com.dubion.repository.SongRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.SongCriteria;
-import com.dubion.service.SongQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,9 +34,9 @@ public class SongResource {
 
     private final SongService songService;
 
-    private final SongQueryService songQueryService;
+    private final SongService.SongQueryService songQueryService;
 
-    public SongResource(SongRepository songRepository, SongService songService, SongQueryService songQueryService) {
+    public SongResource(SongRepository songRepository, SongService songService, SongService.SongQueryService songQueryService) {
         this.songRepository = songRepository;
         this.songService = songService;
         this.songQueryService = songQueryService;

@@ -2,6 +2,8 @@ package com.dubion.service;
 
 import com.dubion.domain.Album;
 import com.dubion.domain.Album_;
+import com.dubion.domain.Band_;
+import com.dubion.domain.Genre_;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.service.dto.AlbumCriteria;
 import io.github.jhipster.service.QueryService;
@@ -74,6 +76,13 @@ public class AlbumQueryService extends QueryService<Album>{
             }
             if (criteria.getReleaseDate() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getReleaseDate(), Album_.releaseDate));
+            }
+            if (criteria.getGenreId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getGenreId(), Album_.genres, Genre_.id));
+            }
+
+            if (criteria.getGenreName() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getGenreName(), Album_.genres, Genre_.name));
             }
         }
         return specification;

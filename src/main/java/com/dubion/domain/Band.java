@@ -56,7 +56,7 @@ public class Band implements Serializable {
     @ManyToOne
     private Social social;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "band_genre",
                joinColumns = @JoinColumn(name="bands_id", referencedColumnName="id"),

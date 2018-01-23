@@ -1,0 +1,29 @@
+
+<div>
+    <h2><span data-translate="dubionApp.alpha.detail.title">Alpha</span> {{vm.alpha.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dubionApp.alpha.edad">Edad</span></dt>
+        <dd>
+            <span>{{vm.alpha.edad}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.alpha.beta">Beta</span></dt>
+        <dd>
+            <span ng-repeat="beta in vm.alpha.betas">
+                <a ui-sref="beta-detail({id: beta.id})">{{beta.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="alpha-detail.edit({id:vm.alpha.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
