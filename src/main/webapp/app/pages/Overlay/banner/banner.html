@@ -1,5 +1,29 @@
 <div>
-    <div class="row">
-        <img id="imgBanner1" src="content/banner/bwConcertSmall.png" alt="banner"/>
+    <div>
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="slide.id">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                    <!--<h4>Slide {{slide.id}}</h4>-->
+                    <p>{{slide.text}}</p>
+                </div>
+            </div>
+        </div>
     </div>
+    <!--<div class="row">-->
+        <!--<div class="col-md-6">-->
+            <!--<button type="button" class="btn btn-info" ng-click="vm.addSlide()">Add Slide</button>-->
+            <!--<button type="button" class="btn btn-info" ng-click="vm.randomize()">Randomize slides</button>-->
+            <!--<div class="checkbox">-->
+                <!--<label>-->
+                    <!--<input type="checkbox" ng-model="vm.noWrapSlides">-->
+                    <!--Disable Slide Looping-->
+                <!--</label>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+            <!--Interval, in milliseconds: <input type="number" class="form-control" ng-model="vm.myInterval">-->
+            <!--<br />Enter a negative number or 0 to stop the interval.-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
