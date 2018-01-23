@@ -1,8 +1,10 @@
 package com.dubion.service;
 
 import com.dubion.domain.Authority;
+import com.dubion.domain.Social;
 import com.dubion.domain.User;
 import com.dubion.repository.AuthorityRepository;
+import com.dubion.repository.SocialRepository;
 import com.dubion.repository.UserRepository;
 import com.dubion.security.AuthoritiesConstants;
 
@@ -16,11 +18,9 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class SocialService {
@@ -33,19 +33,23 @@ public class SocialService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final SocialRepository socialRepository;
+
     private final UserRepository userRepository;
 
     private final MailService mailService;
 
+
     public SocialService(UsersConnectionRepository usersConnectionRepository, AuthorityRepository authorityRepository,
-            PasswordEncoder passwordEncoder, UserRepository userRepository,
-            MailService mailService) {
+                         PasswordEncoder passwordEncoder, UserRepository userRepository,SocialRepository  socialRepository,
+                         MailService mailService) {
 
         this.usersConnectionRepository = usersConnectionRepository;
         this.authorityRepository = authorityRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.socialRepository = socialRepository;
     }
 
     public void deleteUserSocialConnection(String login) {
@@ -127,5 +131,43 @@ public class SocialService {
     private void createSocialConnection(String login, Connection<?> connection) {
         ConnectionRepository connectionRepository = usersConnectionRepository.createConnectionRepository(login);
         connectionRepository.addConnection(connection);
+    }
+
+    public Social save(Social social) {
+        log.debug("Request to save social : {}", social);
+        return socialRepository.save(social);
+    }
+
+    /**
+     *  Get all the bands.
+     *
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<Social> findAll() {
+        log.debug("Request to get all Social");
+        return socialRepository.findAll();
+    }
+
+    /**
+     *  Get one band by id.
+     *
+     *  @param id the id of the entity
+     *  @return the entity
+     */
+    @Transactional(readOnly = true)
+    public Social findOne(Long id) {
+        log.debug("Request to get Social : {}", id);
+        return socialRepository.findOne(id);
+    }
+
+    /**
+     *  Delete the  band by id.
+     *
+     *  @param id the id of the entity
+     */
+    public void delete(Long id) {
+        log.debug("Request to delete Social : {}", id);
+        socialRepository.delete(id);
     }
 }

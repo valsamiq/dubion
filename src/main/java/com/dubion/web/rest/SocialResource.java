@@ -2,10 +2,12 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Social;
-
+import com.dubion.service.SocialService;
 import com.dubion.repository.SocialRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.SocialCriteria;
+import com.dubion.service.SocialQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +33,14 @@ public class SocialResource {
 
     private final SocialRepository socialRepository;
 
-    public SocialResource(SocialRepository socialRepository) {
+    private final SocialService socialService;
+
+    private final SocialQueryService socialQueryService;
+
+    public SocialResource(SocialRepository socialRepository, SocialService socialService,SocialQueryService socialQueryService) {
         this.socialRepository = socialRepository;
+        this.socialService=socialService;
+        this.socialQueryService = socialQueryService;
     }
 
     /**
@@ -49,8 +57,8 @@ public class SocialResource {
         if (social.getId() != null) {
             throw new BadRequestAlertException("A new social cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Social result = socialRepository.save(social);
-        return ResponseEntity.created(new URI("/api/socials/" + result.getId()))
+        Social result = socialService.save(social);
+        return ResponseEntity.created(new URI("/api/social/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -71,7 +79,7 @@ public class SocialResource {
         if (social.getId() == null) {
             return createSocial(social);
         }
-        Social result = socialRepository.save(social);
+        Social result = socialService.save(social);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, social.getId().toString()))
             .body(result);
@@ -84,9 +92,10 @@ public class SocialResource {
      */
     @GetMapping("/socials")
     @Timed
-    public List<Social> getAllSocials() {
-        log.debug("REST request to get all Socials");
-        return socialRepository.findAll();
+    public ResponseEntity< List<Social>> getAllSocials(SocialCriteria criteria) {
+        log.debug("REST request to get Socials by criteria: {}", criteria);
+        List<Social> entityList = socialQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
         }
 
     /**
@@ -99,7 +108,7 @@ public class SocialResource {
     @Timed
     public ResponseEntity<Social> getSocial(@PathVariable Long id) {
         log.debug("REST request to get Social : {}", id);
-        Social social = socialRepository.findOne(id);
+        Social social = socialService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(social));
     }
 
@@ -113,7 +122,7 @@ public class SocialResource {
     @Timed
     public ResponseEntity<Void> deleteSocial(@PathVariable Long id) {
         log.debug("REST request to delete Social : {}", id);
-        socialRepository.delete(id);
+        socialService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }
