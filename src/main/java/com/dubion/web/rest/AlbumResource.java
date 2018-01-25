@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Album;
 import com.dubion.service.AlbumService;
 import com.dubion.repository.AlbumRepository;
+import com.dubion.service.DiscogsAPI.DiscogsApiService;
 import com.dubion.service.dto.BandCriteria;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
@@ -12,6 +13,7 @@ import com.dubion.service.AlbumQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +39,9 @@ public class AlbumResource {
     private final AlbumService albumService;
 
     private final AlbumQueryService albumQueryService;
+
+    @Autowired
+    private DiscogsApiService discogsApiService;
 
     public AlbumResource(AlbumRepository albumRepository, AlbumService albumService, AlbumQueryService albumQueryService) {
         this.albumRepository = albumRepository;
@@ -96,6 +101,9 @@ public class AlbumResource {
     public ResponseEntity<List<Album>> getAllAlbums(AlbumCriteria criteria) {
         log.debug("REST request to get all Albums by Criteria {}", criteria);
         List<Album> entityList = albumQueryService.findByCriteria(criteria);
+
+        DiscogsApiService.getDisc(3);
+
         return ResponseEntity.ok().body(entityList);
     }
 
