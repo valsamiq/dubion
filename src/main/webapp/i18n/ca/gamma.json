@@ -1,0 +1,22 @@
+{
+    "dubionApp": {
+        "gamma" : {
+            "home": {
+                "title": "Gammas",
+                "createLabel": "Create a new Gamma",
+                "createOrEditLabel": "Create or edit a Gamma"
+            },
+            "created": "A new Gamma is created with identifier {{ param }}",
+            "updated": "A Gamma is updated with identifier {{ param }}",
+            "deleted": "A Gamma is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Gamma {{ id }}?"
+            },
+            "detail": {
+                "title": "Gamma"
+            },
+            "name": "Name",
+            "album": "Album"
+        }
+    }
+}

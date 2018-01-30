@@ -3,6 +3,7 @@ package com.dubion.service;
 import com.dubion.domain.Band;
 import com.dubion.domain.Band_;
 import com.dubion.domain.Genre_;
+import com.dubion.domain.Label_;
 import com.dubion.repository.BandRepository;
 import com.dubion.service.dto.BandCriteria;
 import io.github.jhipster.service.QueryService;
@@ -88,6 +89,12 @@ public class BandQueryService extends QueryService<Band> {
 
             if (criteria.getGenreName() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getGenreName(), Band_.genres, Genre_.name));
+            }
+            if (criteria.getLabelId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getLabelId(), Band_.label, Label_.id));
+            }
+            if (criteria.getLabelName() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getLabelName(), Band_.label, Label_.name));
             }
         }
         return specification;

@@ -83,6 +83,7 @@ public class CacheConfiguration {
             cm.createCache(com.dubion.domain.Beta.class.getName(), jcacheConfiguration);
             cm.createCache(com.dubion.domain.Alpha.class.getName(), jcacheConfiguration);
             cm.createCache(com.dubion.domain.Alpha.class.getName() + ".betas", jcacheConfiguration);
+            cm.createCache(com.dubion.domain.Gamma.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
