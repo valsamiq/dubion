@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.*;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface SocialRepository extends JpaRepository<Social, Long> {
+public interface SocialRepository extends JpaRepository<Social, Long> , JpaSpecificationExecutor<Social>{
 
 }

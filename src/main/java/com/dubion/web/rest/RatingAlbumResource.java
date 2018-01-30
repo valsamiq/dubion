@@ -1,12 +1,15 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Band;
 import com.dubion.domain.RatingAlbum;
-
+import com.dubion.service.RatingAlbumService;
 import com.dubion.repository.RatingAlbumRepository;
 import com.dubion.service.dto.StatsAlbumRating;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
+import com.dubion.service.dto.RatingAlbumCriteria;
+import com.dubion.service.RatingAlbumQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +35,14 @@ public class RatingAlbumResource {
 
     private final RatingAlbumRepository ratingAlbumRepository;
 
-    public RatingAlbumResource(RatingAlbumRepository ratingAlbumRepository) {
+    private final RatingAlbumService ratingAlbumService;
+
+    private final RatingAlbumQueryService ratingAlbumQueryService;
+
+    public RatingAlbumResource(RatingAlbumRepository ratingAlbumRepository, RatingAlbumService ratingAlbumService, RatingAlbumQueryService ratingAlbumQueryService) {
         this.ratingAlbumRepository = ratingAlbumRepository;
+        this.ratingAlbumService = ratingAlbumService;
+        this.ratingAlbumQueryService = ratingAlbumQueryService;
     }
 
     /**
@@ -50,8 +59,8 @@ public class RatingAlbumResource {
         if (ratingAlbum.getId() != null) {
             throw new BadRequestAlertException("A new ratingAlbum cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        RatingAlbum result = ratingAlbumRepository.save(ratingAlbum);
-        return ResponseEntity.created(new URI("/api/rating-albums/" + result.getId()))
+        RatingAlbum result = ratingAlbumService.save(ratingAlbum);
+        return ResponseEntity.created(new URI("/api/rating-album/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -72,7 +81,7 @@ public class RatingAlbumResource {
         if (ratingAlbum.getId() == null) {
             return createRatingAlbum(ratingAlbum);
         }
-        RatingAlbum result = ratingAlbumRepository.save(ratingAlbum);
+        RatingAlbum result = ratingAlbumService.save(ratingAlbum);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, ratingAlbum.getId().toString()))
             .body(result);
@@ -85,9 +94,10 @@ public class RatingAlbumResource {
      */
     @GetMapping("/rating-albums")
     @Timed
-    public List<RatingAlbum> getAllRatingAlbums() {
-        log.debug("REST request to get all RatingAlbums");
-        return ratingAlbumRepository.findAll();
+    public ResponseEntity<List<RatingAlbum>> getAllRatingAlbums(RatingAlbumCriteria criteria) {
+        log.debug("REST request to get RatingAlbums by criteria: {}", criteria);
+        List<RatingAlbum> entityList = ratingAlbumQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
         }
 
     /**
@@ -100,7 +110,7 @@ public class RatingAlbumResource {
     @Timed
     public ResponseEntity<RatingAlbum> getRatingAlbum(@PathVariable Long id) {
         log.debug("REST request to get RatingAlbum : {}", id);
-        RatingAlbum ratingAlbum = ratingAlbumRepository.findOne(id);
+        RatingAlbum ratingAlbum = ratingAlbumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(ratingAlbum));
     }
 
@@ -114,7 +124,7 @@ public class RatingAlbumResource {
     @Timed
     public ResponseEntity<Void> deleteRatingAlbum(@PathVariable Long id) {
         log.debug("REST request to delete RatingAlbum : {}", id);
-        ratingAlbumRepository.delete(id);
+        ratingAlbumService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
     @GetMapping("/rating-album-stats/{id}")

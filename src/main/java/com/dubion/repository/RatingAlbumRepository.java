@@ -1,6 +1,7 @@
 package com.dubion.repository;
 
 import com.dubion.domain.Album;
+import com.dubion.domain.Band;
 import com.dubion.domain.RatingAlbum;
 import com.dubion.service.dto.StatsAlbumRating;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +16,7 @@ import java.util.Optional;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface RatingAlbumRepository extends JpaRepository<RatingAlbum, Long> {
+public interface RatingAlbumRepository extends JpaRepository<RatingAlbum, Long>, JpaSpecificationExecutor<RatingAlbum>  {
 
     @Query("select rating_album from RatingAlbum rating_album where rating_album.user.login = ?#{principal.username}")
     List<RatingAlbum> findByUserIsCurrentUser();
