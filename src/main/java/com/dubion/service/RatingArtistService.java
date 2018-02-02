@@ -20,7 +20,7 @@ import java.util.List;
 @Transactional
 public class RatingArtistService {
 
-    private final Logger log = LoggerFactory.getLogger(FavouriteSongService.class);
+    private final Logger log = LoggerFactory.getLogger(RatingArtistService.class);
 
     private final RatingArtistRepository ratingArtistRepository;
 
