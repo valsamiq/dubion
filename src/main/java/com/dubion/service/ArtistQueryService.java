@@ -81,5 +81,4 @@ public class ArtistQueryService extends QueryService<Artist>{
         }
         return specification;
     }
-
 }

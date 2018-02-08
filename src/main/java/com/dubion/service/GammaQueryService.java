@@ -84,5 +84,4 @@ public class GammaQueryService extends QueryService<Gamma> {
         }
         return specification;
     }
-
 }

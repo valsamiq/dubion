@@ -104,6 +104,8 @@ public class AlbumResource {
 
         DiscogsApiService.getDisc(3);
 
+        DiscogsApiService.findByReleasetitle("nevermind");
+
         return ResponseEntity.ok().body(entityList);
     }
 
