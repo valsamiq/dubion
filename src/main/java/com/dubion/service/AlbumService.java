@@ -30,6 +30,7 @@ public class AlbumService {
      * @param album the entity to save
      * @return the persisted entity
      */
+
     public Album save(Album album) {
         log.debug("Reques to save Album : {}", album);
         return albumRepository.save(album);

@@ -29,6 +29,7 @@
             LoginService.open();
         }
 
+
         function logout() {
             collapseNavbar();
             Auth.logout();
