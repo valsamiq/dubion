@@ -1,7 +1,7 @@
 {
     "home": {
-        "title": "Welcome, Java Hipster!",
-        "subtitle": "This is your homepage",
+        "title": "Welcome to Dubion!",
+        "subtitle": "This is the definitive music App",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },

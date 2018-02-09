@@ -1,7 +1,7 @@
 {
     "home": {
-        "title": "Benvingut, Java Hipster!",
-        "subtitle": "Aquesta és la pàgina principal",
+        "title": "Benvinguts a Dubion!",
+        "subtitle": "Dubion és la WebApp de música definitiva",
         "logged": {
             "message": "S'ha connectat amb l'usuari \"{{username}}\"."
         },
