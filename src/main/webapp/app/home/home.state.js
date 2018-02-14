@@ -24,6 +24,11 @@
                     templateUrl: 'app/pages/Overlay/banner/banner.html',
                     controller: 'BannerController',
                     controllerAs: 'vm'
+                },
+                'albumPage@': {
+                    templateUrl: 'app/albumPage/albumPage.html',
+                    controller: 'albumPageController',
+                    controllerAs: 'vm'
                 }
             },
             resolve: {
