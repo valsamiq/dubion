@@ -1,77 +1,130 @@
 <div class="row">
-    <div class="col-xs-12" style="text-align: center; background-color: #333333">
-        <img src="images/musica.png" alt="musica" style="">
+    <div class="col-xs-10" style="text-align: left; background-color: #b6b6b6; margin: 3%">
+        <div class="col-xs-5">
+            <img src="/content/images/listening.jpg" alt="musica" style="">
+        </div>
+        <div class="col-xs-5" style="list-style: none"><h2>Rammstein - Mutter</h2>
+            <li>Ich Will - 4:35</li>
+            <li>Ich Will - 4:35</li>
+            <li>Ich Will - 4:35</li>
+            <li>Ich Will - 4:35</li>
+            <li>Ich Will - 4:35</li>
+        </div>
+
     </div>
     <div class="col-xs-12">
         <div style="background-color: #222222;display: flex; justify-content: flex-end;">
-            <div class="col-xs-6" style="padding-top: 10px;">
-                <div style="text-align: left; padding-left: 20px;">
-                    <i style="color: grey;" class="fas fa-headphones"></i><span class="blue">&nbsp;&nbsp;&nbsp;CRAS LOBORTIS AUGUE&nbsp;.&nbsp;</span><span class="grey">JOHN DOE</span>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <div style="text-align: right;">
+
                     <audio controls>
                         <source src="http://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
                         <source src="http://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
                         <a href="http://www.w3schools.com/html/horse.mp3">horse</a>
                     </audio>
-                </div>
-            </div>
+
+
 
 
         </div>
-
     </div>
+<style>
+    .center{
+        text-align: center;
+    }
+    div.scrollmenu {
+        position: relative;
+        background-color: #b6b6b6;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    div.scrollmenu a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+    }
+
+    div.scrollmenu a:hover .new{
+        background-color: rgba(140,130,130,0.5);
+        color:white;
+    }
+    .info{
+        background-color: #0A0A0A;
+    }
+    .new {
+        background-color: transparent;
+        width:200px;
+        height: 50px;
+        color:transparent;
+        z-index: 3;
+        bottom: 14px;
+        left: 14px;
+        position: absolute;
+
+    }
+    .new2{
+        background-color: rgba(140,130,130,0.5);
+        width:200px;
+        height: 50px;
+        color:white;
+        z-index: 3;
+        bottom: 14px;
+        left: 14px;
+        position: absolute;
+    }
+    .pictr{
+        position:absolute;
+        left: 2%;
+        top: 50%;
+        width: 30px !important;
+        height: 30px !important;
+        z-index: 5;
+    }
+    .pictl{
+        position:absolute;
+        right: 2%;
+        bottom: 40%;
+        width: 30px !important;
+        height: 30px !important;
+        z-index: 5;
+    }
+
+</style>
+
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="orange">
-            <h2 class="left white">NEWS RELEASE</h2>
-            <div style="margin-top: 50px">
-                <div class="col-xs-2 center compl"><img src="images/listening.jpg" alt="Html5" style="width:200px">
-                    <h5 class="white">1.HTML STANDART</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening.jpg" alt="Css3" style="width:200px">
-                    <h5 class="white">3.CSS EFFECTS</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening.jpg" alt="Movil" style="width:200px">
-                    <h5 class="white">3.MOBILE READY</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening.jpg" alt="Movil" style="width:200px">
-                    <h5 class="white">4.MOBILE READY</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening.jpg" alt="Movil" style="width:200px">
-                    <h5 class="white">5.MOBILE READY</h5>
-                </div>
 
-            </div>
+            <h2 class="left white">Más de Rammstein</h2>
+            <div class="scrollmenu scrollslick">
+                <a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#about"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#support"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#blog"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#tools"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#base"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            </div><br/>
+            <script>
+                $(document).ready(function(){
+                    $('.scrollslick').slick({
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt=""/>',
+                        prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt=""/>'
+
+                    });
+                });
+            </script>
+
+
         </div>
 
 
-    </div>
-    <div class="col-xs-12">
-        <div class="orange">
-            <h2 class="left white">MUSIC VIDEO</h2>
-            <div style="margin-top: 50px">
-                <div class="col-xs-2 center compl"><img src="images/listening_music.jpg" alt="Html5" style="width:200px">
-                    <h5 class="white">1.HTML STANDART</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening_music.jpg" alt="Css3" style="width:200px">
-                    <h5 class="white">3.CSS EFFECTS</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening_music.jpg" alt="Movil" style="width:200px">
-                    <h5 class="white">3.MOBILE READY</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening_music.jpg" alt="Movil" style="width:200px">
-                    <h5 class="white">4.MOBILE READY</h5>
-                </div>
-                <div class="col-xs-2 center compl"><img src="images/listening_music.jpg" alt="Movil" style="width:200px">
-                    <h5 class="white">5.MOBILE READY</h5>
-                </div>
-
-            </div>
-        </div>
     </div>
 
 </div>
