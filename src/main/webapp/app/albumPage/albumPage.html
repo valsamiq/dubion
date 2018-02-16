@@ -1,24 +1,27 @@
 <div class="row">
     <div class="col-xs-10" style="text-align: left; background-color: #b6b6b6; margin: 3%">
         <div class="col-xs-5">
-            <img src="/content/images/listening.jpg" alt="musica" style="">
+            <img src="/content/images/Sia Cover.jpg" alt="musica" style="">
         </div>
-        <div class="col-xs-5" style="list-style: none"><h2>Rammstein - Mutter</h2>
-            <li>Ich Will - 4:35</li>
-            <li>Ich Will - 4:35</li>
-            <li>Ich Will - 4:35</li>
-            <li>Ich Will - 4:35</li>
-            <li>Ich Will - 4:35</li>
+        <div class="col-xs-5" style="list-style: none"><h2>Sia - This is Acting</h2>
+            <li>The Greatest - 3:32</li>
+            <li>Never Give Up - 3:57</li>
+            <li>Elastic Heart - 4:19</li>
+            <li>Cheap Thrills - 3:27</li>
+            <li>Fist Fighting a Sandstorm - 3:41</li>
         </div>
 
     </div>
     <div class="col-xs-12">
         <div style="background-color: #222222;display: flex; justify-content: flex-end;">
 
-                    <audio controls>
+                    <audio id="audio" preload="auto" tabindex="0" controls=" ">
+                        <source src="/content/music/Sia%20-%20The%20Greatest.mp3" type="audio/mpeg" />
                         <source src="http://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
                         <source src="http://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
+
                         <a href="http://www.w3schools.com/html/horse.mp3">horse</a>
+                        Your browser does not support the audio element.
                     </audio>
 
 
@@ -55,7 +58,7 @@
     .new {
         background-color: transparent;
         width:200px;
-        height: 50px;
+        height: 60px;
         color:transparent;
         z-index: 3;
         bottom: 14px;
@@ -96,16 +99,17 @@
 <div class="row">
     <div class="col-xs-12">
 
-            <h2 class="left white">Más de Rammstein</h2>
+            <h2 class="left white">Más de Sia</h2>
             <div class="scrollmenu scrollslick">
-                <a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
-                <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
-                <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
-                <a style="position: relative" href="#about"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
-                <a style="position: relative" href="#support"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
-                <a style="position: relative" href="#blog"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
-                <a style="position: relative" href="#tools"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
-                <a style="position: relative" href="#base"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#home"><img src="/content/images/Sia Cover.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
+                <a style="position: relative" href="#news"><img src="/content/images/Sia Cover2.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
+                <a style="position: relative" href="#contact"><img src="/content/images/Sia Cover3.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Some People </br>Have Real Problems</div></a>
+                <a style="position: relative" href="#about"><img src="/content/images/Sia Cover4.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>The Greatest</div></a>
+                <a style="position: relative" href="#support"><img src="/content/images/Sia Cover5.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Everyday Is Christmas</div></a>
+                <a style="position: relative" href="#blog"><img src="/content/images/Sia Cover6.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>We are Born</div></a>
+                <a style="position: relative" href="#tools"><img src="/content/images/Sia Cover7.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
+                <a style="position: relative" href="#base"><img src="/content/images/Sia Cover8.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>1000 Forms of Fear</div></a>
+                <a style="position: relative" href="#base"><img src="/content/images/Sia Cover9.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Colour the Small One</div></a>
             </div><br/>
             <script>
                 $(document).ready(function(){
@@ -119,6 +123,15 @@
 
                     });
                 });
+                audio = new Audio("/content/music/Sia%20-%20The%20Greatest.mp3");
+
+                audio.addEventListener('ended',function(){
+                    audio.src = "/content/music/Sia%20-%20Never%20Give%20Up.mp3";
+                    audio.pause();
+                    audio.load();
+                    audio.play();
+                });
+                var audio = $("#Player");
             </script>
 
 
