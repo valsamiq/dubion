@@ -10,6 +10,7 @@
                 "band": "Band",
                 "artist": "Artist",
                 "album": "Album",
+                "albumPage": "AlbumPage",
                 "song": "Song",
                 "review": "Review",
                 "label": "Label",

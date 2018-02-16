@@ -24,7 +24,8 @@
 
             <style>
                 div.scrollmenu {
-                    background-color: #333;
+                    position: relative;
+                    background-color: #b6b6b6;
                     overflow: hidden;
                     white-space: nowrap;
                 }
@@ -67,18 +68,18 @@
                 }
                 .pictr{
                     position:absolute;
-                    right:-80px;
-                    top:40%;
-                    width: 70px !important;
-                    height: 50px !important;
+                    left: 2%;
+                    top: 50%;
+                    width: 30px !important;
+                    height: 30px !important;
                     z-index: 5;
                 }
                 .pictl{
                     position:absolute;
-                    left:-80px;
-                    top:40%;
-                    width: 70px !important;
-                    height: 50px !important;
+                    right: 2%;
+                    bottom: 40%;
+                    width: 30px !important;
+                    height: 30px !important;
                     z-index: 5;
                 }
             </style>
@@ -107,8 +108,8 @@
                     slidesToScroll: 1,
                     autoplay: true,
                     autoplaySpeed: 2000,
-                    nextArrow:'<img class="pictl" src="/content/images/arrow-1.png" alt=""/>',
-                    prevArrow:'<img class="pictr" src="/content/images/arrow-1.png" alt=""/>'
+                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt=""/>',
+                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt=""/>'
 
             });
             });
