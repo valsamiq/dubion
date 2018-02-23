@@ -22,7 +22,7 @@ vm.addSlide = function() {
     slides.push({
         image:'content/banner/Banner3SizeOK.jpg',
         //image: '//unsplash.it/' + newWidth + '/300',
-        text: ['Brutal','Awesome things','That.s good shit, bro','I want to eat a dinosaur'][slides.length % 4],
+        text: ['Brutal'][slides.length % 4],
         id: currIndex++
     });
     slides.push({

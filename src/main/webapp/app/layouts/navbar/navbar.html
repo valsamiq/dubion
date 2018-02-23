@@ -36,15 +36,21 @@
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active">
-                            <a ui-sref="band" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span data-translate="global.menu.entities.band">Band</span>
+                            <a ui-sref="albumPage" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-home"></span>&nbsp;
+                                <span data-translate="global.menu.entities.albumPage">AlbumPage</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
-                            <a ui-sref="albumPage" ng-click="vm.collapseNavbar()">
+                            <a ui-sref="bandPage" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-home"></span>&nbsp;
+                                <span data-translate="global.menu.entities.bandPage">bandPage</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="band" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span data-translate="global.menu.entities.albumPage">AlbumPage</span>
+                                <span data-translate="global.menu.entities.band">Band</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">

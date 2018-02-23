@@ -21,15 +21,15 @@ public interface DiscogsApiRepository {
     Call<AlbumDTO> findByReleaseTitle(@Query("release_title") String release_title, @Query("token") String token);
     //FindByArtist
 
-//    query
-//    string (optional) Example: nirvana
-//    Your search query
+//    @GET("database/search?")
+//    Call<>
 
-    //Good Morning;
+    //query
+    //string (optional) Example: nirvana
+    //Your search query
 
-
-
-    //GET https://api.discogs.com/database/search?release_title=nevermind&artist=nirvana&per_page=3&page=1
+    //Example search with a general query instead of an specific field.
+    //GET https://api.discogs.com/database/search?q=nevermind&token=yqqlmpPsfiVPoXkvXpxNajivvHlAdPpNBrZqUQZt&{?
 
     public static String url = "https://api.discogs.com/";
     public static final Retrofit retrofit = new Retrofit.Builder()

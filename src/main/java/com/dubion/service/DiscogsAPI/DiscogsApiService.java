@@ -25,7 +25,6 @@ public class DiscogsApiService {
         }
         return movie;
     }
-
     public static AlbumDTO findByReleasetitle(String releaseTitle){
         AlbumDTO movie = null;
         Call<AlbumDTO> callMovie = apiService.findByReleaseTitle(releaseTitle,token);

@@ -1,13 +1,13 @@
-(function() {
+(function(){
     'use strict';
 
     angular
         .module('dubionApp')
-        .controller('albumPageController', AlbumPageController);
+        .controller('bandPageController', BandPageController);
 
-    AlbumPageController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    BandPageController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
-    function AlbumPageController ($scope, Principal, LoginService, $state) {
+    function BandPageController ($scope, Principal, LoginService, $state) {
         var vm = this;
 
         vm.account = null;
