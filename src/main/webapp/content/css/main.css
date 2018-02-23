@@ -163,7 +163,7 @@ Generic styles
 make sure browsers use the pointer cursor for anchors, even with no href
 ========================================================================== */
 a {
-    color: #1c0cf5;
+    color: #CCCCCC;
 }
 
 a:hover, .hand, [jh-sort-by] {
