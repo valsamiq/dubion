@@ -22,7 +22,8 @@
                 }
             },
             'update': {
-                method: 'PUT',
+                method: '' +
+                '',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
                     copy.releaseDate = DateUtils.convertLocalDateToServer(copy.releaseDate);

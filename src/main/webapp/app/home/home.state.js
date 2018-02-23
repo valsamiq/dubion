@@ -29,6 +29,11 @@
                     templateUrl: 'app/albumPage/albumPage.html',
                     controller: 'albumPageController',
                     controllerAs: 'vm'
+                },
+                'userPage@': {
+                    templateUrl: 'app/userPage/userPage.html',
+                    controller: 'userPageController',
+                    controllerAs: 'vm'
                 }
             },
             resolve: {
