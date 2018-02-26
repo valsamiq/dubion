@@ -24,8 +24,9 @@
 
             <style>
                 div.scrollmenu {
-                    background-color: #333;
-                    overflow: auto;
+                    position: relative;
+                    background-color: #b6b6b6;
+                    overflow: hidden;
                     white-space: nowrap;
                 }
 
@@ -65,9 +66,25 @@
                     left: 14px;
                     position: absolute;
                 }
+                .pictr{
+                    position:absolute;
+                    left: 2%;
+                    top: 50%;
+                    width: 30px !important;
+                    height: 30px !important;
+                    z-index: 5;
+                }
+                .pictl{
+                    position:absolute;
+                    right: 2%;
+                    bottom: 40%;
+                    width: 30px !important;
+                    height: 30px !important;
+                    z-index: 5;
+                }
             </style>
 
-            <div class="scrollmenu">
+            <div class="scrollmenu scrollslick">
                 <a style="position: relative" href="#home"><div class="info">Hola</div><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
                 <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
                 <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new2">Hola</div></a>
@@ -84,10 +101,23 @@
                 <a style="position: relative" href="#people"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
                 <a style="position: relative" href="#work"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
             </div><br/>
+        <script>
+            $(document).ready(function(){
+                $('.scrollslick').slick({
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt=""/>',
+                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt=""/>'
+
+            });
+            });
+        </script>
 
             <div style="font-size: large;font-weight: bold">Incomming Albums</div><br/>
 
-            <div class="scrollmenu">
+            <div class="scrollmenu scrollslick">
                 <a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
                 <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
                 <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
@@ -107,7 +137,7 @@
 
         <div style="font-size: large;font-weight: bold">Groups you may like</div><br/>
 
-        <div class="scrollmenu">
+        <div class="scrollmenu scrollslick">
             <a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
             <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
             <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
