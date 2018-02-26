@@ -78,6 +78,7 @@ td, th {
 }
 
 .item:hover {
+    cursor:pointer;
     background-color:#ccc;
 }
 

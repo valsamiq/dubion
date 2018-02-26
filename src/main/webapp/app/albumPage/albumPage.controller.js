@@ -5,9 +5,9 @@
         .module('dubionApp')
         .controller('albumPageController', albumPageController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    albumPageController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function albumPageController ($scope, Principal, LoginService, $state) {
         var vm = this;
 
         vm.account = null;
