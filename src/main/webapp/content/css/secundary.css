@@ -121,3 +121,9 @@ span.glyphicon.glyphicon-refresh{
 .sectionNavbarHover:hover{
     background-color: rgba(205,205,205,0.93);
 }
+
+.separator{
+    background-color: #0A0A0A;
+    height: 10px;
+    transition: height 1s ;
+}
