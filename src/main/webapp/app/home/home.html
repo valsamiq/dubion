@@ -126,10 +126,44 @@
                     slidesToScroll: 1,
                     autoplay: true,
                     autoplaySpeed: 2000,
-                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt=""/>',
-                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt=""/>'
+                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
+                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 4,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                arrows: false,
+                                slidesToShow: 1,
+                                slidesToScroll: 1
 
-            });
+                            }
+                        }
+
+                    ]
+                });
             });
         </script>
 
