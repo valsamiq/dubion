@@ -8,6 +8,7 @@
     albumPageController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
     function albumPageController ($scope, Principal, LoginService, $state) {
+
         var vm = this;
 
         vm.account = null;
