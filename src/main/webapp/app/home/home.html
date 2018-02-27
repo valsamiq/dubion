@@ -4,9 +4,10 @@
             <!--<span class="hipster img-responsive img-rounded"></span>-->
         </div>
         <br class="col-md-12 algo">
-            <h1 data-translate="home.title">Benvinguts a Dubion!</h1>
-            <p class="lead" data-translate="home.subtitle">Dubion és la WebApp de música definitiva</p>
-
+        <div class="parallax">
+            <h1 data-translate="home.title" class="blue">Benvinguts a Dubion!</h1>
+            <p class="lead blue" data-translate="home.subtitle">Dubion és la WebApp de música definitiva</p>
+        </div>
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
@@ -23,6 +24,23 @@
             <div style="font-size: large;font-weight: bold">Last Releases</div><br/>
 
             <style>
+                .blue{
+                    color:#1682fb;
+                    text-align: center;
+                }
+                .parallax {
+                    /* The image used */
+                    background-image: url("/content/images/concertcrowd.jpg");
+
+                    /* Set a specific height */
+                    height: 100%;
+
+                    /* Create the parallax scrolling effect */
+                    background-attachment: fixed;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
                 div.scrollmenu {
                     position: relative;
                     background-color: #b6b6b6;

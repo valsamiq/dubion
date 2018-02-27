@@ -18,6 +18,11 @@
         loadAll();
 
         function loadAll() {
+
+            Album.get({id : 1}, function (data){
+                console.log(data);
+            })
+
             Album.query(function(result) {
                 vm.albums = result;
                 vm.searchQuery = null;

@@ -3,11 +3,11 @@
 
     angular
         .module('dubionApp')
-        .controller('albumPageController', albumPageController);
+        .controller('AlbumPageController', AlbumPageController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    AlbumPageController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function AlbumPageController ($scope, Principal, LoginService, $state) {
         var vm = this;
 
         vm.account = null;
