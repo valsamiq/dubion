@@ -1,12 +1,12 @@
 <div role="navigation" class="lefto" ng-switch="vm.isAuthenticated()" id="mySidenav" class="sidenav">
 
-    <div class="item" ui-sref="home">
+    <div class="item" ui-sref="#" ng-click="vm.collapseNavbar()">
         <span><img class="glyphlogo" src="app/layouts/navbar/dubion-glyphicon.png" alt=""/></span>
         Dubion
     </div>
     <div>
         <span class="glyphicon glyphicon-home"></span>
-        <a ui-sref="home">Home</a>
+        <a ui-sref="#/">Home</a>
     </div>
 
     <div ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
@@ -247,37 +247,8 @@
                 </a>
             </div>
         </div>
-
+        <div class="separador">
         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
     </div>
-
-    <div class="separator"></div>
-
-
-    <div>
-        <a ui-sref="artistPage">
-            <span class="glyphicon glyphicon-user"></span>&nbsp;
-            <span >Artista</span>
-        </a>
-    </div>
-    <div>
-        <a ui-sref="albumPage">
-            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;
-            <span >Album</span>
-        </a>
-    </div>
-    <div>
-        <a ui-sref="artistPage">
-            <span class="glyphicon glyphicon-cd"></span>&nbsp;
-            <span >Canciones</span>
-        </a>
-    </div>
-    <div>
-        <a ui-sref="bandPage">
-            <span class="glyphicon glyphicon-king"></span>&nbsp;
-            <span >Banda</span>
-        </a>
-    </div>
-
 </div>
 </div>
