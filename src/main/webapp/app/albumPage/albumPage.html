@@ -16,9 +16,12 @@
         <div style="background-color: #222222;display: flex; justify-content: flex-end;">
 
             <div class="col-md-12 center">
-                <audio id="audio" preload="auto"></audio>
+                <audio id="audio" preload="auto">
+                    <source src="/content/music/Sia%20-%20Cheap%20Thrills.mp3" type="audio/mpeg">
+
+                </audio>
                 <div class="btn-group">
-                    <button onclick="Play('music.mp3','audio');" class="btn btn-custom"><span title="Play" id="play" class="glyphicon glyphicon-play aligned"></span></button>
+                    <button onclick="Play('/content/music/Sia%20-%20Cheap%20Thrills.mp3','audio');" class="btn btn-custom"><span title="Play" id="play" class="glyphicon glyphicon-play aligned"></span></button>
                     <button onclick="Stop('music.mp3','audio');" class="btn btn-custom"><span title="Stop" id="stop" class="glyphicon glyphicon-stop aligned"></span></button>
                     <button onclick="Restart('music.mp3','audio');" class="btn btn-custom"><span title="Restart" id="restart" class="glyphicon glyphicon-step-backward aligned"></span></button>
                     <button onclick="Backward5('music.mp3','audio');" class="btn btn-custom"><span title="-5 seconds" id="play" class="glyphicon glyphicon-fast-backward aligned"></span></button>
@@ -149,49 +152,49 @@
             </div><br/>
             <script>
                 $(document).ready(function(){
-                    $('.scrollslick').slick({
-                        slidesToShow: 5,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        autoplaySpeed: 2000,
-                        nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
-                        prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
-                        responsive: [
-                            {
-                                breakpoint: 1200,
-                                settings: {
-                                    dots: false,
-                                    slidesToShow: 4,
-                                    slidesToScroll: 1
-                                }
-                            },
-                            {
-                            breakpoint: 1024,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                            },
-                            {
-                                breakpoint: 600,
-                                settings: {
-                                    slidesToShow: 2,
-                                    slidesToScroll: 1
-                                }
-                            },
-                            {
-                                breakpoint: 480,
-                                settings: {
-                                    arrows: false,
-                                    slidesToShow: 1,
-                                    slidesToScroll: 1
+                        $('.scrollslick').slick({
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
+                            autoplay: true,
+                            autoplaySpeed: 2000,
+                            nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
+                            prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
+                            responsive: [
+                                {
+                                    breakpoint: 1200,
+                                    settings: {
+                                        dots: false,
+                                        slidesToShow: 4,
+                                        slidesToScroll: 1
+                                    }
+                                },
+                                {
+                                    breakpoint: 1024,
+                                    settings: {
+                                        dots: false,
+                                        slidesToShow: 3,
+                                        slidesToScroll: 1
+                                    }
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        arrows: false,
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1
 
+                                    }
                                 }
-                            }
 
-                        ]
-                    });
+                            ]
+                        });
 
                 var status = 0;
                 function Play(music,id) {

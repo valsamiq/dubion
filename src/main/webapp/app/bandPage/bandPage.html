@@ -76,8 +76,43 @@
                     slidesToScroll: 1,
                     autoplay: true,
                     autoplaySpeed: 2000,
-                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt=""/>',
-                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt=""/>'
+                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
+                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 4,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                arrows: false,
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+
+                            }
+                        }
+
+                    ]
                 });
             });
         </script>
@@ -97,17 +132,5 @@
             <a style="position: relative" href="#base"><img src="/content/images/Sia Cover8.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>1000 Forms of Fear</div></a>
             <a style="position: relative" href="#base"><img src="/content/images/Sia Cover9.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Colour the Small One</div></a>
         </div>
-        <script>
-            $(document).ready(function(){
-                $('.scrollslick').slick({
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 2000,
-                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt=""/>',
-                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt=""/>'
-                });
-            });
-        </script>
     </div>
 </div>
