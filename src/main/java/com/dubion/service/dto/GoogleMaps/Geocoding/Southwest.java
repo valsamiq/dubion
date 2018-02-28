@@ -1,5 +1,5 @@
 
-package com.dubion.service.dto.GoogleMaps;
+package com.dubion.service.dto.GoogleMaps.Geocoding;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

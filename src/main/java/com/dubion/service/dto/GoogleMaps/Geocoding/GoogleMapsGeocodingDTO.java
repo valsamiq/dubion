@@ -1,5 +1,5 @@
 
-package com.dubion.service.dto.GoogleMaps;
+package com.dubion.service.dto.GoogleMaps.Geocoding;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

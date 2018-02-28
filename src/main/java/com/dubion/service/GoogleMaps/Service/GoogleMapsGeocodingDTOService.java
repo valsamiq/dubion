@@ -1,15 +1,18 @@
-package com.dubion.service.GoogleMaps;
+package com.dubion.service.GoogleMaps.Service;
 
-import com.dubion.service.dto.GoogleMaps.GoogleMapsGeocodingDTO;
+import com.dubion.service.GoogleMaps.GoogleMapsDTORepository;
+import com.dubion.service.dto.GoogleMaps.Geocoding.GoogleMapsGeocodingDTO;
+import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
 
+@Service
 public class GoogleMapsGeocodingDTOService {
     private final String key = "AIzaSyBe1pXPpXGDo5Fe5UhOwOdwz1DaBirM5Jg";
 
-    private final GoogleMapsGeocodingDTORepository apiGoogleMaps = GoogleMapsGeocodingDTORepository.retrofit.create(GoogleMapsGeocodingDTORepository.class);
+    private final GoogleMapsDTORepository apiGoogleMaps = GoogleMapsDTORepository.retrofit.create(GoogleMapsDTORepository.class);
 
     // GoogleMapsDTORepository.retrofit.create(GoogleMapsDTORepository.class);
 
