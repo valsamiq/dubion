@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 /**
  * Service for executing complex queries for FavouriteBand entities in the database.
  * The main input is a {@link FavouriteBandCriteria} which get's converted to {@link Specifications},

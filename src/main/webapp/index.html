@@ -34,17 +34,25 @@
     <!-- <page-ribbon></page-ribbon> -->
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
+
+        <!-- Banner dedicated space: Banner it's not located here anymore. -->
+        <!--
         <div class="well" ui-view="bannerImg">
-            <!-- Angular views -->
+            Angular views
         </div>
+        -->
 
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
 
+        <<!-- Footer unlinked, it's not necessary now -->
+        <!--
         <div class="footer well" ui-view="footer" ng-cloak>
             <p data-translate="footer">This is your footer</p>
         </div>
+        -->
+
     </div>
     <noscript>
         <h1>You must enable javascript to view this page.</h1>
@@ -334,6 +342,7 @@
     <script src="app/bandPage/bandPage.controller.js"></script>
     <script src="app/bandPage/bandPage.state.js"></script>
 
+    <script src="app/pages/Artist/artistmain.state.js"></script>
 
 </body>
 </html>
