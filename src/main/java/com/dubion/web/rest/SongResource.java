@@ -2,8 +2,10 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Song;
+import com.dubion.service.NapsterAPI.NapsterDTOService;
 import com.dubion.service.SongService;
 import com.dubion.repository.SongRepository;
+import com.dubion.service.dto.NapsterAPI.Napster;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.SongCriteria;
@@ -36,10 +38,13 @@ public class SongResource {
 
     private final SongService.SongQueryService songQueryService;
 
-    public SongResource(SongRepository songRepository, SongService songService, SongService.SongQueryService songQueryService) {
+    private final NapsterDTOService napsterDTOService;
+
+    public SongResource(SongRepository songRepository, SongService songService, SongService.SongQueryService songQueryService, NapsterDTOService napsterDTOService) {
         this.songRepository = songRepository;
         this.songService = songService;
         this.songQueryService = songQueryService;
+        this.napsterDTOService = napsterDTOService;
     }
 
     /**
@@ -110,7 +115,29 @@ public class SongResource {
         Song song = songService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
-
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/songs/top")
+    @Timed
+    public ResponseEntity<List<Song>> getTopSongs() {
+        List<Song> song = napsterDTOService.importTopSongs();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }/**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/songs/top2")
+    @Timed
+    public ResponseEntity<Napster> getTopSongs2() {
+        Napster song = napsterDTOService.getTopSongNap();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }
     /**
      * DELETE  /songs/:id : delete the "id" song.
      *

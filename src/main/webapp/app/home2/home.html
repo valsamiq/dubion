@@ -1,0 +1,151 @@
+<div ng-cloak>
+    <div class="row">
+        <div class="col-md-3">
+            <!--<span class="hipster img-responsive img-rounded"></span>-->
+        </div>
+        <br class="col-md-12 algo">
+            <h1 data-translate="home.title">Benvinguts a Dubion!</h1>
+            <p class="lead" data-translate="home.subtitle">Dubion és la WebApp de música definitiva</p>
+
+            <div ng-switch="vm.isAuthenticated()">
+                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
+                    You are logged in as user "{{vm.account.login}}".
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
+                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
+                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+                </div>
+            </div>
+            <div style="font-size: large;font-weight: bold">Last Releases</div><br/>
+
+            <style>
+                div.scrollmenu {
+                    background-color: #333;
+                    overflow: auto;
+                    white-space: nowrap;
+                }
+
+                div.scrollmenu a {
+                    display: inline-block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px;
+                    text-decoration: none;
+                }
+
+                div.scrollmenu a:hover .new{
+                    background-color: rgba(140,130,130,0.5);
+                    color:white;
+                }
+                .info{
+                    background-color: #0A0A0A;
+                }
+                .new {
+                    background-color: transparent;
+                    width:200px;
+                    height: 50px;
+                    color:transparent;
+                    z-index: 3;
+                    bottom: 14px;
+                    left: 14px;
+                    position: absolute;
+
+                }
+                .new2{
+                    background-color: rgba(140,130,130,0.5);
+                    width:200px;
+                    height: 50px;
+                    color:white;
+                    z-index: 3;
+                    bottom: 14px;
+                    left: 14px;
+                    position: absolute;
+                }
+            </style>
+
+            <div class="scrollmenu">
+                <a style="position: relative" href="#home"><div class="info">Hola</div><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new2">Hola</div></a>
+                <a style="position: relative" href="#about"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#support"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#blog"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#tools"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#base"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#custom"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#more"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#logo"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#friends"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#partners"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#people"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#work"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            </div><br/>
+
+            <div style="font-size: large;font-weight: bold">Incomming Albums</div><br/>
+
+            <div class="scrollmenu">
+                <a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#about"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#support"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#blog"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#tools"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#base"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#custom"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#more"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#logo"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#friends"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#partners"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#people"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+                <a style="position: relative" href="#work"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            </div><br/>
+
+        <div style="font-size: large;font-weight: bold">Groups you may like</div><br/>
+
+        <div class="scrollmenu">
+            <a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#about"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#support"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#blog"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#tools"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#base"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#custom"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#more"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#logo"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#friends"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#partners"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#people"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+            <a style="position: relative" href="#work"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
+        </div>
+
+            <p data-translate="home.question">
+                If you have any question on JHipster:
+            </p>
+
+            <ul>
+                <li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener" data-translate="home.link.homepage">JHipster homepage</a></li>
+                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
+                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>
+                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.link.chat">JHipster public chat room</a></li>
+                <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener" data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>
+            </ul>
+
+            <p>
+                <span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.github">GitHub</a>!
+            </p>
+            <button type="button" class="btn btn-primary btn-lg" ui-sref="test1">Test 1</button>
+            <button type="button" class="btn btn-primary btn-lg" ui-sref="test2">Test 2</button>
+            <button type="button" class="btn btn-primary btn-lg" ui-sref="banner">banner</button>
+        </div>
+        <div class="col-md-3">
+            <!--<span class="hipster img-responsive img-rounded"></span>-->
+        </div>
+    </div>
+</div>
