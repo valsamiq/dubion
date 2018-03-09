@@ -1,7 +1,9 @@
 package com.dubion.service.DiscogsAPI;
 
+import com.dubion.domain.Album;
 import com.dubion.service.dto.DiscogsAPI.AlbumDTO;
 import com.dubion.service.dto.DiscogsAPI.DiscogsApiDTO;
+import com.dubion.service.dto.DiscogsAPI.Result;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 
@@ -15,7 +17,7 @@ public class DiscogsApiService {
 
     public static DiscogsApiDTO getDisc(int id){
         DiscogsApiDTO movie = null;
-        Call<DiscogsApiDTO> callMovie = apiService.getRelease(58963);
+        Call<DiscogsApiDTO> callMovie = apiService.getRelease(58963, token);
         System.out.println(callMovie);
         try {
             movie = callMovie.execute().body();
@@ -49,5 +51,11 @@ public class DiscogsApiService {
         return moviesList;
     }*/
 
-
+    public Album importAlbum(String nombre){
+        AlbumDTO albumDTO = findByReleasetitle(nombre);
+        Album album = new Album();
+        Result result = albumDTO.getResults().get(0);
+        album.setName(result.getTitle());
+        return album;
+    }
 }

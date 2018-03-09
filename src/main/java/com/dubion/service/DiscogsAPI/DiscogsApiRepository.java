@@ -15,11 +15,13 @@ import java.util.Map;
 @Repository
 public interface DiscogsApiRepository {
     @GET("releases/{discoId}")
-    Call<DiscogsApiDTO> getRelease(@Path("discoId") int discoId);
+    Call<DiscogsApiDTO> getRelease(@Path("discoId") int discoId, @Query("token") String token);
 
     @GET("database/search?&per_page=2000&page=1")
     Call<AlbumDTO> findByReleaseTitle(@Query("release_title") String release_title, @Query("token") String token);
     //FindByArtist
+
+    //@GET
 
 //    query
 //    string (optional) Example: nirvana
