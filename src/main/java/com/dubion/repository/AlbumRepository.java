@@ -1,6 +1,7 @@
 package com.dubion.repository;
 
 import com.dubion.domain.Album;
+import com.dubion.domain.Song;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -21,5 +22,8 @@ public interface AlbumRepository extends JpaRepository<Album, Long>, JpaSpecific
 
     //@Query("select album from Album album left join fetch album.band where album.name=:name")
     Album findByNameContaining(String artistName);
+
+    @Query("select a from Album a where a.name=:name")
+    Album findByName(@Param("name")String name);
 
 }

@@ -2,10 +2,13 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Album;
+import com.dubion.domain.Song;
 import com.dubion.service.AlbumService;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.service.DiscogsAPI.DiscogsApiService;
-import com.dubion.service.dto.BandCriteria;
+import com.dubion.service.NapsterAPI.NapsterDTOService;
+import com.dubion.service.dto.NapsterAPI.Napster;
+import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.AlbumCriteria;
@@ -40,13 +43,16 @@ public class AlbumResource {
 
     private final AlbumQueryService albumQueryService;
 
+    private final NapsterDTOService napsterDTOService;
+
     @Autowired
     private DiscogsApiService discogsApiService;
 
-    public AlbumResource(AlbumRepository albumRepository, AlbumService albumService, AlbumQueryService albumQueryService) {
+    public AlbumResource(AlbumRepository albumRepository, AlbumService albumService, AlbumQueryService albumQueryService, NapsterDTOService napsterDTOService) {
         this.albumRepository = albumRepository;
         this.albumService = albumService;
         this.albumQueryService = albumQueryService;
+        this.napsterDTOService = napsterDTOService;
     }
 
     /**
@@ -122,7 +128,30 @@ public class AlbumResource {
         Album album = albumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
     }
-
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/albums/top")
+    @Timed
+    public ResponseEntity<NapsterAlbum> getTopAlbumNap() {
+        NapsterAlbum album = napsterDTOService.getTopAlbumNap();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
+    }
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/albums/top2")
+    @Timed
+    public ResponseEntity<List<Album>> importTopAlbums() {
+        List<Album> song = napsterDTOService.importTopAlbum();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }
     /**
      * DELETE  /albums/:id : delete the "id" album.
      *

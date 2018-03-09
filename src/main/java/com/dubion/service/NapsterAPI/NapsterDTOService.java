@@ -4,6 +4,7 @@ import com.dubion.domain.Album;
 import com.dubion.domain.Song;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.repository.SongRepository;
+import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
 import com.dubion.service.dto.NapsterAPI.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,12 +41,27 @@ public class NapsterDTOService {
         return topSongs;
     }
 
+
+    public NapsterAlbum getTopAlbumNap(){
+        NapsterAlbum topAlbums = null;
+        Call<NapsterAlbum> callTopAlbums = apiService.getTopAlbums(10,"ES",apiKey);
+        System.out.println(callTopAlbums);
+        try {
+            topAlbums = callTopAlbums.execute().body();
+            System.out.println(topAlbums);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return topAlbums;
+    }
+
+
     public List<Song> importTopSongs (){
         Napster topSongsNapster = getTopSongNap();
-        List<Song> topsongs = new ArrayList<>();
+        List<Song> topSongs = new ArrayList<>();
         for (Track t:
              topSongsNapster.getTracks()) {
-            if(songRepository.findByName(t.getName()).equals("")){
+            if(songRepository.findByName(t.getName())==null){
 
                 Song s = new Song();
 
@@ -53,11 +69,37 @@ public class NapsterDTOService {
                 s.addAlbum(createAlbumByName(t.getAlbumName()));
 
                 s=songRepository.save(s);
-                topsongs.add(s);
+                topSongs.add(s);
+            }else{
+                topSongs.add(songRepository.findByName(t.getName()));
             }
         }
-        return topsongs;
+        return topSongs;
     }
+
+
+
+    public List<Album> importTopAlbum (){
+        Napster topSongsNapster = getTopSongNap();
+        List<Album> topAlbums = new ArrayList<>();
+        for (Track t:
+            topSongsNapster.getTracks()) {
+            if(albumRepository.findByName(t.getName())==null){
+                Album s = new Album();
+
+                s.setName(t.getName());
+
+
+                s=albumRepository.save(s);
+                topAlbums.add(s);
+            }else{
+                topAlbums.add(albumRepository.findByName(t.getName()));
+            }
+
+        }
+        return topAlbums;
+    }
+
 
     public Album createAlbumByName(String nombre){
         Album album = new Album();

@@ -115,6 +115,7 @@ public class SongResource {
         Song song = songService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
+
     /**
      * GET  /songs/:id : get the "id" song.
      *
@@ -123,10 +124,11 @@ public class SongResource {
      */
     @GetMapping("/songs/top")
     @Timed
-    public ResponseEntity<List<Song>> getTopSongs() {
-        List<Song> song = napsterDTOService.importTopSongs();
+    public ResponseEntity<Napster> getTopSongs2() {
+        Napster song = napsterDTOService.getTopSongNap();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
-    }/**
+    }
+    /**
      * GET  /songs/:id : get the "id" song.
      *
      * @param id the id of the song to retrieve
@@ -134,8 +136,8 @@ public class SongResource {
      */
     @GetMapping("/songs/top2")
     @Timed
-    public ResponseEntity<Napster> getTopSongs2() {
-        Napster song = napsterDTOService.getTopSongNap();
+    public ResponseEntity<List<Song>> importTopSongs() {
+        List<Song> song = napsterDTOService.importTopSongs();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
     /**
