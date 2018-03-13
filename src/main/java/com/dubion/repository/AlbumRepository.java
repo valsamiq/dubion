@@ -1,7 +1,6 @@
 package com.dubion.repository;
 
 import com.dubion.domain.Album;
-import com.dubion.domain.Song;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;

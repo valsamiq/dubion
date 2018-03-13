@@ -1,9 +1,12 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Album;
 import com.dubion.domain.Artist;
 import com.dubion.service.ArtistService;
 import com.dubion.repository.ArtistRepository;
+import com.dubion.service.NapsterAPI.NapsterDTOService;
+import com.dubion.service.dto.NapsterAPI.NapsterArtist;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.ArtistCriteria;
@@ -37,10 +40,13 @@ public class ArtistResource {
 
     private final ArtistQueryService artistQueryService;
 
-    public ArtistResource(ArtistRepository artistRepository, ArtistService artistService, ArtistQueryService artistQueryService){
+    private final NapsterDTOService napsterDTOService;
+
+    public ArtistResource(ArtistRepository artistRepository, ArtistService artistService, ArtistQueryService artistQueryService, NapsterDTOService napsterDTOService){
         this.artistRepository = artistRepository;
         this.artistService = artistService;
         this.artistQueryService = artistQueryService;
+        this.napsterDTOService = napsterDTOService;
     }
 
     /**
@@ -109,6 +115,27 @@ public class ArtistResource {
         log.debug("REST request to get Artist : {}", id);
         Artist artist = artistService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(artist));
+    }/**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/artists/top")
+    @Timed
+    public ResponseEntity<NapsterArtist> getTopArtist() {
+        NapsterArtist artist = napsterDTOService.getTopArtistNap();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(artist));
+    }
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/artists/top2")
+    @Timed
+    public ResponseEntity<List<Artist>> importTopArtist() {
+        List<Artist> song = napsterDTOService.importTopArtist();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
     /**
      * DELETE  /artists/:id : delete the "id" artist.

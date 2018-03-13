@@ -1,12 +1,11 @@
 
-package com.dubion.service.dto.NapsterAPI;
+package com.dubion.service.dto.NapsterAPI.Artist;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class Artists {
+public class Stations {
 
     @SerializedName("ids")
     @Expose

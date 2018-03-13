@@ -2,6 +2,7 @@
 package com.dubion.service.dto.NapsterAPI;
 
 import com.dubion.service.dto.NapsterAPI.Albums.Album;
+import com.dubion.service.dto.NapsterAPI.Artist.Artist;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +10,7 @@ public class Links {
 
     @SerializedName("artists")
     @Expose
-    private Artists artists;
+    private Artist artist;
     @SerializedName("albums")
     @Expose
     private Album albums;
@@ -23,12 +24,12 @@ public class Links {
     @Expose
     private Tags tags;
 
-    public Artists getArtists() {
-        return artists;
+    public Artist getArtists() {
+        return artist;
     }
 
-    public void setArtists(Artists artists) {
-        this.artists = artists;
+    public void setArtists(Artist artists) {
+        this.artist = artists;
     }
 
     public Album getAlbums() {

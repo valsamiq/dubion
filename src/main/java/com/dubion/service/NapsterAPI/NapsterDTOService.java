@@ -2,9 +2,12 @@ package com.dubion.service.NapsterAPI;
 
 import com.dubion.domain.Album;
 import com.dubion.domain.Song;
+import com.dubion.domain.Artist;
 import com.dubion.repository.AlbumRepository;
+import com.dubion.repository.ArtistRepository;
 import com.dubion.repository.SongRepository;
 import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
+import com.dubion.service.dto.NapsterAPI.NapsterArtist;
 import com.dubion.service.dto.NapsterAPI.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,9 @@ public class NapsterDTOService {
     @Autowired
     private AlbumRepository albumRepository;
 
+    @Autowired
+    private ArtistRepository artistRepository;
+
     public Napster getTopSongNap(){
         Napster topSongs = null;
         Call<Napster> callTopSongs = apiService.getTopSong(10,"ES",apiKey);
@@ -41,6 +47,19 @@ public class NapsterDTOService {
         return topSongs;
     }
 
+
+    public NapsterArtist getTopArtistNap(){
+        NapsterArtist topArtist = null;
+        Call<NapsterArtist> callTopArtists = apiService.getTopArtists(10,"ES",apiKey);
+        System.out.println(callTopArtists);
+        try {
+            topArtist = callTopArtists.execute().body();
+            System.out.println(topArtist);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return topArtist;
+    }
 
     public NapsterAlbum getTopAlbumNap(){
         NapsterAlbum topAlbums = null;
@@ -98,6 +117,26 @@ public class NapsterDTOService {
 
         }
         return topAlbums;
+    }
+    public List<Artist> importTopArtist (){
+        Napster topSongsNapster = getTopSongNap();
+        List<Artist> topArtists = new ArrayList<>();
+        for (Track t:
+            topSongsNapster.getTracks()) {
+            if(artistRepository.findByName(t.getName())==null){
+                Artist s = new Artist();
+
+                s.setName(t.getName());
+
+
+                s=artistRepository.save(s);
+                topArtists.add(s);
+            }else{
+                topArtists.add(artistRepository.findByName(t.getName()));
+            }
+
+        }
+        return topArtists;
     }
 
 
