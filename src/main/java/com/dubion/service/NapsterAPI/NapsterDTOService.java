@@ -99,10 +99,10 @@ public class NapsterDTOService {
 
 
     public List<Album> importTopAlbum (){
-        Napster topSongsNapster = getTopSongNap();
+        NapsterAlbum topAlbumNapster = getTopAlbumNap();
         List<Album> topAlbums = new ArrayList<>();
-        for (Track t:
-            topSongsNapster.getTracks()) {
+        for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
+            topAlbumNapster.getAlbums()) {
             if(albumRepository.findByName(t.getName())==null){
                 Album s = new Album();
 
@@ -119,10 +119,10 @@ public class NapsterDTOService {
         return topAlbums;
     }
     public List<Artist> importTopArtist (){
-        Napster topSongsNapster = getTopSongNap();
+        NapsterArtist topArtistNapster = getTopArtistNap();
         List<Artist> topArtists = new ArrayList<>();
-        for (Track t:
-            topSongsNapster.getTracks()) {
+        for (com.dubion.service.dto.NapsterAPI.Artist.Artist t:
+            topArtistNapster.getArtists()) {
             if(artistRepository.findByName(t.getName())==null){
                 Artist s = new Artist();
 
