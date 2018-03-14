@@ -29,6 +29,11 @@
                     templateUrl: 'app/albumPage/albumPage.html',
                     controller: 'albumPageController',
                     controllerAs: 'vm'
+                },
+                'albumSearch@': {
+                    templateUrl: 'app/albumSearch/albumSearch.html',
+                    controller: 'albumSearchController',
+                    controllerAs: 'vm'
                 }
             },
             resolve: {
