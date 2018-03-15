@@ -1,0 +1,92 @@
+.paaaralax {
+    position: absolute;
+    z-index: -5;
+    width: 100%;
+}
+#hero {
+  height: 800px;
+  overflow: hidden;
+  position: relative;
+}
+.content{
+    background-color: #3E3E3E;
+    height: 1000px;
+    z-index: auto;
+    width: 100%;
+}
+.frontLayer{
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+}
+.layer {
+  background-position: bottom center;
+  background-size: auto;
+  /*background-repeat: no-repeat;*/
+  width: 100%;
+  height: 800px;
+  position: fixed;
+  z-index: -1;
+}
+#hero-mobile {
+  display: none;
+  height: 320px;
+}
+.first-section {
+  padding: 50px 0 20px 0;
+}
+.text-header {
+  font-size: 50px;
+  text-align: center;
+}
+p {
+  color: #ede0d5;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+#hero, .layer {
+  min-height: 800px;
+}
+
+.layer-bg {
+  background-image: url("/content/images/parallax/Lay1Base.png");
+}
+
+.layer-1 {
+  background-image: url("/content/images/parallax/Lay2Table.png");
+}
+
+.layer-2 {
+  background-image: url("/content/images/parallax/Lay3People.png");
+}
+
+.layer-3 {
+  background-image: url("/content/images/parallax/Lay4People.png");
+}
+
+.layer-4 {
+  background-image: url("/content/images/parallax/Lay5People.png");
+}
+
+.layer-overlay {
+  background-image: url("/content/images/parallax/Lay6People.png");
+}
+
+@media only screen and (max-width: 768px) {
+  #hero {
+    display: none;
+  }
+
+  #hero-mobile {
+    display: block;
+  }
+}
+.tutorial-link {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.tutorial-link:hover {
+  color: #ede0d5;
+}

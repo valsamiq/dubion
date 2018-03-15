@@ -1595,6 +1595,7 @@ pre code {
 @media (min-width: 992px) {
   .container {
     width: 970px;
+      background-color: ##3E3E3E;
   }
 }
 @media (min-width: 1200px) {
@@ -5816,13 +5817,16 @@ button.list-group-item-danger.active:focus {
 .embed-responsive-4by3 {
   padding-bottom: 75%;
 }
+.wellb{
+    margin-top: 50%;
+    border-radius: 4px;
+    /*border: 1px solid #e3e3e3;*/
+}
 .well {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
   background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }

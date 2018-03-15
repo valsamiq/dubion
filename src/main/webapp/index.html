@@ -26,6 +26,10 @@
     <script src="bower_components/slick/slick.js"></script>
     <link rel="stylesheet" type="text/css" href="./slick/slick.css">
     <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="app/layouts/parallax/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
 
     <link rel="stylesheet" href="../bower_components/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="../bower_components/slick-carousel/slick/slick-theme.css">
@@ -41,26 +45,46 @@
     <![endif]-->
     <!-- <page-ribbon></page-ribbon> -->
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container">
 
-        <!-- Banner dedicated space: Banner it's not located here anymore. -->
-        <!--
-        <div class="well" ui-view="bannerImg">
-            Angular views
+    <!--You're wokring here dude-->
+    <div class="generalDiv">
+        <div class="paaaralax">
+            <div id='hero'>
+                <div class='layer-bg layer' data-depth='0.00' data-type='parallax'></div>
+                <div class='layer-1 layer' data-depth='0.20' data-type='parallax'></div>
+                <div class='layer-2 layer' data-depth='0.40' data-type='parallax'></div>
+                <div class='layer-3 layer' data-depth='0.60' data-type='parallax'></div>
+                <div class='layer-4 layer' data-depth='0.80' data-type='parallax'></div>
+                <div class='layer-overlay layer' data-depth='1.00' data-type='parallax'></div>
+            </div>
+            <div id='hero-mobile'></div>
+            <div class="content"></div>
+
         </div>
-        -->
+        <!--You're wokring here dude-->
 
-        <div class="well" ui-view="content">
-            <!-- Angular views -->
+        <div class="container frontLayer">
+            <!-- Banner dedicated space: Banner it's not located here anymore. -->
+            <!--
+            <div class="well" ui-view="bannerImg">
+                Angular views
+            </div>
+            -->
+            <div class="wellb">
+                <div class="degrade">
+                    <!-- Degraded Zone-->
+                </div>
+                <div class="well" ui-view="content">
+                    <!-- Angular views -->
+                </div>
+            </div>
+            <<!-- Footer unlinked, it's not necessary now -->
+            <!--
+            <div class="footer well" ui-view="footer" ng-cloak>
+                <p data-translate="footer">This is your footer</p>
+            </div>
+            -->
         </div>
-
-        <<!-- Footer unlinked, it's not necessary now -->
-        <!--
-        <div class="footer well" ui-view="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
-        </div>
-        -->
-
     </div>
     <noscript>
         <h1>You must enable javascript to view this page.</h1>
@@ -352,6 +376,9 @@
     <script src="app/bandPage/bandPage.state.js"></script>
 
     <script src="app/pages/Artist/artistmain.state.js"></script>
+
+    <!--<script src="app/layouts/parallax/parallax.js"></script>-->
+    <script src="app/layouts/parallax/index.js"></script>
 
 </body>
 </html>

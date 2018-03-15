@@ -4,10 +4,6 @@
             <!--<span class="hipster img-responsive img-rounded"></span>-->
         </div>
         <br class="col-md-12 algo">
-        <div class="parallax">
-            <h1 data-translate="home.title" class="blue">Benvinguts a Dubion!</h1>
-            <p class="lead blue" data-translate="home.subtitle">Dubion és la WebApp de música definitiva</p>
-        </div>
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
@@ -30,19 +26,6 @@
                 .blue{
                     color:#1682fb;
                     text-align: center;
-                }
-                .parallax {
-                    /* The image used */
-                    background-image: url("/content/images/concertcrowd.jpg");
-
-                    /* Set a specific height */
-                    height: 100%;
-
-                    /* Create the parallax scrolling effect */
-                    background-attachment: fixed;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
                 }
                 div.scrollmenu {
                     position: relative;
@@ -210,24 +193,25 @@
             <a style="position: relative" href="#work"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>
         </div>
 
-            <p data-translate="home.question">
-                If you have any question on JHipster:
-            </p>
+            <!--<p data-translate="home.question">-->
+                <!--If you have any question on JHipster:-->
+            <!--</p>-->
 
-            <ul>
-                <li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener" data-translate="home.link.homepage">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.link.chat">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener" data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>
-            </ul>
+            <!--<ul>-->
+                <!--<li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener" data-translate="home.link.homepage">JHipster homepage</a></li>-->
+                <!--<li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>-->
+                <!--<li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>-->
+                <!--<li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.link.chat">JHipster public chat room</a></li>-->
+                <!--<li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener" data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>-->
+            <!--</ul>-->
 
-            <p>
-                <span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.github">GitHub</a>!
-            </p>
-            <button type="button" class="btn btn-primary btn-lg" ui-sref="test1">Test 1</button>
-            <button type="button" class="btn btn-primary btn-lg" ui-sref="test2">Test 2</button>
-            <button type="button" class="btn btn-primary btn-lg" ui-sref="banner">banner</button>
+            <!--<p>-->
+                <!--<span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.github">GitHub</a>!-->
+            <!--</p>-->
+            <!--<button type="button" class="btn btn-primary btn-lg" ui-sref="test1">Test 1</button>-->
+            <!--<button type="button" class="btn btn-primary btn-lg" ui-sref="test2">Test 2</button>-->
+            <!--<button type="button" class="btn btn-primary btn-lg" ui-sref="banner">banner</button>-->
+
         </div>
         <div class="col-md-3">
             <!--<span class="hipster img-responsive img-rounded"></span>-->
