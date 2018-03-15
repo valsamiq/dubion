@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import com.dubion.service.dto.NapsterAPI.Napster;
+import sun.plugin.AppletViewer;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,6 +109,7 @@ public class NapsterDTOService {
                 Album s = new Album();
 
                 s.setName(t.getName());
+                
 
 
                 s=albumRepository.save(s);
@@ -125,9 +128,12 @@ public class NapsterDTOService {
             topArtistNapster.getArtists()) {
             if(artistRepository.findByName(t.getName())==null){
                 Artist s = new Artist();
-
+                String a="";
                 s.setName(t.getName());
-
+                for (String b: t.getBlurbs()){
+                         a= b;
+                }
+                s.setBio(a);
 
                 s=artistRepository.save(s);
                 topArtists.add(s);
