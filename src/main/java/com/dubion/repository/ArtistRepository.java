@@ -19,9 +19,11 @@ public interface ArtistRepository extends JpaRepository<Artist, Long>, JpaSpecif
     @Query("select artist from Artist artist left join fetch artist.bands left join fetch artist.instruments where artist.id =:id")
     Artist findOneWithEagerRelationships(@Param("id") Long id);
 
-    @Query("select artist from Artist artist left join fetch artist.bands where artist.name=:name")
-    Artist findByNameContaining(@Param("name") String name);
+/*    @Query("select artist from Artist artist left join fetch artist.bands where artist.name=:name")
+    Artist findByNameContaining(@Param("name") String name);*/
 
     @Query("select a from Artist a where a.name=:name")
     Artist findByName(@Param("name")String name);
+
+    List<Artist> findByNameContaining(String name);
 }

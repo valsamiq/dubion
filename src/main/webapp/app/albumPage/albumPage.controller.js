@@ -10,6 +10,8 @@
     function albumPageController ($scope, Principal, LoginService, $state, Album,$stateParams) {
 
         var vm = this;
+        vm.songByName = songByName;
+
 
         vm.account = null;
         vm.isAuthenticated = null;
@@ -21,9 +23,13 @@
 
         Album.get({id : $stateParams.id}, function(data) {
             vm.albumActual = data;
+            vm.albumName = vm.albumActual.name;
+            songByName();
             vm.imatgeAlbum = '<img  src="data:image/jpg;base64, '+vm.albumActual.photo+'" />';
             $scope.apply();
         });
+
+
 
         getAccount();
 
@@ -38,6 +44,13 @@
             $state.go('register');
         }
         vm.salbums=[];
+
+        function songByName(){
+            Album.getsongsByName({name : vm.albumName}, function (data) {
+                vm.songs = data;
+            });
+        }
+
 
         loadAll();
 

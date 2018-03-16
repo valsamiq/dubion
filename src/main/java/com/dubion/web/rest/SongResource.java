@@ -1,7 +1,9 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Album;
 import com.dubion.domain.Song;
+import com.dubion.repository.AlbumRepository;
 import com.dubion.service.NapsterAPI.NapsterDTOService;
 import com.dubion.service.SongService;
 import com.dubion.repository.SongRepository;
@@ -12,6 +14,7 @@ import com.dubion.service.dto.SongCriteria;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +40,9 @@ public class SongResource {
     private final SongService songService;
 
     private final SongService.SongQueryService songQueryService;
+
+    @Autowired
+    private AlbumRepository albumRepository;
 
     private final NapsterDTOService napsterDTOService;
 
@@ -154,8 +160,13 @@ public class SongResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/get-song-name/{songName}")
-    public Song getSongByName(@PathVariable String songName) {
+    @GetMapping("/songs/by-name/{songName}")
+    public List<Song> getSongByName(@PathVariable String songName) {
         return songRepository.findByNameContaining(songName);
+    }
+
+    @GetMapping("/songs/by-albumName/{albumName}")
+    public List<Song> getAlbumByName(@PathVariable String albumName) {
+        return songRepository.findByAlbum(albumRepository.findByName(albumName));
     }
 }

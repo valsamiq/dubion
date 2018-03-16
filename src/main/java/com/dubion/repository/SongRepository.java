@@ -1,5 +1,6 @@
 package com.dubion.repository;
 
+import com.dubion.domain.Album;
 import com.dubion.domain.Song;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +20,13 @@ public interface SongRepository extends JpaRepository<Song, Long>,JpaSpecificati
     @Query("select song from Song song left join fetch song.albums where song.id =:id")
     Song findOneWithEagerRelationships(@Param("id") Long id);
 
-    Song findByNameContaining(String songName);
+    List<Song> findByNameContaining(String songName);
 
     @Query("select s from Song s where s.name=:name")
     Song findByName(@Param("name")String name);
+
+    @Query("select s from Song s where :album member of s.albums")
+    List<Song> findByAlbum(@Param("album") Album album);
+
 
 }

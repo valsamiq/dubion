@@ -4,11 +4,17 @@
             <img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
         </div>
         <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.band.name}} - {{vm.albumActual.name}}</h2>
-            <li>The Greatest - 3:32</li>
+<!--            <li>The Greatest - 3:32</li>
             <li>Never Give Up - 3:57</li>
             <li>Elastic Heart - 4:19</li>
             <li>Cheap Thrills - 3:27</li>
-            <li>Fist Fighting a Sandstorm - 3:41</li>
+            <li>Fist Fighting a Sandstorm - 3:41</li>-->
+
+
+            <div ng-repeat="song in vm.songs">
+                <li>{{song.name}} - {{song.duration}}</li>
+
+            </div>
         </div>
 
     </div>
