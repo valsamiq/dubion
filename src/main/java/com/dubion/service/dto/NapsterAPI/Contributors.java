@@ -1,4 +1,3 @@
-
 package com.dubion.service.dto.NapsterAPI;
 
 import com.google.gson.annotations.Expose;
