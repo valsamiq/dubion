@@ -18,12 +18,7 @@
         </dd>
         <dt><span data-translate="dubionApp.artist.photo">Photo</span></dt>
         <dd>
-            <div ng-if="vm.artist.photo">
-                <a ng-click="vm.openFile(vm.artist.photoContentType, vm.artist.photo)">
-                    <img data-ng-src="{{'data:' + vm.artist.photoContentType + ';base64,' + vm.artist.photo}}" style="max-width: 100%;" alt="artist image"/>
-                </a>
-                {{vm.artist.photoContentType}}, {{vm.byteSize(vm.artist.photo)}}
-            </div>
+            <span>{{vm.artist.photo}}</span>
         </dd>
         <dt><span data-translate="dubionApp.artist.band">Band</span></dt>
         <dd>

@@ -34,10 +34,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="photo" type="longblob">
-                <constraints nullable="true" />
-            </column>
-            <column name="photo_content_type" type="varchar(255)">
+            <column name="photo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
