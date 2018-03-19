@@ -29,10 +29,8 @@
 
     width: 20px;
     height: 20px;
+    margin-top: -10px;
     padding: 0;
-    -webkit-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    transform: translate(0, -50%);
 
     cursor: pointer;
 
@@ -114,7 +112,7 @@
 }
 
 /* Dots */
-.slick-dotted.slick-slider
+.slick-slider
 {
     margin-bottom: 30px;
 }
@@ -122,13 +120,12 @@
 .slick-dots
 {
     position: absolute;
-    bottom: -25px;
+    bottom: -45px;
 
     display: block;
 
     width: 100%;
     padding: 0;
-    margin: 0;
 
     list-style: none;
 

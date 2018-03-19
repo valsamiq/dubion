@@ -5,15 +5,13 @@
         .module('dubionApp')
         .controller('ArtistController', ArtistController);
 
-    ArtistController.$inject = ['DataUtils', 'Artist'];
+    ArtistController.$inject = ['Artist'];
 
-    function ArtistController(DataUtils, Artist) {
+    function ArtistController(Artist) {
 
         var vm = this;
 
         vm.artists = [];
-        vm.openFile = DataUtils.openFile;
-        vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 

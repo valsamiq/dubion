@@ -108,7 +108,6 @@
                                 birthDate: null,
                                 bio: null,
                                 photo: null,
-                                photoContentType: null,
                                 id: null
                             };
                         }

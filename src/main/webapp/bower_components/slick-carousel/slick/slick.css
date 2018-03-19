@@ -4,7 +4,9 @@
     position: relative;
 
     display: block;
-    box-sizing: border-box;
+
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
 
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -111,7 +113,4 @@
     height: auto;
 
     border: 1px solid transparent;
-}
-.slick-arrow.slick-hidden {
-    display: none;
 }
