@@ -9,7 +9,6 @@ import com.dubion.repository.ArtistRepository;
 import com.dubion.repository.GenreRepository;
 import com.dubion.repository.SongRepository;
 import com.dubion.service.dto.NapsterAPI.*;
-import com.dubion.service.dto.NapsterAPI.Albums.Genres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -114,27 +113,38 @@ public class NapsterDTOService {
 
 
 
-    public List<Album> importTopAlbum (){
+    public List<Album> importTopAlbum () throws IOException {
         NapsterAlbum topAlbumNapster = getTopAlbumNap();
         List<Album> topAlbums = new ArrayList<>();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             topAlbumNapster.getAlbums()) {
-            if(albumRepository.findByName(t.getName())==null){
+          //  if(albumRepository.findByName(t.getName())==null){
                 Album s = new Album();
 
                 s.setName(t.getName());
                 String genre = t.getLinks().getGenres().getIds().get(0);
                 System.out.println(genre);
-                Call<NapsterGenre> callTopAlbums = apiService.getGenresById("ES", apiKey,genre);
-
-
+                NapsterGenre callgenres = null; String name ="";
+                Call<NapsterGenre> genres = apiService.getGenresById("ES", apiKey,genre);
+                callgenres = genres.execute().body();
+                for (com.dubion.service.dto.NapsterAPI.Genre.Genre g:
+                    callgenres.getGenre()) {
+                    name = g.getName();}
+                System.out.println(name);
+                System.out.println(genreRepository.findByName(name));
+                if (genreRepository.findByName(name)!=null){
+                    s.setGenres(genreRepository.findByNames(name));
+                }else{
+                    importGenreByName(genre);
+                    s.setGenres(genreRepository.findByNames(name));
+                }
 
 
                 s=albumRepository.save(s);
                 topAlbums.add(s);
-            }else{
+          /*  }else{
                 topAlbums.add(albumRepository.findByName(t.getName()));
-            }
+            }*/
 
         }
         return topAlbums;
@@ -166,20 +176,7 @@ public class NapsterDTOService {
     public List<Genre> importGenres (){
         NapsterGenre NapsterGenres = getGenres();
         List<Genre> genres = new ArrayList<>();
-        for (com.dubion.service.dto.NapsterAPI.Genre.Genre t:
-            NapsterGenres.getGenre()) {
-            if(genreRepository.findByName(t.getName())==null){
-                Genre s = new Genre();
-                s.setName(t.getName());
-
-
-                s=genreRepository.save(s);
-                genres.add(s);
-            }else{
-                genres.add(genreRepository.findByName(t.getName()));
-            }
-
-        }
+        importGenre(NapsterGenres, genres);
         return genres;
     }
 
@@ -189,6 +186,30 @@ public class NapsterDTOService {
         album.setName(nombre);
         album=albumRepository.save(album);
         return album;
+    }
+
+    public List<Genre> importGenreByName(String id) throws IOException {
+        NapsterGenre callgenres = null; String name ="";
+        Call<NapsterGenre> genre = apiService.getGenresById("ES", apiKey,id);
+        callgenres = genre.execute().body();
+        List<Genre> genres = new ArrayList<>();
+        importGenre(callgenres, genres);
+        return  genres;
+    }
+
+    private void importGenre(NapsterGenre napsterGenres, List<Genre> genres) {
+        for (com.dubion.service.dto.NapsterAPI.Genre.Genre t:
+            napsterGenres.getGenre()) {
+            if(genreRepository.findByName(t.getName())==null){
+                Genre s = new Genre();
+                s.setName(t.getName());
+                s=genreRepository.save(s);
+                genres.add(s);
+            }else{
+                genres.add( genreRepository.findByName(t.getName()));
+            }
+
+        }
     }
 
 
