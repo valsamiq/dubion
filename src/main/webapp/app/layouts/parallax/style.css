@@ -1,0 +1,87 @@
+#hero {
+    height:500px;
+    overflow:hidden;
+    position: relative;
+}
+
+.layer {
+  background-position: bottom center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 500px;
+  position: fixed;
+  z-index: -1;
+}
+
+#hero-mobile {
+  display: none;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/272781/full_illustration.png") no-repeat center bottom/cover;
+  height: 320px;
+}
+
+.first-section {
+  padding: 50px 0 20px 0;
+}
+
+.text-header {
+  font-size: 50px;
+  text-align: center;
+}
+
+h1 {
+  line-height: 120%;
+  margin-bottom: 30px;
+}
+
+p {
+  color: #ede0d5;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+#hero, .layer {
+  min-height: 800px;
+}
+
+.layer-bg {
+  background-image: url("/content/images/parallax/Lay1Base.png");
+}
+
+.layer-1 {
+  background-image: url("/content/images/parallax/Lay2Table.png");
+}
+
+.layer-2 {
+  background-image: url("/content/images/parallax/Lay3People.png");
+}
+
+.layer-3 {
+  background-image: url("/content/images/parallax/Lay4People.png");
+}
+
+.layer-4 {
+  background-image: url("/content/images/parallax/Lay5People.png");
+}
+
+.layer-overlay {
+  background-image: url("/content/images/parallax/Lay6People.png");
+}
+
+@media only screen and (max-width: 768px) {
+  #hero {
+    display: none;
+  }
+
+  #hero-mobile {
+    display: block;
+  }
+}
+.tutorial-link {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.tutorial-link:hover {
+  color: #ede0d5;
+}

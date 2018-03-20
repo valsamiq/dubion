@@ -26,58 +26,41 @@
     <script src="bower_components/slick/slick.js"></script>
     <link rel="stylesheet" type="text/css" href="./slick/slick.css">
     <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+
+    <!--<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <!--<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>-->
+    <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
+    <link rel="stylesheet" href="app/layouts/parallax/style.css">
+    <script src="app/layouts/parallax/index.js"></script>
 </head>
 <body ng-app="dubionApp" ng-strict-di>
     <!--[if lt IE 9]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a hnpm install slick-carouselnpm install slick-carouselnpm install slick-carouselref="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a hnpm install slick-carousel npm install slick-carousel npm install slick-carouselref="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <!-- <page-ribbon></page-ribbon> -->
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container">
-
-        <!-- Banner dedicated space: Banner it's not located here anymore. -->
-        <!--
-        <div class="well" ui-view="bannerImg">
-            Angular views
+    <div class="parallaax">
+        <div id='hero'>
+            <div class='layer-bg layer' data-depth='0.00' data-type='parallax'></div>
+            <div class='layer-1 layer' data-depth='0.20' data-type='parallax'></div>
+            <div class='layer-2 layer' data-depth='0.40' data-type='parallax'></div>
+            <div class='layer-3 layer' data-depth='0.60' data-type='parallax'></div>
+            <div class='layer-4 layer' data-depth='0.80' data-type='parallax'></div>
+            <div class='layer-overlay layer' data-depth='1.00' data-type='parallax'></div>
         </div>
-        -->
-
+        <div id='hero-mobile'></div>
+        <div id='BackgroundTopGrey'></div>
+        <div id='BackgroundFootGrey'></div>
+    </div>
+    <div class="container">
+        <div class="degrdaded"></div>
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
-
-        <<!-- Footer unlinked, it's not necessary now -->
-        <!--
-        <div class="footer well" ui-view="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
-        </div>
-        -->
-
     </div>
     <noscript>
         <h1>You must enable javascript to view this page.</h1>
     </noscript>
-    <!-- uncomment this for adding service worker
-        <script>
-            if ('serviceWorker' in navigator) {
-                 navigator.serviceWorker
-                    .register('./sw.js')
-                    .then(function() { console.log('Service Worker Registered'); });
-            }
-        </script>
-    -->
-    <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
-    <script>
-        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-        ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>-->
-
-    <!-- build:js app/vendor.js -->
-    <!-- bower:js -->
 
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
@@ -119,9 +102,21 @@
     <script src="app/services/auth/auth.jwt.service.js"></script>
     <script src="app/services/auth/activate.service.js"></script>
     <script src="app/services/auth/account.service.js"></script>
+    <script src="app/pages/Test/test2/test2.state.js"></script>
+    <script src="app/pages/Test/test2/test2.controller.js"></script>
+    <script src="app/pages/Test/test1/test1.state.js"></script>
+    <script src="app/pages/Test/test1/test1.controller.js"></script>
+    <script src="app/pages/Overlay/banner/banner.state.js"></script>
+    <script src="app/pages/Overlay/banner/banner.controller.js"></script>
+    <script src="app/layouts/navbar/original/navbar.controller.js"></script>
+    <script src="app/layouts/navbar/original/active-menu.directive.js"></script>
+    <script src="app/layouts/navbar/new/navbar.controller.js"></script>
+    <script src="app/layouts/navbar/new/active-menu.directive.js"></script>
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-menu.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
+    <script src="app/home2/home.state.js"></script>
+    <script src="app/home2/home.controller.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
     <script src="app/entities/user-ext/user-ext-dialog.controller.js"></script>
@@ -196,6 +191,12 @@
     <script src="app/entities/genre/genre.state.js"></script>
     <script src="app/entities/genre/genre.service.js"></script>
     <script src="app/entities/genre/genre.controller.js"></script>
+    <script src="app/entities/gamma/gamma-dialog.controller.js"></script>
+    <script src="app/entities/gamma/gamma-detail.controller.js"></script>
+    <script src="app/entities/gamma/gamma-delete-dialog.controller.js"></script>
+    <script src="app/entities/gamma/gamma.state.js"></script>
+    <script src="app/entities/gamma/gamma.service.js"></script>
+    <script src="app/entities/gamma/gamma.controller.js"></script>
     <script src="app/entities/favourite-song/favourite-song-dialog.controller.js"></script>
     <script src="app/entities/favourite-song/favourite-song-detail.controller.js"></script>
     <script src="app/entities/favourite-song/favourite-song-delete-dialog.controller.js"></script>
@@ -221,6 +222,12 @@
     <script src="app/entities/country/country.state.js"></script>
     <script src="app/entities/country/country.service.js"></script>
     <script src="app/entities/country/country.controller.js"></script>
+    <script src="app/entities/beta/beta-dialog.controller.js"></script>
+    <script src="app/entities/beta/beta-detail.controller.js"></script>
+    <script src="app/entities/beta/beta-delete-dialog.controller.js"></script>
+    <script src="app/entities/beta/beta.state.js"></script>
+    <script src="app/entities/beta/beta.service.js"></script>
+    <script src="app/entities/beta/beta.controller.js"></script>
     <script src="app/entities/band-prueba/band-prueba-dialog.controller.js"></script>
     <script src="app/entities/band-prueba/band-prueba-detail.controller.js"></script>
     <script src="app/entities/band-prueba/band-prueba-delete-dialog.controller.js"></script>
@@ -239,6 +246,12 @@
     <script src="app/entities/artist/artist.state.js"></script>
     <script src="app/entities/artist/artist.service.js"></script>
     <script src="app/entities/artist/artist.controller.js"></script>
+    <script src="app/entities/alpha/alpha-dialog.controller.js"></script>
+    <script src="app/entities/alpha/alpha-detail.controller.js"></script>
+    <script src="app/entities/alpha/alpha-delete-dialog.controller.js"></script>
+    <script src="app/entities/alpha/alpha.state.js"></script>
+    <script src="app/entities/alpha/alpha.service.js"></script>
+    <script src="app/entities/alpha/alpha.controller.js"></script>
     <script src="app/entities/album/album-dialog.controller.js"></script>
     <script src="app/entities/album/album-detail.controller.js"></script>
     <script src="app/entities/album/album-delete-dialog.controller.js"></script>
@@ -284,8 +297,14 @@
     <script src="app/blocks/config/http.config.js"></script>
     <script src="app/blocks/config/compile.config.js"></script>
     <script src="app/blocks/config/alert.config.js"></script>
+    <script src="app/bandPage/bandPage.state.js"></script>
+    <script src="app/bandPage/bandPage.controller.js"></script>
+    <script src="app/artistPage/artistPage.state.js"></script>
+    <script src="app/artistPage/artistPage.controller.js"></script>
     <script src="app/app.state.js"></script>
     <script src="app/app.constants.js"></script>
+    <script src="app/albumPage/albumPage.state.js"></script>
+    <script src="app/albumPage/albumPage.controller.js"></script>
     <script src="app/admin/user-management/user-management-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management-detail.controller.js"></script>
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
@@ -331,18 +350,20 @@
     <script src="app/account/account.state.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
-    <script src="app/pages/Overlay/banner/banner.controller.js"></script>
-    <script src="app/pages/Overlay/banner/banner.state.js"></script>
-    <script src="app/albumPage/albumPage.controller.js"></script>
-    <script src="app/albumPage/albumPage.state.js"></script>
+    <!--<script src="app/pages/Overlay/banner/banner.controller.js"></script>-->
+    <!--<script src="app/pages/Overlay/banner/banner.state.js"></script>-->
+    <!--<script src="app/albumPage/albumPage.controller.js"></script>-->
+    <!--<script src="app/albumPage/albumPage.state.js"></script>-->
 
-    <script src="app/artistPage/artistPage.controller.js"></script>
-    <script src="app/artistPage/artistPage.state.js"></script>
+    <!--<script src="app/artistPage/artistPage.controller.js"></script>-->
+    <!--<script src="app/artistPage/artistPage.state.js"></script>-->
 
-    <script src="app/bandPage/bandPage.controller.js"></script>
-    <script src="app/bandPage/bandPage.state.js"></script>
+    <!--<script src="app/bandPage/bandPage.controller.js"></script>-->
+    <!--<script src="app/bandPage/bandPage.state.js"></script>-->
 
     <script src="app/pages/Artist/artistmain.state.js"></script>
+
+
 
 </body>
 </html>
