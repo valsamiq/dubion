@@ -1,18 +1,18 @@
 package com.dubion.service.NapsterAPI;
 
 import com.dubion.domain.Album;
+import com.dubion.domain.Genre;
 import com.dubion.domain.Song;
 import com.dubion.domain.Artist;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.repository.ArtistRepository;
+import com.dubion.repository.GenreRepository;
 import com.dubion.repository.SongRepository;
-import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
-import com.dubion.service.dto.NapsterAPI.NapsterArtist;
-import com.dubion.service.dto.NapsterAPI.Track;
+import com.dubion.service.dto.NapsterAPI.*;
+import com.dubion.service.dto.NapsterAPI.Albums.Genres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
-import com.dubion.service.dto.NapsterAPI.Napster;
 
 
 import java.io.IOException;
@@ -35,6 +35,9 @@ public class NapsterDTOService {
     @Autowired
     private ArtistRepository artistRepository;
 
+    @Autowired
+    private GenreRepository genreRepository;
+
     public Napster getTopSongNap(){
         Napster topSongs = null;
         Call<Napster> callTopSongs = apiService.getTopSong(10,"ES",apiKey);
@@ -46,6 +49,18 @@ public class NapsterDTOService {
             e.printStackTrace();
         }
         return topSongs;
+    }
+    public NapsterGenre getGenres(){
+        NapsterGenre genres = null;
+        Call<NapsterGenre> callGenres = apiService.getGenres("ES",apiKey);
+        System.out.println(callGenres);
+        try {
+            genres = callGenres.execute().body();
+            System.out.println(genres);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return genres;
     }
 
 
@@ -108,6 +123,10 @@ public class NapsterDTOService {
                 Album s = new Album();
 
                 s.setName(t.getName());
+                String genre = t.getLinks().getGenres().getIds().get(0);
+                System.out.println(genre);
+                Call<NapsterGenre> callTopAlbums = apiService.getGenresById("ES", apiKey,genre);
+
 
 
 
@@ -130,7 +149,7 @@ public class NapsterDTOService {
                 String a="";
                 s.setName(t.getName());
                 for (String b: t.getBlurbs()){
-                         a= b;
+                    a= b;
                 }
                 s.setBio(a);
 
@@ -142,6 +161,26 @@ public class NapsterDTOService {
 
         }
         return topArtists;
+    }
+
+    public List<Genre> importGenres (){
+        NapsterGenre NapsterGenres = getGenres();
+        List<Genre> genres = new ArrayList<>();
+        for (com.dubion.service.dto.NapsterAPI.Genre.Genre t:
+            NapsterGenres.getGenre()) {
+            if(genreRepository.findByName(t.getName())==null){
+                Genre s = new Genre();
+                s.setName(t.getName());
+
+
+                s=genreRepository.save(s);
+                genres.add(s);
+            }else{
+                genres.add(genreRepository.findByName(t.getName()));
+            }
+
+        }
+        return genres;
     }
 
 

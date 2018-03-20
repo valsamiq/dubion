@@ -1,9 +1,13 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Album;
 import com.dubion.domain.Genre;
 
 import com.dubion.repository.GenreRepository;
+import com.dubion.service.NapsterAPI.NapsterDTOService;
+import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
+import com.dubion.service.dto.NapsterAPI.NapsterGenre;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,8 +35,11 @@ public class GenreResource {
 
     private final GenreRepository genreRepository;
 
-    public GenreResource(GenreRepository genreRepository) {
+    private final NapsterDTOService napsterDTOService;
+
+    public GenreResource(GenreRepository genreRepository, NapsterDTOService napsterDTOService) {
         this.genreRepository = genreRepository;
+        this.napsterDTOService = napsterDTOService;
     }
 
     /**
@@ -82,7 +89,7 @@ public class GenreResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of genres in body
      */
-    @GetMapping("/genres")
+    @GetMapping("/genres3")
     @Timed
     public List<Genre> getAllGenres() {
         log.debug("REST request to get all Genres");
@@ -102,7 +109,30 @@ public class GenreResource {
         Genre genre = genreRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(genre));
     }
-
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/genres")
+    @Timed
+    public ResponseEntity<NapsterGenre> getGenres() {
+        NapsterGenre genre = napsterDTOService.getGenres();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(genre));
+    }
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/genres2")
+    @Timed
+    public ResponseEntity<List<Genre>> importTopAlbums() {
+        List<Genre> song = napsterDTOService.importGenres();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }
     /**
      * DELETE  /genres/:id : delete the "id" genre.
      *
