@@ -32,12 +32,7 @@
                     <td><a ui-sref="album-detail({id:album.id})">{{album.id}}</a></td>
                     <td>{{album.name}}</td>
                         <td>{{album.releaseDate | date:'mediumDate'}}</td>
-                    <td>
-                        <a ng-if="album.photo" ng-click="vm.openFile(album.photoContentType, album.photo)">
-                            <img data-ng-src="{{'data:' + album.photoContentType + ';base64,' + album.photo}}" style="max-height: 30px;" alt="album image"/>
-                        </a>
-                        <span ng-if="album.photo">{{album.photoContentType}}, {{vm.byteSize(album.photo)}}</span>
-                    </td>
+                    <td>{{album.photo}}</td>
                     <td>
                         <a ui-sref="band-detail({id:album.band.id})">{{album.band.name}}</a>
                     </td>
