@@ -39,7 +39,6 @@ public class SongResource {
 
     private final SongQueryService songQueryService;
 
-
     private final NapsterDTOService napsterDTOService;
 
     public SongResource(SongService songService, SongQueryService songQueryService, NapsterDTOService napsterDTOService) {
