@@ -36,8 +36,6 @@ public class ArtistCriteria implements Serializable {
 
     private LongFilter bandId;
 
-    private LongFilter instrumentId;
-
     private LongFilter ratingId;
 
     public ArtistCriteria() {
@@ -83,14 +81,6 @@ public class ArtistCriteria implements Serializable {
         this.bandId = bandId;
     }
 
-    public LongFilter getInstrumentId() {
-        return instrumentId;
-    }
-
-    public void setInstrumentId(LongFilter instrumentId) {
-        this.instrumentId = instrumentId;
-    }
-
     public LongFilter getRatingId() {
         return ratingId;
     }
@@ -107,7 +97,6 @@ public class ArtistCriteria implements Serializable {
                 (bio != null ? "bio=" + bio + ", " : "") +
                 (photo != null ? "photo=" + photo + ", " : "") +
                 (bandId != null ? "bandId=" + bandId + ", " : "") +
-                (instrumentId != null ? "instrumentId=" + instrumentId + ", " : "") +
                 (ratingId != null ? "ratingId=" + ratingId + ", " : "") +
             "}";
     }

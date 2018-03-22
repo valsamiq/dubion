@@ -5,15 +5,14 @@
         .module('dubionApp')
         .controller('InstrumentDialogController', InstrumentDialogController);
 
-    InstrumentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Instrument', 'Artist'];
+    InstrumentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Instrument'];
 
-    function InstrumentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Instrument, Artist) {
+    function InstrumentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Instrument) {
         var vm = this;
 
         vm.instrument = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.artists = Artist.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

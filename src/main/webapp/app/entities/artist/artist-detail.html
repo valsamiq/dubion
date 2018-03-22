@@ -22,12 +22,6 @@
                 <a ui-sref="band-detail({id: band.id})">{{band.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
-        <dt><span data-translate="dubionApp.artist.instrument">Instrument</span></dt>
-        <dd>
-            <span ng-repeat="instrument in vm.artist.instruments">
-                <a ui-sref="instrument-detail({id: instrument.id})">{{instrument.name}}</a>{{$last ? '' : ', '}}
-            </span>
-        </dd>
     </dl>
 
     <button type="submit"

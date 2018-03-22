@@ -5,9 +5,9 @@
         .module('dubionApp')
         .controller('InstrumentDetailController', InstrumentDetailController);
 
-    InstrumentDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Instrument', 'Artist'];
+    InstrumentDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Instrument'];
 
-    function InstrumentDetailController($scope, $rootScope, $stateParams, previousState, entity, Instrument, Artist) {
+    function InstrumentDetailController($scope, $rootScope, $stateParams, previousState, entity, Instrument) {
         var vm = this;
 
         vm.instrument = entity;
