@@ -40,13 +40,6 @@ public class Artist implements Serializable {
                inverseJoinColumns = @JoinColumn(name="bands_id", referencedColumnName="id"))
     private Set<Band> bands = new HashSet<>();
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "artist_instrument",
-               joinColumns = @JoinColumn(name="artists_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="instruments_id", referencedColumnName="id"))
-    private Set<Instrument> instruments = new HashSet<>();
-
     @OneToMany(mappedBy = "artist")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -123,31 +116,6 @@ public class Artist implements Serializable {
 
     public void setBands(Set<Band> bands) {
         this.bands = bands;
-    }
-
-    public Set<Instrument> getInstruments() {
-        return instruments;
-    }
-
-    public Artist instruments(Set<Instrument> instruments) {
-        this.instruments = instruments;
-        return this;
-    }
-
-    public Artist addInstrument(Instrument instrument) {
-        this.instruments.add(instrument);
-        instrument.getArtists().add(this);
-        return this;
-    }
-
-    public Artist removeInstrument(Instrument instrument) {
-        this.instruments.remove(instrument);
-        instrument.getArtists().remove(this);
-        return this;
-    }
-
-    public void setInstruments(Set<Instrument> instruments) {
-        this.instruments = instruments;
     }
 
     public Set<RatingArtist> getRatings() {

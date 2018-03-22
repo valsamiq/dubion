@@ -10,14 +10,6 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "artist",
-            "relationshipName": "instrument",
-            "otherEntityName": "instrument",
-            "otherEntityField": "name",
-            "ownerSide": true
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "rating",
             "otherEntityName": "ratingArtist",

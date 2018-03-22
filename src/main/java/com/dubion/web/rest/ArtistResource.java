@@ -1,12 +1,8 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.dubion.domain.Album;
 import com.dubion.domain.Artist;
 import com.dubion.service.ArtistService;
-import com.dubion.repository.ArtistRepository;
-import com.dubion.service.NapsterAPI.NapsterDTOService;
-import com.dubion.service.dto.NapsterAPI.NapsterArtist;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.ArtistCriteria;
@@ -34,19 +30,13 @@ public class ArtistResource {
 
     private static final String ENTITY_NAME = "artist";
 
-    private final ArtistRepository artistRepository;
-
     private final ArtistService artistService;
 
     private final ArtistQueryService artistQueryService;
 
-    private final NapsterDTOService napsterDTOService;
-
-    public ArtistResource(ArtistRepository artistRepository, ArtistService artistService, ArtistQueryService artistQueryService, NapsterDTOService napsterDTOService){
-        this.artistRepository = artistRepository;
+    public ArtistResource(ArtistService artistService, ArtistQueryService artistQueryService) {
         this.artistService = artistService;
         this.artistQueryService = artistQueryService;
-        this.napsterDTOService = napsterDTOService;
     }
 
     /**
@@ -64,7 +54,7 @@ public class ArtistResource {
             throw new BadRequestAlertException("A new artist cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Artist result = artistService.save(artist);
-        return ResponseEntity.created(new URI("/api/artist/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/artists/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -94,15 +84,17 @@ public class ArtistResource {
     /**
      * GET  /artists : get all the artists.
      *
+     * @param criteria the criterias which the requested entities should match
      * @return the ResponseEntity with status 200 (OK) and the list of artists in body
      */
     @GetMapping("/artists")
     @Timed
-    public ResponseEntity<List<Artist>> getAllArtist(ArtistCriteria criteria) {
-        log.debug("REST request to get Bands by criteria: {}", criteria);
+    public ResponseEntity<List<Artist>> getAllArtists(ArtistCriteria criteria) {
+        log.debug("REST request to get Artists by criteria: {}", criteria);
         List<Artist> entityList = artistQueryService.findByCriteria(criteria);
         return ResponseEntity.ok().body(entityList);
     }
+
     /**
      * GET  /artists/:id : get the "id" artist.
      *
@@ -115,28 +107,8 @@ public class ArtistResource {
         log.debug("REST request to get Artist : {}", id);
         Artist artist = artistService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(artist));
-    }/**
-     * GET  /songs/:id : get the "id" song.
-     *
-     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
-     */
-    @GetMapping("/artists/top")
-    @Timed
-    public ResponseEntity<NapsterArtist> getTopArtist() {
-        NapsterArtist artist = napsterDTOService.getTopArtistNap();
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(artist));
     }
-    /**
-     * GET  /songs/:id : get the "id" song.
-     *
-     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
-     */
-    @GetMapping("/artists/top2")
-    @Timed
-    public ResponseEntity<List<Artist>> importTopArtist() {
-        List<Artist> song = napsterDTOService.importTopArtist();
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
-    }
+
     /**
      * DELETE  /artists/:id : delete the "id" artist.
      *
@@ -149,10 +121,5 @@ public class ArtistResource {
         log.debug("REST request to delete Artist : {}", id);
         artistService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
-
-    @GetMapping("/get-artist-name/{artistName}")
-    public Artist getArtistByName(@PathVariable String artistName) {
-        return artistRepository.findByNameContaining(artistName);
     }
 }

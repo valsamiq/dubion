@@ -5,9 +5,9 @@
         .module('dubionApp')
         .controller('ArtistDetailController', ArtistDetailController);
 
-    ArtistDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Artist', 'Band', 'Instrument', 'RatingArtist'];
+    ArtistDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Artist', 'Band', 'RatingArtist'];
 
-    function ArtistDetailController($scope, $rootScope, $stateParams, previousState, entity, Artist, Band, Instrument, RatingArtist) {
+    function ArtistDetailController($scope, $rootScope, $stateParams, previousState, entity, Artist, Band, RatingArtist) {
         var vm = this;
 
         vm.artist = entity;

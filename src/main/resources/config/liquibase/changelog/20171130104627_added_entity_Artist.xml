@@ -48,17 +48,6 @@
 
         <addPrimaryKey columnNames="artists_id, bands_id" tableName="artist_band"/>
         
-        <createTable tableName="artist_instrument">
-            <column name="instruments_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="artists_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="artists_id, instruments_id" tableName="artist_instrument"/>
-        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

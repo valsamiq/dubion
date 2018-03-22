@@ -5,16 +5,15 @@
         .module('dubionApp')
         .controller('ArtistDialogController', ArtistDialogController);
 
-    ArtistDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Artist', 'Band', 'Instrument', 'RatingArtist'];
+    ArtistDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Artist', 'Band', 'RatingArtist'];
 
-    function ArtistDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Artist, Band, Instrument, RatingArtist) {
+    function ArtistDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Artist, Band, RatingArtist) {
         var vm = this;
 
         vm.artist = entity;
         vm.clear = clear;
         vm.save = save;
         vm.bands = Band.query();
-        vm.instruments = Instrument.query();
         vm.ratingartists = RatingArtist.query();
 
         $timeout(function (){
