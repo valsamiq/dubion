@@ -10,7 +10,7 @@ import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
 
 
-import io.github.jhipster.service.filter.LocalDateFilter;
+
 
 
 
@@ -29,8 +29,6 @@ public class ArtistCriteria implements Serializable {
     private LongFilter id;
 
     private StringFilter name;
-
-    private LocalDateFilter birthDate;
 
     private StringFilter bio;
 
@@ -59,14 +57,6 @@ public class ArtistCriteria implements Serializable {
 
     public void setName(StringFilter name) {
         this.name = name;
-    }
-
-    public LocalDateFilter getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDateFilter birthDate) {
-        this.birthDate = birthDate;
     }
 
     public StringFilter getBio() {
@@ -114,7 +104,6 @@ public class ArtistCriteria implements Serializable {
         return "ArtistCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
-                (birthDate != null ? "birthDate=" + birthDate + ", " : "") +
                 (bio != null ? "bio=" + bio + ", " : "") +
                 (photo != null ? "photo=" + photo + ", " : "") +
                 (bandId != null ? "bandId=" + bandId + ", " : "") +

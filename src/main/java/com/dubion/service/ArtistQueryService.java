@@ -1,6 +1,6 @@
 package com.dubion.service;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -74,9 +74,6 @@ public class ArtistQueryService extends QueryService<Artist> {
             }
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Artist_.name));
-            }
-            if (criteria.getBirthDate() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getBirthDate(), Artist_.birthDate));
             }
             if (criteria.getBio() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getBio(), Artist_.bio));

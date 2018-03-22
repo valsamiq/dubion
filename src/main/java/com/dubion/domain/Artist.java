@@ -6,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -27,9 +26,6 @@ public class Artist implements Serializable {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
 
     @Column(name = "bio")
     private String bio;
@@ -76,19 +72,6 @@ public class Artist implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public Artist birthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-        return this;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getBio() {
@@ -218,7 +201,6 @@ public class Artist implements Serializable {
         return "Artist{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", birthDate='" + getBirthDate() + "'" +
             ", bio='" + getBio() + "'" +
             ", photo='" + getPhoto() + "'" +
             "}";
