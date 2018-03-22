@@ -20,16 +20,6 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="dubionApp.artist.birthDate" for="field_birthDate">Birth Date</label>
-                <div class="input-group">
-                    <input id="field_birthDate" type="text" class="form-control" name="birthDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.artist.birthDate" is-open="vm.datePickerOpenStatus.birthDate"
-                    />
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('birthDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="dubionApp.artist.bio" for="field_bio">Bio</label>
             <input type="text" class="form-control" name="bio" id="field_bio"
                     ng-model="vm.artist.bio"

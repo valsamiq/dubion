@@ -12,8 +12,6 @@
 
         vm.artist = entity;
         vm.clear = clear;
-        vm.datePickerOpenStatus = {};
-        vm.openCalendar = openCalendar;
         vm.save = save;
         vm.bands = Band.query();
         vm.instruments = Instrument.query();
@@ -46,10 +44,6 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.birthDate = false;
 
-        function openCalendar (date) {
-            vm.datePickerOpenStatus[date] = true;
-        }
     }
 })();
