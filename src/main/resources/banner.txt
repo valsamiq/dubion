@@ -7,7 +7,7 @@
   ${AnsiColor.BLUE}███   ▄███ ${AnsiColor.MAGENTA} ███    ███   ███    ███ ███  ███    ███ ███   ███
   ${AnsiColor.BLUE}████████▀  ${AnsiColor.BRIGHT_MAGENTA} ████████▀  ▄█████████▀  █▀    ▀██████▀   ▀█   █▀
 
-    Everything made by ${AnsiColor.BLUE}Balsamiq ${AnsiColor.BRIGHT_MAGENTA}and no-one else.
+    Everything made by ${AnsiColor.BLUE}Chineseman ${AnsiColor.BRIGHT_MAGENTA}and no-one else.
 
 ${AnsiColor.BRIGHT_BLUE}:: Dubion - JHipster 🤓 :: Running Spring Boot ${spring-boot.version} ::
 :: http://www.jhipster.tech ::${AnsiColor.DEFAULT}
