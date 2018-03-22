@@ -31,17 +31,13 @@ public class Album implements Serializable {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    @Lob
     @Column(name = "photo")
-    private byte[] photo;
-
-    @Column(name = "photo_content_type")
-    private String photoContentType;
+    private String photo;
 
     @ManyToOne
     private Band band;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "album_genre",
                joinColumns = @JoinColumn(name="albums_id", referencedColumnName="id"),
@@ -98,30 +94,17 @@ public class Album implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public Album photo(byte[] photo) {
+    public Album photo(String photo) {
         this.photo = photo;
         return this;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public String getPhotoContentType() {
-        return photoContentType;
-    }
-
-    public Album photoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
-        return this;
-    }
-
-    public void setPhotoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
     }
 
     public Band getBand() {
@@ -265,7 +248,6 @@ public class Album implements Serializable {
             ", name='" + getName() + "'" +
             ", releaseDate='" + getReleaseDate() + "'" +
             ", photo='" + getPhoto() + "'" +
-            ", photoContentType='" + photoContentType + "'" +
             "}";
     }
 }

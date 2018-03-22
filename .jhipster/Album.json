@@ -46,14 +46,13 @@
         },
         {
             "fieldName": "photo",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "image"
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20171130104628",
-    "entityTableName": "album",
     "dto": "no",
-    "pagination": "no",
     "service": "ServiceClass",
-    "jpaMetamodelFiltering": true
+    "entityTableName": "album",
+    "jpaMetamodelFiltering": true,
+    "pagination": "no"
 }

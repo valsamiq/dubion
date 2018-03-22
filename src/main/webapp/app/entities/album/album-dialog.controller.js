@@ -5,17 +5,15 @@
         .module('dubionApp')
         .controller('AlbumDialogController', AlbumDialogController);
 
-    AlbumDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Album', 'Band', 'Genre', 'RatingAlbum', 'FavouriteAlbum', 'Song'];
+    AlbumDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Album', 'Band', 'Genre', 'RatingAlbum', 'FavouriteAlbum', 'Song'];
 
-    function AlbumDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Album, Band, Genre, RatingAlbum, FavouriteAlbum, Song) {
+    function AlbumDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Album, Band, Genre, RatingAlbum, FavouriteAlbum, Song) {
         var vm = this;
 
         vm.album = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
-        vm.byteSize = DataUtils.byteSize;
-        vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.bands = Band.query();
         vm.genres = Genre.query();
@@ -51,20 +49,6 @@
         }
 
         vm.datePickerOpenStatus.releaseDate = false;
-
-        vm.setPhoto = function ($file, album) {
-            if ($file && $file.$error === 'pattern') {
-                return;
-            }
-            if ($file) {
-                DataUtils.toBase64($file, function(base64Data) {
-                    $scope.$apply(function() {
-                        album.photo = base64Data;
-                        album.photoContentType = $file.type;
-                    });
-                });
-            }
-        };
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
