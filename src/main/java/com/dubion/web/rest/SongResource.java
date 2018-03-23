@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -142,7 +143,7 @@ public class SongResource {
      */
     @GetMapping("/songs/top2")
     @Timed
-    public ResponseEntity<List<Song>> importTopSongs() {
+    public ResponseEntity<List<Song>> importTopSongs() throws IOException {
         List<Song> song = napsterDTOService.importTopSongs();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
