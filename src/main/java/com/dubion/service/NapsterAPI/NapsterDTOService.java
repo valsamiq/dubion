@@ -15,6 +15,8 @@ import retrofit2.Call;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,7 +120,7 @@ public class NapsterDTOService {
         List<Album> topAlbums = new ArrayList<>();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             topAlbumNapster.getAlbums()) {
-          //  if(albumRepository.findByName(t.getName())==null){
+            if(albumRepository.findByName(t.getName())==null){
                 Album s = new Album();
 
                 s.setName(t.getName());
@@ -138,13 +140,13 @@ public class NapsterDTOService {
                     importGenreByName(genre);
                     s.setGenres(genreRepository.findByNames(name));
                 }
-
-
+                s.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
+                s.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 s=albumRepository.save(s);
                 topAlbums.add(s);
-          /*  }else{
+            }else{
                 topAlbums.add(albumRepository.findByName(t.getName()));
-            }*/
+            }
 
         }
         return topAlbums;
@@ -157,12 +159,12 @@ public class NapsterDTOService {
             if(artistRepository.findByName(t.getName())==null){
                 Artist s = new Artist();
                 String a="";
-                s.setName(t.getName());
                 for (String b: t.getBlurbs()){
                     a= b;
                 }
+                s.setName(t.getName());
                 s.setBio(a);
-
+                s.setPhoto("http://direct.napster.com/imageserver/v2/artists/"+t.getId()+"/images/356x237.jpg");
                 s=artistRepository.save(s);
                 topArtists.add(s);
             }else{
