@@ -40,4 +40,8 @@ public interface NapsterDTORepository {
     Call<NapsterGenre> getGenresById(@Query("catalog") String catalog
         , @Query("apikey") String apiKey
         , @Query("id") String id);
+    @GET("albums/")
+    Call<NapsterAlbum> getAlbumById(@Query("catalog") String catalog
+        , @Query("apikey") String apiKey
+        , @Query("id") String id);
 }
