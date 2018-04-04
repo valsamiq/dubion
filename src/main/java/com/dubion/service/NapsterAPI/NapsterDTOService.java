@@ -98,18 +98,18 @@ public class NapsterDTOService {
         List<Song> topSongs = new ArrayList<>();
         for (Track t:
              topSongsNapster.getTracks()) {
-          //  if(songRepository.findByName(t.getName())==null){
+            if(songRepository.findByName(t.getName())==null){
 
                 Song s = new Song();
-
+                s.setUrl(t.getPreviewURL());
                 s.setName(t.getName());
                 importAlbumById(t.getAlbumId());
                 s.setAlbums(albumRepository.findByNameCR(t.getAlbumName()));
                 s=songRepository.save(s);
                 topSongs.add(s);
-         /*   }else{
+            }else{
                 topSongs.add(songRepository.findByName(t.getName()));
-            }*/
+            }
         }
         return topSongs;
     }
