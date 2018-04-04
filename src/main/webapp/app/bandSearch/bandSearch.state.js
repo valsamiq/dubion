@@ -9,23 +9,23 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-            .state('artistPage', {
+            .state('bandSearch', {
                 parent: 'entity',
-                url: '/artistPage/{id}',
+                url: '/bandSearch',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'dubionApp.artistPage.home.title'
+                    pageTitle: 'dubionApp.bandSearch.home.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'app/artistPage/artistPage.html',
-                        controller: 'artistPageController',
+                        templateUrl: 'app/bandSearch/bandSearch.html',
+                        controller: 'bandSearchController',
                         controllerAs: 'vm'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('artistPage');
+                        $translatePartialLoader.addPart('bandSearch');
                         $translatePartialLoader.addPart('status');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();

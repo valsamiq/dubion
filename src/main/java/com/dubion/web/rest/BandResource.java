@@ -124,10 +124,10 @@ public class BandResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/get-band-by-name/{bandName}")
-    public Band getBandByName(@PathVariable String bandName) {
+    @GetMapping("/bands/by-name/{bandName}")
+    public List<Band> getBandByName(@PathVariable String bandName) {
         return bandRepository.findByNameContaining(bandName);
     }
-    
+
 
 }

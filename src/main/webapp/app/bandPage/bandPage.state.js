@@ -11,7 +11,7 @@
         $stateProvider
             .state('bandPage', {
                 parent: 'entity',
-                url: '/bandPage',
+                url: '/bandPage/{id}',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'dubionApp.bandPage.home.title'

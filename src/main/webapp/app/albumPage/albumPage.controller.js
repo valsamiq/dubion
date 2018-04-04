@@ -55,7 +55,7 @@
         loadAll();
 
         function loadAll() {
-
+            vm.albumsLoaded=false;
 
             Album.query(function(result) {
                 vm.salbums = result;
@@ -109,6 +109,7 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
                     }
                 };
+                vm.albumsLoaded=true;
             });
         }
 

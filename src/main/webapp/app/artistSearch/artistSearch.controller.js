@@ -3,15 +3,15 @@
 
     angular
         .module('dubionApp')
-        .controller('albumSearchController', albumSearchController);
+        .controller('artistSearchController', artistSearchController);
 
-    albumSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Album','$stateParams'];
+    artistSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Artist','$stateParams'];
 
-    function albumSearchController ($scope, Principal, LoginService, $state, Album,$stateParams) {
+    function artistSearchController ($scope, Principal, LoginService, $state, Artist, $stateParams) {
 
         var vm = this;
         vm.byName = byName;
-    //vm.saludo="hola";,,
+
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -21,8 +21,8 @@
             getAccount();
         });
 
-        Album.get({id : $stateParams.id}, function(data) {
-            vm.albumActual = data;
+        Artist.get({id : $stateParams.id}, function(data) {
+            vm.artistActual = data;
         });
 
         getAccount();
@@ -39,26 +39,21 @@
         }
 
         function byName(){
-            Album.queryByName({name : vm.name}, function (data) {
-                vm.albums = data;
-
+            Artist.queryByName({name : vm.name}, function (data) {
+                vm.artists = data;
             });
         }
 
        // vm.images = ['/content/images/Sia%20Cover8.jpg', '/content/images/Sia%20Cover9.jpg', '/content/images/Sia%20Cover7.jpg'];
-        vm.salbums=[];
+        vm.sartists=[];
 
         loadAll();
 
-
         function loadAll() {
-            vm.albumsLoaded=false;
+            vm.artistLoaded=false;
 
-
-
-           Album.query(function(result) {
-                vm.salbums = result;
-
+            Artist.query(function(result) {
+                vm.sartists = result;
                 vm.searchQuery = null;
 
                vm.slickConfig = {
@@ -109,8 +104,7 @@
                        //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
                    }
                };
-               vm.albumsLoaded=true;
-
+                vm.artistLoaded=true;
             });
         }
 
