@@ -16,7 +16,7 @@
                 "title": "Song"
             },
             "name": "Name",
-            "duration": "Duration",
+            "url": "Url",
             "album": "Album",
             "rating": "Rating",
             "favourite": "Favourite"
