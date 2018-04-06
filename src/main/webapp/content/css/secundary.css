@@ -10,10 +10,12 @@
     /*!*background-repeat: no-repeat;*!*/
     /*!*background-size: cover;*!*/
 /*}*/
-
 .container{
     z-index: auto;
     position: relative;
+}
+.containerDetail{
+    display: table;
 }
 .well{
     position: relative;
