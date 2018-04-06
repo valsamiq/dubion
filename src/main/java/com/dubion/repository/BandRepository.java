@@ -20,5 +20,7 @@ public interface BandRepository extends JpaRepository<Band, Long>, JpaSpecificat
     Band findOneWithEagerRelationships(@Param("id") Long id);
 
     //@Query("select band from Band band left join fetch band. where song.name=:name")
-    Band findByNameContaining(String bandName);
+
+
+    List<Band> findByNameContaining(String name);
 }

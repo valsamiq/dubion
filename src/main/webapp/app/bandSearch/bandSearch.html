@@ -12,19 +12,19 @@
         <table class="jh-table table table-striped">
             <br/>
             <tbody>
-            <tr ng-if="vm.albums.length === 0">
+            <tr ng-if="vm.bands.length === 0">
                 <td>No se encontraron resultados.</td>
             </tr>
-            <tr ng-if="vm.albums.length > 0" ng-repeat="album in vm.albums track by album.id">
-                <td><a href="#/albumPage/{{album.id}}">{{album.name}}</a></td>
+            <tr ng-if="vm.bands.length > 0" ng-repeat="band in vm.bands track by band.id">
+                <td><a href="#/bandPage/{{band.id}}">{{band.name}}</a></td>
 
             </tr>
             </tbody>
         </table>
     <!--<div>-->
-        <!--<tr ng-repeat="album in vm.albums track by album.id">-->
-            <!--<td>{{vm.albums.name}}</td>-->
-            <!--ui-sref="album-detail({id:album.id})"-->
+        <!--<tr ng-repeat="band in vm.bands track by band.id">-->
+            <!--<td>{{vm.bands.name}}</td>-->
+            <!--ui-sref="band-detail({id:band.id})"-->
         <!--</tr>-->
     <!--</div>-->
 
@@ -165,11 +165,11 @@
 
         <h2 class="left white">Novedades</h2>
         <!--<div class="scrollmenu scrollslick">
-            <a style="position: relative" href="#/albumPage/1">
-                <img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="This is Acting" style="width:200px"/>
+            <a style="position: relative" href="#/bandPage/1">
+                <img src="data:image/jpg;base64, {{vm.bandActual.photo}}" alt="This is Acting" style="width:200px"/>
                 <div class="new">Sia</br>This is Acting</div></a>
             &lt;!&ndash;<img src="/content/images/Sia Cover.jpg" alt="Musica" style="width:200px">&ndash;&gt;
-            <a style="position: relative" href="#/albumPage/2"><img src="/content/images/Sia%20Cover2.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
+            <a style="position: relative" href="#/bandPage/2"><img src="/content/images/Sia%20Cover2.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
             <a style="position: relative" href="#contact"><img src="/content/images/Sia%20Cover3.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Some People </br>Have Real Problems</div></a>
             <a style="position: relative" href="#about"><img src="/content/images/Sia%20Cover4.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>The Greatest</div></a>
             <a style="position: relative" href="#support"><img src="/content/images/Sia%20Cover5.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Everyday Is Christmas</div></a>
@@ -180,18 +180,14 @@
         </div>-->
 
 
+            <slick settings="vm.slickConfig" ng-if="vm.bandsLoaded">
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
 
-
-            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
-
-                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id" >
-
-                    <!--<a href="#/albumPage/{{img.id}}">{{img.name}}</a>-->
                <!--     {{img.name}} -->
                <!--   <img src="{{ img }}"> -->
-                    <!--<img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="album image"/>-->
+                <!--    <img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="band image"/> -->
 
-                    <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="data:image/jpg;base64, {{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
+                    <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="data:image/jpg;base64, {{img.photo}}" alt="Band" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
                 </div>
             </slick>

@@ -3,18 +3,18 @@
         <div class="col-md-5 col-xs-12" align="center">
             <img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
         </div>
-        <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.band.name}} - {{vm.albumActual.name}}</h2>
-<!--            <li>The Greatest - 3:32</li>
-            <li>Never Give Up - 3:57</li>
-            <li>Elastic Heart - 4:19</li>
-            <li>Cheap Thrills - 3:27</li>
-            <li>Fist Fighting a Sandstorm - 3:41</li>-->
 
+        <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.band.name}} - {{vm.albumActual.name}}</h2>
 
             <div ng-repeat="song in vm.songs">
                 <li>{{song.name}} - {{song.duration}}</li>
+            </div><br>
 
-            </div>
+                <div class="row lead">
+                    <div id="stars" class="starrr"></div>
+                    <!--You gave a rating of <span id="count">0</span> star(s)-->
+                </div>
+            <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
         </div>
 
     </div>
@@ -34,6 +34,16 @@
         </div>
     </div>
 <style>
+    .fa {
+        font-size: 20px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .fa:hover {
+        color: darkblue;
+    }
+
     #audio{
         background-color: black;
         width: 60%;
@@ -109,8 +119,8 @@
     <div class="col-xs-12">
 
             <h2 class="left white">Más de Sia</h2>
-        <slick settings="vm.slickConfig">
-            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums">
+        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
+            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
 
                 <!--     {{img.name}} -->
                 <!--   <img src="{{ img }}"> -->
@@ -120,122 +130,127 @@
 
             </div>
         </slick>
-
-<!--            <div class="scrollmenu scrollslick">
-                <a style="position: relative" href="#/albumPage/1">
-
-                    <img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="This is Acting" style="width:200px"/>
-                    <div class="new">Sia</br>This is Acting</div></a>
-                    &lt;!&ndash;<img src="/content/images/Sia Cover.jpg" alt="Musica" style="width:200px">&ndash;&gt;
-                <a style="position: relative" href="#/albumPage/2"><img src="/content/images/Sia Cover2.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-                <a style="position: relative" href="#contact"><img src="/content/images/Sia Cover3.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Some People </br>Have Real Problems</div></a>
-                <a style="position: relative" href="#about"><img src="/content/images/Sia Cover4.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>The Greatest</div></a>
-                <a style="position: relative" href="#support"><img src="/content/images/Sia Cover5.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Everyday Is Christmas</div></a>
-                <a style="position: relative" href="#blog"><img src="/content/images/Sia Cover6.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>We are Born</div></a>
-                <a style="position: relative" href="#tools"><img src="/content/images/Sia Cover7.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-                <a style="position: relative" href="#base"><img src="/content/images/Sia Cover8.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>1000 Forms of Fear</div></a>
-                <a style="position: relative" href="#base"><img src="/content/images/Sia Cover9.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Colour the Small One</div></a>
-            </div>--><br/>
+        <br/>
             <script>
-                $(document).ready(function(){
-                        $('.scrollslick').slick({
-                            slidesToShow: 5,
-                            slidesToScroll: 1,
-                            autoplay: true,
-                            autoplaySpeed: 2000,
-                            nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
-                            prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
-                            responsive: [
-                                {
-                                    breakpoint: 1200,
-                                    settings: {
-                                        dots: false,
-                                        slidesToShow: 4,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 1024,
-                                    settings: {
-                                        dots: false,
-                                        slidesToShow: 3,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 600,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        arrows: false,
-                                        slidesToShow: 1,
-                                        slidesToScroll: 1
+                function myFunction(x) {
+                    x.classList.toggle("fa-thumbs-down");
+                }
 
-                                    }
+                var __slice = [].slice;
+
+                (function($, window) {
+                    var Starrr;
+
+                    Starrr = (function() {
+                        Starrr.prototype.defaults = {
+                            rating: void 0,
+                            numStars: 5,
+                            change: function(e, value) {}
+                        };
+
+                        function Starrr($el, options) {
+                            var i, _, _ref,
+                                _this = this;
+
+                            this.options = $.extend({}, this.defaults, options);
+                            this.$el = $el;
+                            _ref = this.defaults;
+                            for (i in _ref) {
+                                _ = _ref[i];
+                                if (this.$el.data(i) != null) {
+                                    this.options[i] = this.$el.data(i);
                                 }
+                            }
+                            this.createStars();
+                            this.syncRating();
+                            this.$el.on('mouseover.starrr', 'span', function(e) {
+                                return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
+                            });
+                            this.$el.on('mouseout.starrr', function() {
+                                return _this.syncRating();
+                            });
+                            this.$el.on('click.starrr', 'span', function(e) {
+                                return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
+                            });
+                            this.$el.on('starrr:change', this.options.change);
+                        }
 
-                            ]
-                        });
+                        Starrr.prototype.createStars = function() {
+                            var _i, _ref, _results;
 
-                var status = 0;
-                function Play(music,id) {
-                    var audio = $("#"+id);
-                    if(status == 0 || status == 2)
-                    {
-                        if(status == 0) audio.attr("src", music);
-                        audio[0].play();
-                        $("#play").attr("class","glyphicon glyphicon-pause aligned")
-                        status = 1;
-                    } else if(status == 1) {
-                        audio[0].pause();
-                        $("#play").attr("class","glyphicon glyphicon-play aligned")
-                        status = 2;
-                    }
-                }
-                function Stop(music,id) {
-                    var audio = $("#"+id);
-                    audio.attr("src", '');
-                    $("#play").attr("class","glyphicon glyphicon-play aligned")
-                    status = 0;
-                }
-                function Restart(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",0)
-                }
-                function VolumeUp(music,id) {
-                    var audio = $("#"+id);
-                    var volume = $("#"+id).prop("volume")+0.1;
-                    if(volume > 1) volume = 1;
-                    $("#"+id).prop("volume",volume);
-                }
-                function VolumeDown(music,id) {
-                    var audio = $("#"+id);
-                    var volume = $("#"+id).prop("volume")-0.1;
-                    if(volume < 0) volume = 0;
-                    $("#"+id).prop("volume",volume);
-                }
-                function Forward5(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")+5);
-                }
-                function Backward5(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")-5);
-                }
-                function Forward1(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")+1);
-                }
-                function Backward1(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")-1);
-                }
+                            _results = [];
+                            for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+                                _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
+                            }
+                            return _results;
+                        };
+
+                        Starrr.prototype.setRating = function(rating) {
+                            if (this.options.rating === rating) {
+                                rating = void 0;
+                            }
+                            this.options.rating = rating;
+                            this.syncRating();
+                            return this.$el.trigger('starrr:change', rating);
+                        };
+
+                        Starrr.prototype.syncRating = function(rating) {
+                            var i, _i, _j, _ref;
+
+                            rating || (rating = this.options.rating);
+                            if (rating) {
+                                for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+                                    this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+                                }
+                            }
+                            if (rating && rating < 5) {
+                                for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+                                    this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+                                }
+                            }
+                            if (!rating) {
+                                return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+                            }
+                        };
+
+                        return Starrr;
+
+                    })();
+                    return $.fn.extend({
+                        starrr: function() {
+                            var args, option;
+
+                            option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+                            return this.each(function() {
+                                var data;
+
+                                data = $(this).data('star-rating');
+                                if (!data) {
+                                    $(this).data('star-rating', (data = new Starrr($(this), option)));
+                                }
+                                if (typeof option === 'string') {
+                                    return data[option].apply(data, args);
+                                }
+                            });
+                        }
+                    });
+                })(window.jQuery, window);
+
+                $(function() {
+                    return $(".starrr").starrr();
                 });
+
+                $( document ).ready(function() {
+
+                    $('#stars').on('starrr:change', function(e, value){
+                        $('#count').html(value);
+                    });
+
+                    $('#stars-existing').on('starrr:change', function(e, value){
+                        $('#count-existing').html(value);
+                    });
+                });
+
             </script>
 
 

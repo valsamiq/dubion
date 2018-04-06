@@ -3,15 +3,15 @@
 
     angular
         .module('dubionApp')
-        .controller('albumSearchController', albumSearchController);
+        .controller('bandSearchController', bandSearchController);
 
-    albumSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Album','$stateParams'];
+    bandSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Band','$stateParams'];
 
-    function albumSearchController ($scope, Principal, LoginService, $state, Album,$stateParams) {
+    function bandSearchController ($scope, Principal, LoginService, $state, Band,$stateParams) {
 
         var vm = this;
         vm.byName = byName;
-    //vm.saludo="hola";,,
+
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -21,8 +21,8 @@
             getAccount();
         });
 
-        Album.get({id : $stateParams.id}, function(data) {
-            vm.albumActual = data;
+        Band.get({id : $stateParams.id}, function(data) {
+            vm.bandActual = data;
         });
 
         getAccount();
@@ -39,26 +39,25 @@
         }
 
         function byName(){
-            Album.queryByName({name : vm.name}, function (data) {
-                vm.albums = data;
-
+            Band.queryByName({name : vm.name}, function (data) {
+                vm.bands = data;
             });
         }
 
        // vm.images = ['/content/images/Sia%20Cover8.jpg', '/content/images/Sia%20Cover9.jpg', '/content/images/Sia%20Cover7.jpg'];
-        vm.salbums=[];
+        vm.sbands=[];
 
         loadAll();
 
-
         function loadAll() {
-            vm.albumsLoaded=false;
 
 
 
-           Album.query(function(result) {
-                vm.salbums = result;
 
+            Band.query(function(result) {
+                vm.bandsLoaded=false;
+
+                vm.sbands = result;
                 vm.searchQuery = null;
 
                vm.slickConfig = {
@@ -109,8 +108,7 @@
                        //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
                    }
                };
-               vm.albumsLoaded=true;
-
+                vm.bandsLoaded=true;
             });
         }
 

@@ -24,17 +24,17 @@
                     templateUrl: 'app/pages/Overlay/banner/banner.html',
                     controller: 'BannerController',
                     controllerAs: 'vm'
-                },
+                }/*,
                 'albumPage@': {
                     templateUrl: 'app/albumPage/albumPage.html',
                     controller: 'albumPageController',
                     controllerAs: 'vm'
                 },
-                'albumSearch@': {
-                    templateUrl: 'app/albumSearch/albumSearch.html',
+                 'albumSearch@': {
+                     templateUrl: 'app/albumSearch/artistSearch.html',
                     controller: 'albumSearchController',
                     controllerAs: 'vm'
-                }
+                 }*/
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
