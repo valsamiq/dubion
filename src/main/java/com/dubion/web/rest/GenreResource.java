@@ -49,7 +49,7 @@ public class GenreResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new genre, or with status 400 (Bad Request) if the genre has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/genres")
+    @PostMapping("/genres4")
     @Timed
     public ResponseEntity<Genre> createGenre(@RequestBody Genre genre) throws URISyntaxException {
         log.debug("REST request to save Genre : {}", genre);
@@ -71,7 +71,7 @@ public class GenreResource {
      * or with status 500 (Internal Server Error) if the genre couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/genres")
+    @PutMapping("/genres5")
     @Timed
     public ResponseEntity<Genre> updateGenre(@RequestBody Genre genre) throws URISyntaxException {
         log.debug("REST request to update Genre : {}", genre);
