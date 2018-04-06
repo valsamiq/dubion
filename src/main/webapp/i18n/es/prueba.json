@@ -1,0 +1,20 @@
+{
+    "dubionApp": {
+        "prueba" : {
+            "home": {
+                "title": "Pruebas",
+                "createLabel": "Crear nuevo Prueba",
+                "createOrEditLabel": "Crear o editar Prueba"
+            },
+            "created": "Un nuevo Prueba ha sido creado con el identificador {{ param }}",
+            "updated": "Un Prueba ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Prueba ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Prueba {{ id }}?"
+            },
+            "detail": {
+                "title": "Prueba"
+            }
+        }
+    }
+}
