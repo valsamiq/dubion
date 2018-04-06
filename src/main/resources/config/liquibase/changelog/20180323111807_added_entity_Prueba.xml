@@ -15,10 +15,10 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Instrument.
+        Added the entity Prueba.
     -->
-    <changeSet id="20171130104636-1" author="jhipster">
-        <createTable tableName="instrument">
+    <changeSet id="20180323111807-1" author="jhipster">
+        <createTable tableName="prueba">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

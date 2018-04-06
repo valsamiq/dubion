@@ -3,14 +3,14 @@
 
     angular
         .module('dubionApp')
-        .controller('InstrumentDialogController', InstrumentDialogController);
+        .controller('PruebaDialogController', PruebaDialogController);
 
-    InstrumentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Instrument'];
+    PruebaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Prueba'];
 
-    function InstrumentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Instrument) {
+    function PruebaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Prueba) {
         var vm = this;
 
-        vm.instrument = entity;
+        vm.prueba = entity;
         vm.clear = clear;
         vm.save = save;
 
@@ -24,15 +24,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.instrument.id !== null) {
-                Instrument.update(vm.instrument, onSaveSuccess, onSaveError);
+            if (vm.prueba.id !== null) {
+                Prueba.update(vm.prueba, onSaveSuccess, onSaveError);
             } else {
-                Instrument.save(vm.instrument, onSaveSuccess, onSaveError);
+                Prueba.save(vm.prueba, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('dubionApp:instrumentUpdate', result);
+            $scope.$emit('dubionApp:pruebaUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

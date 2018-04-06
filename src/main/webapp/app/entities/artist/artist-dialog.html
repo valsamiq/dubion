@@ -36,10 +36,6 @@
             <label data-translate="dubionApp.artist.band" for="field_band">Band</label>
             <select class="form-control" id="field_band" multiple name="band" ng-model="vm.artist.bands" ng-options="band as band.name for band in vm.bands track by band.id"></select>
         </div>
-        <div class="form-group">
-            <label data-translate="dubionApp.artist.instrument" for="field_instrument">Instrument</label>
-            <select class="form-control" id="field_instrument" multiple name="instrument" ng-model="vm.artist.instruments" ng-options="instrument as instrument.name for instrument in vm.instruments track by instrument.id"></select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

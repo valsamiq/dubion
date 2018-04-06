@@ -15,8 +15,11 @@ import retrofit2.Call;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class NapsterDTOService {
@@ -90,7 +93,7 @@ public class NapsterDTOService {
     }
 
 
-    public List<Song> importTopSongs (){
+    public List<Song> importTopSongs () throws IOException {
         Napster topSongsNapster = getTopSongNap();
         List<Song> topSongs = new ArrayList<>();
         for (Track t:
@@ -98,10 +101,10 @@ public class NapsterDTOService {
             if(songRepository.findByName(t.getName())==null){
 
                 Song s = new Song();
-
+                s.setUrl(t.getPreviewURL());
                 s.setName(t.getName());
-                s.addAlbum(createAlbumByName(t.getAlbumName()));
-
+                importAlbumById(t.getAlbumId());
+                s.setAlbums(albumRepository.findByNameCR(t.getAlbumName()));
                 s=songRepository.save(s);
                 topSongs.add(s);
             }else{
@@ -118,10 +121,10 @@ public class NapsterDTOService {
         List<Album> topAlbums = new ArrayList<>();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             topAlbumNapster.getAlbums()) {
-          //  if(albumRepository.findByName(t.getName())==null){
+            if(albumRepository.findByName(t.getName())==null){
                 Album s = new Album();
 
-                s.setName(t.getName());
+
                 String genre = t.getLinks().getGenres().getIds().get(0);
                 System.out.println(genre);
                 NapsterGenre callgenres = null; String name ="";
@@ -138,13 +141,14 @@ public class NapsterDTOService {
                     importGenreByName(genre);
                     s.setGenres(genreRepository.findByNames(name));
                 }
-
-
+                s.setName(t.getName());
+                s.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
+                s.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 s=albumRepository.save(s);
                 topAlbums.add(s);
-          /*  }else{
+            }else{
                 topAlbums.add(albumRepository.findByName(t.getName()));
-            }*/
+            }
 
         }
         return topAlbums;
@@ -157,12 +161,12 @@ public class NapsterDTOService {
             if(artistRepository.findByName(t.getName())==null){
                 Artist s = new Artist();
                 String a="";
-                s.setName(t.getName());
                 for (String b: t.getBlurbs()){
                     a= b;
                 }
+                s.setName(t.getName());
                 s.setBio(a);
-
+                s.setPhoto("http://direct.napster.com/imageserver/v2/artists/"+t.getId()+"/images/356x237.jpg");
                 s=artistRepository.save(s);
                 topArtists.add(s);
             }else{
@@ -196,6 +200,14 @@ public class NapsterDTOService {
         importGenre(callgenres, genres);
         return  genres;
     }
+    public List<Album> importAlbumById(String id) throws IOException {
+        NapsterAlbum callgenres = null; String name ="";
+        Call<NapsterAlbum> genre = apiService.getAlbumById("ES", apiKey,id);
+        callgenres = genre.execute().body();
+        List<Album> albums = new ArrayList<>();
+        importAlbum(callgenres, albums);
+        return  albums;
+    }
 
     private void importGenre(NapsterGenre napsterGenres, List<Genre> genres) {
         for (com.dubion.service.dto.NapsterAPI.Genre.Genre t:
@@ -207,6 +219,46 @@ public class NapsterDTOService {
                 genres.add(s);
             }else{
                 genres.add( genreRepository.findByName(t.getName()));
+            }
+
+        }
+    }
+    private void importAlbum(NapsterAlbum napsterAlbum, List<Album> albums) throws IOException {
+        for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
+            napsterAlbum.getAlbums()) {
+            if(albumRepository.findByName(t.getName())==null){
+                Album s = new Album();
+
+                String genre = t.getLinks().getGenres().getIds().get(0);
+                System.out.println(genre);
+                NapsterGenre callgenres = null; String name ="";
+                Call<NapsterGenre> genres = apiService.getGenresById("ES", apiKey,genre);
+                callgenres = genres.execute().body();
+                for (com.dubion.service.dto.NapsterAPI.Genre.Genre g:
+                    callgenres.getGenre()) {
+                    name = g.getName();}
+                System.out.println(name);
+                System.out.println(genreRepository.findByName(name));
+                if (genreRepository.findByName(name)!=null){
+                    System.out.println("1");
+                    System.out.println(genreRepository.findByName(name));
+                    s.setGenres(genreRepository.findByNames(name));
+                    System.out.println(s.getGenres());
+                }else{
+                    System.out.println("2");
+                    importGenreByName(genre);
+                    s.setGenres(genreRepository.findByNames(name));
+                }
+                s.setName(t.getName());
+                s.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
+                s.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
+                s.setGenres(genreRepository.findByNames(name));
+
+                s=albumRepository.save(s);
+                System.out.println(s);
+                albums.add(s);
+            }else{
+                albums.add( albumRepository.findByName(t.getName()));
             }
 
         }

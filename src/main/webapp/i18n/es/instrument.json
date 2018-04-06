@@ -14,9 +14,7 @@
             },
             "detail": {
                 "title": "Instrument"
-            },
-            "name": "Name",
-            "artist": "Artist"
+            }
         }
     }
 }

@@ -9,53 +9,53 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('instrument', {
+        .state('prueba', {
             parent: 'entity',
-            url: '/instrument',
+            url: '/prueba',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'dubionApp.instrument.home.title'
+                pageTitle: 'dubionApp.prueba.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/instrument/instruments.html',
-                    controller: 'InstrumentController',
+                    templateUrl: 'app/entities/prueba/pruebas.html',
+                    controller: 'PruebaController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('instrument');
+                    $translatePartialLoader.addPart('prueba');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('instrument-detail', {
-            parent: 'instrument',
-            url: '/instrument/{id}',
+        .state('prueba-detail', {
+            parent: 'prueba',
+            url: '/prueba/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'dubionApp.instrument.detail.title'
+                pageTitle: 'dubionApp.prueba.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/instrument/instrument-detail.html',
-                    controller: 'InstrumentDetailController',
+                    templateUrl: 'app/entities/prueba/prueba-detail.html',
+                    controller: 'PruebaDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('instrument');
+                    $translatePartialLoader.addPart('prueba');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Instrument', function($stateParams, Instrument) {
-                    return Instrument.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Prueba', function($stateParams, Prueba) {
+                    return Prueba.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'instrument',
+                        name: $state.current.name || 'prueba',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -63,22 +63,22 @@
                 }]
             }
         })
-        .state('instrument-detail.edit', {
-            parent: 'instrument-detail',
+        .state('prueba-detail.edit', {
+            parent: 'prueba-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/instrument/instrument-dialog.html',
-                    controller: 'InstrumentDialogController',
+                    templateUrl: 'app/entities/prueba/prueba-dialog.html',
+                    controller: 'PruebaDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Instrument', function(Instrument) {
-                            return Instrument.get({id : $stateParams.id}).$promise;
+                        entity: ['Prueba', function(Prueba) {
+                            return Prueba.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -88,16 +88,16 @@
                 });
             }]
         })
-        .state('instrument.new', {
-            parent: 'instrument',
+        .state('prueba.new', {
+            parent: 'prueba',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/instrument/instrument-dialog.html',
-                    controller: 'InstrumentDialogController',
+                    templateUrl: 'app/entities/prueba/prueba-dialog.html',
+                    controller: 'PruebaDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -109,56 +109,56 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('instrument', null, { reload: 'instrument' });
+                    $state.go('prueba', null, { reload: 'prueba' });
                 }, function() {
-                    $state.go('instrument');
+                    $state.go('prueba');
                 });
             }]
         })
-        .state('instrument.edit', {
-            parent: 'instrument',
+        .state('prueba.edit', {
+            parent: 'prueba',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/instrument/instrument-dialog.html',
-                    controller: 'InstrumentDialogController',
+                    templateUrl: 'app/entities/prueba/prueba-dialog.html',
+                    controller: 'PruebaDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Instrument', function(Instrument) {
-                            return Instrument.get({id : $stateParams.id}).$promise;
+                        entity: ['Prueba', function(Prueba) {
+                            return Prueba.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('instrument', null, { reload: 'instrument' });
+                    $state.go('prueba', null, { reload: 'prueba' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('instrument.delete', {
-            parent: 'instrument',
+        .state('prueba.delete', {
+            parent: 'prueba',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/instrument/instrument-delete-dialog.html',
-                    controller: 'InstrumentDeleteController',
+                    templateUrl: 'app/entities/prueba/prueba-delete-dialog.html',
+                    controller: 'PruebaDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Instrument', function(Instrument) {
-                            return Instrument.get({id : $stateParams.id}).$promise;
+                        entity: ['Prueba', function(Prueba) {
+                            return Prueba.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('instrument', null, { reload: 'instrument' });
+                    $state.go('prueba', null, { reload: 'prueba' });
                 }, function() {
                     $state.go('^');
                 });

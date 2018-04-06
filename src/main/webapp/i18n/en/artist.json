@@ -19,7 +19,6 @@
             "bio": "Bio",
             "photo": "Photo",
             "band": "Band",
-            "instrument": "Instrument",
             "rating": "Rating"
         }
     }

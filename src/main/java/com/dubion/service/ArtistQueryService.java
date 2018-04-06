@@ -84,9 +84,6 @@ public class ArtistQueryService extends QueryService<Artist> {
             if (criteria.getBandId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getBandId(), Artist_.bands, Band_.id));
             }
-            if (criteria.getInstrumentId() != null) {
-                specification = specification.and(buildReferringEntitySpecification(criteria.getInstrumentId(), Artist_.instruments, Instrument_.id));
-            }
             if (criteria.getRatingId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getRatingId(), Artist_.ratings, RatingArtist_.id));
             }

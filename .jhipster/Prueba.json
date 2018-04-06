@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [],
     "fields": [],
-    "changelogDate": "20171130104636",
+    "changelogDate": "20180323111807",
     "dto": "no",
     "service": "no",
-    "entityTableName": "instrument",
+    "entityTableName": "prueba",
     "jpaMetamodelFiltering": false,
     "pagination": "no"
 }

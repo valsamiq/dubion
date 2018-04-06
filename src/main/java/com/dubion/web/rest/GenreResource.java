@@ -89,7 +89,7 @@ public class GenreResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of genres in body
      */
-    @GetMapping("/genres3")
+    @GetMapping("/genres")
     @Timed
     public List<Genre> getAllGenres() {
         log.debug("REST request to get all Genres");
@@ -115,7 +115,7 @@ public class GenreResource {
      * @param id the id of the song to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
      */
-    @GetMapping("/genres")
+    @GetMapping("/genrestop")
     @Timed
     public ResponseEntity<NapsterGenre> getGenres() {
         NapsterGenre genre = napsterDTOService.getGenres();
@@ -129,9 +129,9 @@ public class GenreResource {
      */
     @GetMapping("/genres2")
     @Timed
-    public ResponseEntity<List<Genre>> importTopAlbums() {
-        List<Genre> song = napsterDTOService.importGenres();
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    public ResponseEntity<List<Genre>> importGenres() {
+        List<Genre> genre = napsterDTOService.importGenres();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(genre));
     }
     /**
      * DELETE  /genres/:id : delete the "id" genre.

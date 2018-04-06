@@ -1,11 +1,27 @@
 package com.dubion.service.dto;
 
-import io.github.jhipster.service.filter.*;
-
 import java.io.Serializable;
+import io.github.jhipster.service.filter.BooleanFilter;
+import io.github.jhipster.service.filter.DoubleFilter;
+import io.github.jhipster.service.filter.Filter;
+import io.github.jhipster.service.filter.FloatFilter;
+import io.github.jhipster.service.filter.IntegerFilter;
+import io.github.jhipster.service.filter.LongFilter;
+import io.github.jhipster.service.filter.StringFilter;
 
 
 
+
+
+
+/**
+ * Criteria class for the Song entity. This class is used in SongResource to
+ * receive all the possible filtering options from the Http GET request parameters.
+ * For example the following could be a valid requests:
+ * <code> /songs?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
+ * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
+ * fix type specific filters.
+ */
 public class SongCriteria implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -14,13 +30,15 @@ public class SongCriteria implements Serializable {
 
     private StringFilter name;
 
-    private DoubleFilter duration;
+    private StringFilter url;
+
+    private LongFilter albumId;
+
+    private LongFilter ratingId;
+
+    private LongFilter favouriteId;
 
     public SongCriteria() {
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public LongFilter getId() {
@@ -39,20 +57,48 @@ public class SongCriteria implements Serializable {
         this.name = name;
     }
 
-    public DoubleFilter getDuration() {
-        return duration;
+    public StringFilter getUrl() {
+        return url;
     }
 
-    public void setDuration(DoubleFilter duration) {
-        this.duration = duration;
+    public void setUrl(StringFilter url) {
+        this.url = url;
+    }
+
+    public LongFilter getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(LongFilter albumId) {
+        this.albumId = albumId;
+    }
+
+    public LongFilter getRatingId() {
+        return ratingId;
+    }
+
+    public void setRatingId(LongFilter ratingId) {
+        this.ratingId = ratingId;
+    }
+
+    public LongFilter getFavouriteId() {
+        return favouriteId;
+    }
+
+    public void setFavouriteId(LongFilter favouriteId) {
+        this.favouriteId = favouriteId;
     }
 
     @Override
     public String toString() {
         return "SongCriteria{" +
-            (id != null ? "id=" + id + ", " : "") +
-            (name != null ? "name=" + name + ", " : "") +
-            (duration != null ? "duration=" + duration + ", " : "") +
-            '}';
+                (id != null ? "id=" + id + ", " : "") +
+                (name != null ? "name=" + name + ", " : "") +
+                (url != null ? "url=" + url + ", " : "") +
+                (albumId != null ? "albumId=" + albumId + ", " : "") +
+                (ratingId != null ? "ratingId=" + ratingId + ", " : "") +
+                (favouriteId != null ? "favouriteId=" + favouriteId + ", " : "") +
+            "}";
     }
+
 }
