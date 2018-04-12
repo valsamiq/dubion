@@ -1,43 +1,37 @@
 package com.dubion.service.TicketMasterAPI;
 
-import com.dubion.repository.AlbumRepository;
-import com.dubion.repository.ArtistRepository;
-import com.dubion.repository.GenreRepository;
-import com.dubion.repository.SongRepository;
-import com.dubion.service.NapsterAPI.NapsterDTORepository;
-import com.dubion.service.dto.NapsterAPI.Napster;
-import com.dubion.service.dto.NapsterAPI.NapsterGenre;
-import com.dubion.service.dto.TicketMasterAPI.City;
-import com.dubion.service.dto.TicketMasterAPI.TicketMasterAPI;
+
+import com.dubion.service.ip_API.Ip_apiDTOService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import retrofit2.Call;
 
 import java.io.IOException;
 
+@Service
 public class TicketMasterDTOService {
     public static final String apiKey = "ueEf63mXLYXpOGEmDC2mbXFkhbZY1lW2";
     static TicketMasterDTORepository apiService = TicketMasterDTORepository.retrofit.create(TicketMasterDTORepository.class);
 
-
     @Autowired
-    private SongRepository songRepository;
+    private Ip_apiDTOService IP_API_DTO_SERVICE;
 
-    @Autowired
-    private AlbumRepository albumRepository;
+    public Call<com.dubion.service.dto.TiquetMasterAPI.TicketMasterAPI> getCity(){
 
-    @Autowired
-    private ArtistRepository artistRepository;
+        String cityName= null;
+        try {
+            cityName = IP_API_DTO_SERVICE.getCoordinatesUser().getCity();
+            Call<com.dubion.service.dto.TiquetMasterAPI.TicketMasterAPI> callGenres = apiService.getByCity(cityName,apiKey);
+            System.out.println(callGenres);
+            return callGenres;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    @Autowired
-    private GenreRepository genreRepository;
 
-    public static TicketMasterAPI getGenres(){
-        TicketMasterAPI city = null;
-        String city2 = "";
-        Call<TicketMasterAPI> callGenres = apiService.getByCity(city2,apiKey);
-        System.out.println(callGenres);
-
-        return city;
+        return null;
     }
+
+
 
 }

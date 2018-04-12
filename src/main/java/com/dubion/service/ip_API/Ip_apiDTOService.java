@@ -1,6 +1,5 @@
 package com.dubion.service.ip_API;
 
-import com.dubion.service.GoogleMaps.GoogleMapsDTORepository;
 import com.dubion.service.dto.ip_API.IdApiDTO;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -9,16 +8,17 @@ import retrofit2.Response;
 import java.io.IOException;
 
 @Service
-public class ip_apiDTOService {
+public class Ip_apiDTOService {
 
-    private final ip_apiDTORepository apiid = ip_apiDTORepository.retrofit.create(ip_apiDTORepository.class);
+    private final Ip_apiDTORepository apiid = Ip_apiDTORepository.retrofit.create(Ip_apiDTORepository.class);
 
     // GoogleMapsDTORepository.retrofit.create(GoogleMapsDTORepository.class);
 
-    public IdApiDTO getCoordinatesUser (String ip) {
+    public IdApiDTO getCoordinatesUser () throws IOException {
+        java.util.Scanner s = new java.util.Scanner(new java.net.URL("https://api.ipify.org").openStream(), "UTF-8").useDelimiter("\\A");
 
         IdApiDTO maps = new IdApiDTO();
-        Call<IdApiDTO> callid_API = apiid.getCoordinatesUser(ip);
+        Call<IdApiDTO> callid_API = apiid.getCoordinatesUser(s.next());
 
         try{
             Response<IdApiDTO> response = callid_API.execute();
