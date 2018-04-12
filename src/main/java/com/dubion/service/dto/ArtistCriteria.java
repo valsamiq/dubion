@@ -1,31 +1,42 @@
 package com.dubion.service.dto;
 
+import java.io.Serializable;
+import io.github.jhipster.service.filter.BooleanFilter;
+import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
-import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.FloatFilter;
+import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
 
-import java.io.Serializable;
 
 
-/** Este trozo lo he dejado ya que no influye en nada(creo) - Criteria de Artist ignorar Band.
- * Criteria class for the Band entity. This class is used in BandResource to
+
+
+
+/**
+ * Criteria class for the Artist entity. This class is used in ArtistResource to
  * receive all the possible filtering options from the Http GET request parameters.
  * For example the following could be a valid requests:
- * <code> /band-pruebas?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
+ * <code> /artists?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
  * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
  * fix type specific filters.
  */
-public class ArtistCriteria implements Serializable{
+public class ArtistCriteria implements Serializable {
     private static final long serialVersionUID = 1L;
+
 
     private LongFilter id;
 
     private StringFilter name;
 
-    private LocalDateFilter birthdate;
-
     private StringFilter bio;
+
+    private StringFilter photo;
+
+    private LongFilter bandId;
+
+    private LongFilter ratingId;
 
     public ArtistCriteria() {
     }
@@ -46,14 +57,6 @@ public class ArtistCriteria implements Serializable{
         this.name = name;
     }
 
-    public LocalDateFilter getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(LocalDateFilter birthdate) {
-        this.birthdate = birthdate;
-    }
-
     public StringFilter getBio() {
         return bio;
     }
@@ -62,15 +65,40 @@ public class ArtistCriteria implements Serializable{
         this.bio = bio;
     }
 
+    public StringFilter getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(StringFilter photo) {
+        this.photo = photo;
+    }
+
+    public LongFilter getBandId() {
+        return bandId;
+    }
+
+    public void setBandId(LongFilter bandId) {
+        this.bandId = bandId;
+    }
+
+    public LongFilter getRatingId() {
+        return ratingId;
+    }
+
+    public void setRatingId(LongFilter ratingId) {
+        this.ratingId = ratingId;
+    }
+
     @Override
     public String toString() {
-        return "BandCriteria{" +
-            (id != null ? "id=" + id + ", " : "") +
-            (name != null ? "name=" + name + ", " : "") +
-            (birthdate != null ? "birthdate=" + birthdate + ", " : "") +
-            (bio != null ? "bio=" + bio + ", " : "") +
+        return "ArtistCriteria{" +
+                (id != null ? "id=" + id + ", " : "") +
+                (name != null ? "name=" + name + ", " : "") +
+                (bio != null ? "bio=" + bio + ", " : "") +
+                (photo != null ? "photo=" + photo + ", " : "") +
+                (bandId != null ? "bandId=" + bandId + ", " : "") +
+                (ratingId != null ? "ratingId=" + ratingId + ", " : "") +
             "}";
     }
 
 }
-

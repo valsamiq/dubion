@@ -20,11 +20,9 @@
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="dubionApp.artist.name">Name</span></th>
-                    <th><span data-translate="dubionApp.artist.birthDate">Birth Date</span></th>
                     <th><span data-translate="dubionApp.artist.bio">Bio</span></th>
                     <th><span data-translate="dubionApp.artist.photo">Photo</span></th>
                     <th><span data-translate="dubionApp.artist.band">Band</span></th>
-                    <th><span data-translate="dubionApp.artist.instrument">Instrument</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,22 +30,11 @@
                 <tr ng-repeat="artist in vm.artists track by artist.id">
                     <td><a ui-sref="artist-detail({id:artist.id})">{{artist.id}}</a></td>
                     <td>{{artist.name}}</td>
-                        <td>{{artist.birthDate | date:'mediumDate'}}</td>
                     <td>{{artist.bio}}</td>
-                    <td>
-                        <a ng-if="artist.photo" ng-click="vm.openFile(artist.photoContentType, artist.photo)">
-                            <img data-ng-src="{{'data:' + artist.photoContentType + ';base64,' + artist.photo}}" style="max-height: 30px;" alt="artist image"/>
-                        </a>
-                        <span ng-if="artist.photo">{{artist.photoContentType}}, {{vm.byteSize(artist.photo)}}</span>
-                    </td>
+                    <td>{{artist.photo}}</td>
                     <td>
                         <span ng-repeat="band in artist.bands">
                             <a class="form-control-static" ui-sref="band-detail({id: band.id})">{{band.name}}</a>{{$last ? '' : ', '}}
-                        </span>
-                    </td>
-                    <td>
-                        <span ng-repeat="instrument in artist.instruments">
-                            <a class="form-control-static" ui-sref="instrument-detail({id: instrument.id})">{{instrument.name}}</a>{{$last ? '' : ', '}}
                         </span>
                     </td>
                     <td class="text-right">

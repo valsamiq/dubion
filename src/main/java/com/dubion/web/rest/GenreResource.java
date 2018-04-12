@@ -1,9 +1,13 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Album;
 import com.dubion.domain.Genre;
 
 import com.dubion.repository.GenreRepository;
+import com.dubion.service.NapsterAPI.NapsterDTOService;
+import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
+import com.dubion.service.dto.NapsterAPI.NapsterGenre;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,8 +35,11 @@ public class GenreResource {
 
     private final GenreRepository genreRepository;
 
-    public GenreResource(GenreRepository genreRepository) {
+    private final NapsterDTOService napsterDTOService;
+
+    public GenreResource(GenreRepository genreRepository, NapsterDTOService napsterDTOService) {
         this.genreRepository = genreRepository;
+        this.napsterDTOService = napsterDTOService;
     }
 
     /**
@@ -42,7 +49,7 @@ public class GenreResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new genre, or with status 400 (Bad Request) if the genre has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/genres")
+    @PostMapping("/genres4")
     @Timed
     public ResponseEntity<Genre> createGenre(@RequestBody Genre genre) throws URISyntaxException {
         log.debug("REST request to save Genre : {}", genre);
@@ -64,7 +71,7 @@ public class GenreResource {
      * or with status 500 (Internal Server Error) if the genre couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/genres")
+    @PutMapping("/genres5")
     @Timed
     public ResponseEntity<Genre> updateGenre(@RequestBody Genre genre) throws URISyntaxException {
         log.debug("REST request to update Genre : {}", genre);
@@ -102,7 +109,30 @@ public class GenreResource {
         Genre genre = genreRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(genre));
     }
-
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/genrestop")
+    @Timed
+    public ResponseEntity<NapsterGenre> getGenres() {
+        NapsterGenre genre = napsterDTOService.getGenres();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(genre));
+    }
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @param id the id of the song to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/genres2")
+    @Timed
+    public ResponseEntity<List<Genre>> importGenres() {
+        List<Genre> genre = napsterDTOService.importGenres();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(genre));
+    }
     /**
      * DELETE  /genres/:id : delete the "id" genre.
      *

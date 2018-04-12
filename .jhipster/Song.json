@@ -28,14 +28,14 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "duration",
-            "fieldType": "Double"
+            "fieldName": "url",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20171130104629",
-    "entityTableName": "song",
     "dto": "no",
-    "pagination": "no",
     "service": "serviceClass",
-    "jpaMetamodelFiltering": true
+    "entityTableName": "song",
+    "jpaMetamodelFiltering": true,
+    "pagination": "no"
 }

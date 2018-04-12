@@ -8,33 +8,18 @@
         <dd>
             <span>{{vm.artist.name}}</span>
         </dd>
-        <dt><span data-translate="dubionApp.artist.birthDate">Birth Date</span></dt>
-        <dd>
-            <span>{{vm.artist.birthDate | date:'mediumDate'}}</span>
-        </dd>
         <dt><span data-translate="dubionApp.artist.bio">Bio</span></dt>
         <dd>
             <span>{{vm.artist.bio}}</span>
         </dd>
         <dt><span data-translate="dubionApp.artist.photo">Photo</span></dt>
         <dd>
-            <div ng-if="vm.artist.photo">
-                <a ng-click="vm.openFile(vm.artist.photoContentType, vm.artist.photo)">
-                    <img data-ng-src="{{'data:' + vm.artist.photoContentType + ';base64,' + vm.artist.photo}}" style="max-width: 100%;" alt="artist image"/>
-                </a>
-                {{vm.artist.photoContentType}}, {{vm.byteSize(vm.artist.photo)}}
-            </div>
+            <span>{{vm.artist.photo}}</span>
         </dd>
         <dt><span data-translate="dubionApp.artist.band">Band</span></dt>
         <dd>
             <span ng-repeat="band in vm.artist.bands">
                 <a ui-sref="band-detail({id: band.id})">{{band.name}}</a>{{$last ? '' : ', '}}
-            </span>
-        </dd>
-        <dt><span data-translate="dubionApp.artist.instrument">Instrument</span></dt>
-        <dd>
-            <span ng-repeat="instrument in vm.artist.instruments">
-                <a ui-sref="instrument-detail({id: instrument.id})">{{instrument.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

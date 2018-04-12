@@ -1,24 +1,11 @@
 {
     "fluentMethods": true,
-    "relationships": [
-        {
-            "relationshipType": "many-to-many",
-            "relationshipName": "artist",
-            "otherEntityName": "artist",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "instrument"
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "name",
-            "fieldType": "String"
-        }
-    ],
+    "relationships": [],
+    "fields": [],
     "changelogDate": "20171130104636",
-    "entityTableName": "instrument",
     "dto": "no",
-    "pagination": "no",
     "service": "no",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "instrument",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
 }

@@ -2,8 +2,7 @@ package com.dubion.service;
 
 import com.dubion.domain.Label;
 import com.dubion.domain.Label_;
-import com.dubion.domain.Band_;
-import com.dubion.domain.Genre_;
+
 import com.dubion.repository.LabelRepository;
 import com.dubion.service.dto.LabelCriteria;
 import io.github.jhipster.service.QueryService;

@@ -1,10 +1,8 @@
 package com.dubion.service;
 
-import com.dubion.domain.Artist;
-import com.dubion.domain.Artist_;
-import com.dubion.repository.ArtistRepository;
-import com.dubion.service.dto.ArtistCriteria;
-import io.github.jhipster.service.QueryService;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -13,30 +11,35 @@ import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import io.github.jhipster.service.QueryService;
+
+import com.dubion.domain.Artist;
+import com.dubion.domain.*; // for static metamodels
+import com.dubion.repository.ArtistRepository;
+import com.dubion.service.dto.ArtistCriteria;
 
 
 /**
- * Service for executing complex queries for Band entities in the database.
+ * Service for executing complex queries for Artist entities in the database.
  * The main input is a {@link ArtistCriteria} which get's converted to {@link Specifications},
  * in a way that all the filters must apply.
- * It returns a {@link List} of {%link Band} or a {@link Page} of {%link Band} which fulfills the criterias
+ * It returns a {@link List} of {%link Artist} or a {@link Page} of {%link Artist} which fulfills the criterias
  */
 @Service
 @Transactional(readOnly = true)
-public class ArtistQueryService extends QueryService<Artist>{
+public class ArtistQueryService extends QueryService<Artist> {
 
     private final Logger log = LoggerFactory.getLogger(ArtistQueryService.class);
 
 
     private final ArtistRepository artistRepository;
 
-    public ArtistQueryService(ArtistRepository artistRepository){
+    public ArtistQueryService(ArtistRepository artistRepository) {
         this.artistRepository = artistRepository;
     }
 
     /**
-     * Return a {@link List} of {%link Band} which matches the criteria from the database
+     * Return a {@link List} of {%link Artist} which matches the criteria from the database
      * @param criteria The object which holds all the filters, which the entities should match.
      * @return the matching entities.
      */
@@ -48,7 +51,7 @@ public class ArtistQueryService extends QueryService<Artist>{
     }
 
     /**
-     * Return a {@link Page} of {%link Band} which matches the criteria from the database
+     * Return a {@link Page} of {%link Artist} which matches the criteria from the database
      * @param criteria The object which holds all the filters, which the entities should match.
      * @param page The page, which should be returned.
      * @return the matching entities.
@@ -72,13 +75,20 @@ public class ArtistQueryService extends QueryService<Artist>{
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Artist_.name));
             }
-            if (criteria.getBirthdate() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getBirthdate(), Artist_.birthDate));
-            }
             if (criteria.getBio() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getBio(), Artist_.bio));
+            }
+            if (criteria.getPhoto() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getPhoto(), Artist_.photo));
+            }
+            if (criteria.getBandId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getBandId(), Artist_.bands, Band_.id));
+            }
+            if (criteria.getRatingId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getRatingId(), Artist_.ratings, RatingArtist_.id));
             }
         }
         return specification;
     }
+
 }

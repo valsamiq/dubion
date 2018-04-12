@@ -27,8 +27,8 @@ public class Song implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "duration")
-    private Double duration;
+    @Column(name = "url")
+    private String url;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -69,17 +69,17 @@ public class Song implements Serializable {
         this.name = name;
     }
 
-    public Double getDuration() {
-        return duration;
+    public String getUrl() {
+        return url;
     }
 
-    public Song duration(Double duration) {
-        this.duration = duration;
+    public Song url(String url) {
+        this.url = url;
         return this;
     }
 
-    public void setDuration(Double duration) {
-        this.duration = duration;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Set<Album> getAlbums() {
@@ -183,7 +183,7 @@ public class Song implements Serializable {
         return "Song{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", duration='" + getDuration() + "'" +
+            ", url='" + getUrl() + "'" +
             "}";
     }
 }

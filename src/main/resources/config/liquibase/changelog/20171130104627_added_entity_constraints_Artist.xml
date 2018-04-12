@@ -19,16 +19,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="band"/>
         
-        <addForeignKeyConstraint baseColumnNames="artists_id"
-                                 baseTableName="artist_instrument"
-                                 constraintName="fk_artist_instrument_artists_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="artist"/>
-        <addForeignKeyConstraint baseColumnNames="instruments_id"
-                                 baseTableName="artist_instrument"
-                                 constraintName="fk_artist_instrument_instruments_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="instrument"/>
-        
     </changeSet>
 </databaseChangeLog>

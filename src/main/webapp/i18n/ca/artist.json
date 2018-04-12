@@ -16,11 +16,9 @@
                 "title": "Artist"
             },
             "name": "Name",
-            "birthDate": "Birth Date",
             "bio": "Bio",
             "photo": "Photo",
             "band": "Band",
-            "instrument": "Instrument",
             "rating": "Rating"
         }
     }

@@ -12,13 +12,14 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ArtistRepository extends JpaRepository<Artist, Long>, JpaSpecificationExecutor<Artist>{
-    @Query("select distinct artist from Artist artist left join fetch artist.bands left join fetch artist.instruments")
+public interface ArtistRepository extends JpaRepository<Artist, Long>, JpaSpecificationExecutor<Artist> {
+    @Query("select distinct artist from Artist artist left join fetch artist.bands")
     List<Artist> findAllWithEagerRelationships();
 
-    @Query("select artist from Artist artist left join fetch artist.bands left join fetch artist.instruments where artist.id =:id")
+    @Query("select artist from Artist artist left join fetch artist.bands where artist.id =:id")
     Artist findOneWithEagerRelationships(@Param("id") Long id);
 
-    @Query("select artist from Artist artist left join fetch artist.bands where artist.name=:name")
-    Artist findByNameContaining(@Param("name") String name);
+    @Query("select a from Artist a where a.name=:name")
+    Artist findByName(@Param("name")String name);
+
 }
