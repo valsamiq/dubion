@@ -131,6 +131,8 @@ public class AlbumResource {
         Album album = albumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
     }
+
+
     /**
      * GET  /songs/:id : get the "id" song.
      *
@@ -169,8 +171,8 @@ public class AlbumResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/get-album-name/{albumName}")
-    public Album getAlbumByName(@PathVariable String albumName){
+    @GetMapping("/albums/by-name/{albumName}")
+    public List<Album> getAlbumByName(@PathVariable String albumName){
         return albumRepository.findByNameContaining(albumName);
         //Intelliji seggests to make this static
     }

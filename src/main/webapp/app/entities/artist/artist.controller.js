@@ -16,6 +16,10 @@
         loadAll();
 
         function loadAll() {
+
+            Artist.get({id : 1}, function (data){
+                console.log(data);
+            })
             Artist.query(function(result) {
                 vm.artists = result;
                 vm.searchQuery = null;

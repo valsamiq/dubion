@@ -16,6 +16,9 @@
         loadAll();
 
         function loadAll() {
+            Song.get({id : 1}, function (data){
+                console.log(data);
+            })
             Song.query(function(result) {
                 vm.songs = result;
                 vm.searchQuery = null;

@@ -11,7 +11,7 @@
         $stateProvider
             .state('albumPage', {
                 parent: 'entity',
-                url: '/albumPage',
+                url: '/albumPage/{id}',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'dubionApp.albumPage.home.title'

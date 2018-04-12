@@ -26,6 +26,13 @@
     <script src="bower_components/slick/slick.js"></script>
     <link rel="stylesheet" type="text/css" href="./slick/slick.css">
     <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+    <link rel="stylesheet" href="../bower_components/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="../bower_components/slick-carousel/slick/slick-theme.css">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/slick-carousel/slick/slick.js"></script>
+    <script src="../bower_components/angular-slick-carousel/dist/angular-slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -53,6 +60,15 @@
         <div id='BackgroundFootGrey'></div>
     </div>
     <div class="container">
+        <div class="mainSearch">
+            <form class="form-horizontal">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div><input type="text" class="form-control " id="searchQuery" placeholder="search" name="searchQuery"><p class="glyphicon glyphicon-search"></p></div>
+                </div>
+                <div class="col-sm-4"></div>
+            </form>
+        </div>
         <div class="degrdaded"></div>
         <div class="well" ui-view="content">
             <!-- Angular views -->
@@ -297,14 +313,8 @@
     <script src="app/blocks/config/http.config.js"></script>
     <script src="app/blocks/config/compile.config.js"></script>
     <script src="app/blocks/config/alert.config.js"></script>
-    <script src="app/bandPage/bandPage.state.js"></script>
-    <script src="app/bandPage/bandPage.controller.js"></script>
-    <script src="app/artistPage/artistPage.state.js"></script>
-    <script src="app/artistPage/artistPage.controller.js"></script>
     <script src="app/app.state.js"></script>
     <script src="app/app.constants.js"></script>
-    <script src="app/albumPage/albumPage.state.js"></script>
-    <script src="app/albumPage/albumPage.controller.js"></script>
     <script src="app/admin/user-management/user-management-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management-detail.controller.js"></script>
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
@@ -352,17 +362,21 @@
     <!-- endbuild -->
     <!--<script src="app/pages/Overlay/banner/banner.controller.js"></script>-->
     <!--<script src="app/pages/Overlay/banner/banner.state.js"></script>-->
-    <!--<script src="app/albumPage/albumPage.controller.js"></script>-->
-    <!--<script src="app/albumPage/albumPage.state.js"></script>-->
+    <script src="app/albumPage/albumPage.controller.js"></script>
+    <script src="app/albumPage/albumPage.state.js"></script>
 
-    <!--<script src="app/artistPage/artistPage.controller.js"></script>-->
-    <!--<script src="app/artistPage/artistPage.state.js"></script>-->
+    <script src="app/artistPage/artistPage.controller.js"></script>
+    <script src="app/artistPage/artistPage.state.js"></script>
 
-    <!--<script src="app/bandPage/bandPage.controller.js"></script>-->
-    <!--<script src="app/bandPage/bandPage.state.js"></script>-->
+    <script src="app/bandPage/bandPage.controller.js"></script>
+    <script src="app/bandPage/bandPage.state.js"></script>
 
-   <!-- <script src="app/pages/Artist/artistmain.state.js"></script>-->
-
+    <script src="app/albumSearch/albumSearch.controller.js"></script>
+    <script src="app/albumSearch/albumSearch.state.js"></script>
+    <script src="app/bandSearch/bandSearch.controller.js"></script>
+    <script src="app/bandSearch/bandSearch.state.js"></script>
+    <script src="app/artistSearch/artistSearch.controller.js"></script>
+    <script src="app/artistSearch/artistSearch.state.js"></script>
 
 
 </body>

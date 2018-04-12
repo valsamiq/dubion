@@ -20,13 +20,15 @@ public interface AlbumRepository extends JpaRepository<Album, Long>, JpaSpecific
     @Query("select album from Album album left join fetch album.genres where album.id =:id")
     Album findOneWithEagerRelationships(@Param("id") Long id);
 
-    //@Query("select album from Album album left join fetch album.band where album.name=:name")
-    Album findByNameContaining(String artistName);
-
+    /* //@Query("select album from Album album left join fetch album.band where album.name=:name")
+     Album findByNameContaining(String artistName);
+ */
     @Query("select a from Album a where a.name=:name")
     Album findByName(@Param("name")String name);
 
     @Query("select a from Album a where a.name=:name")
     Set<Album> findByNameCR(@Param("name")String name);
+
+    List<Album> findByNameContaining(String name);
 
 }
