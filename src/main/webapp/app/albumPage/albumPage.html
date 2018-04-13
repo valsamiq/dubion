@@ -4,26 +4,25 @@
             <img src="{{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
         </div>
 
-        <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.band.name}} - {{vm.albumActual.name}}</h2>
+        <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.artist.name}} - {{vm.albumActual.name}}</h2>
 
             <div ng-repeat="song in vm.songs">
                 <li>{{song.name}} - {{song.duration}}</li>
-            </div><br>
-
+            </div>
+            <br>
                 <div class="row lead">
                     <div id="stars" class="starrr"></div>
                     <!--You gave a rating of <span id="count">0</span> star(s)-->
                 </div>
             <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
         </div>
-
     </div>
     <div class="col-xs-12">
         <div style="background-color: #222222;display: flex; justify-content: flex-end;">
 
             <div class="col-md-12 center">
                 <audio id="audio" preload="auto" controls>
-                    <source src="/content/music/Sia%20-%20Cheap%20Thrills.mp3" type="audio/mpeg">
+                    <source src="{{song.url}}" type="audio/mpeg">
 
                 </audio>
             </div>
