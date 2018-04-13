@@ -173,6 +173,8 @@ td, th {
 }
 
 .lefto {
+    overflow-x: hidden;
+    overflow-y: scroll;
     float:left;
     height:100%;
     position: fixed;
