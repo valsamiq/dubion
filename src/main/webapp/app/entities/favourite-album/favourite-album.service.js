@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'favoriteByAlbum': {method: 'GET', url: 'api/favourite-albums/album/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

@@ -21,15 +21,14 @@
         vm.favouriteAlbum.liked=false;
 
         vm.ratingAlbums = [];
-        vm.ratingAlbum=0 ;
+        vm.ratingAlbum= {} ;
 
         Album.get({id : $stateParams.id}, function(data) {
 
             vm.albumActual = data;
             getRatingAlbum(data.id);
+            getFavoriteAlbum(data.id);
 
-            console.log(data);
-            console.log("ha");
             /*console.log( "Info Album"+vm.albumActual);
             console.log(  "Info Account"+vm.account)
             vm.favouriteAlbum.album = vm.albumActual.id;
@@ -43,15 +42,40 @@
 
         });
 
+        FavouriteAlbum.get()
+        /*Volem saber si l'usuari actual amb el id del album actual te like o no*/
+        FavouriteAlbum.get({id: 1},   function (data) {
+            //FavouriteAlbum.get({idUser:vm.account.id, idAlbum: vm.albumActual.id},   function (data) {
+            console.log(data);
+            // vm.favouriteAlbum=data;
+            // console.log(vm.favouriteAlbum);∫
+
+
+        });
+
+        function getFavoriteAlbum(id) {
+            FavouriteAlbum.favoriteByAlbum({id : id}, function (data){
+
+                vm.favouriteAlbum = data;
+
+
+                // $("#input-1").val(vm.favouriteAlbum.liked);
+                // with plugin options
+
+
+            }, function(data){
+                console.log("error??");
+                vm.ratingAlbum= 0;
+
+            });
+
+        }
 
 
         $('#input-1').on('rating:change', function(event, value, caption) {
-            console.log("inside")
-            console.log(value);
-            console.log(caption);
             save();
             function save () {
-                console.log("hu");
+
                 vm.ratingAlbum.album=vm.albumActual;
                 vm.ratingAlbum.rating=value;
 
@@ -80,11 +104,8 @@
         function getRatingAlbum(id) {
             RatingAlbum.ratingByAlbum({id : id}, function (data){
 
-                console.log(data.rating);
-                console.log("he");
-                vm.ratingAlbum = data.rating;
-                console.log(vm.ratingAlbum);
-                $("#input-1").val(vm.ratingAlbum);
+                vm.ratingAlbum = data;
+                $("#input-1").val(vm.ratingAlbum.rating);
                 // with plugin options
                 $("#input-1").rating({min:1, max:10, step:2, size:'xs'});
 
@@ -98,25 +119,9 @@
 
         }
 
-
-
-
-
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
-
-
-        FavouriteAlbum.get()
-        /*Volem saber si l'usuari actual amb el id del album actual te like o no*/
-         FavouriteAlbum.get({id: 1},   function (data) {
-         //FavouriteAlbum.get({idUser:vm.account.id, idAlbum: vm.albumActual.id},   function (data) {
-             console.log(data);
-            // vm.favouriteAlbum=data;
-             // console.log(vm.favouriteAlbum);∫
-
-
-         });
 
 
         getAccount();

@@ -1,6 +1,7 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Album;
 import com.dubion.domain.FavouriteAlbum;
 import com.dubion.repository.FavouriteAlbumRepository;
 import com.dubion.repository.UserRepository;
@@ -126,6 +127,17 @@ public class FavouriteAlbumResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(favouriteAlbum));
     }
 
+
+    @GetMapping("/favourite-albums/album/{id}")
+    @Timed
+    public ResponseEntity<FavouriteAlbum> getFavouriteByAlbum(@PathVariable Long id) {
+        log.debug("REST request to get FavouriteAlbum : {}", id);
+        Album album = albumService.findOne(id);
+
+        return ResponseUtil.wrapOrNotFound(
+            Optional.ofNullable(
+                favouriteAlbumRepository.findByAlbumAndUserLogin(album,SecurityUtils.getCurrentUserLogin()).get()));
+    }
     /**
      * DELETE  /favourite-albums/:id : delete the "id" favouriteAlbum.
      *
