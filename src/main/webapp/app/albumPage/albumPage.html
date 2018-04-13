@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-10" style="text-align: left; background-color: #b6b6b6; margin: 3%">
         <div class="col-md-5 col-xs-12" align="center">
-            <img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
+            <img src="{{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
         </div>
 
         <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.band.name}} - {{vm.albumActual.name}}</h2>
@@ -118,7 +118,7 @@
 <div class="row">
     <div class="col-xs-12">
 
-            <h2 class="left white">Más de Sia</h2>
+            <h2 class="left white">Disfruta de más música</h2>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
 
@@ -126,7 +126,7 @@
                 <!--   <img src="{{ img }}"> -->
                 <!--    <img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="album image"/> -->
 
-                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="data:image/jpg;base64, {{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
+                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
             </div>
         </slick>

@@ -115,8 +115,8 @@
         <h2 class="left white">Novedades</h2>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
-                <a style="position: relative" href="#/albumPage/{{img.id}}"><img
-                    src="data:image/jpg;base64, {{img.photo}}" alt="Album" style="width:200px"/>
+                <a style="position: relative" href="#/albumPage/{{img.id}}">
+                    <img src="{{img.photo}}" alt="Album" style="width:200px"/>
                     <div class="new">{{img.band.name}}</br>{{img.name}}</div>
                 </a>
             </div>
