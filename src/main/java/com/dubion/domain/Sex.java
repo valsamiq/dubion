@@ -32,6 +32,14 @@ public class Sex implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<UserExt> users = new HashSet<>();
 
+    public Sex() {
+    }
+
+    public Sex(long id, String orientation) {
+        this.id = id;
+        this.orientation = orientation;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
