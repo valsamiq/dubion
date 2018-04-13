@@ -11,6 +11,8 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'ratingByAlbum': {method: 'GET', url: 'api/rating-albums/album/:id'},
+            'setRatingByAlbum': {method: 'PUT', url: 'api/rating-albums/album/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -21,7 +23,8 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'insert': { method: 'POST'}
         });
     }
 })();

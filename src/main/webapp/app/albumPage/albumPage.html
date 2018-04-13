@@ -1,21 +1,27 @@
 <div class="row">
     <div class="col-xs-10" style="text-align: left; background-color: #b6b6b6; margin: 3%">
         <div class="col-md-5 col-xs-12" align="center">
+           Li Agrada? {{  vm.favouriteAlbum.liked }}
             <img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
+
         </div>
 
         <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.band.name}} - {{vm.albumActual.name}}</h2>
 
             <div ng-repeat="song in vm.songs">
-                <li>{{song.name}} - {{song.duration}}</li>
-            </div><br>
+        <li>{{song.name}} - {{song.duration}}</li>
+    </div><br>
 
-                <div class="row lead">
-                    <div id="stars" class="starrr"></div>
-                    <!--You gave a rating of <span id="count">0</span> star(s)-->
-                </div>
-            <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
-        </div>
+<!--    <div class="row lead">
+        <div id="stars" class="starrr"></div>
+        You gave a rating of <span id="count">0</span> star(s)
+    </div>-->
+
+    <label for="input-1" class="control-label">Rate This</label>
+    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
+
+    <i onclick="likeDislike(this)" class="fa fa-thumbs-up"></i>
+</div>
 
     </div>
     <div class="col-xs-12">
@@ -132,11 +138,14 @@
         </slick>
         <br/>
             <script>
-                function myFunction(x) {
+                function likeDislike(x) {
                     x.classList.toggle("fa-thumbs-down");
                 }
 
-                var __slice = [].slice;
+
+
+
+         /*       var __slice = [].slice;
 
                 (function($, window) {
                     var Starrr;
@@ -249,7 +258,7 @@
                     $('#stars-existing').on('starrr:change', function(e, value){
                         $('#count-existing').html(value);
                     });
-                });
+                });*/
 
             </script>
 

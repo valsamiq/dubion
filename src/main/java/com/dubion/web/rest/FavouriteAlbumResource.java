@@ -2,11 +2,10 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.FavouriteAlbum;
-
-// SEGUIR AQUI FROM COMPAIRSON
-
-
 import com.dubion.repository.FavouriteAlbumRepository;
+import com.dubion.repository.UserRepository;
+import com.dubion.security.SecurityUtils;
+import com.dubion.service.AlbumService;
 import com.dubion.service.FavouriteAlbumQueryService;
 import com.dubion.service.FavouriteAlbumService;
 import com.dubion.service.dto.FavouriteAlbumCriteria;
@@ -21,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,12 +40,18 @@ public class FavouriteAlbumResource {
 
     private final FavouriteAlbumService favouriteAlbumService;
 
+    private final AlbumService albumService;
+
     private final FavouriteAlbumQueryService favouriteAlbumQueryService;
 
-    public FavouriteAlbumResource(FavouriteAlbumRepository favouriteAlbumRepository, FavouriteAlbumService favouriteAlbumService, FavouriteAlbumQueryService favouriteAlbumQueryService) {
+    private final UserRepository userRepository;
+
+    public FavouriteAlbumResource(FavouriteAlbumRepository favouriteAlbumRepository, FavouriteAlbumService favouriteAlbumService, AlbumService albumService, FavouriteAlbumQueryService favouriteAlbumQueryService, UserRepository userRepository) {
         this.favouriteAlbumRepository = favouriteAlbumRepository;
         this.favouriteAlbumService = favouriteAlbumService;
+        this.albumService = albumService;
         this.favouriteAlbumQueryService = favouriteAlbumQueryService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -61,6 +68,9 @@ public class FavouriteAlbumResource {
         if (favouriteAlbum.getId() != null) {
             throw new BadRequestAlertException("A new favouriteAlbum cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        favouriteAlbum.setDate(LocalDate.now());
+        favouriteAlbum.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+
         FavouriteAlbum result = favouriteAlbumService.save(favouriteAlbum);
         return ResponseEntity.created(new URI("/api/favourite-albums/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

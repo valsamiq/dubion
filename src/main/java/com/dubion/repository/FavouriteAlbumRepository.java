@@ -16,4 +16,6 @@ public interface FavouriteAlbumRepository extends JpaRepository<FavouriteAlbum, 
     @Query("select favourite_album from FavouriteAlbum favourite_album where favourite_album.user.login = ?#{principal.username}")
     List<FavouriteAlbum> findByUserIsCurrentUser();
 
+
+
 }

@@ -14,8 +14,9 @@
         vm.albums = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
-
         loadAll();
+
+
 
         function loadAll() {
 
@@ -27,6 +28,8 @@
                 vm.albums = result;
                 vm.searchQuery = null;
             });
+
         }
+
     }
 })();
