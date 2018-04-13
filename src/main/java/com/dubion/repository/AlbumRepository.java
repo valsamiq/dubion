@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Spring Data JPA repository for the Album entity.
@@ -24,5 +25,8 @@ public interface AlbumRepository extends JpaRepository<Album, Long>, JpaSpecific
 
     @Query("select a from Album a where a.name=:name")
     Album findByName(@Param("name")String name);
+
+    @Query("select a from Album a where a.name=:name")
+    Set<Album> findByNameCR(@Param("name")String name);
 
 }
