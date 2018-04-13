@@ -90,7 +90,7 @@ public class AlphaResource {
     @GetMapping("/getByCity")
     @Timed
     public ResponseEntity<TicketMasterAPI> getCity() throws IOException {
-        TicketMasterAPI song = (TicketMasterAPI) ticketMasterDTOService.getCity();
+        TicketMasterAPI song = ticketMasterDTOService.getCity();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
     /**

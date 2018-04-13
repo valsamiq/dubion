@@ -1,6 +1,6 @@
 package com.dubion.service.TicketMasterAPI;
 
-import com.dubion.service.dto.TiquetMasterAPI.TicketMasterAPI;
+import com.dubion.service.dto.TicketMasterAPI.TicketMasterAPI;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
@@ -14,8 +14,8 @@ public interface TicketMasterDTORepository {
         .addConverterFactory(GsonConverterFactory.create())
         .build();
 
-    @GET("classifications/")
-    Call<TicketMasterAPI> getByCity(@Query("city")String city
+    @GET("events/")
+    Call<TicketMasterAPI> getByCity(@Query("city")String cityName
         , @Query("apikey") String apiKey);
 
 
