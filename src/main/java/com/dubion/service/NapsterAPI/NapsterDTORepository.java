@@ -6,6 +6,7 @@ import com.dubion.service.dto.NapsterAPI.Napster;
 import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
 import com.dubion.service.dto.NapsterAPI.NapsterArtist;
 import com.dubion.service.dto.NapsterAPI.NapsterGenre;
+import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;

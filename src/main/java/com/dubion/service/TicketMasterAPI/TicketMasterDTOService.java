@@ -1,6 +1,7 @@
 package com.dubion.service.TicketMasterAPI;
 
 
+import com.dubion.service.dto.TicketMasterAPI.TicketMasterAPI;
 import com.dubion.service.ip_API.Ip_apiDTOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,17 @@ public class TicketMasterDTOService {
     @Autowired
     private Ip_apiDTOService IP_API_DTO_SERVICE;
 
-    public Call<com.dubion.service.dto.TiquetMasterAPI.TicketMasterAPI> getCity(){
+    public TicketMasterAPI getCity(){
 
         String cityName= null;
         try {
             cityName = IP_API_DTO_SERVICE.getCoordinatesUser().getCity();
-            Call<com.dubion.service.dto.TiquetMasterAPI.TicketMasterAPI> callGenres = apiService.getByCity(cityName,apiKey);
+            System.out.println(cityName);
+            Call<TicketMasterAPI> callGenres = apiService.getByCity(cityName,apiKey);
             System.out.println(callGenres);
-            return callGenres;
+            TicketMasterAPI ticket = callGenres.execute().body();
+            System.out.println(ticket);
+            return  ticket;
         } catch (IOException e) {
             e.printStackTrace();
         }
