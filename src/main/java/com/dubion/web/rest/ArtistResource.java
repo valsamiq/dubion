@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -133,7 +134,7 @@ public class ArtistResource {
      */
     @GetMapping("/artists/top2")
     @Timed
-    public ResponseEntity<List<Artist>> importTopArtist() {
+    public ResponseEntity<List<Artist>> importTopArtist() throws IOException {
         List<Artist> song = napsterDTOService.importTopArtist();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
@@ -151,8 +152,5 @@ public class ArtistResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/artist/by-name/{artistName}")
-    public List<Artist> getArtistByName(@PathVariable String artistName) {
-        return artistRepository.findByNameContaining(artistName);
-    }
+
 }

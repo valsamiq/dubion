@@ -10,10 +10,12 @@
     /*!*background-repeat: no-repeat;*!*/
     /*!*background-size: cover;*!*/
 /*}*/
-
 .container{
     z-index: auto;
     position: relative;
+}
+.containerDetail{
+    display: table;
 }
 .well{
     position: relative;
@@ -26,33 +28,99 @@
     width: 100%;
 }
 #BackgroundTopGrey{
-    background-color: #3E3E3E;
+    background-color: #000000;
     height: 500px;
     width: 100%;
 }
 #BackgroundFootGrey{
     position: relative;
-    background-color: #3E3E3E;
+    background-color: #000000;
     bottom: 0;
     height: 500px;
     width: 100%;
 }
-
-.degrdaded{
-    height: 100px;
-    margin-top: 450px;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1883fb+0,b6b6b6+65,b6b6b6+100&0+0,0.7+33,1+65,1+65,1+100 */
-    background: -moz-linear-gradient(top, rgba(24,131,251,0) 0%, rgba(104,157,216,0.7) 33%, rgba(182,182,182,1) 65%, rgba(182,182,182,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(24,131,251,0) 0%,rgba(104,157,216,0.7) 33%,rgba(182,182,182,1) 65%,rgba(182,182,182,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(24,131,251,0) 0%,rgba(104,157,216,0.7) 33%,rgba(182,182,182,1) 65%,rgba(182,182,182,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001883fb', endColorstr='#b6b6b6',GradientType=0 ); /* IE6-9 */
+.mainSearch{
+    margin-top: 420px;
+    height: 20px;
 }
-
+.degrdaded {
+    height: 10px;
+    margin-top: 10px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7db9e8+0,b6b6b6+100&0+0,1+98 */
+    background: -moz-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(181, 182, 183, 1) 98%, rgba(182, 182, 182, 1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(125, 185, 232, 0) 0%, rgba(181, 182, 183, 1) 98%, rgba(182, 182, 182, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(125, 185, 232, 0) 0%, rgba(181, 182, 183, 1) 98%, rgba(182, 182, 182, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007db9e8', endColorstr='#b6b6b6', GradientType=0); /* IE6-9 */
+}
 #imgBanner1{
     width: 100%;
     height: 100%;
 }
+/*-------Start Amazing ScrollBar----------*/
+body{
+    scrollbar-base-color: #0A0A0A;
+    scrollbar-base-color: #0A0A0A;
+    scrollbar-3dlight-color: #0A0A0A;
+    scrollbar-highlight-color: #0A0A0A;
+    scrollbar-track-color: #0A0A0A;
+    scrollbar-arrow-color: #1682FB;
+    scrollbar-shadow-color: #1682FB;
+    scrollbar-dark-shadow-color: #0A0A0A;
+}
+/*mozilla scrolbalken*/
+@-moz-document url-prefix(http://),url-prefix(https://) {
+    scrollbar {
+        -moz-appearance: none !important;
+        background: rgb(0,255,0) !important;
+    }
+    thumb,scrollbarbutton {
+        -moz-appearance: none !important;
+        background-color: rgb(0,0,255) !important;
+    }
 
+    thumb:hover,scrollbarbutton:hover {
+        -moz-appearance: none !important;
+        background-color: rgb(255,0,0) !important;
+    }
+
+    scrollbarbutton {
+        display: none !important;
+    }
+
+    scrollbar[orient="vertical"] {
+        min-width: 15px !important;
+    }
+}
+/**/
+.scrollbar-container {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: 20px;
+
+    border: 4px solid rgba(0, 0, 0, 0.2);
+    overflow: auto;
+    background-color: #0A0A0A;
+}
+.scrollbar-container .inner {
+    height: 2011px;
+    width: 1985px;
+    padding: 1em;
+    background-color: #0A0A0A;
+    font-family: sans-serif;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb { /*1682fb*/
+    background-color: #1682fb /*rgba(16, 82, fb, 0.2)*/;
+    border: solid #0A0A0A 1px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #1682fb /*rgba(0, 0, 0, 0.3)*/;
+}
+
+/*-------Stop Amazing ScrollBar----------*/
 /*!* ---------------------------------------------------------------------------*!*/
 /*!* The side navigation menu *!*/
 /*.sidenav {*/
@@ -105,6 +173,8 @@ td, th {
 }
 
 .lefto {
+    overflow-x: hidden;
+    overflow-y: scroll;
     float:left;
     height:100%;
     position: fixed;

@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface ip_apiDTORepository {
+public interface Ip_apiDTORepository {
     @GET("/json?")
     Call<IdApiDTO> getCoordinatesUser(@Query("ip") String ip);
 

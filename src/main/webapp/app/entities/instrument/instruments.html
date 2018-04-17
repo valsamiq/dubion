@@ -19,14 +19,12 @@
             <thead>
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="dubionApp.instrument.name">Name</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="instrument in vm.instruments track by instrument.id">
                     <td><a ui-sref="instrument-detail({id:instrument.id})">{{instrument.id}}</a></td>
-                    <td>{{instrument.name}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

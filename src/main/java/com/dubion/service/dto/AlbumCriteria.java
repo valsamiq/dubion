@@ -1,11 +1,18 @@
 package com.dubion.service.dto;
 
+import java.io.Serializable;
+import io.github.jhipster.service.filter.BooleanFilter;
+import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
-import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.FloatFilter;
+import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
 
-import java.io.Serializable;
+
+import io.github.jhipster.service.filter.LocalDateFilter;
+
+
 
 /**
  * Criteria class for the Album entity. This class is used in AlbumResource to
@@ -15,35 +22,45 @@ import java.io.Serializable;
  * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
  * fix type specific filters.
  */
-
-public class AlbumCriteria implements Serializable{
+public class AlbumCriteria implements Serializable {
     private static final long serialVersionUID = 1L;
 
+
     private LongFilter id;
+
     private StringFilter name;
+
     private LocalDateFilter releaseDate;
+
+    private StringFilter photo;
+
+    private LongFilter bandId;
 
     private LongFilter genreId;
 
-    private StringFilter genreName;
+    private LongFilter ratingId;
+
+    private LongFilter favouriteId;
+
+    private LongFilter songId;
 
     public AlbumCriteria() {
     }
 
-    public LongFilter getId(){
+    public LongFilter getId() {
         return id;
     }
 
-    public void setId(LongFilter id){
+    public void setId(LongFilter id) {
         this.id = id;
     }
 
-    public StringFilter getName(){
+    public StringFilter getName() {
         return name;
     }
 
-    public void setName(StringFilter name){
-        this.name=name;
+    public void setName(StringFilter name) {
+        this.name = name;
     }
 
     public LocalDateFilter getReleaseDate() {
@@ -54,6 +71,22 @@ public class AlbumCriteria implements Serializable{
         this.releaseDate = releaseDate;
     }
 
+    public StringFilter getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(StringFilter photo) {
+        this.photo = photo;
+    }
+
+    public LongFilter getBandId() {
+        return bandId;
+    }
+
+    public void setBandId(LongFilter bandId) {
+        this.bandId = bandId;
+    }
+
     public LongFilter getGenreId() {
         return genreId;
     }
@@ -62,20 +95,43 @@ public class AlbumCriteria implements Serializable{
         this.genreId = genreId;
     }
 
-    public StringFilter getGenreName() {
-        return genreName;
+    public LongFilter getRatingId() {
+        return ratingId;
     }
 
-    public void setGenreName(StringFilter genreName) {
-        this.genreName = genreName;
+    public void setRatingId(LongFilter ratingId) {
+        this.ratingId = ratingId;
+    }
+
+    public LongFilter getFavouriteId() {
+        return favouriteId;
+    }
+
+    public void setFavouriteId(LongFilter favouriteId) {
+        this.favouriteId = favouriteId;
+    }
+
+    public LongFilter getSongId() {
+        return songId;
+    }
+
+    public void setSongId(LongFilter songId) {
+        this.songId = songId;
     }
 
     @Override
     public String toString() {
         return "AlbumCriteria{" +
-            (id != null ? "id=" + id + ", " : "") +
-            (name != null ? "name=" + name + ", " : "") +
-            (releaseDate != null ? "releaseDate=" + releaseDate + ", " : "") +
-    "}";
+                (id != null ? "id=" + id + ", " : "") +
+                (name != null ? "name=" + name + ", " : "") +
+                (releaseDate != null ? "releaseDate=" + releaseDate + ", " : "") +
+                (photo != null ? "photo=" + photo + ", " : "") +
+                (bandId != null ? "bandId=" + bandId + ", " : "") +
+                (genreId != null ? "genreId=" + genreId + ", " : "") +
+                (ratingId != null ? "ratingId=" + ratingId + ", " : "") +
+                (favouriteId != null ? "favouriteId=" + favouriteId + ", " : "") +
+                (songId != null ? "songId=" + songId + ", " : "") +
+            "}";
     }
+
 }

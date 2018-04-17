@@ -107,7 +107,6 @@
                                 name: null,
                                 releaseDate: null,
                                 photo: null,
-                                photoContentType: null,
                                 id: null
                             };
                         }

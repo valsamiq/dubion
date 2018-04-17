@@ -36,5 +36,11 @@
       "ca",
       "es"
     ]
+  },
+  "generator-jhipster-pages": {
+    "promptValues": {
+      "pageSet": "_CreateNew_",
+      "pageType": "clientOnly"
+    }
   }
 }

@@ -3,6 +3,11 @@ package com.dubion.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Alpha;
 import com.dubion.service.AlphaService;
+import com.dubion.service.TicketMasterAPI.TicketMasterDTOService;
+import com.dubion.service.dto.TicketMasterAPI.TicketMasterAPI;
+import com.dubion.service.dto.ip_API.IdApiDTO;
+import com.dubion.service.ip_API.Ip_apiDTOService;
+import com.dubion.service.TicketMasterAPI.TicketMasterDTOService;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.AlphaCriteria;
@@ -13,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -34,9 +40,15 @@ public class AlphaResource {
 
     private final AlphaQueryService alphaQueryService;
 
-    public AlphaResource(AlphaService alphaService, AlphaQueryService alphaQueryService) {
+    private final Ip_apiDTOService ip_apiDTOService;
+
+    private final TicketMasterDTOService ticketMasterDTOService;
+
+    public AlphaResource(AlphaService alphaService, AlphaQueryService alphaQueryService,Ip_apiDTOService ip_apiDTOService, TicketMasterDTOService ticketMasterDTOService) {
         this.alphaService = alphaService;
         this.alphaQueryService = alphaQueryService;
+        this.ip_apiDTOService = ip_apiDTOService;
+        this.ticketMasterDTOService = ticketMasterDTOService;
     }
 
     /**
@@ -58,7 +70,29 @@ public class AlphaResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
-
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/a")
+    @Timed
+    public ResponseEntity<IdApiDTO> cooldenadas() throws IOException {
+        IdApiDTO song = ip_apiDTOService.getCoordinatesUser();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }/**
+     * GET  /songs/:id : get the "id" song.
+     *
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/getByCity")
+    @Timed
+    public ResponseEntity<TicketMasterAPI> getCity() throws IOException {
+        TicketMasterAPI song = ticketMasterDTOService.getCity();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }
     /**
      * PUT  /alphas : Updates an existing alpha.
      *
@@ -121,5 +155,9 @@ public class AlphaResource {
         log.debug("REST request to delete Alpha : {}", id);
         alphaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    public TicketMasterDTOService getTicketMasterDTOService() {
+        return ticketMasterDTOService;
     }
 }

@@ -1,10 +1,9 @@
 <div class="row">
     <div class="col-xs-10" style="text-align: left; background-color: #b6b6b6; margin: 3%">
-
         <div class="topnav">
             <div class="search-container">
                 <form>
-                    <input type="text" ng-model="vm.name" placeholder="Search.." name="search">
+                    <input type="text" ng-model="vm.name" placeholder="search..." name="search">
                     <button type="submit" ng-click="vm.byName()"><i class="fa fa-search"></i></button>
                 </form>
             </div>
@@ -17,23 +16,14 @@
             </tr>
             <tr ng-if="vm.albums.length > 0" ng-repeat="album in vm.albums track by album.id">
                 <td><a href="#/albumPage/{{album.id}}">{{album.name}}</a></td>
-
             </tr>
             </tbody>
         </table>
-    <!--<div>-->
-        <!--<tr ng-repeat="album in vm.albums track by album.id">-->
-            <!--<td>{{vm.albums.name}}</td>-->
-            <!--ui-sref="album-detail({id:album.id})"-->
-        <!--</tr>-->
-    <!--</div>-->
-
-
     </div>
     <style>
-        * {box-sizing: border-box;}
-
-
+        * {
+            box-sizing: border-box;
+        }
         .topnav a {
             float: left;
             display: block;
@@ -43,29 +33,24 @@
             text-decoration: none;
             font-size: 17px;
         }
-
         .topnav a:hover {
             background-color: #ddd;
             color: black;
         }
-
         .topnav a.active {
             background-color: #2196F3;
             color: white;
         }
-
         .topnav .search-container {
             text-align: center;
 
         }
-
         .topnav input[type=text] {
             padding: 6px;
             margin-top: 8px;
             font-size: 17px;
             border: none;
         }
-
         .topnav .search-container button {
             text-align: center;
             padding: 6px 10px;
@@ -76,11 +61,9 @@
             border: none;
             cursor: pointer;
         }
-
         .topnav .search-container button:hover {
             background: #ccc;
         }
-
         @media screen and (max-width: 600px) {
             .topnav .search-container {
                 float: none;
@@ -97,212 +80,47 @@
                 border: 1px solid #ccc;
             }
         }
-    div.scrollmenu {
-        position: relative;
-        background-color: #b6b6b6;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    div.scrollmenu a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px;
-        text-decoration: none;
-    }
-
-    div.scrollmenu a:hover .new{
-        background-color: rgba(140,130,130,0.5);
-        color:white;
-    }
-    .info{
-        background-color: #0A0A0A;
-    }
-    .new {
-        background-color: transparent;
-        width:200px;
-        height: 60px;
-        color:transparent;
-        z-index: 3;
-        bottom: 14px;
-        left: 14px;
-        position: absolute;
-
-    }
-    .new2{
-        background-color: rgba(140,130,130,0.5);
-        width:200px;
-        height: 50px;
-        color:white;
-        z-index: 3;
-        bottom: 14px;
-        left: 14px;
-        position: absolute;
-    }
-    .pictr{
-        position:absolute;
-        left: 2%;
-        top: 50%;
-        width: 30px !important;
-        height: 30px !important;
-        z-index: 5;
-    }
-    .pictl{
-        position:absolute;
-        right: 2%;
-        bottom: 40%;
-        width: 30px !important;
-        height: 30px !important;
-        z-index: 5;
-    }
-
+        div.scrollmenu {
+            position: relative;
+            background-color: #b6b6b6;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+        div.scrollmenu a:hover .new {
+            background-color: rgba(140, 130, 130, 0.5);
+            color: white;
+        }
+        .new {
+            background-color: transparent;
+            width: 200px;
+            height: 60px;
+            color: transparent;
+            z-index: 3;
+            bottom: 14px;
+            left: 14px;
+            position: absolute;
+        }
     </style>
 
 </div>
 <div class="row">
     <div class="col-xs-12">
-
         <h2 class="left white">Novedades</h2>
-        <!--<div class="scrollmenu scrollslick">
-            <a style="position: relative" href="#/albumPage/1">
-                <img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="This is Acting" style="width:200px"/>
-                <div class="new">Sia</br>This is Acting</div></a>
-            &lt;!&ndash;<img src="/content/images/Sia Cover.jpg" alt="Musica" style="width:200px">&ndash;&gt;
-            <a style="position: relative" href="#/albumPage/2"><img src="/content/images/Sia%20Cover2.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#contact"><img src="/content/images/Sia%20Cover3.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Some People </br>Have Real Problems</div></a>
-            <a style="position: relative" href="#about"><img src="/content/images/Sia%20Cover4.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>The Greatest</div></a>
-            <a style="position: relative" href="#support"><img src="/content/images/Sia%20Cover5.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Everyday Is Christmas</div></a>
-            <a style="position: relative" href="#blog"><img src="/content/images/Sia%20Cover6.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>We are Born</div></a>
-            <a style="position: relative" href="#tools"><img src="/content/images/Sia%20Cover7.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#base"><img src="/content/images/Sia%20Cover8.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>1000 Forms of Fear</div></a>
-            <a style="position: relative" href="#base"><img src="/content/images/Sia%20Cover9.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Colour the Small One</div></a>
-        </div>-->
-
-
-
-
-            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
-
-                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id" >
-
-                    <!--<a href="#/albumPage/{{img.id}}">{{img.name}}</a>-->
-               <!--     {{img.name}} -->
-               <!--   <img src="{{ img }}"> -->
-                    <!--<img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="album image"/>-->
-
-                    <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="data:image/jpg;base64, {{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
-
-                </div>
-            </slick>
-
-
-
+        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
+            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
+                <a style="position: relative" href="#/albumPage/{{img.id}}">
+                    <img src="{{img.photo}}" alt="Album" style="width:200px"/>
+                    <div class="new">{{img.band.name}}</br>{{img.name}}</div>
+                </a>
+            </div>
+        </slick>
         <br/>
-        <script>
-           /* $(document).ready(function(){
-                $('.scrollslick').slick({
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 2000,
-                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
-                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
-                    responsive: [
-                        {
-                            breakpoint: 1200,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 4,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                arrows: false,
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-
-                            }
-                        }
-
-                    ]
-                });*/
-
-/*                var status = 0;
-                function Play(music,id) {
-                    var audio = $("#"+id);
-                    if(status == 0 || status == 2)
-                    {
-                        if(status == 0) audio.attr("src", music);
-                        audio[0].play();
-                        $("#play").attr("class","glyphicon glyphicon-pause aligned")
-                        status = 1;
-                    } else if(status == 1) {
-                        audio[0].pause();
-                        $("#play").attr("class","glyphicon glyphicon-play aligned")
-                        status = 2;
-                    }
-                }
-                function Stop(music,id) {
-                    var audio = $("#"+id);
-                    audio.attr("src", '');
-                    $("#play").attr("class","glyphicon glyphicon-play aligned")
-                    status = 0;
-                }
-                function Restart(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",0)
-                }
-                function VolumeUp(music,id) {
-                    var audio = $("#"+id);
-                    var volume = $("#"+id).prop("volume")+0.1;
-                    if(volume > 1) volume = 1;
-                    $("#"+id).prop("volume",volume);
-                }
-                function VolumeDown(music,id) {
-                    var audio = $("#"+id);
-                    var volume = $("#"+id).prop("volume")-0.1;
-                    if(volume < 0) volume = 0;
-                    $("#"+id).prop("volume",volume);
-                }
-                function Forward5(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")+5);
-                }
-                function Backward5(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")-5);
-                }
-                function Forward1(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")+1);
-                }
-                function Backward1(music,id) {
-                    var audio = $("#"+id);
-                    audio.prop("currentTime",audio.prop("currentTime")-1);
-                }
-            });*/
-        </script>
-
-
     </div>
-
-
 </div>

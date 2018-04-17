@@ -1,9 +1,12 @@
 package com.dubion.service;
 
 import com.dubion.domain.Authority;
+import com.dubion.domain.Sex;
 import com.dubion.domain.User;
+import com.dubion.domain.UserExt;
 import com.dubion.repository.AuthorityRepository;
 import com.dubion.config.Constants;
+import com.dubion.repository.UserExtRepository;
 import com.dubion.repository.UserRepository;
 import com.dubion.security.AuthoritiesConstants;
 import com.dubion.security.SecurityUtils;
@@ -21,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -32,6 +36,11 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserService {
+
+    @Inject
+    private UserExtRepository userExtRepository;
+
+    private static List<Sex> sexos = new ArrayList<Sex>();
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
@@ -102,8 +111,8 @@ public class UserService {
         newUser.setLogin(userDTO.getLogin());
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(userDTO.getFirstName());
-        newUser.setLastName(userDTO.getLastName());
+        newUser.setFirstName(userDTO.getNombre());
+        newUser.setLastName(userDTO.getApellido());
         newUser.setEmail(userDTO.getEmail());
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
@@ -115,6 +124,25 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        // Create and save the UserExtra entity
+        UserExt newUserExt = new UserExt();
+        Sex newUserSex = new Sex();
+        if(userDTO.getGender().equalsIgnoreCase("1")){
+            newUserSex = new Sex(1,"hombre");
+        }
+        if (userDTO.getGender().equalsIgnoreCase("2")){
+            newUserSex = new Sex(2,"mujer");
+        }
+        newUserExt.setSex(newUserSex);
+        newUserExt.setUser(newUser);
+        newUserExt.setLocation(userDTO. getLocation());
+        newUserExt.setLatitude(userDTO.getLatitude());
+        newUserExt.setLongitude(userDTO.getLongitude());
+
+        userExtRepository.save(newUserExt);
+        log.debug("Created Information for UserExt: {}", newUserExt);
+
         return newUser;
     }
 

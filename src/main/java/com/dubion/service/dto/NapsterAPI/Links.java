@@ -1,6 +1,7 @@
 
 package com.dubion.service.dto.NapsterAPI;
 
+import com.dubion.domain.Genre;
 import com.dubion.service.dto.NapsterAPI.Albums.Album;
 import com.dubion.service.dto.NapsterAPI.Artist.Artist;
 import com.google.gson.annotations.Expose;
@@ -19,7 +20,7 @@ public class Links {
     private Composers composers;
     @SerializedName("genres")
     @Expose
-    private Genres genres;
+    private Genre genres;
     @SerializedName("tags")
     @Expose
     private Tags tags;
@@ -48,11 +49,11 @@ public class Links {
         this.composers = composers;
     }
 
-    public Genres getGenres() {
+    public Genre getGenres() {
         return genres;
     }
 
-    public void setGenres(Genres genres) {
+    public void setGenres(Genre genres) {
         this.genres = genres;
     }
 

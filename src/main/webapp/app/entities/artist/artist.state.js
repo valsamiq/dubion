@@ -105,7 +105,6 @@
                         entity: function () {
                             return {
                                 name: null,
-                                birthDate: null,
                                 bio: null,
                                 photo: null,
                                 id: null

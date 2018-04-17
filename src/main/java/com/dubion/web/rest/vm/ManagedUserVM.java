@@ -18,6 +18,30 @@ public class ManagedUserVM extends UserDTO {
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
 
+    private String nombre;
+    public String getNombre(){ return nombre;}
+
+    private String apellido;
+    public String getApellido(){ return apellido;}
+
+    private String location;
+    public String getLocation() {
+        return location;
+    }
+
+    private Double latitude;
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    private Double longitude;
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public String gender;
+    public String getGender() { return  gender;}
+
     public ManagedUserVM() {
         // Empty constructor needed for Jackson.
     }
@@ -25,11 +49,16 @@ public class ManagedUserVM extends UserDTO {
     public ManagedUserVM(Long id, String login, String password, String firstName, String lastName,
                          String email, boolean activated, String imageUrl, String langKey,
                          String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate,
-                        Set<String> authorities) {
+                        Set<String> authorities, String location,Double latitude,Double longitude, String nombre, String apellido, String gender) {
 
         super(id, login, firstName, lastName, email, activated, imageUrl, langKey,
             createdBy, createdDate, lastModifiedBy, lastModifiedDate,  authorities);
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.password = password;
+        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getPassword() {

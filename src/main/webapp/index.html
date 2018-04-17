@@ -19,14 +19,13 @@
     <link rel="stylesheet" href="content/css/main.css">
     <link rel="stylesheet" href="content/css/secundary.css">
     <!-- endbuild -->
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="manifest" href="manifest.webapp" />
-    <link rel="shortcut icon" href="content/images/logo/favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="manifest" href="manifest.webapp"/>
+    <link rel="shortcut icon" href="content/images/logo/favicon.ico"/>
     <script src="bower_components/jquery/dist/jquery.js"></script>
- <!--   <script src="bower_components/slick/slick.js"></script>
+    <script src="bower_components/slick/slick.js"></script>
     <link rel="stylesheet" type="text/css" href="./slick/slick.css">
     <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
--->
     <link rel="stylesheet" href="../bower_components/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="../bower_components/slick-carousel/slick/slick-theme.css">
     <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -48,332 +47,361 @@
     <link rel="stylesheet" href="bower_components/bootstrap-star-rating/css/star-rating.min.css">
 </head>
 <body ng-app="dubionApp" ng-strict-di>
-    <!--[if lt IE 9]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a hnpm install slick-carousel npm install slick-carousel npm install slick-carouselref="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div ui-view="navbar" ng-cloak></div>
-    <div class="parallaax">
-        <div id='hero'>
-            <div class='layer-bg layer' data-depth='0.00' data-type='parallax'></div>
-            <div class='layer-1 layer' data-depth='0.20' data-type='parallax'></div>
-            <div class='layer-2 layer' data-depth='0.40' data-type='parallax'></div>
-            <div class='layer-3 layer' data-depth='0.60' data-type='parallax'></div>
-            <div class='layer-4 layer' data-depth='0.80' data-type='parallax'></div>
-            <div class='layer-overlay layer' data-depth='1.00' data-type='parallax'></div>
-        </div>
-        <div id='hero-mobile'></div>
-        <div id='BackgroundTopGrey'></div>
-        <div id='BackgroundFootGrey'></div>
+<!--[if lt IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a hnpm install slick-carousel npm
+                                                                                        install slick-carousel npm
+                                                                                        install
+                                                                                        slick-carouselref="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div ui-view="navbar" ng-cloak></div>
+<div class="parallaax">
+    <div id='hero'>
+        <div class='layer-bg layer' data-depth='0.00' data-type='parallax'></div>
+        <div class='layer-1 layer' data-depth='0.20' data-type='parallax'></div>
+        <div class='layer-2 layer' data-depth='0.40' data-type='parallax'></div>
+        <div class='layer-3 layer' data-depth='0.60' data-type='parallax'></div>
+        <div class='layer-4 layer' data-depth='0.80' data-type='parallax'></div>
+        <div class='layer-overlay layer' data-depth='1.00' data-type='parallax'></div>
     </div>
-    <div class="container">
-        <div class="degrdaded"></div>
-        <div class="well" ui-view="content">
-            <!-- Angular views -->
-        </div>
+    <div id='hero-mobile'></div>
+    <div id='BackgroundTopGrey'></div>
+    <div id='BackgroundFootGrey'></div>
+</div>
+<div class="container">
+    <div class="mainSearch">
+        <form class="form-horizontal">
+            <div class="col-sm-4"></div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button">Hate it</button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Product name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button">Love it</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </form>
     </div>
-    <noscript>
-        <h1>You must enable javascript to view this page.</h1>
-    </noscript>
+    <div class="degrdaded"></div>
+    <div class="well" ui-view="content">
+        <!-- Angular views -->
+    </div>
+</div>
+<noscript>
+    <h1>You must enable javascript to view this page.</h1>
+</noscript>
 
-    <script src="bower_components/messageformat/messageformat.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-translate/angular-translate.js"></script>
-    <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
-    <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
-    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
-    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-    <!-- endinject -->
-    <!-- endbuild -->
+<script src="bower_components/messageformat/messageformat.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script
+    src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
 
-    <!-- build:js app/app.js  -->
-    <!-- inject:js -->
-    <script src="app/app.module.js"></script>
-    <script src="app/services/user/user.service.js"></script>
-    <script src="app/services/profiles/profile.service.js"></script>
-    <script src="app/services/profiles/page-ribbon.directive.js"></script>
-    <script src="app/services/auth/register.service.js"></script>
-    <script src="app/services/auth/principal.service.js"></script>
-    <script src="app/services/auth/password-reset-init.service.js"></script>
-    <script src="app/services/auth/password-reset-finish.service.js"></script>
-    <script src="app/services/auth/password.service.js"></script>
-    <script src="app/services/auth/has-authority.directive.js"></script>
-    <script src="app/services/auth/has-any-authority.directive.js"></script>
-    <script src="app/services/auth/auth.service.js"></script>
-    <script src="app/services/auth/auth.jwt.service.js"></script>
-    <script src="app/services/auth/activate.service.js"></script>
-    <script src="app/services/auth/account.service.js"></script>
-    <script src="app/pages/Test/test2/test2.state.js"></script>
-    <script src="app/pages/Test/test2/test2.controller.js"></script>
-    <script src="app/pages/Test/test1/test1.state.js"></script>
-    <script src="app/pages/Test/test1/test1.controller.js"></script>
-    <script src="app/pages/Overlay/banner/banner.state.js"></script>
-    <script src="app/pages/Overlay/banner/banner.controller.js"></script>
-    <script src="app/layouts/navbar/original/navbar.controller.js"></script>
-    <script src="app/layouts/navbar/original/active-menu.directive.js"></script>
-    <script src="app/layouts/navbar/new/navbar.controller.js"></script>
-    <script src="app/layouts/navbar/new/active-menu.directive.js"></script>
-    <script src="app/layouts/navbar/navbar.controller.js"></script>
-    <script src="app/layouts/navbar/active-menu.directive.js"></script>
-    <script src="app/layouts/error/error.state.js"></script>
-    <script src="app/home2/home.state.js"></script>
-    <script src="app/home2/home.controller.js"></script>
-    <script src="app/home/home.state.js"></script>
-    <script src="app/home/home.controller.js"></script>
-    <script src="app/entities/user-ext/user-ext-dialog.controller.js"></script>
-    <script src="app/entities/user-ext/user-ext-detail.controller.js"></script>
-    <script src="app/entities/user-ext/user-ext-delete-dialog.controller.js"></script>
-    <script src="app/entities/user-ext/user-ext.state.js"></script>
-    <script src="app/entities/user-ext/user-ext.service.js"></script>
-    <script src="app/entities/user-ext/user-ext.controller.js"></script>
-    <script src="app/entities/song/song-dialog.controller.js"></script>
-    <script src="app/entities/song/song-detail.controller.js"></script>
-    <script src="app/entities/song/song-delete-dialog.controller.js"></script>
-    <script src="app/entities/song/song.state.js"></script>
-    <script src="app/entities/song/song.service.js"></script>
-    <script src="app/entities/song/song.controller.js"></script>
-    <script src="app/entities/social/social-dialog.controller.js"></script>
-    <script src="app/entities/social/social-detail.controller.js"></script>
-    <script src="app/entities/social/social-delete-dialog.controller.js"></script>
-    <script src="app/entities/social/social.state.js"></script>
-    <script src="app/entities/social/social.service.js"></script>
-    <script src="app/entities/social/social.controller.js"></script>
-    <script src="app/entities/sex/sex-dialog.controller.js"></script>
-    <script src="app/entities/sex/sex-detail.controller.js"></script>
-    <script src="app/entities/sex/sex-delete-dialog.controller.js"></script>
-    <script src="app/entities/sex/sex.state.js"></script>
-    <script src="app/entities/sex/sex.service.js"></script>
-    <script src="app/entities/sex/sex.controller.js"></script>
-    <script src="app/entities/review/review-dialog.controller.js"></script>
-    <script src="app/entities/review/review-detail.controller.js"></script>
-    <script src="app/entities/review/review-delete-dialog.controller.js"></script>
-    <script src="app/entities/review/review.state.js"></script>
-    <script src="app/entities/review/review.service.js"></script>
-    <script src="app/entities/review/review.controller.js"></script>
-    <script src="app/entities/rating-song/rating-song-dialog.controller.js"></script>
-    <script src="app/entities/rating-song/rating-song-detail.controller.js"></script>
-    <script src="app/entities/rating-song/rating-song-delete-dialog.controller.js"></script>
-    <script src="app/entities/rating-song/rating-song.state.js"></script>
-    <script src="app/entities/rating-song/rating-song.service.js"></script>
-    <script src="app/entities/rating-song/rating-song.controller.js"></script>
-    <script src="app/entities/rating-band/rating-band-dialog.controller.js"></script>
-    <script src="app/entities/rating-band/rating-band-detail.controller.js"></script>
-    <script src="app/entities/rating-band/rating-band-delete-dialog.controller.js"></script>
-    <script src="app/entities/rating-band/rating-band.state.js"></script>
-    <script src="app/entities/rating-band/rating-band.service.js"></script>
-    <script src="app/entities/rating-band/rating-band.controller.js"></script>
-    <script src="app/entities/rating-artist/rating-artist-dialog.controller.js"></script>
-    <script src="app/entities/rating-artist/rating-artist-detail.controller.js"></script>
-    <script src="app/entities/rating-artist/rating-artist-delete-dialog.controller.js"></script>
-    <script src="app/entities/rating-artist/rating-artist.state.js"></script>
-    <script src="app/entities/rating-artist/rating-artist.service.js"></script>
-    <script src="app/entities/rating-artist/rating-artist.controller.js"></script>
-    <script src="app/entities/rating-album/rating-album-dialog.controller.js"></script>
-    <script src="app/entities/rating-album/rating-album-detail.controller.js"></script>
-    <script src="app/entities/rating-album/rating-album-delete-dialog.controller.js"></script>
-    <script src="app/entities/rating-album/rating-album.state.js"></script>
-    <script src="app/entities/rating-album/rating-album.service.js"></script>
-    <script src="app/entities/rating-album/rating-album.controller.js"></script>
-    <script src="app/entities/label/label-dialog.controller.js"></script>
-    <script src="app/entities/label/label-detail.controller.js"></script>
-    <script src="app/entities/label/label-delete-dialog.controller.js"></script>
-    <script src="app/entities/label/label.state.js"></script>
-    <script src="app/entities/label/label.service.js"></script>
-    <script src="app/entities/label/label.controller.js"></script>
-    <script src="app/entities/instrument/instrument-dialog.controller.js"></script>
-    <script src="app/entities/instrument/instrument-detail.controller.js"></script>
-    <script src="app/entities/instrument/instrument-delete-dialog.controller.js"></script>
-    <script src="app/entities/instrument/instrument.state.js"></script>
-    <script src="app/entities/instrument/instrument.service.js"></script>
-    <script src="app/entities/instrument/instrument.controller.js"></script>
-    <script src="app/entities/genre/genre-dialog.controller.js"></script>
-    <script src="app/entities/genre/genre-detail.controller.js"></script>
-    <script src="app/entities/genre/genre-delete-dialog.controller.js"></script>
-    <script src="app/entities/genre/genre.state.js"></script>
-    <script src="app/entities/genre/genre.service.js"></script>
-    <script src="app/entities/genre/genre.controller.js"></script>
-    <script src="app/entities/gamma/gamma-dialog.controller.js"></script>
-    <script src="app/entities/gamma/gamma-detail.controller.js"></script>
-    <script src="app/entities/gamma/gamma-delete-dialog.controller.js"></script>
-    <script src="app/entities/gamma/gamma.state.js"></script>
-    <script src="app/entities/gamma/gamma.service.js"></script>
-    <script src="app/entities/gamma/gamma.controller.js"></script>
-    <script src="app/entities/favourite-song/favourite-song-dialog.controller.js"></script>
-    <script src="app/entities/favourite-song/favourite-song-detail.controller.js"></script>
-    <script src="app/entities/favourite-song/favourite-song-delete-dialog.controller.js"></script>
-    <script src="app/entities/favourite-song/favourite-song.state.js"></script>
-    <script src="app/entities/favourite-song/favourite-song.service.js"></script>
-    <script src="app/entities/favourite-song/favourite-song.controller.js"></script>
-    <script src="app/entities/favourite-band/favourite-band-dialog.controller.js"></script>
-    <script src="app/entities/favourite-band/favourite-band-detail.controller.js"></script>
-    <script src="app/entities/favourite-band/favourite-band-delete-dialog.controller.js"></script>
-    <script src="app/entities/favourite-band/favourite-band.state.js"></script>
-    <script src="app/entities/favourite-band/favourite-band.service.js"></script>
-    <script src="app/entities/favourite-band/favourite-band.controller.js"></script>
-    <script src="app/entities/favourite-album/favourite-album-dialog.controller.js"></script>
-    <script src="app/entities/favourite-album/favourite-album-detail.controller.js"></script>
-    <script src="app/entities/favourite-album/favourite-album-delete-dialog.controller.js"></script>
-    <script src="app/entities/favourite-album/favourite-album.state.js"></script>
-    <script src="app/entities/favourite-album/favourite-album.service.js"></script>
-    <script src="app/entities/favourite-album/favourite-album.controller.js"></script>
-    <script src="app/entities/entity.state.js"></script>
-    <script src="app/entities/country/country-dialog.controller.js"></script>
-    <script src="app/entities/country/country-detail.controller.js"></script>
-    <script src="app/entities/country/country-delete-dialog.controller.js"></script>
-    <script src="app/entities/country/country.state.js"></script>
-    <script src="app/entities/country/country.service.js"></script>
-    <script src="app/entities/country/country.controller.js"></script>
-    <script src="app/entities/beta/beta-dialog.controller.js"></script>
-    <script src="app/entities/beta/beta-detail.controller.js"></script>
-    <script src="app/entities/beta/beta-delete-dialog.controller.js"></script>
-    <script src="app/entities/beta/beta.state.js"></script>
-    <script src="app/entities/beta/beta.service.js"></script>
-    <script src="app/entities/beta/beta.controller.js"></script>
-    <script src="app/entities/band-prueba/band-prueba-dialog.controller.js"></script>
-    <script src="app/entities/band-prueba/band-prueba-detail.controller.js"></script>
-    <script src="app/entities/band-prueba/band-prueba-delete-dialog.controller.js"></script>
-    <script src="app/entities/band-prueba/band-prueba.state.js"></script>
-    <script src="app/entities/band-prueba/band-prueba.service.js"></script>
-    <script src="app/entities/band-prueba/band-prueba.controller.js"></script>
-    <script src="app/entities/band/band-dialog.controller.js"></script>
-    <script src="app/entities/band/band-detail.controller.js"></script>
-    <script src="app/entities/band/band-delete-dialog.controller.js"></script>
-    <script src="app/entities/band/band.state.js"></script>
-    <script src="app/entities/band/band.service.js"></script>
-    <script src="app/entities/band/band.controller.js"></script>
-    <script src="app/entities/artist/artist-dialog.controller.js"></script>
-    <script src="app/entities/artist/artist-detail.controller.js"></script>
-    <script src="app/entities/artist/artist-delete-dialog.controller.js"></script>
-    <script src="app/entities/artist/artist.state.js"></script>
-    <script src="app/entities/artist/artist.service.js"></script>
-    <script src="app/entities/artist/artist.controller.js"></script>
-    <script src="app/entities/alpha/alpha-dialog.controller.js"></script>
-    <script src="app/entities/alpha/alpha-detail.controller.js"></script>
-    <script src="app/entities/alpha/alpha-delete-dialog.controller.js"></script>
-    <script src="app/entities/alpha/alpha.state.js"></script>
-    <script src="app/entities/alpha/alpha.service.js"></script>
-    <script src="app/entities/alpha/alpha.controller.js"></script>
-    <script src="app/entities/album/album-dialog.controller.js"></script>
-    <script src="app/entities/album/album-detail.controller.js"></script>
-    <script src="app/entities/album/album-delete-dialog.controller.js"></script>
-    <script src="app/entities/album/album.state.js"></script>
-    <script src="app/entities/album/album.service.js"></script>
-    <script src="app/entities/album/album.controller.js"></script>
-    <script src="app/components/util/truncate-words.filter.js"></script>
-    <script src="app/components/util/truncate-characters.filter.js"></script>
-    <script src="app/components/util/sort-by.directive.js"></script>
-    <script src="app/components/util/sort.directive.js"></script>
-    <script src="app/components/util/parse-links.service.js"></script>
-    <script src="app/components/util/pagination-util.service.js"></script>
-    <script src="app/components/util/jhi-item-count.directive.js"></script>
-    <script src="app/components/util/error.constants.js"></script>
-    <script src="app/components/util/date-util.service.js"></script>
-    <script src="app/components/util/data-util.service.js"></script>
-    <script src="app/components/util/capitalize.filter.js"></script>
-    <script src="app/components/util/base64.service.js"></script>
-    <script src="app/components/login/login.service.js"></script>
-    <script src="app/components/login/login.controller.js"></script>
-    <script src="app/components/language/language.service.js"></script>
-    <script src="app/components/language/language.filter.js"></script>
-    <script src="app/components/language/language.controller.js"></script>
-    <script src="app/components/language/language.constants.js"></script>
-    <script src="app/components/form/show-validation.directive.js"></script>
-    <script src="app/components/form/pagination.constants.js"></script>
-    <script src="app/components/form/minbytes.directive.js"></script>
-    <script src="app/components/form/maxbytes.directive.js"></script>
-    <script src="app/components/alert/alert-error.directive.js"></script>
-    <script src="app/components/alert/alert.service.js"></script>
-    <script src="app/components/alert/alert.directive.js"></script>
-    <script src="app/blocks/interceptor/notification.interceptor.js"></script>
-    <script src="app/blocks/interceptor/errorhandler.interceptor.js"></script>
-    <script src="app/blocks/interceptor/auth-expired.interceptor.js"></script>
-    <script src="app/blocks/interceptor/auth.interceptor.js"></script>
-    <script src="app/blocks/handlers/translation.handler.js"></script>
-    <script src="app/blocks/handlers/state.handler.js"></script>
-    <script src="app/blocks/config/uib-pagination.config.js"></script>
-    <script src="app/blocks/config/uib-pager.config.js"></script>
-    <script src="app/blocks/config/translation-storage.provider.js"></script>
-    <script src="app/blocks/config/translation.config.js"></script>
-    <script src="app/blocks/config/localstorage.config.js"></script>
-    <script src="app/blocks/config/http.config.js"></script>
-    <script src="app/blocks/config/compile.config.js"></script>
-    <script src="app/blocks/config/alert.config.js"></script>
-    <script src="app/app.state.js"></script>
-    <script src="app/app.constants.js"></script>
-    <script src="app/admin/user-management/user-management-dialog.controller.js"></script>
-    <script src="app/admin/user-management/user-management-detail.controller.js"></script>
-    <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
-    <script src="app/admin/user-management/user-management.state.js"></script>
-    <script src="app/admin/user-management/user-management.controller.js"></script>
-    <script src="app/admin/metrics/metrics.state.js"></script>
-    <script src="app/admin/metrics/metrics.service.js"></script>
-    <script src="app/admin/metrics/metrics.modal.controller.js"></script>
-    <script src="app/admin/metrics/metrics.controller.js"></script>
-    <script src="app/admin/logs/logs.state.js"></script>
-    <script src="app/admin/logs/logs.service.js"></script>
-    <script src="app/admin/logs/logs.controller.js"></script>
-    <script src="app/admin/health/health.state.js"></script>
-    <script src="app/admin/health/health.service.js"></script>
-    <script src="app/admin/health/health.modal.controller.js"></script>
-    <script src="app/admin/health/health.controller.js"></script>
-    <script src="app/admin/docs/docs.state.js"></script>
-    <script src="app/admin/configuration/configuration.state.js"></script>
-    <script src="app/admin/configuration/configuration.service.js"></script>
-    <script src="app/admin/configuration/configuration.controller.js"></script>
-    <script src="app/admin/audits/audits.state.js"></script>
-    <script src="app/admin/audits/audits.service.js"></script>
-    <script src="app/admin/audits/audits.controller.js"></script>
-    <script src="app/admin/admin.state.js"></script>
-    <script src="app/account/social/social-register.controller.js"></script>
-    <script src="app/account/social/social-auth.controller.js"></script>
-    <script src="app/account/social/social.state.js"></script>
-    <script src="app/account/social/social.service.js"></script>
-    <script src="app/account/social/directive/social.directive.js"></script>
-    <script src="app/account/settings/settings.state.js"></script>
-    <script src="app/account/settings/settings.controller.js"></script>
-    <script src="app/account/reset/request/reset.request.state.js"></script>
-    <script src="app/account/reset/request/reset.request.controller.js"></script>
-    <script src="app/account/reset/finish/reset.finish.state.js"></script>
-    <script src="app/account/reset/finish/reset.finish.controller.js"></script>
-    <script src="app/account/register/register.state.js"></script>
-    <script src="app/account/register/register.controller.js"></script>
-    <script src="app/account/password/password-strength-bar.directive.js"></script>
-    <script src="app/account/password/password.state.js"></script>
-    <script src="app/account/password/password.controller.js"></script>
-    <script src="app/account/activate/activate.state.js"></script>
-    <script src="app/account/activate/activate.controller.js"></script>
-    <script src="app/account/account.state.js"></script>
-    <!-- endinject -->
-    <!-- endbuild -->
-    <!--<script src="app/pages/Overlay/banner/banner.controller.js"></script>-->
-    <!--<script src="app/pages/Overlay/banner/banner.state.js"></script>-->
-    <script src="app/albumPage/albumPage.controller.js"></script>
-    <script src="app/albumPage/albumPage.state.js"></script>
+<!-- build:js app/app.js  -->
+<!-- inject:js -->
+<script src="app/app.module.js"></script>
+<script src="app/services/user/user.service.js"></script>
+<script src="app/services/profiles/profile.service.js"></script>
+<script src="app/services/profiles/page-ribbon.directive.js"></script>
+<script src="app/services/auth/register.service.js"></script>
+<script src="app/services/auth/principal.service.js"></script>
+<script src="app/services/auth/password-reset-init.service.js"></script>
+<script src="app/services/auth/password-reset-finish.service.js"></script>
+<script src="app/services/auth/password.service.js"></script>
+<script src="app/services/auth/has-authority.directive.js"></script>
+<script src="app/services/auth/has-any-authority.directive.js"></script>
+<script src="app/services/auth/auth.service.js"></script>
+<script src="app/services/auth/auth.jwt.service.js"></script>
+<script src="app/services/auth/activate.service.js"></script>
+<script src="app/services/auth/account.service.js"></script>
+<script src="app/pages/Test/test2/test2.state.js"></script>
+<script src="app/pages/Test/test2/test2.controller.js"></script>
+<script src="app/pages/Test/test1/test1.state.js"></script>
+<script src="app/pages/Test/test1/test1.controller.js"></script>
+<script src="app/pages/Overlay/banner/banner.state.js"></script>
+<script src="app/pages/Overlay/banner/banner.controller.js"></script>
+<script src="app/layouts/navbar/original/navbar.controller.js"></script>
+<script src="app/layouts/navbar/original/active-menu.directive.js"></script>
+<script src="app/layouts/navbar/new/navbar.controller.js"></script>
+<script src="app/layouts/navbar/new/active-menu.directive.js"></script>
+<script src="app/layouts/navbar/navbar.controller.js"></script>
+<script src="app/layouts/navbar/active-menu.directive.js"></script>
+<script src="app/layouts/error/error.state.js"></script>
+<script src="app/home2/home.state.js"></script>
+<script src="app/home2/home.controller.js"></script>
+<script src="app/home/home.state.js"></script>
+<script src="app/home/home.controller.js"></script>
+<script src="app/entities/user-ext/user-ext-dialog.controller.js"></script>
+<script src="app/entities/user-ext/user-ext-detail.controller.js"></script>
+<script src="app/entities/user-ext/user-ext-delete-dialog.controller.js"></script>
+<script src="app/entities/user-ext/user-ext.state.js"></script>
+<script src="app/entities/user-ext/user-ext.service.js"></script>
+<script src="app/entities/user-ext/user-ext.controller.js"></script>
+<script src="app/entities/song/song-dialog.controller.js"></script>
+<script src="app/entities/song/song-detail.controller.js"></script>
+<script src="app/entities/song/song-delete-dialog.controller.js"></script>
+<script src="app/entities/song/song.state.js"></script>
+<script src="app/entities/song/song.service.js"></script>
+<script src="app/entities/song/song.controller.js"></script>
+<script src="app/entities/social/social-dialog.controller.js"></script>
+<script src="app/entities/social/social-detail.controller.js"></script>
+<script src="app/entities/social/social-delete-dialog.controller.js"></script>
+<script src="app/entities/social/social.state.js"></script>
+<script src="app/entities/social/social.service.js"></script>
+<script src="app/entities/social/social.controller.js"></script>
+<script src="app/entities/sex/sex-dialog.controller.js"></script>
+<script src="app/entities/sex/sex-detail.controller.js"></script>
+<script src="app/entities/sex/sex-delete-dialog.controller.js"></script>
+<script src="app/entities/sex/sex.state.js"></script>
+<script src="app/entities/sex/sex.service.js"></script>
+<script src="app/entities/sex/sex.controller.js"></script>
+<script src="app/entities/review/review-dialog.controller.js"></script>
+<script src="app/entities/review/review-detail.controller.js"></script>
+<script src="app/entities/review/review-delete-dialog.controller.js"></script>
+<script src="app/entities/review/review.state.js"></script>
+<script src="app/entities/review/review.service.js"></script>
+<script src="app/entities/review/review.controller.js"></script>
+<script src="app/entities/rating-song/rating-song-dialog.controller.js"></script>
+<script src="app/entities/rating-song/rating-song-detail.controller.js"></script>
+<script src="app/entities/rating-song/rating-song-delete-dialog.controller.js"></script>
+<script src="app/entities/rating-song/rating-song.state.js"></script>
+<script src="app/entities/rating-song/rating-song.service.js"></script>
+<script src="app/entities/rating-song/rating-song.controller.js"></script>
+<script src="app/entities/rating-band/rating-band-dialog.controller.js"></script>
+<script src="app/entities/rating-band/rating-band-detail.controller.js"></script>
+<script src="app/entities/rating-band/rating-band-delete-dialog.controller.js"></script>
+<script src="app/entities/rating-band/rating-band.state.js"></script>
+<script src="app/entities/rating-band/rating-band.service.js"></script>
+<script src="app/entities/rating-band/rating-band.controller.js"></script>
+<script src="app/entities/rating-artist/rating-artist-dialog.controller.js"></script>
+<script src="app/entities/rating-artist/rating-artist-detail.controller.js"></script>
+<script src="app/entities/rating-artist/rating-artist-delete-dialog.controller.js"></script>
+<script src="app/entities/rating-artist/rating-artist.state.js"></script>
+<script src="app/entities/rating-artist/rating-artist.service.js"></script>
+<script src="app/entities/rating-artist/rating-artist.controller.js"></script>
+<script src="app/entities/rating-album/rating-album-dialog.controller.js"></script>
+<script src="app/entities/rating-album/rating-album-detail.controller.js"></script>
+<script src="app/entities/rating-album/rating-album-delete-dialog.controller.js"></script>
+<script src="app/entities/rating-album/rating-album.state.js"></script>
+<script src="app/entities/rating-album/rating-album.service.js"></script>
+<script src="app/entities/rating-album/rating-album.controller.js"></script>
+<script src="app/entities/label/label-dialog.controller.js"></script>
+<script src="app/entities/label/label-detail.controller.js"></script>
+<script src="app/entities/label/label-delete-dialog.controller.js"></script>
+<script src="app/entities/label/label.state.js"></script>
+<script src="app/entities/label/label.service.js"></script>
+<script src="app/entities/label/label.controller.js"></script>
+<script src="app/entities/instrument/instrument-dialog.controller.js"></script>
+<script src="app/entities/instrument/instrument-detail.controller.js"></script>
+<script src="app/entities/instrument/instrument-delete-dialog.controller.js"></script>
+<script src="app/entities/instrument/instrument.state.js"></script>
+<script src="app/entities/instrument/instrument.service.js"></script>
+<script src="app/entities/instrument/instrument.controller.js"></script>
+<script src="app/entities/genre/genre-dialog.controller.js"></script>
+<script src="app/entities/genre/genre-detail.controller.js"></script>
+<script src="app/entities/genre/genre-delete-dialog.controller.js"></script>
+<script src="app/entities/genre/genre.state.js"></script>
+<script src="app/entities/genre/genre.service.js"></script>
+<script src="app/entities/genre/genre.controller.js"></script>
+<script src="app/entities/gamma/gamma-dialog.controller.js"></script>
+<script src="app/entities/gamma/gamma-detail.controller.js"></script>
+<script src="app/entities/gamma/gamma-delete-dialog.controller.js"></script>
+<script src="app/entities/gamma/gamma.state.js"></script>
+<script src="app/entities/gamma/gamma.service.js"></script>
+<script src="app/entities/gamma/gamma.controller.js"></script>
+<script src="app/entities/favourite-song/favourite-song-dialog.controller.js"></script>
+<script src="app/entities/favourite-song/favourite-song-detail.controller.js"></script>
+<script src="app/entities/favourite-song/favourite-song-delete-dialog.controller.js"></script>
+<script src="app/entities/favourite-song/favourite-song.state.js"></script>
+<script src="app/entities/favourite-song/favourite-song.service.js"></script>
+<script src="app/entities/favourite-song/favourite-song.controller.js"></script>
+<script src="app/entities/favourite-band/favourite-band-dialog.controller.js"></script>
+<script src="app/entities/favourite-band/favourite-band-detail.controller.js"></script>
+<script src="app/entities/favourite-band/favourite-band-delete-dialog.controller.js"></script>
+<script src="app/entities/favourite-band/favourite-band.state.js"></script>
+<script src="app/entities/favourite-band/favourite-band.service.js"></script>
+<script src="app/entities/favourite-band/favourite-band.controller.js"></script>
+<script src="app/entities/favourite-album/favourite-album-dialog.controller.js"></script>
+<script src="app/entities/favourite-album/favourite-album-detail.controller.js"></script>
+<script src="app/entities/favourite-album/favourite-album-delete-dialog.controller.js"></script>
+<script src="app/entities/favourite-album/favourite-album.state.js"></script>
+<script src="app/entities/favourite-album/favourite-album.service.js"></script>
+<script src="app/entities/favourite-album/favourite-album.controller.js"></script>
+<script src="app/entities/entity.state.js"></script>
+<script src="app/entities/country/country-dialog.controller.js"></script>
+<script src="app/entities/country/country-detail.controller.js"></script>
+<script src="app/entities/country/country-delete-dialog.controller.js"></script>
+<script src="app/entities/country/country.state.js"></script>
+<script src="app/entities/country/country.service.js"></script>
+<script src="app/entities/country/country.controller.js"></script>
+<script src="app/entities/beta/beta-dialog.controller.js"></script>
+<script src="app/entities/beta/beta-detail.controller.js"></script>
+<script src="app/entities/beta/beta-delete-dialog.controller.js"></script>
+<script src="app/entities/beta/beta.state.js"></script>
+<script src="app/entities/beta/beta.service.js"></script>
+<script src="app/entities/beta/beta.controller.js"></script>
+<script src="app/entities/band-prueba/band-prueba-dialog.controller.js"></script>
+<script src="app/entities/band-prueba/band-prueba-detail.controller.js"></script>
+<script src="app/entities/band-prueba/band-prueba-delete-dialog.controller.js"></script>
+<script src="app/entities/band-prueba/band-prueba.state.js"></script>
+<script src="app/entities/band-prueba/band-prueba.service.js"></script>
+<script src="app/entities/band-prueba/band-prueba.controller.js"></script>
+<script src="app/entities/band/band-dialog.controller.js"></script>
+<script src="app/entities/band/band-detail.controller.js"></script>
+<script src="app/entities/band/band-delete-dialog.controller.js"></script>
+<script src="app/entities/band/band.state.js"></script>
+<script src="app/entities/band/band.service.js"></script>
+<script src="app/entities/band/band.controller.js"></script>
+<script src="app/entities/artist/artist-dialog.controller.js"></script>
+<script src="app/entities/artist/artist-detail.controller.js"></script>
+<script src="app/entities/artist/artist-delete-dialog.controller.js"></script>
+<script src="app/entities/artist/artist.state.js"></script>
+<script src="app/entities/artist/artist.service.js"></script>
+<script src="app/entities/artist/artist.controller.js"></script>
+<script src="app/entities/alpha/alpha-dialog.controller.js"></script>
+<script src="app/entities/alpha/alpha-detail.controller.js"></script>
+<script src="app/entities/alpha/alpha-delete-dialog.controller.js"></script>
+<script src="app/entities/alpha/alpha.state.js"></script>
+<script src="app/entities/alpha/alpha.service.js"></script>
+<script src="app/entities/alpha/alpha.controller.js"></script>
+<script src="app/entities/album/album-dialog.controller.js"></script>
+<script src="app/entities/album/album-detail.controller.js"></script>
+<script src="app/entities/album/album-delete-dialog.controller.js"></script>
+<script src="app/entities/album/album.state.js"></script>
+<script src="app/entities/album/album.service.js"></script>
+<script src="app/entities/album/album.controller.js"></script>
+<script src="app/components/util/truncate-words.filter.js"></script>
+<script src="app/components/util/truncate-characters.filter.js"></script>
+<script src="app/components/util/sort-by.directive.js"></script>
+<script src="app/components/util/sort.directive.js"></script>
+<script src="app/components/util/parse-links.service.js"></script>
+<script src="app/components/util/pagination-util.service.js"></script>
+<script src="app/components/util/jhi-item-count.directive.js"></script>
+<script src="app/components/util/error.constants.js"></script>
+<script src="app/components/util/date-util.service.js"></script>
+<script src="app/components/util/data-util.service.js"></script>
+<script src="app/components/util/capitalize.filter.js"></script>
+<script src="app/components/util/base64.service.js"></script>
+<script src="app/components/login/login.service.js"></script>
+<script src="app/components/login/login.controller.js"></script>
+<script src="app/components/language/language.service.js"></script>
+<script src="app/components/language/language.filter.js"></script>
+<script src="app/components/language/language.controller.js"></script>
+<script src="app/components/language/language.constants.js"></script>
+<script src="app/components/form/show-validation.directive.js"></script>
+<script src="app/components/form/pagination.constants.js"></script>
+<script src="app/components/form/minbytes.directive.js"></script>
+<script src="app/components/form/maxbytes.directive.js"></script>
+<script src="app/components/alert/alert-error.directive.js"></script>
+<script src="app/components/alert/alert.service.js"></script>
+<script src="app/components/alert/alert.directive.js"></script>
+<script src="app/blocks/interceptor/notification.interceptor.js"></script>
+<script src="app/blocks/interceptor/errorhandler.interceptor.js"></script>
+<script src="app/blocks/interceptor/auth-expired.interceptor.js"></script>
+<script src="app/blocks/interceptor/auth.interceptor.js"></script>
+<script src="app/blocks/handlers/translation.handler.js"></script>
+<script src="app/blocks/handlers/state.handler.js"></script>
+<script src="app/blocks/config/uib-pagination.config.js"></script>
+<script src="app/blocks/config/uib-pager.config.js"></script>
+<script src="app/blocks/config/translation-storage.provider.js"></script>
+<script src="app/blocks/config/translation.config.js"></script>
+<script src="app/blocks/config/localstorage.config.js"></script>
+<script src="app/blocks/config/http.config.js"></script>
+<script src="app/blocks/config/compile.config.js"></script>
+<script src="app/blocks/config/alert.config.js"></script>
+<script src="app/app.state.js"></script>
+<script src="app/app.constants.js"></script>
+<script src="app/admin/user-management/user-management-dialog.controller.js"></script>
+<script src="app/admin/user-management/user-management-detail.controller.js"></script>
+<script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
+<script src="app/admin/user-management/user-management.state.js"></script>
+<script src="app/admin/user-management/user-management.controller.js"></script>
+<script src="app/admin/metrics/metrics.state.js"></script>
+<script src="app/admin/metrics/metrics.service.js"></script>
+<script src="app/admin/metrics/metrics.modal.controller.js"></script>
+<script src="app/admin/metrics/metrics.controller.js"></script>
+<script src="app/admin/logs/logs.state.js"></script>
+<script src="app/admin/logs/logs.service.js"></script>
+<script src="app/admin/logs/logs.controller.js"></script>
+<script src="app/admin/health/health.state.js"></script>
+<script src="app/admin/health/health.service.js"></script>
+<script src="app/admin/health/health.modal.controller.js"></script>
+<script src="app/admin/health/health.controller.js"></script>
+<script src="app/admin/docs/docs.state.js"></script>
+<script src="app/admin/configuration/configuration.state.js"></script>
+<script src="app/admin/configuration/configuration.service.js"></script>
+<script src="app/admin/configuration/configuration.controller.js"></script>
+<script src="app/admin/audits/audits.state.js"></script>
+<script src="app/admin/audits/audits.service.js"></script>
+<script src="app/admin/audits/audits.controller.js"></script>
+<script src="app/admin/admin.state.js"></script>
+<script src="app/account/social/social-register.controller.js"></script>
+<script src="app/account/social/social-auth.controller.js"></script>
+<script src="app/account/social/social.state.js"></script>
+<script src="app/account/social/social.service.js"></script>
+<script src="app/account/social/directive/social.directive.js"></script>
+<script src="app/account/settings/settings.state.js"></script>
+<script src="app/account/settings/settings.controller.js"></script>
+<script src="app/account/reset/request/reset.request.state.js"></script>
+<script src="app/account/reset/request/reset.request.controller.js"></script>
+<script src="app/account/reset/finish/reset.finish.state.js"></script>
+<script src="app/account/reset/finish/reset.finish.controller.js"></script>
+<script src="app/account/register/register.state.js"></script>
+<script src="app/account/register/register.controller.js"></script>
+<script src="app/account/password/password-strength-bar.directive.js"></script>
+<script src="app/account/password/password.state.js"></script>
+<script src="app/account/password/password.controller.js"></script>
+<script src="app/account/activate/activate.state.js"></script>
+<script src="app/account/activate/activate.controller.js"></script>
+<script src="app/account/account.state.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
+<!--<script src="app/pages/Overlay/banner/banner.controller.js"></script>-->
+<!--<script src="app/pages/Overlay/banner/banner.state.js"></script>-->
+<script src="app/albumPage/albumPage.controller.js"></script>
+<script src="app/albumPage/albumPage.state.js"></script>
 
-    <script src="app/artistPage/artistPage.controller.js"></script>
-    <script src="app/artistPage/artistPage.state.js"></script>
+<script src="app/artistPage/artistPage.controller.js"></script>
+<script src="app/artistPage/artistPage.state.js"></script>
 
-    <script src="app/bandPage/bandPage.controller.js"></script>
-    <script src="app/bandPage/bandPage.state.js"></script>
+<script src="app/bandPage/bandPage.controller.js"></script>
+<script src="app/bandPage/bandPage.state.js"></script>
 
-    <script src="app/albumSearch/albumSearch.controller.js"></script>
-    <script src="app/albumSearch/albumSearch.state.js"></script>
-    <script src="app/bandSearch/bandSearch.controller.js"></script>
-    <script src="app/bandSearch/bandSearch.state.js"></script>
-    <script src="app/artistSearch/artistSearch.controller.js"></script>
-    <script src="app/artistSearch/artistSearch.state.js"></script>
+    <script src="app/pages/Artist/artistmain.state.js"></script>
+
+    <script src="app/pages/test-sex/testSex.controller.js"></script>
+    <script src="app/pages/test-sex/testSex.state.js"></script>
+    <script src="app/pages/page-sets.state.js"></script>
+<script src="app/albumSearch/albumSearch.controller.js"></script>
+<script src="app/albumSearch/albumSearch.state.js"></script>
+<script src="app/bandSearch/bandSearch.controller.js"></script>
+<script src="app/bandSearch/bandSearch.state.js"></script>
+<script src="app/artistSearch/artistSearch.controller.js"></script>
+<script src="app/artistSearch/artistSearch.state.js"></script>
 
 
 </body>

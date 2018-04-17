@@ -23,8 +23,9 @@
                 The password and its confirmation do not match!
             </div>
         </div>
+        <form ng-show="!vm.success" name="form" role="form" novalidate ng-submit="vm.register()" show-validation>
         <div class="col-md-4 col-md-offset-2">
-            <form ng-show="!vm.success" name="form" role="form" novalidate ng-submit="vm.register()" show-validation>
+
 
                 <div class="form-group">
                     <label class="control-label" for="login" data-translate="global.form.username">Username</label>
@@ -112,19 +113,77 @@
                     </div>
                 </div>
 
-                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="register.form.button">Register</button>
-            </form>
+
+
+                <!--<div class="form-group">-->
+                    <!--<label>Photo</label>-->
+                    <!--<input class="form-control" id="photo" ng-model="vm.registerAccount.photo" placeholder="global.form.photo.placeholder" />-->
+                    <!--<br>-->
+                <!--</div>-->
+
+
+
+
+                <!--<div class="form-group">-->
+                    <!--<label>Sexo test</label>                                                  &lt;!&ndash;band as band.name for band in vm.bands track by band.id&ndash;&gt;-->
+                    <!--<select class="form-control" id="" name="sex" ng-model="vm.sexes" ng-options="sex as sex.orientation for sex in vm.sexes track by sex.id">-->
+                        <!--<option value=""></option>-->
+                    <!--</select>-->
+                <!--</div>-->
+
+                <!--<tr ng-repeat="sex in vm.sexes track by sex.id">-->
+                    <!--<td><a ui-sref="sex-detail({id:sex.id})">{{sex.id}}</a></td>-->
+                    <!--<td>{{sex.orientation}}</td>-->
+                <!--</tr>-->
+
+
+
+
+
             <p></p>
             <div class="alert alert-warning" data-translate="global.messages.info.authenticated" translate-compile>
                 If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
             </div>
         </div>
         <div class="col-md-4">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input class="form-control" id="nombre" ng-model="vm.registerAccount.nombre" placeholder="global.form.nombre.placeholder" />
+            </div>
+
+            <div class="form-group">
+                <label>Apellido</label>
+                <input class="form-control" id="apellido" ng-model="vm.registerAccount.apellido" placeholder="global.form.location.placeholder" />
+            </div>
+
+            <div class="form-group">
+                <label>Latitude</label>
+                <input type="number" class="form-control" id="latitude" ng-model="vm.registerAccount.latitude" placeholder="global.form.latitude.placeholder" />
+            </div>
+
+            <div class="form-group">
+                <label>Longitud</label>
+                <input type="number" class="form-control" id="longitude" ng-model="vm.registerAccount.longitude" placeholder="global.form.longitude.placeholder" />
+            </div>
+
+            <div>
+                <label>Location</label>
+                <input class="form-control" id="location" ng-model="vm.registerAccount.location" placeholder="global.form.location.placeholder" />
+            </div>
+            <br>
+            <div>
+                <label>Sexo</label><br>
+                <input class="form-control" ng-model="vm.registerAccount.gender" type="radio" name="gender" value="1"> Male<br>
+                <input class="form-control" ng-model="vm.registerAccount.gender" type="radio" name="gender" value="2"> Female<br>
+            </div>
+
             <br/>
             <jh-social ng-provider="google"></jh-social>
             <jh-social ng-provider="facebook"></jh-social>
             <jh-social ng-provider="twitter"></jh-social>
             <!-- jhipster-needle-add-social-button -->
         </div>
+            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="register.form.button">Register</button>
+        </form>
     </div>
 </div>

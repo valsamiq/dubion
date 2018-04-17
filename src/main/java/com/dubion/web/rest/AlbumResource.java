@@ -7,8 +7,10 @@ import com.dubion.service.AlbumService;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.service.DiscogsAPI.DiscogsApiService;
 import com.dubion.service.NapsterAPI.NapsterDTOService;
+import com.dubion.service.TicketMasterAPI.TicketMasterDTOService;
 import com.dubion.service.dto.NapsterAPI.Napster;
 import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
+import com.dubion.service.dto.TicketMasterAPI.TicketMasterAPI;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.AlbumCriteria;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -133,7 +136,7 @@ public class AlbumResource {
     /**
      * GET  /songs/:id : get the "id" song.
      *
-     * @param id the id of the song to retrieve
+     *
      * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
      */
     @GetMapping("/albums/top")
@@ -145,12 +148,12 @@ public class AlbumResource {
     /**
      * GET  /songs/:id : get the "id" song.
      *
-     * @param id the id of the song to retrieve
+     *
      * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
      */
     @GetMapping("/albums/top2")
     @Timed
-    public ResponseEntity<List<Album>> importTopAlbums() {
+    public ResponseEntity<List<Album>> importTopAlbums() throws IOException {
         List<Album> song = napsterDTOService.importTopAlbum();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }

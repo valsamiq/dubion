@@ -8,10 +8,6 @@
         <dd>
             <span>{{vm.artist.name}}</span>
         </dd>
-        <dt><span data-translate="dubionApp.artist.birthDate">Birth Date</span></dt>
-        <dd>
-            <span>{{vm.artist.birthDate | date:'mediumDate'}}</span>
-        </dd>
         <dt><span data-translate="dubionApp.artist.bio">Bio</span></dt>
         <dd>
             <span>{{vm.artist.bio}}</span>
@@ -24,12 +20,6 @@
         <dd>
             <span ng-repeat="band in vm.artist.bands">
                 <a ui-sref="band-detail({id: band.id})">{{band.name}}</a>{{$last ? '' : ', '}}
-            </span>
-        </dd>
-        <dt><span data-translate="dubionApp.artist.instrument">Instrument</span></dt>
-        <dd>
-            <span ng-repeat="instrument in vm.artist.instruments">
-                <a ui-sref="instrument-detail({id: instrument.id})">{{instrument.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

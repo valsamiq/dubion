@@ -13,20 +13,14 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface SongRepository extends JpaRepository<Song, Long>,JpaSpecificationExecutor<Song> {
+public interface SongRepository extends JpaRepository<Song, Long>, JpaSpecificationExecutor<Song> {
     @Query("select distinct song from Song song left join fetch song.albums")
     List<Song> findAllWithEagerRelationships();
 
     @Query("select song from Song song left join fetch song.albums where song.id =:id")
     Song findOneWithEagerRelationships(@Param("id") Long id);
 
-    List<Song> findByNameContaining(String songName);
-
-    @Query("select s from Song s where s.name=:name")
+    @Query("select a from Song a where a.name=:name")
     Song findByName(@Param("name")String name);
-
-    @Query("select s from Song s where :album member of s.albums")
-    List<Song> findByAlbum(@Param("album") Album album);
-
 
 }
