@@ -173,3 +173,81 @@ span.glyphicon.glyphicon-refresh{
     height: 10px;
     transition: height 1s ;
 }
+
+.fa {
+    font-size: 20px !important;
+    cursor: pointer;
+    user-select: none;
+}
+
+.fa:hover {
+    color: darkblue;
+}
+
+#audio{
+    background-color: black;
+    width: 60%;
+    height: auto;
+}
+.center{
+    text-align: center;
+}
+div.scrollmenu {
+    position: relative;
+    background-color: #b6b6b6;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover .new{
+    background-color: rgba(140,130,130,0.5);
+    color:white;
+}
+.info{
+    background-color: #0A0A0A;
+}
+.new {
+    background-color: transparent;
+    width:200px;
+    height: 60px;
+    color:transparent;
+    z-index: 3;
+    bottom: 14px;
+    left: 14px;
+    position: absolute;
+
+}
+.new2{
+    background-color: rgba(140,130,130,0.5);
+    width:200px;
+    height: 50px;
+    color:white;
+    z-index: 3;
+    bottom: 14px;
+    left: 14px;
+    position: absolute;
+}
+.pictr{
+    position:absolute;
+    left: 2%;
+    top: 50%;
+    width: 30px !important;
+    height: 30px !important;
+    z-index: 5;
+}
+.pictl{
+    position:absolute;
+    right: 2%;
+    bottom: 40%;
+    width: 30px !important;
+    height: 30px !important;
+    z-index: 5;
+}

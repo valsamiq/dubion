@@ -13,15 +13,16 @@
         vm.songByName = songByName;
         vm.albumActual;
 
+        vm.likeUpDown="up";
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
         vm.favouriteAlbum={};
-        vm.favouriteAlbum.liked=false;
+        //vm.favouriteAlbum.liked=true;
 
         vm.ratingAlbums = [];
-        vm.ratingAlbum= {} ;
+        vm.ratingAlbum= {};
 
         Album.get({id : $stateParams.id}, function(data) {
 
@@ -41,31 +42,60 @@
             $scope.apply();
 
         });
+        vm.likeDislike=function(){
+            if(vm.likeUpDown=="up"){
+                vm.favouriteAlbum.liked=false;
+                vm.likeUpDown="down";
+            }else{
+                vm.favouriteAlbum.liked=true;
+                vm.likeUpDown="up";
+            }
 
-        FavouriteAlbum.get()
-        /*Volem saber si l'usuari actual amb el id del album actual te like o no*/
-        FavouriteAlbum.get({id: 1},   function (data) {
-            //FavouriteAlbum.get({idUser:vm.account.id, idAlbum: vm.albumActual.id},   function (data) {
-            console.log(data);
-            // vm.favouriteAlbum=data;
-            // console.log(vm.favouriteAlbum);∫
+            save();
+            function save () {
+                vm.isSaving = true;
+
+                if(vm.favouriteAlbum.id){
+                    console.log("RA_ID: "+vm.favouriteAlbum.id);
+
+                    FavouriteAlbum.update(vm.favouriteAlbum, onSaveSuccess, onSaveError);
+                } else {
+                    FavouriteAlbum.save(vm.favouriteAlbum, onSaveSuccess, onSaveError);
+                }
+            }
+            function onSaveSuccess (result) {
+                console.log("SUCCESSS");
+                $scope.$emit('dubionApp:favouriteAlbumUpdate', result);
+                $uibModalInstance.close(result);
+                vm.isSaving = false;
+            }
+
+            function onSaveError () {
+                console.log("EERROR");
+                vm.isSaving = false;
+            }
+
+        }
 
 
-        });
+
 
         function getFavoriteAlbum(id) {
-            FavouriteAlbum.favoriteByAlbum({id : id}, function (data){
-
+           // FavouriteAlbum.favoriteByAlbum({id : id}, function (data){
+            FavouriteAlbum.get({id : id},   function (data) {
+                console.log("hola");
+                console.dir(data);
                 vm.favouriteAlbum = data;
-
-
-                // $("#input-1").val(vm.favouriteAlbum.liked);
-                // with plugin options
+                if(vm.favouriteAlbum.liked){
+                    vm.likeUpDown="up";
+                }else{
+                    vm.likeUpDown="down";
+                }
 
 
             }, function(data){
                 console.log("error??");
-                vm.ratingAlbum= 0;
+              // vm.favouriteAlbum.liked = false;
 
             });
 
@@ -76,24 +106,44 @@
             save();
             function save () {
 
-                vm.ratingAlbum.album=vm.albumActual;
-                vm.ratingAlbum.rating=value;
 
                 vm.isSaving = true;
-                if (vm.ratingAlbum.id !== null) {
+                console.log("RA: "+vm.ratingAlbum);
+
+                console.log("AlbumActual:");
+                console.dir(vm.albumActual);
+
+
+                console.log("Rating Album:");
+                console.dir(vm.ratingAlbum);
+
+
+            //    console.log("RA_ID: "+vm.ratingAlbum.id);
+                if(vm.ratingAlbum.id){
+                    console.log("RA_ID: "+vm.ratingAlbum.id);
+              //  if (!vm.ratingAlbum.id || vm.ratingAlbum.id !== null ) {
+                    vm.ratingAlbum.album=vm.albumActual;
+                    vm.ratingAlbum.rating=value;
                     RatingAlbum.update(vm.ratingAlbum, onSaveSuccess, onSaveError);
                 } else {
+                    //vm.ratingAlbumm == undefined
+                    vm.ratingAlbum={album:null,user:null,rating:null,date:null,id:null}
+                    //console.log("RA_ID Undefined: "+vm.ratingAlbum.id);
+                    vm.ratingAlbum.album=vm.albumActual;
+                    vm.ratingAlbum.rating=value;
                     RatingAlbum.save(vm.ratingAlbum, onSaveSuccess, onSaveError);
                 }
             }
 
             function onSaveSuccess (result) {
+                console.log("SUCCESSS");
                 $scope.$emit('dubionApp:ratingAlbumUpdate', result);
                 $uibModalInstance.close(result);
                 vm.isSaving = false;
             }
 
             function onSaveError () {
+                console.log("EERROR");
                 vm.isSaving = false;
             }
         });

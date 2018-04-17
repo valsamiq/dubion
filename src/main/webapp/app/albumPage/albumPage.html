@@ -20,7 +20,7 @@
     <label for="input-1" class="control-label">Rate This</label>
     <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
 
-    <i onclick="likeDislike(this)" class="fa fa-thumbs-up"></i>
+    <i ng-click="vm.likeDislike()" class="fa fa-thumbs-{{vm.likeUpDown}}"></i>
 </div>
 
     </div>
@@ -33,92 +33,8 @@
 
                 </audio>
             </div>
-
-
-
-
         </div>
     </div>
-<style>
-    .fa {
-        font-size: 20px;
-        cursor: pointer;
-        user-select: none;
-    }
-
-    .fa:hover {
-        color: darkblue;
-    }
-
-    #audio{
-        background-color: black;
-        width: 60%;
-        height: auto;
-    }
-    .center{
-        text-align: center;
-    }
-    div.scrollmenu {
-        position: relative;
-        background-color: #b6b6b6;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    div.scrollmenu a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px;
-        text-decoration: none;
-    }
-
-    div.scrollmenu a:hover .new{
-        background-color: rgba(140,130,130,0.5);
-        color:white;
-    }
-    .info{
-        background-color: #0A0A0A;
-    }
-    .new {
-        background-color: transparent;
-        width:200px;
-        height: 60px;
-        color:transparent;
-        z-index: 3;
-        bottom: 14px;
-        left: 14px;
-        position: absolute;
-
-    }
-    .new2{
-        background-color: rgba(140,130,130,0.5);
-        width:200px;
-        height: 50px;
-        color:white;
-        z-index: 3;
-        bottom: 14px;
-        left: 14px;
-        position: absolute;
-    }
-    .pictr{
-        position:absolute;
-        left: 2%;
-        top: 50%;
-        width: 30px !important;
-        height: 30px !important;
-        z-index: 5;
-    }
-    .pictl{
-        position:absolute;
-        right: 2%;
-        bottom: 40%;
-        width: 30px !important;
-        height: 30px !important;
-        z-index: 5;
-    }
-
-</style>
 
 </div>
 <div class="row">
@@ -138,14 +54,11 @@
         </slick>
         <br/>
             <script>
-                function likeDislike(x) {
+                /*function likeDislike(x) {
                     x.classList.toggle("fa-thumbs-down");
+
                 }
-
-
-
-
-         /*       var __slice = [].slice;
+                var __slice = [].slice;
 
                 (function($, window) {
                     var Starrr;
