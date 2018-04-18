@@ -72,7 +72,21 @@ public class FavouriteAlbumResource {
         favouriteAlbum.setDate(LocalDate.now());
         favouriteAlbum.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
 
-        FavouriteAlbum result = favouriteAlbumService.save(favouriteAlbum);
+        Optional<FavouriteAlbum> favouriteAlbumOptional = favouriteAlbumRepository.findByAlbumAndUserLogin(favouriteAlbum.getAlbum(), SecurityUtils.getCurrentUserLogin());
+
+        FavouriteAlbum result;
+
+        if (favouriteAlbumOptional.isPresent()) {
+            FavouriteAlbum favouriteAlbumActual = favouriteAlbumOptional.get();
+            favouriteAlbumActual.setLiked(favouriteAlbum.getLiked());
+            favouriteAlbum.setDate(LocalDate.now());
+            result = favouriteAlbumService.save(favouriteAlbumActual);
+        }else{
+            favouriteAlbum.setDate(LocalDate.now());
+            favouriteAlbum.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+            result = favouriteAlbumService.save(favouriteAlbum);
+        }
+
         return ResponseEntity.created(new URI("/api/favourite-albums/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

@@ -51,6 +51,10 @@ public class FavouriteAlbum implements Serializable {
         this.liked = liked;
         return this;
     }
+    public boolean getLiked() {
+        return liked;
+    }
+
 
     public void setLiked(Boolean liked) {
         this.liked = liked;

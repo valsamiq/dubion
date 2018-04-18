@@ -19,5 +19,6 @@ public interface FavouriteAlbumRepository extends JpaRepository<FavouriteAlbum, 
     List<FavouriteAlbum> findByUserIsCurrentUser();
 
     Optional<FavouriteAlbum> findByAlbumAndUserLogin(Album album, String login);
+    Optional<FavouriteAlbum> findByAlbumIdAndUserLogin(Long albumId, String login);
 
 }

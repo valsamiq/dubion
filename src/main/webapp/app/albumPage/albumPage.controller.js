@@ -57,9 +57,10 @@
 
                 if(vm.favouriteAlbum.id){
                     console.log("RA_ID: "+vm.favouriteAlbum.id);
-
+                    vm.favouriteAlbum.album=vm.albumActual;
                     FavouriteAlbum.update(vm.favouriteAlbum, onSaveSuccess, onSaveError);
                 } else {
+                    vm.favouriteAlbum.album=vm.albumActual;
                     FavouriteAlbum.save(vm.favouriteAlbum, onSaveSuccess, onSaveError);
                 }
             }
@@ -81,8 +82,8 @@
 
 
         function getFavoriteAlbum(id) {
-           // FavouriteAlbum.favoriteByAlbum({id : id}, function (data){
-            FavouriteAlbum.get({id : id},   function (data) {
+           FavouriteAlbum.favoriteByAlbum({id : id}, function (data){
+            // FavouriteAlbum.get({id : id},   function (data) {
                 console.log("hola");
                 console.dir(data);
                 vm.favouriteAlbum = data;
