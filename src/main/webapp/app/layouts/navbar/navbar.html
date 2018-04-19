@@ -1,5 +1,4 @@
-<div role="navigation" class="lefto" ng-switch="vm.isAuthenticated()" id="mySidenav" class="sidenav">
-
+<div role="navigation" class="lefto" ng-switch="vm.isAuthenticated()" ng-mouseleave="dropOne = false;dropTwo = false;dropThree = false">
     <div class="item" ui-sref="home">
         <span><img class="glyphlogo" src="app/layouts/navbar/dubion-glyphicon.png" alt=""/></span>
         Dubion
@@ -8,7 +7,6 @@
         <span class="glyphicon glyphicon-home"></span>
         <a ui-sref="home">Home</a>
     </div>
-
     <div ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
         <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu" ng-click="dropOne = !dropOne">
             <span class="glyphicon glyphicon-user"></span>
@@ -17,7 +15,6 @@
             </span>
             <b class="caret"></b>
         </a>
-
         <div ng-show="dropOne" class="secundaryNav">
             <div ui-sref-active="active" ng-switch-when="true" class="sectionNavbarHover">
                 <a ui-sref="settings" ng-click="vm.collapseNavbar()">
@@ -51,9 +48,7 @@
             </div>
         </div>
     </div>
-    <div ng-class="{active: vm.$state.includes('admin')}" ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown
-         class="dropdown pointer">
-
+    <div ng-class="{active: vm.$state.includes('admin')}"  uib-dropdown class="dropdown pointer" has-authority="ROLE_ADMIN">
         <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu" ng-click="dropTwo = !dropTwo">
                         <span>
                             <span class="glyphicon glyphicon-tower"></span>

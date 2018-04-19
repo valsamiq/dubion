@@ -41,7 +41,9 @@
 }
 .mainSearch{
     margin-top: 420px;
-    height: 20px;
+    height: 40px;
+    z-index: 1;
+    position: relative;
 }
 .degrdaded {
     height: 10px;
@@ -320,4 +322,20 @@ div.scrollmenu a:hover .new{
     width: 30px !important;
     height: 30px !important;
     z-index: 5;
+}
+
+
+/*======================================*/
+.paddingZero{
+    padding: 0px;
+    padding-left: 2px;
+
+}
+
+.widthMax{
+    width: 100%;
+}
+
+.widthThird{
+    width: 32%;
 }
