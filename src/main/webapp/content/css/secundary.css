@@ -323,3 +323,19 @@ div.scrollmenu a:hover .new{
     height: 30px !important;
     z-index: 5;
 }
+
+
+/*======================================*/
+.paddingZero{
+    padding: 0px;
+    padding-left: 2px;
+
+}
+
+.widthMax{
+    width: 100%;
+}
+
+.widthThird{
+    width: 32%;
+}
