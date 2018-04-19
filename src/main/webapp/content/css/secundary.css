@@ -41,7 +41,9 @@
 }
 .mainSearch{
     margin-top: 420px;
-    height: 20px;
+    height: 40px;
+    z-index: 1;
+    position: relative;
 }
 .degrdaded {
     height: 10px;
