@@ -13,7 +13,7 @@
         vm.songByName = songByName;
         vm.albumActual;
 
-        vm.likeUpDown="up";
+        vm.likeUpDown="r";
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -43,12 +43,12 @@
 
         });
         vm.likeDislike=function(){
-            if(vm.likeUpDown=="up"){
+            if(vm.likeUpDown=="s"){
                 vm.favouriteAlbum.liked=false;
-                vm.likeUpDown="down";
+                vm.likeUpDown="r";
             }else{
                 vm.favouriteAlbum.liked=true;
-                vm.likeUpDown="up";
+                vm.likeUpDown="s";
             }
 
             save();
@@ -67,7 +67,6 @@
             function onSaveSuccess (result) {
                 console.log("SUCCESSS");
                 $scope.$emit('dubionApp:favouriteAlbumUpdate', result);
-                $uibModalInstance.close(result);
                 vm.isSaving = false;
             }
 
@@ -88,9 +87,9 @@
                 console.dir(data);
                 vm.favouriteAlbum = data;
                 if(vm.favouriteAlbum.liked){
-                    vm.likeUpDown="up";
+                    vm.likeUpDown="s";
                 }else{
-                    vm.likeUpDown="down";
+                    vm.likeUpDown="r";
                 }
 
 
@@ -139,7 +138,6 @@
             function onSaveSuccess (result) {
                 console.log("SUCCESSS");
                 $scope.$emit('dubionApp:ratingAlbumUpdate', result);
-                $uibModalInstance.close(result);
                 vm.isSaving = false;
             }
 

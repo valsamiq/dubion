@@ -1,9 +1,15 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Band;
 import com.dubion.domain.RatingBand;
 
 import com.dubion.repository.RatingBandRepository;
+import com.dubion.repository.UserRepository;
+import com.dubion.security.SecurityUtils;
+import com.dubion.service.BandService;
+import com.dubion.service.RatingBandQueryService;
+import com.dubion.service.RatingBandService;
 import com.dubion.service.dto.StatsBandRating;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +39,20 @@ public class RatingBandResource {
 
     private final RatingBandRepository ratingBandRepository;
 
-    public RatingBandResource(RatingBandRepository ratingBandRepository) {
+    private final RatingBandService ratingBandService;
+
+    private final BandService bandService;
+
+    private final RatingBandQueryService ratingBandQueryService;
+
+    private final UserRepository userRepository;
+
+    public RatingBandResource(RatingBandRepository ratingBandRepository, RatingBandService ratingBandService, BandService bandService, RatingBandQueryService ratingBandQueryService, UserRepository userRepository) {
         this.ratingBandRepository = ratingBandRepository;
+        this.ratingBandService = ratingBandService;
+        this.bandService = bandService;
+        this.ratingBandQueryService = ratingBandQueryService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -50,7 +69,22 @@ public class RatingBandResource {
         if (ratingBand.getId() != null) {
             throw new BadRequestAlertException("A new ratingBand cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        RatingBand result = ratingBandRepository.save(ratingBand);
+
+        Optional<RatingBand> ratingBandOptional = ratingBandRepository.findByBandAndUserLogin(ratingBand.getBand(), SecurityUtils.getCurrentUserLogin());
+
+        RatingBand result;
+
+        if (ratingBandOptional.isPresent()) {
+            RatingBand ratingBandActual = ratingBandOptional.get();
+            ratingBandActual.setRating(ratingBand.getRating());
+            ratingBandActual.setDate(ZonedDateTime.now());
+            result = ratingBandService.save(ratingBandActual);
+        }else{
+            ratingBand.setDate(ZonedDateTime.now());
+            ratingBand.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+            result = ratingBandService.save(ratingBand);
+        }
+
         return ResponseEntity.created(new URI("/api/rating-bands/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -103,6 +137,19 @@ public class RatingBandResource {
         RatingBand ratingBand = ratingBandRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(ratingBand));
     }
+
+
+    @GetMapping("/rating-bands/band/{id}")
+    @Timed
+    public ResponseEntity<RatingBand> getRatingByBand(@PathVariable Long id) {
+        log.debug("REST request to get RatingBand : {}", id);
+        Band band = bandService.findOne(id);
+
+        return ResponseUtil.wrapOrNotFound(
+            Optional.ofNullable(
+                ratingBandRepository.findByBandAndUserLogin(band,SecurityUtils.getCurrentUserLogin()).get()));
+    }
+
 
     /**
      * DELETE  /rating-bands/:id : delete the "id" ratingBand.
