@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class RatingAlbum implements Serializable {
     private ZonedDateTime date;
 
     @Column(name = "rating")
+    @Max(5)
     private Integer rating;
 
     @ManyToOne

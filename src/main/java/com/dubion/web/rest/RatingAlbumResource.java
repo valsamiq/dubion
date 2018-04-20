@@ -1,8 +1,11 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.dubion.domain.Band;
+import com.dubion.domain.Album;
 import com.dubion.domain.RatingAlbum;
+import com.dubion.repository.UserRepository;
+import com.dubion.security.SecurityUtils;
+import com.dubion.service.AlbumService;
 import com.dubion.service.RatingAlbumService;
 import com.dubion.repository.RatingAlbumRepository;
 import com.dubion.service.dto.StatsAlbumRating;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,12 +41,18 @@ public class RatingAlbumResource {
 
     private final RatingAlbumService ratingAlbumService;
 
+    private final AlbumService albumService;
+
     private final RatingAlbumQueryService ratingAlbumQueryService;
 
-    public RatingAlbumResource(RatingAlbumRepository ratingAlbumRepository, RatingAlbumService ratingAlbumService, RatingAlbumQueryService ratingAlbumQueryService) {
+    private final UserRepository userRepository;
+
+    public RatingAlbumResource(RatingAlbumRepository ratingAlbumRepository, RatingAlbumService ratingAlbumService, AlbumService albumService, RatingAlbumQueryService ratingAlbumQueryService, UserRepository userRepository) {
         this.ratingAlbumRepository = ratingAlbumRepository;
         this.ratingAlbumService = ratingAlbumService;
+        this.albumService = albumService;
         this.ratingAlbumQueryService = ratingAlbumQueryService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -59,7 +69,23 @@ public class RatingAlbumResource {
         if (ratingAlbum.getId() != null) {
             throw new BadRequestAlertException("A new ratingAlbum cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        RatingAlbum result = ratingAlbumService.save(ratingAlbum);
+
+        Optional<RatingAlbum> ratingAlbumOptional = ratingAlbumRepository.findByAlbumAndUserLogin(ratingAlbum.getAlbum(), SecurityUtils.getCurrentUserLogin());
+
+        RatingAlbum result;
+
+        if (ratingAlbumOptional.isPresent()) {
+            RatingAlbum ratingAlbumActual = ratingAlbumOptional.get();
+            ratingAlbumActual.setRating(ratingAlbum.getRating());
+            ratingAlbumActual.setDate(ZonedDateTime.now());
+            result = ratingAlbumService.save(ratingAlbumActual);
+        }else{
+            ratingAlbum.setDate(ZonedDateTime.now());
+            ratingAlbum.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+            result = ratingAlbumService.save(ratingAlbum);
+        }
+
+
         return ResponseEntity.created(new URI("/api/rating-album/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -112,6 +138,23 @@ public class RatingAlbumResource {
         log.debug("REST request to get RatingAlbum : {}", id);
         RatingAlbum ratingAlbum = ratingAlbumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(ratingAlbum));
+    }
+
+    /**
+     * GET  /rating-albums/:id : get the "id" ratingAlbum.
+     *
+     * @param id the id of the ratingAlbum to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the ratingAlbum, or with status 404 (Not Found)
+     */
+    @GetMapping("/rating-albums/album/{id}")
+    @Timed
+    public ResponseEntity<RatingAlbum> getRatingByAlbum(@PathVariable Long id) {
+        log.debug("REST request to get RatingAlbum : {}", id);
+        Album album = albumService.findOne(id);
+
+        return ResponseUtil.wrapOrNotFound(
+            Optional.ofNullable(
+                ratingAlbumRepository.findByAlbumAndUserLogin(album,SecurityUtils.getCurrentUserLogin()).get()));
     }
 
     /**

@@ -1,7 +1,11 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.Band;
 import com.dubion.domain.FavouriteBand;
+import com.dubion.repository.UserRepository;
+import com.dubion.security.SecurityUtils;
+import com.dubion.service.BandService;
 import com.dubion.service.FavouriteBandService;
 import com.dubion.repository.FavouriteBandRepository;
 import com.dubion.web.rest.errors.BadRequestAlertException;
@@ -11,12 +15,14 @@ import com.dubion.service.FavouriteBandQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,10 +43,16 @@ public class FavouriteBandResource {
 
     private final FavouriteBandQueryService favouriteBandQueryService;
 
-    public FavouriteBandResource(FavouriteBandRepository favouriteBandRepository, FavouriteBandService favouriteBandService, FavouriteBandQueryService favouriteBandQueryService) {
+    private final UserRepository userRepository;
+
+    private final BandService bandService;
+
+    public FavouriteBandResource(FavouriteBandRepository favouriteBandRepository, FavouriteBandService favouriteBandService, FavouriteBandQueryService favouriteBandQueryService, UserRepository userRepository, BandService bandService) {
         this.favouriteBandRepository = favouriteBandRepository;
         this.favouriteBandService = favouriteBandService;
         this.favouriteBandQueryService = favouriteBandQueryService;
+        this.userRepository = userRepository;
+        this.bandService = bandService;
     }
 
     /**
@@ -57,6 +69,10 @@ public class FavouriteBandResource {
         if (favouriteBand.getId() != null) {
             throw new BadRequestAlertException("A new favouriteBand cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        favouriteBand.setDate(LocalDate.now());
+        favouriteBand.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
+
+
         FavouriteBand result = favouriteBandService.save(favouriteBand);
         return ResponseEntity.created(new URI("/api/favourite-bands/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -111,6 +127,15 @@ public class FavouriteBandResource {
         log.debug("REST request to get FavouriteBand : {}", id);
         FavouriteBand favouriteBand = favouriteBandService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(favouriteBand));
+    }
+
+    @GetMapping("/favourite-bands/band/{id}")
+    @Timed
+    public ResponseEntity<FavouriteBand> getFavouriteByBand(@PathVariable Long id) {
+        log.debug("REST request to get FavouriteBand : {}", id);
+        Band band = bandService.findOne(id);
+
+        return new ResponseEntity<>(favouriteBandRepository.findByBandAndUserLogin(band, SecurityUtils.getCurrentUserLogin()), HttpStatus.OK);
     }
 
     /**

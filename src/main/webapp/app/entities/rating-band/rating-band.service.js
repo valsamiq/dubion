@@ -11,6 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'ratingByBand': {method: 'GET', url: 'api/rating-bands/band/:id'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

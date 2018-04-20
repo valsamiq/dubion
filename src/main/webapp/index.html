@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="content/css/main.css">
     <link rel="stylesheet" href="content/css/secundary.css">
     <!-- endbuild -->
-    <link rel="shortcut icon" href="favicon.ico"/>
     <link rel="manifest" href="manifest.webapp"/>
     <link rel="shortcut icon" href="content/images/logo/favicon.ico"/>
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -33,6 +32,8 @@
     <script src="../bower_components/slick-carousel/slick/slick.js"></script>
     <script src="../bower_components/angular-slick-carousel/dist/angular-slick.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
 
     <!--<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -40,6 +41,10 @@
     <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
     <link rel="stylesheet" href="app/layouts/parallax/style.css">
     <script src="app/layouts/parallax/index.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap-star-rating/themes/krajee-svg/theme.css">
+    <script src="bower_components/bootstrap-star-rating/themes/krajee-svg/theme.js"></script>
+    <script src="bower_components/bootstrap-star-rating/js/star-rating.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap-star-rating/css/star-rating.min.css">
 </head>
 <body ng-app="dubionApp" ng-strict-di>
 <!--[if lt IE 9]>
@@ -66,21 +71,20 @@
 <div class="container">
     <div class="mainSearch">
         <form class="form-horizontal">
-            <div class="col-sm-4"></div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Hate it</button>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Product name">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Love it</button>
-                        </span>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="col-md-8 col-sm-12 paddingZero">
+                    <input type="text" class="form-control" placeholder="Search by..." aria-describedby="btnGroupAddon">
+                </div>
+                <div class="col-md-4 col-sm-12 paddingZero">
+                    <div class="btn-group widthMax">
+                        <button type="button" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-music"></span></button>
+                        <button type="button" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-cd"></span></button>
+                        <button type="button" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-user"></span></button>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4"></div>
+            <div class="col-sm-3"></div>
         </form>
     </div>
     <div class="degrdaded"></div>

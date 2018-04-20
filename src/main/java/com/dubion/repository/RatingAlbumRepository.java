@@ -28,4 +28,6 @@ public interface RatingAlbumRepository extends JpaRepository<RatingAlbum, Long>,
 
     //@Query("select rateAlbum fom RateAlbum where rateAlbum.user.login = :userLogin and rate Album.album = :album")
     Optional<RatingAlbum> findByAlbumAndUserLogin(Album album, String login);
+
+
 }
