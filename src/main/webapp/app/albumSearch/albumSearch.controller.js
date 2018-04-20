@@ -27,7 +27,6 @@
 
         getAccount();
 
-
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
@@ -53,8 +52,6 @@
 
         function loadAll() {
             vm.albumsLoaded=false;
-
-
 
            Album.query(function(result) {
                 vm.salbums = result;
