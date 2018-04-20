@@ -156,6 +156,17 @@ public class AlbumResource {
     public ResponseEntity<List<Album>> importTopAlbums() throws IOException {
         List<Album> song = napsterDTOService.importTopAlbum();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }/**
+     * GET  /songs/:id : get the "id" song.
+     *
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/albumsNew")
+    @Timed
+    public ResponseEntity<List<Album>> importAlbumNew() throws IOException {
+        List<Album> song = napsterDTOService.importAlbumNew();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
     /**
      * DELETE  /albums/:id : delete the "id" album.

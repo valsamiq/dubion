@@ -31,25 +31,33 @@ public interface NapsterDTORepository {
 
     @GET("albums/top")
     Call<NapsterAlbum> getTopAlbums(@Query("limit") int limit
-            , @Query("catalog") String catalog
-            , @Query("apikey") String apiKey);
+        , @Query("catalog") String catalog
+        , @Query("apikey") String apiKey);
+
     @GET("artists/top")
     Call<NapsterArtist> getTopArtists(@Query("limit") int limit
         , @Query("catalog") String catalog
         , @Query("apikey") String apiKey);
+
     @GET("genres")
     Call<NapsterGenre> getGenres(@Query("catalog") String catalog
-            , @Query("apikey") String apiKey);
+        , @Query("apikey") String apiKey);
+
     @GET("genres/")
     Call<NapsterGenre> getGenresById(@Query("catalog") String catalog
         , @Query("apikey") String apiKey
         , @Query("id") String id);
+
     @GET("albums/")
     Call<NapsterAlbum> getAlbumById(@Query("catalog") String catalog
         , @Query("apikey") String apiKey
         , @Query("id") String id);
+
     @GET("albums/{albumId}/tracks")
     Call<Napster> getSongsByAlbum(@Path("albumId") String albumId
-        , @Query("apikey")String apiKey);
+        , @Query("apikey") String apiKey);
 
+    @GET("albums/new")
+    Call<NapsterAlbum> getAlbumNew (@Query("apikey") String apikey
+        , @Query("limit") Integer limit);
 }

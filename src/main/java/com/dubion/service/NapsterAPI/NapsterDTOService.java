@@ -169,6 +169,21 @@ public class NapsterDTOService {
         }
         return topAlbums;
     }
+    public List<Album> importAlbumNew () throws IOException {
+        NapsterAlbum newAlbum = null;
+        List<Album> ListNewAlbums = new ArrayList<>();
+        Call<NapsterAlbum> newAlbums = apiService.getAlbumNew( apiKey,10);
+        newAlbum = newAlbums.execute().body();
+        for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
+            newAlbum.getAlbums()) {
+            if (songRepository.findByName(eraserNA(t.getName())) == null) {
+
+
+                importAlbum(newAlbum, ListNewAlbums);
+            }
+        }
+        return ListNewAlbums;
+    }
     public List<Artist> importTopArtist (){
         NapsterArtist topArtistNapster = getTopArtistNap();
         List<Artist> topArtists = new ArrayList<>();
