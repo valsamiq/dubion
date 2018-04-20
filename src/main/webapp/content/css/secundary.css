@@ -246,7 +246,7 @@ span.glyphicon.glyphicon-refresh{
     transition: height 1s ;
 }
 
-.fa {
+.fa-heart {
     font-size: 20px !important;
     cursor: pointer;
     user-select: none;

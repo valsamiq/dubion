@@ -36,7 +36,7 @@
             vm.bandName = vm.bandActual.name;
             // songByName();
             vm.imatgeBand = '<img  src="data:image/jpg;base64, '+vm.bandActual.photo+'" />';
-            $scope.apply();
+            // $scope.apply();
 
         });
         vm.likeDislike=function(){
