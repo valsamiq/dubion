@@ -11,7 +11,10 @@ import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
+
+import java.util.List;
 
 public interface NapsterDTORepository {
 
@@ -45,4 +48,8 @@ public interface NapsterDTORepository {
     Call<NapsterAlbum> getAlbumById(@Query("catalog") String catalog
         , @Query("apikey") String apiKey
         , @Query("id") String id);
+    @GET("albums/{albumId}/tracks")
+    Call<Napster> getSongsByAlbum(@Path("albumId") String albumId
+        , @Query("apikey")String apiKey);
+
 }

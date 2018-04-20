@@ -13,7 +13,7 @@
         vm.songByName = songByName;
         vm.albumActual;
 
-        vm.likeUpDown="up";
+        vm.likeUpDown="r";
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -39,16 +39,16 @@
             vm.albumName = vm.albumActual.name;
             songByName();
             vm.imatgeAlbum = '<img  src="data:image/jpg;base64, '+vm.albumActual.photo+'" />';
-            $scope.apply();
+            // $scope.apply();
 
         });
         vm.likeDislike=function(){
-            if(vm.likeUpDown=="up"){
+            if(vm.likeUpDown=="s"){
                 vm.favouriteAlbum.liked=false;
-                vm.likeUpDown="down";
+                vm.likeUpDown="r";
             }else{
                 vm.favouriteAlbum.liked=true;
-                vm.likeUpDown="up";
+                vm.likeUpDown="s";
             }
 
             save();
@@ -56,7 +56,7 @@
                 vm.isSaving = true;
 
                 if(vm.favouriteAlbum.id){
-                    console.log("RA_ID: "+vm.favouriteAlbum.id);
+                    // console.log("RA_ID: "+vm.favouriteAlbum.id);
                     vm.favouriteAlbum.album=vm.albumActual;
                     FavouriteAlbum.update(vm.favouriteAlbum, onSaveSuccess, onSaveError);
                 } else {
@@ -65,14 +65,13 @@
                 }
             }
             function onSaveSuccess (result) {
-                console.log("SUCCESSS");
+                // console.log("SUCCESSS");
                 $scope.$emit('dubionApp:favouriteAlbumUpdate', result);
-                $uibModalInstance.close(result);
                 vm.isSaving = false;
             }
 
             function onSaveError () {
-                console.log("EERROR");
+                // console.log("EERROR");
                 vm.isSaving = false;
             }
 
@@ -84,18 +83,18 @@
         function getFavoriteAlbum(id) {
            FavouriteAlbum.favoriteByAlbum({id : id}, function (data){
             // FavouriteAlbum.get({id : id},   function (data) {
-                console.log("hola");
-                console.dir(data);
+            //     console.log("hola");
+            //     console.dir(data);
                 vm.favouriteAlbum = data;
                 if(vm.favouriteAlbum.liked){
-                    vm.likeUpDown="up";
+                    vm.likeUpDown="s";
                 }else{
-                    vm.likeUpDown="down";
+                    vm.likeUpDown="r";
                 }
 
 
             }, function(data){
-                console.log("error??");
+                // console.log("error??");
               // vm.favouriteAlbum.liked = false;
 
             });
@@ -109,19 +108,19 @@
 
 
                 vm.isSaving = true;
-                console.log("RA: "+vm.ratingAlbum);
-
-                console.log("AlbumActual:");
-                console.dir(vm.albumActual);
-
-
-                console.log("Rating Album:");
-                console.dir(vm.ratingAlbum);
+                // console.log("RA: "+vm.ratingAlbum);
+                //
+                // console.log("AlbumActual:");
+                // console.dir(vm.albumActual);
+                //
+                //
+                // console.log("Rating Album:");
+                // console.dir(vm.ratingAlbum);
 
 
             //    console.log("RA_ID: "+vm.ratingAlbum.id);
                 if(vm.ratingAlbum.id){
-                    console.log("RA_ID: "+vm.ratingAlbum.id);
+                    // console.log("RA_ID: "+vm.ratingAlbum.id);
               //  if (!vm.ratingAlbum.id || vm.ratingAlbum.id !== null ) {
                     vm.ratingAlbum.album=vm.albumActual;
                     vm.ratingAlbum.rating=value;
@@ -137,14 +136,13 @@
             }
 
             function onSaveSuccess (result) {
-                console.log("SUCCESSS");
+                // console.log("SUCCESSS");
                 $scope.$emit('dubionApp:ratingAlbumUpdate', result);
-                $uibModalInstance.close(result);
                 vm.isSaving = false;
             }
 
             function onSaveError () {
-                console.log("EERROR");
+                // console.log("EERROR");
                 vm.isSaving = false;
             }
         });
@@ -162,7 +160,7 @@
 
             }, function(data){
 
-                console.log("error??");
+                // console.log("error??");
                 vm.ratingAlbum= 0;
                 $("#input-1").rating({min:1, max:10, step:2, size:'xs'});
 

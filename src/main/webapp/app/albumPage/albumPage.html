@@ -21,7 +21,8 @@
     <label for="input-1" class="control-label">Rate This</label>
     <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
 
-    <i ng-click="vm.likeDislike()" class="fa fa-thumbs-{{vm.likeUpDown}}"></i>
+    <!--<i ng-click="vm.likeDislike()" class="fa fa-thumbs-{{vm.likeUpDown}}"></i>-->
+    <i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>
 </div>
 
     </div>

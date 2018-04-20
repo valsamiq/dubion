@@ -5,6 +5,10 @@
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span data-translate="dubionApp.artist.name">Name</span></dt>
+        <label for="input-1" class="control-label">Rate This</label>
+        <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
+
+        <i ng-click="vm.likeDislike()" class="fa fa-thumbs-{{vm.likeUpDown}}"></i>
         <dd>
             <span>{{vm.artist.name}}</span>
         </dd>

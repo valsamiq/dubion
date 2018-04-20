@@ -1,6 +1,9 @@
 
 <div>
     <h2><span data-translate="dubionApp.band.detail.title">Band</span> {{vm.band.id}}</h2>
+    <label for="input-1" class="control-label">Rate This</label>
+    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
+    <i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
