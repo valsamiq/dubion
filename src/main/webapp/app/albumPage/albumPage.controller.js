@@ -21,6 +21,7 @@
         vm.favouriteAlbum={};
         //vm.favouriteAlbum.liked=true;
 
+        vm.albumId;
         vm.ratingAlbums = [];
         vm.ratingAlbum= {};
 
@@ -37,6 +38,7 @@
 */
 
             vm.albumName = vm.albumActual.name;
+            vm.albumId = vm.albumActual.id;
             songByName();
             vm.imatgeAlbum = '<img  src="data:image/jpg;base64, '+vm.albumActual.photo+'" />';
             // $scope.apply();
@@ -189,7 +191,7 @@
         vm.salbums=[];
 
         function songByName(){
-            Album.getsongsByName({name : vm.albumName}, function (data) {
+            Album.getSongsByName({id : vm.albumId}, function (data) {
                 vm.songs = data;
             });
         }

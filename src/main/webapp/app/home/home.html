@@ -95,10 +95,6 @@
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
 
-                <!--     {{img.name}} -->
-                <!--   <img src="{{ img }}"> -->
-                <!--    <img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="album image"/> -->
-
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
             </div>
@@ -157,10 +153,6 @@
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
 
-                <!--     {{img.name}} -->
-                <!--   <img src="{{ img }}"> -->
-                <!--    <img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="album image"/> -->
-
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
             </div>
@@ -169,10 +161,6 @@
         <div style="font-size: large;font-weight: bold">Groups you may like</div><br/>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
-
-                <!--     {{img.name}} -->
-                <!--   <img src="{{ img }}"> -->
-                <!--    <img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="album image"/> -->
 
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
