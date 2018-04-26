@@ -98,6 +98,7 @@ public class NapsterDTOService {
     public List<Song> importTopSongs () throws IOException {
         Napster topSongsNapster = getTopSongNap();
         List<Song> topSongs = new ArrayList<>();
+
         for (Track t:
              topSongsNapster.getTracks()) {
             if(songRepository.findByName(eraserNA(t.getName()))==null){
@@ -137,6 +138,7 @@ public class NapsterDTOService {
         List<Album> topAlbums = new ArrayList<>();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             topAlbumNapster.getAlbums()) {
+            importAlbumById(t.getId());
             if(albumRepository.findByName(t.getName())==null){
                 Album s = new Album();
 
@@ -232,10 +234,11 @@ public class NapsterDTOService {
         return  genres;
     }
     public List<Album> importAlbumById(String id) throws IOException {
-        NapsterAlbum callgenres = null; String name ="";
+        NapsterAlbum callgenres = null;
+        List<Album> albums = new ArrayList<>();
+        String name ="";
         Call<NapsterAlbum> genre = apiService.getAlbumById("ES", apiKey,id);
         callgenres = genre.execute().body();
-        List<Album> albums = new ArrayList<>();
         importAlbum(callgenres, albums);
         return  albums;
     }
