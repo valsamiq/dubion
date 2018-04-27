@@ -1,21 +1,13 @@
 package com.dubion.service.NapsterAPI;
 
-import com.dubion.domain.Album;
-import com.dubion.domain.Genre;
-import com.dubion.domain.Song;
-import com.dubion.domain.Artist;
-import com.dubion.repository.AlbumRepository;
-import com.dubion.repository.ArtistRepository;
-import com.dubion.repository.GenreRepository;
-import com.dubion.repository.SongRepository;
+import com.dubion.domain.*;
+import com.dubion.repository.*;
 import com.dubion.service.dto.NapsterAPI.*;
 import com.dubion.service.dto.NapsterAPI.Search.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 
 import java.io.IOException;
@@ -23,7 +15,6 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class NapsterDTOService {
@@ -43,6 +34,9 @@ public class NapsterDTOService {
 
     @Autowired
     private GenreRepository genreRepository;
+
+    @Autowired
+    private BandRepository bandRepository;
 
     public Napster getTopSongNap(){
         Napster topSongs = null;
@@ -285,7 +279,39 @@ public class NapsterDTOService {
                 }
 
 
+                NapsterArtist callartist = null;
+                System.out.println("id artista: "+t.getContributingArtists().getPrimaryArtist());
+                String id = t.getContributingArtists().getPrimaryArtist();
+                Call<NapsterArtist> artists = apiService.getArtistByAlbum(id,apiKey);
+                System.out.println("songs  "+artists);
+                callartist = artists.execute().body();
+                System.out.println("adivina    "+callartist);
+                Band guardar = new Band();
+                List<Band> topArtist = new ArrayList<>();
+                for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
+                    callartist.getArtists()) {
+                    if(songRepository.findByName(eraserNA(t.getName()))==null){
+
+                        Band artist = new Band();
+
+                        artist.setName(g.getName());
+                        String bio = null;
+                        for (int i=0; i<=g.getBlurbs().size();i++){
+                            bio+= g.getBlurbs().get(i);
+                        }
+                        artist.setBio(bio);
+                        artist=bandRepository.save(artist);
+                        topArtist.add(artist);
+                        guardar=artist;
+                        System.out.println("artist "+artist);
+
+                    }else{
+                        topArtist.add(bandRepository.findByName(t.getName()));
+                    }
+                }
+
                 a.setName(t.getName());
+                a.setBand(guardar);
                 a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
                 a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 a.setGenres(genreRepository.findByNames(name));
@@ -339,8 +365,5 @@ public class NapsterDTOService {
             e.printStackTrace();
         }
         return topAlbums;
-
-        //  log.debug("Request to delete Album : {}", id);
-        //  albumRepository.delete(id);
     }
 }
