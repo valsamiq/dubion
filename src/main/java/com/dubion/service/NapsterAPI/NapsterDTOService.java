@@ -278,7 +278,7 @@ public class NapsterDTOService {
                     a.setGenres(genreRepository.findByNames(name));
                 }
 
-
+/*
                 NapsterArtist callartist = null;
                 System.out.println("id artista: "+t.getContributingArtists().getPrimaryArtist());
                 String id = t.getContributingArtists().getPrimaryArtist();
@@ -308,10 +308,10 @@ public class NapsterDTOService {
                     }else{
                         topArtist.add(bandRepository.findByName(t.getName()));
                     }
-                }
+                }*/
 
                 a.setName(t.getName());
-                a.setBand(guardar);
+                //a.setBand(guardar);
                 a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
                 a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 a.setGenres(genreRepository.findByNames(name));
