@@ -1,44 +1,32 @@
 
 package com.dubion.service.dto.NapsterAPI.Search;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Search {
 
-    @SerializedName("query")
+    @SerializedName("meta")
     @Expose
-    private String query;
-    @SerializedName("data")
+    private Meta meta;
+    @SerializedName("search")
     @Expose
-    private Data data;
-    @SerializedName("order")
-    @Expose
-    private List<String> order = null;
+    private Search_ search;
 
-    public String getQuery() {
-        return query;
+    public Meta getMeta() {
+        return meta;
     }
 
-    public void setQuery(String query) {
-        this.query = query;
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
 
-    public Data getData() {
-        return data;
+    public Search_ getSearch() {
+        return search;
     }
 
-    public void setData(Data data) {
-        this.data = data;
-    }
-
-    public List<String> getOrder() {
-        return order;
-    }
-
-    public void setOrder(List<String> order) {
-        this.order = order;
+    public void setSearch(Search_ search) {
+        this.search = search;
     }
 
 }

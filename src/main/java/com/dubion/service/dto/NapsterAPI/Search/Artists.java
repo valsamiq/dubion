@@ -9,16 +9,16 @@ public class Artists {
 
     @SerializedName("ids")
     @Expose
-    private List<Object> ids = null;
+    private List<String> ids = null;
     @SerializedName("href")
     @Expose
     private String href;
 
-    public List<Object> getIds() {
+    public List<String> getIds() {
         return ids;
     }
 
-    public void setIds(List<Object> ids) {
+    public void setIds(List<String> ids) {
         this.ids = ids;
     }
 

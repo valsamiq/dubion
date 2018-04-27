@@ -9,9 +9,11 @@ import com.dubion.repository.ArtistRepository;
 import com.dubion.repository.GenreRepository;
 import com.dubion.repository.SongRepository;
 import com.dubion.service.dto.NapsterAPI.*;
+import com.dubion.service.dto.NapsterAPI.Search.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -321,5 +323,23 @@ public class NapsterDTOService {
         }
     }
 
+    public Search searchAlbums(String search){
+        Search topAlbums = null;
+        Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"album");
+        System.out.println("hola "+callTopAlbums);
+        try {
+            Response<Search> response=callTopAlbums.execute();
+            if(response.isSuccessful()){
+                topAlbums = response.body();
+                System.out.println(topAlbums);
+            }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return topAlbums;
+
+        //  log.debug("Request to delete Album : {}", id);
+        //  albumRepository.delete(id);
+    }
 }

@@ -2,15 +2,14 @@ package com.dubion.service.NapsterAPI;
 
 import com.dubion.service.dto.GoogleMaps.Geocoding.GoogleMapsGeocodingDTO;
 import com.dubion.service.dto.GoogleMaps.Geolocation.GoogleMapsGeolocationDTO;
-import com.dubion.service.dto.NapsterAPI.Napster;
-import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
-import com.dubion.service.dto.NapsterAPI.NapsterArtist;
-import com.dubion.service.dto.NapsterAPI.NapsterGenre;
+import com.dubion.service.dto.NapsterAPI.*;
+import com.dubion.service.dto.NapsterAPI.Search.Search;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -60,4 +59,12 @@ public interface NapsterDTORepository {
     @GET("albums/new")
     Call<NapsterAlbum> getAlbumNew (@Query("apikey") String apikey
         , @Query("limit") Integer limit);
+
+    @Headers({
+        "Accept-Encoding: identity"
+    })
+    @GET("search")
+    Call<Search> searchAlbum  (@Query("query") String query
+        , @Query("apikey") String apiKey
+        , @Query("type") String type);
 }

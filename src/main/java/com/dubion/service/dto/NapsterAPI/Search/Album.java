@@ -39,7 +39,7 @@ public class Album {
     private String copyright;
     @SerializedName("tags")
     @Expose
-    private List<Object> tags = null;
+    private List<String> tags = null;
     @SerializedName("discCount")
     @Expose
     private Integer discCount;
@@ -151,11 +151,11 @@ public class Album {
         this.copyright = copyright;
     }
 
-    public List<Object> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(List<Object> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 

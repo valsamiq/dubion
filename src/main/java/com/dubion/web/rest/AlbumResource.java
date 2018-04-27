@@ -2,15 +2,12 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Album;
-import com.dubion.domain.Song;
 import com.dubion.service.AlbumService;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.service.DiscogsAPI.DiscogsApiService;
 import com.dubion.service.NapsterAPI.NapsterDTOService;
-import com.dubion.service.TicketMasterAPI.TicketMasterDTOService;
-import com.dubion.service.dto.NapsterAPI.Napster;
 import com.dubion.service.dto.NapsterAPI.NapsterAlbum;
-import com.dubion.service.dto.TicketMasterAPI.TicketMasterAPI;
+import com.dubion.service.dto.NapsterAPI.Search.Search;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.AlbumCriteria;
@@ -156,6 +153,12 @@ public class AlbumResource {
     public ResponseEntity<List<Album>> importTopAlbums() throws IOException {
         List<Album> song = napsterDTOService.importTopAlbum();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }
+    @GetMapping("/albums/search/{albumName}")
+    public ResponseEntity<Search> getAlbumSearch(@PathVariable String albumName){
+        Search album = napsterDTOService.searchAlbums(albumName);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
+        //Intelliji seggests to make this static
     }/**
      * GET  /songs/:id : get the "id" song.
      *
