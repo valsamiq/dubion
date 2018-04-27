@@ -283,16 +283,28 @@ public class NapsterDTOService {
                     importGenreByName(genre);
                     a.setGenres(genreRepository.findByNames(name));
                 }
+
+
+                a.setName(t.getName());
+                a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
+                a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
+                a.setGenres(genreRepository.findByNames(name));
+
+                a=albumRepository.save(a);
+                System.out.println(a);
+                albums.add(a);
+
+
                 Napster callsongs = null;
                 System.out.println(t.getId());
                 Call<Napster> songs = apiService.getSongsByAlbum(t.getId(), apiKey);
                 System.out.println("songs  "+songs);
-                 callsongs = songs.execute().body();
+                callsongs = songs.execute().body();
                 System.out.println("adivina    "+callsongs);
 
                 List<Song> topSongs = new ArrayList<>();
                 for (Track g:
-                        callsongs.getTracks()) {
+                    callsongs.getTracks()) {
                     if(songRepository.findByName(eraserNA(t.getName()))==null){
 
                         Song s = new Song();
@@ -307,15 +319,6 @@ public class NapsterDTOService {
                         topSongs.add(songRepository.findByName(t.getName()));
                     }
                 }
-
-                a.setName(t.getName());
-                a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
-                a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
-                a.setGenres(genreRepository.findByNames(name));
-
-                a=albumRepository.save(a);
-                System.out.println(a);
-                albums.add(a);
             }else{
                 albums.add( albumRepository.findByName(t.getName()));
             }
@@ -326,12 +329,10 @@ public class NapsterDTOService {
     public Search searchAlbums(String search){
         Search topAlbums = null;
         Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"album");
-        System.out.println("hola "+callTopAlbums);
         try {
             Response<Search> response=callTopAlbums.execute();
             if(response.isSuccessful()){
                 topAlbums = response.body();
-                System.out.println(topAlbums);
             }
 
         } catch (IOException e) {
