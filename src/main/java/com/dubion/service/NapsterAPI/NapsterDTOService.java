@@ -1,19 +1,13 @@
 package com.dubion.service.NapsterAPI;
 
-import com.dubion.domain.Album;
-import com.dubion.domain.Genre;
-import com.dubion.domain.Song;
-import com.dubion.domain.Artist;
-import com.dubion.repository.AlbumRepository;
-import com.dubion.repository.ArtistRepository;
-import com.dubion.repository.GenreRepository;
-import com.dubion.repository.SongRepository;
+import com.dubion.domain.*;
+import com.dubion.repository.*;
 import com.dubion.service.dto.NapsterAPI.*;
+import com.dubion.service.dto.NapsterAPI.Search.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.Response;
 
 
 import java.io.IOException;
@@ -21,7 +15,6 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class NapsterDTOService {
@@ -41,6 +34,9 @@ public class NapsterDTOService {
 
     @Autowired
     private GenreRepository genreRepository;
+
+    @Autowired
+    private BandRepository bandRepository;
 
     public Napster getTopSongNap(){
         Napster topSongs = null;
@@ -98,6 +94,7 @@ public class NapsterDTOService {
     public List<Song> importTopSongs () throws IOException {
         Napster topSongsNapster = getTopSongNap();
         List<Song> topSongs = new ArrayList<>();
+
         for (Track t:
              topSongsNapster.getTracks()) {
             if(songRepository.findByName(eraserNA(t.getName()))==null){
@@ -137,6 +134,7 @@ public class NapsterDTOService {
         List<Album> topAlbums = new ArrayList<>();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             topAlbumNapster.getAlbums()) {
+            importAlbumById(t.getId());
             if(albumRepository.findByName(t.getName())==null){
                 Album s = new Album();
 
@@ -232,10 +230,11 @@ public class NapsterDTOService {
         return  genres;
     }
     public List<Album> importAlbumById(String id) throws IOException {
-        NapsterAlbum callgenres = null; String name ="";
+        NapsterAlbum callgenres = null;
+        List<Album> albums = new ArrayList<>();
+        String name ="";
         Call<NapsterAlbum> genre = apiService.getAlbumById("ES", apiKey,id);
         callgenres = genre.execute().body();
-        List<Album> albums = new ArrayList<>();
         importAlbum(callgenres, albums);
         return  albums;
     }
@@ -278,16 +277,60 @@ public class NapsterDTOService {
                     importGenreByName(genre);
                     a.setGenres(genreRepository.findByNames(name));
                 }
+
+/*
+                NapsterArtist callartist = null;
+                System.out.println("id artista: "+t.getContributingArtists().getPrimaryArtist());
+                String id = t.getContributingArtists().getPrimaryArtist();
+                Call<NapsterArtist> artists = apiService.getArtistByAlbum(id,apiKey);
+                System.out.println("songs  "+artists);
+                callartist = artists.execute().body();
+                System.out.println("adivina    "+callartist);
+                Band guardar = new Band();
+                List<Band> topArtist = new ArrayList<>();
+                for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
+                    callartist.getArtists()) {
+                    if(songRepository.findByName(eraserNA(t.getName()))==null){
+
+                        Band artist = new Band();
+
+                        artist.setName(g.getName());
+                        String bio = null;
+                        for (int i=0; i<=g.getBlurbs().size();i++){
+                            bio+= g.getBlurbs().get(i);
+                        }
+                        artist.setBio(bio);
+                        artist=bandRepository.save(artist);
+                        topArtist.add(artist);
+                        guardar=artist;
+                        System.out.println("artist "+artist);
+
+                    }else{
+                        topArtist.add(bandRepository.findByName(t.getName()));
+                    }
+                }*/
+
+                a.setName(t.getName());
+                //a.setBand(guardar);
+                a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
+                a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
+                a.setGenres(genreRepository.findByNames(name));
+
+                a=albumRepository.save(a);
+                System.out.println(a);
+                albums.add(a);
+
+
                 Napster callsongs = null;
                 System.out.println(t.getId());
                 Call<Napster> songs = apiService.getSongsByAlbum(t.getId(), apiKey);
                 System.out.println("songs  "+songs);
-                 callsongs = songs.execute().body();
+                callsongs = songs.execute().body();
                 System.out.println("adivina    "+callsongs);
 
                 List<Song> topSongs = new ArrayList<>();
                 for (Track g:
-                        callsongs.getTracks()) {
+                    callsongs.getTracks()) {
                     if(songRepository.findByName(eraserNA(t.getName()))==null){
 
                         Song s = new Song();
@@ -302,15 +345,6 @@ public class NapsterDTOService {
                         topSongs.add(songRepository.findByName(t.getName()));
                     }
                 }
-
-                a.setName(t.getName());
-                a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
-                a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
-                a.setGenres(genreRepository.findByNames(name));
-
-                a=albumRepository.save(a);
-                System.out.println(a);
-                albums.add(a);
             }else{
                 albums.add( albumRepository.findByName(t.getName()));
             }
@@ -318,5 +352,18 @@ public class NapsterDTOService {
         }
     }
 
+    public Search searchAlbums(String search){
+        Search topAlbums = null;
+        Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"album");
+        try {
+            Response<Search> response=callTopAlbums.execute();
+            if(response.isSuccessful()){
+                topAlbums = response.body();
+            }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return topAlbums;
+    }
 }

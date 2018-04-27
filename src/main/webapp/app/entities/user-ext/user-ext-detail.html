@@ -4,6 +4,10 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <dt><span>UserExt Id</span></dt>
+        <dd>
+            <span>{{vm.userExt.id}}</span>
+        </dd>
         <dt><span data-translate="dubionApp.userExt.photo">Photo</span></dt>
         <dd>
             <div ng-if="vm.userExt.photo">
@@ -25,14 +29,31 @@
         <dd>
             <span>{{vm.userExt.location}}</span>
         </dd>
-        <dt><span data-translate="dubionApp.userExt.user">User</span></dt>
+        <dt><span>User Id</span></dt>
+        <dd>
+            {{vm.userExt.user.id}}
+        </dd>
+        <dt><span>Username</span></dt>
         <dd>
             {{vm.userExt.user.login}}
         </dd>
-        <dt><span data-translate="dubionApp.userExt.sex">Sex</span></dt>
+        <dt><span>First Name</span></dt>
+        <dd>
+            {{vm.userExt.user.firstName}}
+        </dd>
+        <dt><span>Last Name</span></dt>
+        <dd>
+            {{vm.userExt.user.lastName}}
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            {{vm.userExt.user.email}}
+        </dd>
+        <dt><span >Sex</span></dt>
         <dd>
             <a ui-sref="sex-detail({id:vm.userExt.sex.id})">{{vm.userExt.sex.orientation}}</a>
         </dd>
+
     </dl>
 
     <button type="submit"

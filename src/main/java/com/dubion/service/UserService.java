@@ -117,7 +117,7 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true);/* por defecto viene en false pero para probar cosas lo dejare en true (kelvin)*/
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
@@ -128,6 +128,7 @@ public class UserService {
         // Create and save the UserExtra entity
         UserExt newUserExt = new UserExt();
         Sex newUserSex = new Sex();
+        //Si la base de datos esta vacia sin 1-hombre 2-mujer peta al hacer el save
         if(userDTO.getGender().equalsIgnoreCase("1")){
             newUserSex = new Sex(1,"hombre");
         }
@@ -139,6 +140,7 @@ public class UserService {
         newUserExt.setLocation(userDTO. getLocation());
         newUserExt.setLatitude(userDTO.getLatitude());
         newUserExt.setLongitude(userDTO.getLongitude());
+
 
         userExtRepository.save(newUserExt);
         log.debug("Created Information for UserExt: {}", newUserExt);
