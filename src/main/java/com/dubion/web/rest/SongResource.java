@@ -3,6 +3,8 @@ package com.dubion.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Album;
 import com.dubion.domain.Song;
+import com.dubion.repository.AlbumRepository;
+import com.dubion.repository.SongRepository;
 import com.dubion.service.NapsterAPI.NapsterDTOService;
 import com.dubion.service.SongService;
 import com.dubion.web.rest.errors.BadRequestAlertException;
@@ -41,10 +43,16 @@ public class SongResource {
 
     private final NapsterDTOService napsterDTOService;
 
-    public SongResource(SongService songService, SongQueryService songQueryService, NapsterDTOService napsterDTOService) {
+    private final AlbumRepository albumRepository;
+
+    private final SongRepository songRepository;
+
+    public SongResource(SongService songService, SongQueryService songQueryService, NapsterDTOService napsterDTOService, AlbumRepository albumRepository, SongRepository songRepository) {
         this.songService = songService;
         this.songQueryService = songQueryService;
         this.napsterDTOService = napsterDTOService;
+        this.albumRepository = albumRepository;
+        this.songRepository = songRepository;
     }
 
     /**
@@ -135,6 +143,15 @@ public class SongResource {
         log.debug("REST request to get Song : {}", id);
         Song song = songService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song.getAlbums()));
+    }
+
+    @GetMapping("/songs/{idAlbum}/albums-song")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<Song>> getSongAlbums2(@PathVariable Long idAlbum) {
+        log.debug("REST request to get Song : {}", idAlbum);
+
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(songRepository.findByAlbumsContaining(albumRepository.findOne(idAlbum))));
     }
 
     /**

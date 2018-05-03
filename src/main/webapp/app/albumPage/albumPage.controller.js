@@ -191,7 +191,7 @@
         vm.salbums=[];
 
         function songByName(){
-            Album.getSongsByName({id : vm.albumId}, function (data) {
+            Album.getSongsByName({idAlbum : vm.albumId}, function (data) {
                 vm.songs = data;
             });
         }

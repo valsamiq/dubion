@@ -22,6 +22,8 @@ public interface SongRepository extends JpaRepository<Song, Long>, JpaSpecificat
 
     @Query("select a from Song a where a.name=:name")
     Song findByName(@Param("name")String name);
-    
+
+    List<Song> findByAlbumsContaining(Album album);
+
 
 }
