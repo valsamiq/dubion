@@ -1,7 +1,6 @@
 package com.dubion.service.NapsterAPI;
 
 import com.dubion.service.dto.NapsterAPI.*;
-import com.dubion.service.dto.NapsterAPI.Albums.ContributingArtists;
 import com.dubion.service.dto.NapsterAPI.Search.Search;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
@@ -53,8 +52,7 @@ public interface NapsterDTORepository {
         , @Query("apikey") String apiKey);
 
     @GET("albums/new")
-    Call<NapsterAlbum> getAlbumNew (@Query("apikey") String apikey
-        , @Query("limit") Integer limit);
+    Call<NapsterAlbum> getAlbumNew (@Query("apikey") String apikey);
 
     @GET("artists/")
     Call<NapsterArtist> getArtistByAlbum(@Query("id") String id

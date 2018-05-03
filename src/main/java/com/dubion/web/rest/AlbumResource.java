@@ -158,7 +158,6 @@ public class AlbumResource {
     public ResponseEntity<Search> getAlbumSearch(@PathVariable String albumName){
         Search album = napsterDTOService.searchAlbums(albumName);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
-        //Intelliji seggests to make this static
     }/**
      * GET  /songs/:id : get the "id" song.
      *
@@ -188,6 +187,5 @@ public class AlbumResource {
     @GetMapping("/albums/by-name/{albumName}")
     public List<Album> getAlbumByName(@PathVariable String albumName){
         return albumRepository.findByNameContaining(albumName);
-        //Intelliji seggests to make this static
     }
 }

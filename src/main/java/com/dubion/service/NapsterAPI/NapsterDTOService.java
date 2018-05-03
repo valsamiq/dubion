@@ -170,7 +170,7 @@ public class NapsterDTOService {
     public List<Album> importAlbumNew () throws IOException {
         NapsterAlbum newAlbum = null;
         List<Album> ListNewAlbums = new ArrayList<>();
-        Call<NapsterAlbum> newAlbums = apiService.getAlbumNew( apiKey,10);
+        Call<NapsterAlbum> newAlbums = apiService.getAlbumNew( apiKey);
         newAlbum = newAlbums.execute().body();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             newAlbum.getAlbums()) {
@@ -205,6 +205,7 @@ public class NapsterDTOService {
         }
         return topArtists;
     }
+
 
     public List<Genre> importGenres (){
         NapsterGenre NapsterGenres = getGenres();
@@ -278,7 +279,7 @@ public class NapsterDTOService {
                     a.setGenres(genreRepository.findByNames(name));
                 }
 
-/*
+
                 NapsterArtist callartist = null;
                 System.out.println("id artista: "+t.getContributingArtists().getPrimaryArtist());
                 String id = t.getContributingArtists().getPrimaryArtist();
@@ -296,8 +297,9 @@ public class NapsterDTOService {
 
                         artist.setName(g.getName());
                         String bio = null;
-                        for (int i=0; i<=g.getBlurbs().size();i++){
+                        for (int i=1; i>=g.getBlurbs().size();i++){
                             bio+= g.getBlurbs().get(i);
+                            System.out.println(bio);
                         }
                         artist.setBio(bio);
                         artist=bandRepository.save(artist);
@@ -308,10 +310,10 @@ public class NapsterDTOService {
                     }else{
                         topArtist.add(bandRepository.findByName(t.getName()));
                     }
-                }*/
+                }
 
                 a.setName(t.getName());
-                //a.setBand(guardar);
+                a.setBand(guardar);
                 a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
                 a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 a.setGenres(genreRepository.findByNames(name));

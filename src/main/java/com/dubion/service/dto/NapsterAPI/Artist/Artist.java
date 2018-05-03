@@ -30,7 +30,7 @@ public class Artist {
     private List<String> blurbs = null;
     @SerializedName("bios")
     @Expose
-    private String bios = null;
+    private List<Bio> bios = null;
     @SerializedName("albumGroups")
     @Expose
     private AlbumGroups albumGroups;
@@ -94,11 +94,11 @@ public class Artist {
         this.blurbs = blurbs;
     }
 
-    public String getBios() {
+    public List<Bio> getBios() {
         return bios;
     }
 
-    public void setBios(String bios) {
+    public void setBios(List<Bio> bios) {
         this.bios = bios;
     }
 
