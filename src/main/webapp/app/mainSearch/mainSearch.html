@@ -2,13 +2,15 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <div class="col-md-8 col-sm-12 paddingZero">
-            <input type="text" class="form-control" placeholder="Search by..." aria-describedby="btnGroupAddon">
+            <input type="text" class="form-control" placeholder="Search..." ng-model="vm.name" aria-describedby="btnGroupAddon">
         </div>
         <div class="col-md-4 col-sm-12 paddingZero">
             <div class="btn-group widthMax">
-                <button type="button" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-music"></span></button>
-                <button type="button" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-cd"></span></button>
-                <button type="button" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-user"></span></button>
+
+
+                <button type="button" ng-click="vm.searchTrack()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-music"></span></button>
+                <button type="button" ng-click="vm.searchAlbum()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-cd"></span></button>
+                <button type="button" ng-click="vm.searchArtist()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-user"></span></button>
             </div>
         </div>
     </div>

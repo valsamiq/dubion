@@ -155,9 +155,15 @@ public class AlbumResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
     @GetMapping("/albums/search/{albumName}")
-    public ResponseEntity<Search> getAlbumSearch(@PathVariable String albumName){
+    public List<com.dubion.service.dto.NapsterAPI.Search.Album> getAlbumSearch(@PathVariable String albumName){
         Search album = napsterDTOService.searchAlbums(albumName);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
+        return album.getSearch().getData().getAlbums();
+        //Pabloskii's thing
+        /*public ResponseEntity<Search> getAlbumSearch(@PathVariable String albumName){
+            Search album = napsterDTOService.searchAlbums(albumName);
+            return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
+        }*/
+        //Intelliji seggests to make this static
     }/**
      * GET  /songs/:id : get the "id" song.
      *

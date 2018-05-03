@@ -18,7 +18,7 @@
                 },
                 'searchBar':{
                     templateUrl: 'app/mainSearch/mainSearch.html',
-                    controller: 'mainSearchControler',
+                    controller: 'mainSearchController',
                     controllerAs: 'vm'
                 }
 

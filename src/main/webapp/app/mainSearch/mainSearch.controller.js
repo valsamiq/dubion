@@ -5,26 +5,52 @@
         .module('dubionApp')
         .controller('mainSearchController', mainSearchController);
 
-    mainSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$stateParams'];
+    mainSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$stateParams','Album','MainSearch'];
 
-    function mainSearchController ($scope, Principal, LoginService, $state) {
-
+    function mainSearchController ($scope, Principal, LoginService, $state, $stateParams, Album, MainSearch) {
+    console.log("Contorlllerrr!!");
         var vm = this;
         vm.byName = byName;
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.name;
+        vm.albums=[];
         vm.register = register;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
+
         });
+
+        vm.searchTrack = function(){
+            console.log("track!");
+            /*MainSearch.query(function(result){
+                console.log(result)
+                vm.albums=result;
+            });*/
+
+        }
+
+        vm.searchAlbum=function(){
+            console.log("hola");
+
+            byName();
+
+        }
+
+        vm.searchArtist=function(){
+            console.log("arttt!");
+        }
+
+
+        vm.artists = [];
 
         // Album.get({id : $stateParams.id}, function(data) {
         //     vm.albumActual = data;
         // });
 
         getAccount();
+
 
         function getAccount() {
             Principal.identity().then(function(account) {
@@ -38,7 +64,6 @@
         function byName(){
             Album.queryByName({name : vm.name}, function (data) {
                 vm.albums = data;
-
             });
         }
     }

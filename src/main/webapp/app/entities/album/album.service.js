@@ -11,7 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
-            'queryByName': { method: 'GET', isArray: true, url: 'api/albums/by-name/:name'},
+            'queryByName': { method: 'GET', isArray: true, url: '/api/albums/search/:name'},
             'getSongsByName': { method: 'GET', isArray: true, url: 'api/songs/:idAlbum/albums-song'},
 
             'get': {

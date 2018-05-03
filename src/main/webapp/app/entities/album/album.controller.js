@@ -17,8 +17,6 @@
 
         loadAll();
 
-
-
         function loadAll() {
             Album.query(function(result) {
                 vm.albums = result;

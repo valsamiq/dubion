@@ -11,7 +11,6 @@
 
         var vm = this;
 
-        vm.artists = [];
 
         loadAll();
 
