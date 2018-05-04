@@ -1,10 +1,12 @@
 <div class="row">
     <div class="col-md-12 marginAlbum" style="background-color: #b6b6b6">
-        <div class="col-md-4" align="center" style="text-align: center">
+        <div class="col-md-4 imageAlbum" align="center" style="text-align: center">
             <img src="{{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
             <br/>
-            Add to your FavList
-            <i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>
+            <div class="favZoneAlbum">
+                Add to your FavList
+                <i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>
+            </div>
         </div>
         <div class="col-md-8" align="center" style="list-style: none">
             <div class="row">
@@ -17,7 +19,7 @@
                 <div class="col-md-12 trackListAlbum">
                     <ol type="1">
                         <div ng-repeat="song in vm.songs">
-                            <a ng-click="vm.setSong(song)"><li>{{song.name}} - <span class="glyphicon glyphicon-play-circle"></span></li></a>
+                            <a class="songLinkAlbum" ng-click="vm.setSong(song)"><li>{{song.name}}  <span class="glyphicon glyphicon-play-circle"></span></li></a>
                         </div>
                     </ol>
                 </div>
@@ -25,7 +27,7 @@
         </div>
     </div>
     <div class="col-xs-12 audioPlayer">
-        <audio id="audioplayer" preload="auto" controls style="width: 100%">
+        <audio id="audioplayer" preload="auto" controls autoplay style="width: 100%">
             <source src="" type="audio/mpeg">
         </audio>
     </div>
