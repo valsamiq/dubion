@@ -325,13 +325,6 @@ public class NapsterDTOService {
                         String bio;
                         bio ="";
 
-//                        bio =g.getBlurbs().toString();
-//                        System.out.println(bio);
-//                        artist.setBio(bio);
-
-
-
-
                         if(g.getBlurbs().size()!=0){
                             for (String bios: g.getBlurbs()){
                                 System.out.println(bios);
@@ -403,6 +396,9 @@ public class NapsterDTOService {
             if(response.isSuccessful()){
                 topAlbums = response.body();
             }
+            /*for (com.dubion.service.dto.NapsterAPI.Search.Album album: topAlbums.getSearch().getData().getAlbums()){
+                importAlbumById(album.getId());
+            }*/
 
         } catch (IOException e) {
             e.printStackTrace();
