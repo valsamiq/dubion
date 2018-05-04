@@ -309,45 +309,50 @@ public class NapsterDTOService {
                 NapsterArtist callartist = null;
                 System.out.println("id artista: "+t.getContributingArtists().getPrimaryArtist());
                 String id = t.getContributingArtists().getPrimaryArtist();
+                id.length();
                 Call<NapsterArtist> artists = apiService.getArtistByAlbum(id,apiKey);
                 System.out.println("songs  "+artists);
                 callartist = artists.execute().body();
                 System.out.println("adivina    "+callartist);
-                Band guardar = new Band();
-                List<Band> topArtist = new ArrayList<>();
-                for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
-                    callartist.getArtists()) {
-                    if(songRepository.findByName(eraserNA(t.getName()))==null){
+                if(callartist!=null){
+                    Band guardar = new Band();
+                    List<Band> topArtist = new ArrayList<>();
+                    for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
+                        callartist.getArtists()) {
+                        if(songRepository.findByName(eraserNA(t.getName()))==null){
 
-                        Band artist = new Band();
+                            Band artist = new Band();
 
-                        artist.setName(g.getName());
-                        String bio;
-                        bio ="";
+                            artist.setName(g.getName());
+                            String bio;
+                            bio ="";
 
-                        if(g.getBlurbs().size()!=0){
-                            for (String bios: g.getBlurbs()){
-                                System.out.println(bios);
-                                bio = bio+" "+bios;
-                                System.out.println(bio);
+                            if(g.getBlurbs().size()!=0){
+                                for (String bios: g.getBlurbs()){
+                                    System.out.println(bios);
+                                    bio = bio+" "+bios;
+                                    System.out.println(bio);
+                                }
+
+                                artist.setBio(eraserEvilBytes(bio));
+                            }else{
+                                artist.setBio(null);
                             }
+                            artist=bandRepository.save(artist);
+                            topArtist.add(artist);
+                            guardar=artist;
+                            System.out.println("artist "+artist);
 
-                            artist.setBio(eraserEvilBytes(bio));
                         }else{
-                            artist.setBio(null);
+                            topArtist.add(bandRepository.findByName(t.getName()));
                         }
-                        artist=bandRepository.save(artist);
-                        topArtist.add(artist);
-                        guardar=artist;
-                        System.out.println("artist "+artist);
-
-                    }else{
-                        topArtist.add(bandRepository.findByName(t.getName()));
                     }
+                    a.setBand(guardar);
                 }
 
+
                 a.setName(t.getName());
-                a.setBand(guardar);
+
                 a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
                 a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 a.setGenres(genreRepository.findByNames(name));
@@ -396,9 +401,10 @@ public class NapsterDTOService {
             if(response.isSuccessful()){
                 topAlbums = response.body();
             }
-            /*for (com.dubion.service.dto.NapsterAPI.Search.Album album: topAlbums.getSearch().getData().getAlbums()){
+            for (com.dubion.service.dto.NapsterAPI.Search.Album album: topAlbums.getSearch().getData().getAlbums()){
+                System.out.println(album.getId());
                 importAlbumById(album.getId());
-            }*/
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
