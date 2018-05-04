@@ -442,3 +442,17 @@ div.scrollmenu a:hover .new {
 .titleArtistAlbum{
     display: initial;
 }
+.songLinkAlbum{
+    color: #333333;
+}
+.favZoneAlbum{
+    width: 300px;
+    height: 30px;
+    background-color: #777777;
+    margin: auto;
+    padding-top: 4px;
+}
+.imageAlbum{
+    text-align: center;
+    display:  inline-table;
+}
