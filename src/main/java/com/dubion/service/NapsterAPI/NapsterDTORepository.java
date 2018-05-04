@@ -64,5 +64,6 @@ public interface NapsterDTORepository {
     @GET("search")
     Call<Search> searchAlbum  (@Query("query") String query
         , @Query("apikey") String apiKey
-        , @Query("type") String type);
+        , @Query("type") String type
+        , @Query("per_type_limit") Integer per_type_limit);
 }

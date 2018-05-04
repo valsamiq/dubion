@@ -11,10 +11,13 @@ import retrofit2.Response;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class NapsterDTOService {
@@ -125,6 +128,29 @@ public class NapsterDTOService {
         if(!dataI.equalsIgnoreCase("N/A")) {
             return dataI;
         }
+
+        return dataO;
+    }
+    public String eraserEvilBytes (String dataI) {
+        String dataO = null;
+
+        System.out.println("Eliminamos bytes malignos.");
+
+        try {
+            byte[] utf8Bytes = dataI.getBytes("UTF-8");
+            dataO = new String(utf8Bytes, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        Pattern unicodeOutliers = Pattern.compile("[^\\x00-\\x7F]",
+            Pattern.UNICODE_CASE | Pattern.CANON_EQ
+                | Pattern.CASE_INSENSITIVE);
+        Matcher unicodeOutlierMatcher = unicodeOutliers.matcher(dataO);
+
+        dataO = unicodeOutlierMatcher.replaceAll(" ");
+
+        System.out.println("Bytes malignos eliminados.");
 
         return dataO;
     }
@@ -296,12 +322,27 @@ public class NapsterDTOService {
                         Band artist = new Band();
 
                         artist.setName(g.getName());
-                        String bio = null;
-//                        for (int i=1; i>=g.getBlurbs().size();i++){
-//                            bio+= g.getBlurbs().get(i);
-//                            System.out.println(bio);
-//                        }
-                        artist.setBio(bio);
+                        String bio;
+                        bio ="";
+
+//                        bio =g.getBlurbs().toString();
+//                        System.out.println(bio);
+//                        artist.setBio(bio);
+
+
+
+
+                        if(g.getBlurbs().size()!=0){
+                            for (String bios: g.getBlurbs()){
+                                System.out.println(bios);
+                                bio = bio+" "+bios;
+                                System.out.println(bio);
+                            }
+
+                            artist.setBio(eraserEvilBytes(bio));
+                        }else{
+                            artist.setBio(null);
+                        }
                         artist=bandRepository.save(artist);
                         topArtist.add(artist);
                         guardar=artist;
@@ -356,7 +397,7 @@ public class NapsterDTOService {
 
     public Search searchAlbums(String search){
         Search topAlbums = null;
-        Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"album");
+        Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"album",10);
         try {
             Response<Search> response=callTopAlbums.execute();
             if(response.isSuccessful()){

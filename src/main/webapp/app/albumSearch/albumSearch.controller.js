@@ -11,7 +11,6 @@
 
         var vm = this;
         vm.byName = byName;
-    //vm.saludo="hola";,,
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;

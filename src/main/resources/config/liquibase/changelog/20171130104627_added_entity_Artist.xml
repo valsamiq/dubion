@@ -26,7 +26,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="bio" type="varchar(255)">
+            <column name="bio" type="longtext">
                 <constraints nullable="true" />
             </column>
 
@@ -36,7 +36,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
         <createTable tableName="artist_band">
             <column name="bands_id" type="bigint">
                 <constraints nullable="false"/>
@@ -47,7 +47,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="artists_id, bands_id" tableName="artist_band"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
