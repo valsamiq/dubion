@@ -297,10 +297,10 @@ public class NapsterDTOService {
 
                         artist.setName(g.getName());
                         String bio = null;
-                        for (int i=1; i>=g.getBlurbs().size();i++){
-                            bio+= g.getBlurbs().get(i);
-                            System.out.println(bio);
-                        }
+//                        for (int i=1; i>=g.getBlurbs().size();i++){
+//                            bio+= g.getBlurbs().get(i);
+//                            System.out.println(bio);
+//                        }
                         artist.setBio(bio);
                         artist=bandRepository.save(artist);
                         topArtist.add(artist);

@@ -1,67 +1,45 @@
 <div class="row">
-    <div class="col-xs-10" style="text-align: left; background-color: #b6b6b6; margin: 3%">
-        <div class="col-md-5 col-xs-12" align="center">
-            <!--Li Agrada? {{  vm.favouriteAlbum.liked }}-->
-            <!--<img src="data:image/jpg;base64, {{vm.albumActual.photo}}" alt="Album" style="width:300px"/>-->
-
+    <div class="col-md-12 marginAlbum" style="background-color: #b6b6b6">
+        <div class="col-md-4" align="center" style="text-align: center">
             <img src="{{vm.albumActual.photo}}" alt="Album" style="width:300px"/>
-        </div>
-
-        <div class="col-md-5 col-xs-12" align="center" style="list-style: none"><h2>{{vm.albumActual.artist.name}} -
-            {{vm.albumActual.name}}</h2>
-            <div ng-repeat="song in vm.songs">
-                    <li>- {{song.name}}</li>
-            </div>
             <br/>
-            <!--    <div class="row lead">
-                    <div id="stars" class="starrr"></div>
-                    You gave a rating of <span id="count">0</span> star(s)
-                </div>-->
-
-            <label for="input-1" class="control-label">Rate This</label>
-            <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1"
-                   data-show-clear="false" data-show-caption="false">
-
-            <!--<i ng-click="vm.likeDislike()" class="fa fa-thumbs-{{vm.likeUpDown}}"></i>-->
+            Add to your FavList
             <i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>
         </div>
-
-    </div>
-    <div class="col-xs-12">
-        <div style="background-color: #222222;display: flex; justify-content: flex-end;">
-
-            <div class="col-md-12 center">
-                <audio id="audio" preload="auto" controls>
-                    <source src="{{song.url}}" type="audio/mpeg">
-
-                </audio>
+        <div class="col-md-8" align="center" style="list-style: none">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="titleArtistAlbum">{{vm.albumActual.band.name}} - {{vm.albumActual.name}}</h2>
+                </div>
+                <div class="col-sm-4">
+                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
+                </div>
+                <div class="col-md-12 trackListAlbum">
+                    <ol type="1">
+                        <div ng-repeat="song in vm.songs">
+                            <a ng-click="vm.setSong(song)"><li>{{song.name}} - <span class="glyphicon glyphicon-play-circle"></span></li></a>
+                        </div>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
-
+    <div class="col-xs-12 audioPlayer">
+        <audio id="audioplayer" preload="auto" controls style="width: 100%">
+            <source src="" type="audio/mpeg">
+        </audio>
+    </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-
         <h2 class="left white">Disfruta de más música</h2>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
-
-                <!--     {{img.name}} -->
-                <!--   <img src="{{ img }}"> -->
-                <!--    <img data-ng-src="{{'data:' + img.photoContentType + ';base64,' + img.photo}}" style="max-height: 30px;" alt="album image"/> -->
-
-                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
-                                                                                 style="width:200px"/>
+                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/>
                     <div class="new">{{img.band.name}}</br>{{img.name}}</div>
                 </a>
-
             </div>
         </slick>
         <br/>
-
-
     </div>
-
-
 </div>

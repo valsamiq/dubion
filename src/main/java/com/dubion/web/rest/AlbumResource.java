@@ -114,7 +114,6 @@ public class AlbumResource {
 
         return ResponseEntity.ok().body(entityList);
     }
-
     /**
      * GET  /albums/:id : get the "id" album.
      *
@@ -128,8 +127,6 @@ public class AlbumResource {
         Album album = albumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
     }
-
-
     /**
      * GET  /songs/:id : get the "id" song.
      *
@@ -158,12 +155,6 @@ public class AlbumResource {
     public List<com.dubion.service.dto.NapsterAPI.Search.Album> getAlbumSearch(@PathVariable String albumName){
         Search album = napsterDTOService.searchAlbums(albumName);
         return album.getSearch().getData().getAlbums();
-        //Pabloskii's thing
-        /*public ResponseEntity<Search> getAlbumSearch(@PathVariable String albumName){
-            Search album = napsterDTOService.searchAlbums(albumName);
-            return ResponseUtil.wrapOrNotFound(Optional.ofNullable(album));
-        }*/
-        //Intelliji seggests to make this static
     }/**
      * GET  /songs/:id : get the "id" song.
      *
