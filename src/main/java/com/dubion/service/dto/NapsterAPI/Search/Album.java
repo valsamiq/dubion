@@ -55,7 +55,7 @@ public class Album {
     @SerializedName("accountPartner")
     @Expose
     private String accountPartner;
-    @SerializedName("artistName")
+    @SerializedName("artistNa  me")
     @Expose
     private String artistName;
     @SerializedName("contributingArtists")

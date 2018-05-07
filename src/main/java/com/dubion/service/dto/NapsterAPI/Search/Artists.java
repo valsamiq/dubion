@@ -2,6 +2,8 @@
 package com.dubion.service.dto.NapsterAPI.Search;
 
 import java.util.List;
+
+import com.dubion.service.dto.NapsterAPI.Artist.AlbumGroups;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -13,6 +15,9 @@ public class Artists {
     @SerializedName("href")
     @Expose
     private String href;
+    @SerializedName("albumGroups")
+    @Expose
+    private AlbumGroups albumGroups;
 
     public List<String> getIds() {
         return ids;
@@ -28,6 +33,14 @@ public class Artists {
 
     public void setHref(String href) {
         this.href = href;
+    }
+
+    public AlbumGroups getAlbumGroups() {
+        return albumGroups;
+    }
+
+    public void setAlbumGroups(AlbumGroups albumGroups) {
+        this.albumGroups = albumGroups;
     }
 
 }

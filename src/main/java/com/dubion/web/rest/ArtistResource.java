@@ -7,6 +7,7 @@ import com.dubion.service.ArtistService;
 import com.dubion.repository.ArtistRepository;
 import com.dubion.service.NapsterAPI.NapsterDTOService;
 import com.dubion.service.dto.NapsterAPI.NapsterArtist;
+import com.dubion.service.dto.NapsterAPI.Search.Search;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.ArtistCriteria;
@@ -138,6 +139,11 @@ public class ArtistResource {
         List<Artist> song = napsterDTOService.importTopArtist();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
+//    @GetMapping("/artist/search/{artistName}")
+//    public List<com.dubion.service.dto.NapsterAPI.Search.Artists> getAlbumSearch(@PathVariable String artistName){
+//        Search band = napsterDTOService.searchBands(artistName);
+//        return band.getSearch().getData().getArtists();
+//    }
     /**
      * DELETE  /artists/:id : delete the "id" artist.
      *

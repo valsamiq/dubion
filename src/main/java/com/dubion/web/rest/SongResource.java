@@ -7,6 +7,7 @@ import com.dubion.repository.AlbumRepository;
 import com.dubion.repository.SongRepository;
 import com.dubion.service.NapsterAPI.NapsterDTOService;
 import com.dubion.service.SongService;
+import com.dubion.service.dto.NapsterAPI.Search.Search;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.SongCriteria;
@@ -121,6 +122,11 @@ public class SongResource {
     public ResponseEntity<List<Song>> importTopSongs() throws IOException {
         List<Song> song = napsterDTOService.importTopSongs();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
+    }
+    @GetMapping("/songs/search/{songName}")
+    public List<com.dubion.service.dto.NapsterAPI.Search.Tracks> getAlbumSearch(@PathVariable String songName){
+        Search album = napsterDTOService.searchSongs(songName);
+        return album.getSearch().getData().getTracks();
     }
     /**
      * GET  /songs/:id : get the "id" song.
