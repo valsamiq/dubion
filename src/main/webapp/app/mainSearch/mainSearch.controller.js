@@ -33,9 +33,8 @@
 
         vm.searchAlbum=function(){
             console.log("hola");
-
             byName();
-
+            $('#SearchModalAlbum').modal({})
         }
 
         vm.searchArtist=function(){
@@ -66,5 +65,6 @@
                 vm.albums = data;
             });
         }
+
     }
 })();

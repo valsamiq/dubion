@@ -39,7 +39,6 @@
         function byName(){
             Album.queryByName({name : vm.name}, function (data) {
                 vm.albums = data;
-
             });
         }
 
