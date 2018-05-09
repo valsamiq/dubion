@@ -436,11 +436,13 @@ public class NapsterDTOService {
 //            Response<Search> response=callTopAlbums.execute();
 //            if(response.isSuccessful()){
 //                topAlbums = response.body();
+//                System.out.println("topAlbums"+topAlbums);
 //            }
-////            for (com.dubion.service.dto.NapsterAPI.Search.Artists artists: topAlbums.getSearch().getData().getArtists()){
-////                System.out.println(artists.getIds());
-////                importAlbumById(artists.getAlbumId());
-////            }
+//            for (com.dubion.service.dto.NapsterAPI.Search.Artists artists: topAlbums.getSearch().getData().getArtists()){
+//                System.out.println(artists.getAlbumGroups());
+//                String a = String.valueOf(artists.getAlbumGroups());
+//                System.out.println(a);
+//            }
 //
 //        } catch (IOException e) {
 //            e.printStackTrace();
