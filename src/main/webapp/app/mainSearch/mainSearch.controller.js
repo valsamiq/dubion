@@ -40,16 +40,17 @@
         vm.searchArtist=function(){
             console.log("arttt!");
         }
-
-
         vm.artists = [];
+        vm.goToAlbum= function(name) {
+            vm.albums = [];
+            console.log(name);
 
+            //window.location.href='#/albumPage/'+id;
+        }
         // Album.get({id : $stateParams.id}, function(data) {
         //     vm.albumActual = data;
         // });
-
         getAccount();
-
 
         function getAccount() {
             Principal.identity().then(function(account) {
@@ -65,6 +66,5 @@
                 vm.albums = data;
             });
         }
-
     }
 })();

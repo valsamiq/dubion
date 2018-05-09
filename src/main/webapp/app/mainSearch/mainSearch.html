@@ -21,7 +21,7 @@
             <tbody>
             <tr ng-if="vm.albums.length === 0"></tr>
             <tr ng-if="vm.albums.length > 0" ng-repeat="album in vm.albums track by album.id">
-                <td><a href="#/albumPage/{{album.id}}">{{album.name}}</a></td>
+                <td><a ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>
             </tr>
             </tbody>
         </table>

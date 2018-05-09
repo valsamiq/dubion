@@ -419,8 +419,9 @@ div.scrollmenu a:hover .new {
     position: absolute;
     z-index: 3;
     width: 100%;
-    margin-top: 35px;
+    margin-top: 33px;
 }
 .table-custom{
     background-color: #3c3c3c;
+    border-radius: 0 0 10px 10px;
 }
