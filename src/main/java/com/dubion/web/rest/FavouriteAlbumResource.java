@@ -10,6 +10,7 @@ import com.dubion.service.AlbumService;
 import com.dubion.service.FavouriteAlbumQueryService;
 import com.dubion.service.FavouriteAlbumService;
 import com.dubion.service.dto.FavouriteAlbumCriteria;
+import com.dubion.service.dto.NapsterAPI.Artist.Albums;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -126,6 +127,15 @@ public class FavouriteAlbumResource {
         List<FavouriteAlbum> entityList = favouriteAlbumQueryService.findByCriteria(criteria);
         return ResponseEntity.ok().body(entityList);
         }
+
+
+    @GetMapping("/favourite-albums-like")
+    @Timed
+    public ResponseEntity<List<Album>> findByFavoriteAlbum() {
+        log.debug("REST request to get all FavouriteAlbums by criteria: {}");
+        List<Album> entityList = favouriteAlbumRepository.findByFavoriteAlbum(SecurityUtils.getCurrentUserLogin());
+        return ResponseEntity.ok().body(entityList);
+    }
 
     /**
      * GET  /favourite-albums/:id : get the "id" favouriteAlbum.
