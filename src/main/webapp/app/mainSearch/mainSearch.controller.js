@@ -16,6 +16,7 @@
         vm.login = LoginService.open;
         vm.name;
         vm.albums=[];
+        vm.loading=false;
         vm.register = register;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
@@ -32,6 +33,7 @@
         }
 
         vm.searchAlbum=function(){
+            vm.loading=true;
             console.log("hola");
             byName();
             $('#SearchModalAlbum').modal({})
@@ -64,7 +66,9 @@
         function byName(){
             Album.queryByName({name : vm.name}, function (data) {
                 vm.albums = data;
+                vm.loading=false;
             });
+
         }
     }
 })();

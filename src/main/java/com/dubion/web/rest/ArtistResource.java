@@ -139,10 +139,10 @@ public class ArtistResource {
         List<Artist> song = napsterDTOService.importTopArtist();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
-//    @GetMapping("/artist/search/{artistName}")
-//    public List<com.dubion.service.dto.NapsterAPI.Search.Artists> getAlbumSearch(@PathVariable String artistName){
-//        Search band = napsterDTOService.searchBands(artistName);
-//        return band.getSearch().getData().getArtists();
+//    @GetMapping("/artists/search/{artistsName}")
+//    public List<com.dubion.service.dto.NapsterAPI.Search.Artists> getAlbumSearch(@PathVariable String artistsName){
+//        Search album = napsterDTOService.searchBands(artistsName);
+//        return album.getSearch().getData().getArtists();
 //    }
     /**
      * DELETE  /artists/:id : delete the "id" artist.

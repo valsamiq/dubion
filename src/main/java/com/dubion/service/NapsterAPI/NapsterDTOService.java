@@ -430,23 +430,22 @@ public class NapsterDTOService {
         return topAlbums;
     }
 //    public Search searchBands(String search){
-//        Search topAlbums = null;
-//        Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"artist",10);
+//        Search Artist = null;
+//        Call<Search> callArtist = apiService.searchAlbum(search,apiKey,"artist",10);
 //        try {
-//            Response<Search> response=callTopAlbums.execute();
+//            Response<Search> response=callArtist.execute();
 //            if(response.isSuccessful()){
-//                topAlbums = response.body();
-//                System.out.println("topAlbums"+topAlbums);
+//                Artist = response.body();
+//                System.out.println("topAlbums"+Artist);
 //            }
-//            for (com.dubion.service.dto.NapsterAPI.Search.Artists artists: topAlbums.getSearch().getData().getArtists()){
-//                System.out.println(artists.getAlbumGroups());
-//                String a = String.valueOf(artists.getAlbumGroups());
-//                System.out.println(a);
-//            }
+////            for (com.dubion.service.dto.NapsterAPI.Search.Artists artists: Artist.getSearch().getData().getArtists()){
+////                System.out.println(artists.getAlbumGroups());
+////                importAlbumById(artists.getAlbumGroups());
+////            }
 //
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//        return topAlbums;
+//        return Artist;
 //    }
 }
