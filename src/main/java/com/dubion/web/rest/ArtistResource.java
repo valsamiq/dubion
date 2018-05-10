@@ -139,11 +139,16 @@ public class ArtistResource {
         List<Artist> song = napsterDTOService.importTopArtist();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(song));
     }
-//    @GetMapping("/artist/search/{artistName}")
-//    public List<com.dubion.service.dto.NapsterAPI.Search.Artists> getAlbumSearch(@PathVariable String artistName){
-//        Search band = napsterDTOService.searchBands(artistName);
-//        return band.getSearch().getData().getArtists();
-//    }
+    /**
+     * GET  /songs/:id : get the "id" song.
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the song, or with status 404 (Not Found)
+     */
+    @GetMapping("/artist/search/{artistName}")
+    public List<com.dubion.service.dto.NapsterAPI.Search.Artists> getBandSearch(@PathVariable String artistName){
+        Search band = napsterDTOService.searchBands(artistName);
+        return band.getSearch().getData().getArtists();
+    }
     /**
      * DELETE  /artists/:id : delete the "id" artist.
      *

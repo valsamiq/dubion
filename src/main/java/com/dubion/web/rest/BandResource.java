@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Band;
 import com.dubion.service.BandService;
 import com.dubion.repository.BandRepository;
+import com.dubion.service.NapsterAPI.NapsterDTOService;
+import com.dubion.service.dto.NapsterAPI.Search.Search;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import com.dubion.service.dto.BandCriteria;
@@ -37,10 +39,14 @@ public class BandResource {
 
     private final BandQueryService bandQueryService;
 
-    public BandResource(BandRepository bandRepository, BandService bandService, BandQueryService bandQueryService) {
+    private final NapsterDTOService napsterDTOService;
+
+    public BandResource(BandRepository bandRepository, BandService bandService, BandQueryService bandQueryService, NapsterDTOService napsterDTOService) {
         this.bandRepository = bandRepository;
         this.bandService = bandService;
         this.bandQueryService = bandQueryService;
+        this.napsterDTOService = napsterDTOService;
+
     }
 
     /**
@@ -84,6 +90,7 @@ public class BandResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, band.getId().toString()))
             .body(result);
     }
+
 
     /**
      * GET  /bands : get all the bands.

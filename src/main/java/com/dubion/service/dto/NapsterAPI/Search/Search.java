@@ -21,9 +21,7 @@ public class Search {
         this.meta = meta;
     }
 
-    public Search_ getSearch() {
-        return search;
-    }
+    public Search_ getSearch() {return search;}
 
     public void setSearch(Search_ search) {
         this.search = search;

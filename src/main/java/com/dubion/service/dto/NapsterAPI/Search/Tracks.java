@@ -22,9 +22,7 @@ public class Tracks {
         return href;
     }
 
-    public String getAlbumId() {
-        return albumId;
-    }
+    public String getAlbumId() {return albumId;}
 
     public void setName(String name) { this.name = name;}
 

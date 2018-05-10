@@ -16,6 +16,7 @@
         vm.login = LoginService.open;
         vm.name;
         vm.albums=[];
+        vm.loading=false;
         vm.register = register;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
@@ -32,25 +33,26 @@
         }
 
         vm.searchAlbum=function(){
+            vm.loading=true;
             console.log("hola");
-
             byName();
-
+            $('#SearchModalAlbum').modal({})
         }
 
         vm.searchArtist=function(){
             console.log("arttt!");
         }
-
-
         vm.artists = [];
+        vm.goToAlbum= function(name) {
+            vm.albums = [];
+            console.log(name);
 
+            //window.location.href='#/albumPage/'+id;
+        }
         // Album.get({id : $stateParams.id}, function(data) {
         //     vm.albumActual = data;
         // });
-
         getAccount();
-
 
         function getAccount() {
             Principal.identity().then(function(account) {
@@ -64,7 +66,9 @@
         function byName(){
             Album.queryByName({name : vm.name}, function (data) {
                 vm.albums = data;
+                vm.loading=false;
             });
+
         }
     }
 })();

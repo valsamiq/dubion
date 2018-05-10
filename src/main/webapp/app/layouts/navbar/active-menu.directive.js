@@ -17,7 +17,7 @@
 
         function linkFunc(scope, element, attrs) {
             var language = attrs.activeMenu;
-
+¡
             scope.$watch(function() {
                 return $translate.use();
             }, function(selectedLanguage) {

@@ -102,9 +102,7 @@ public class Artist {
         this.bios = bios;
     }
 
-    public AlbumGroups getAlbumGroups() {
-        return albumGroups;
-    }
+    public AlbumGroups getAlbumGroups() {return albumGroups;}
 
     public void setAlbumGroups(AlbumGroups albumGroups) {
         this.albumGroups = albumGroups;

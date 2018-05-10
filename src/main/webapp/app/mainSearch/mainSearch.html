@@ -1,7 +1,7 @@
-<form class="form-horizontal">
+<form class="form-horizontal formSearch">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
-        <div class="col-md-8 col-sm-12 paddingZero">
+        <div class="col-md-7 col-sm-12 paddingZero">
             <input type="text" class="form-control" placeholder="Search..." ng-model="vm.name" aria-describedby="btnGroupAddon">
         </div>
         <div class="col-md-4 col-sm-12 paddingZero">
@@ -11,6 +11,21 @@
                 <button type="button" ng-click="vm.searchArtist()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-user"></span></button>
             </div>
         </div>
+        <div class="col-sm-1"> <img style="width: 250%" ng-if="vm.loading" src="../../content/images/loader.gif" /></div>
     </div>
     <div class="col-sm-3"></div>
 </form>
+<div class="resultSearch">
+    <div class="col-md-3 hidden-xs hidden-sm"></div>
+    <div class="col-md-6 col-sm-12">
+        <table class="jh-table table table-custom">
+            <tbody>
+            <tr ng-if="vm.albums.length === 0"></tr>
+            <tr ng-if="vm.albums.length > 0" ng-repeat="album in vm.albums track by album.id">
+                <td><a ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-md-3 hidden-xs hidden-sm"></div>

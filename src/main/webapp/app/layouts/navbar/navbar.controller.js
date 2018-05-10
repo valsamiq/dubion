@@ -10,21 +10,8 @@
     function NavbarController ($state, Auth, Principal, ProfileService, LoginService) {
         var vm = this;
 
-
         vm.despliegue = false;
         vm.stateIcon = "glyphicon glyphicon-chevron-left";
-
-        // vm.openNav = function() {
-        //     document.getElementById("mySidenav").style.width = "15%";
-        //     document.getElementById("main").style.marginLeft = "15%";
-        //     vm.stateIcon = "glyphicon glyphicon-chevron-right";
-        // }
-        //
-        // vm.closeNav = function () {
-        //     document.getElementById("mySidenav").style.width = "0";
-        //     document.getElementById("main").style.marginLeft = "0";
-        //     vm.stateIcon = "glyphicon glyphicon-chevron-left";
-        // }
 
         vm.isNavbarCollapsed = true;
         vm.isAuthenticated = Principal.isAuthenticated;
@@ -46,7 +33,6 @@
             collapseNavbar();
             LoginService.open();
         }
-
 
         function logout() {
             collapseNavbar();

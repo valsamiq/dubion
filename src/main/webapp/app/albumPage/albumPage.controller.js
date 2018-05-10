@@ -74,7 +74,6 @@
 
         vm.setSong= function(song) {
             document.getElementById("audioplayer").src = song.url;
-            // document.getElementById("audioplayer").load();
         }
 
         function getFavoriteAlbum(id) {
@@ -85,18 +84,12 @@
                 }else{
                     vm.likeUpDown="r";
                 }
-
-
             }, function(data){
             });
-
         }
-
-
         $('#input-1').on('rating:change', function(event, value, caption) {
             save();
             function save () {
-
 
                 vm.isSaving = true;
                 if(vm.ratingAlbum.id){
