@@ -26,6 +26,12 @@
         vm.ratingAlbums = [];
         vm.ratingAlbum= {};
 
+        vm.page = 0;
+        vm.songsPageble = songsPageable();
+
+        vm.nextPage = nextPage();
+        vm.anteriorPage = anteriorPage();
+
         Album.get({id : $stateParams.id}, function(data) {
 
             vm.albumActual = data;
@@ -129,9 +135,7 @@
             getAccount();
         });
 
-
         getAccount();
-
 
         function getAccount() {
             Principal.identity().then(function(account) {
@@ -140,6 +144,7 @@
 
             });
         }
+
         function register () {
             $state.go('register');
         }
@@ -149,8 +154,33 @@
             Album.getSongsByName({idAlbum : vm.albumId}, function (data) {
                 vm.songs = data;
             });
+        };
+
+        function songsPageable(){
+            Album.getSongsByIdPageble({idAlbum : vm.albumId,page : vm.page}, function (data){
+                vm.songs = data;
+            })
+            console.log("songsByNamePageable");
+            console.log(vm.page);
+        };
+
+        function nextPage(){
+            vm.page++;
+            Album.getSongsByIdPageble({idAlbum : vm.albumId,page : vm.page}, function (data){
+                vm.songs = data;
+            })
+            console.log("nextPage");
+            console.log(vm.page);
         }
 
+        function anteriorPage(){
+            vm.page--;
+            Album.getSongsByIdPageble({idAlbum : vm.albumId,page : vm.page}, function (data){
+                vm.songs = data;
+            })
+            console.log("anteriorPage");
+            console.log(vm.page);
+        }
 
         loadAll();
 

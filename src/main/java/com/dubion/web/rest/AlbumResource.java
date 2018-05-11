@@ -2,6 +2,7 @@ package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Album;
+import com.dubion.domain.Song;
 import com.dubion.service.AlbumService;
 import com.dubion.repository.AlbumRepository;
 import com.dubion.service.DiscogsAPI.DiscogsApiService;
@@ -16,8 +17,10 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import retrofit2.http.Path;
 
 import java.io.IOException;
 import java.net.URI;
@@ -102,6 +105,33 @@ public class AlbumResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of albums in body
      */
+    @GetMapping("/albums/name/{name}/page/{page}")
+    @Timed
+    public ResponseEntity<List<Album>> getAllAlbumsPageable(@PathVariable String name ,@PathVariable int page) {
+        log.debug("REST request to get all Albums by Criteria {}");
+        List<Album> entityList = albumRepository.findByNameContaining(name,new PageRequest(page,10));
+
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * GET  songs from album Id, pageble /kelvin/
+     */
+    @GetMapping("/albums/{id}/page/{page}")
+    @Timed
+    public ResponseEntity<List<Song>> getAllSongsFromAlbumPageable(@PathVariable long id ,@PathVariable int page) {
+        log.debug("REST request to get all Albums by Criteria {}");
+        List<Song> entityList = albumRepository.findSongsByAlbumPageble(id, new PageRequest(page,10));
+
+        return ResponseEntity.ok().body(entityList);
+    }
+
+
+    /** Si la cago aqui ta la copia original
+     * GET  /albums : get all the albums.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of albums in bo*/
+
     @GetMapping("/albums")
     @Timed
     public ResponseEntity<List<Album>> getAllAlbums(AlbumCriteria criteria) {
@@ -114,6 +144,8 @@ public class AlbumResource {
 
         return ResponseEntity.ok().body(entityList);
     }
+
+
     /**
      * GET  /albums/:id : get the "id" album.
      *

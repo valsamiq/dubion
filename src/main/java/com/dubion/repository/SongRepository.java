@@ -2,6 +2,7 @@ package com.dubion.repository;
 
 import com.dubion.domain.Album;
 import com.dubion.domain.Song;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -24,6 +25,9 @@ public interface SongRepository extends JpaRepository<Song, Long>, JpaSpecificat
     Song findByName(@Param("name")String name);
 
     List<Song> findByAlbumsContaining(Album album);
+
+    List<Song> findByAlbumsNameContaining(String name, Pageable pageable);
+
 
 
 }

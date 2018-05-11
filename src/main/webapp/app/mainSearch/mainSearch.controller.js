@@ -24,7 +24,7 @@
         });
 
         vm.searchTrack = function(){
-            console.log("track!");
+            console.log("searchTrack!");
             /*MainSearch.query(function(result){
                 console.log(result)
                 vm.albums=result;
@@ -34,13 +34,13 @@
 
         vm.searchAlbum=function(){
             vm.loading=true;
-            console.log("hola");
+            console.log("searchAlbum");
             byName();
             $('#SearchModalAlbum').modal({})
         }
 
         vm.searchArtist=function(){
-            console.log("arttt!");
+            console.log("searchArtist");
         }
         vm.artists = [];
         vm.goToAlbum= function(name) {
