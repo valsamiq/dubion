@@ -10,6 +10,7 @@ import com.dubion.security.SecurityUtils;
 import com.dubion.service.BandService;
 import com.dubion.service.RatingBandQueryService;
 import com.dubion.service.RatingBandService;
+import com.dubion.service.dto.RatingBandCriteria;
 import com.dubion.service.dto.StatsBandRating;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
@@ -119,11 +120,15 @@ public class RatingBandResource {
      */
     @GetMapping("/rating-bands")
     @Timed
-    public List<RatingBand> getAllRatingBands() {
-        log.debug("REST request to get all RatingBands");
-        return ratingBandRepository.findAll();
-        }
-
+    public ResponseEntity<List<RatingBand>> getAllRatingBands(RatingBandCriteria criteria) {
+        log.debug("REST request to get RatingBands by criteria: {}", criteria);
+        List<RatingBand> entityList = ratingBandQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+//    public List<RatingBand> getAllRatingBands() {
+//        log.debug("REST request to get all RatingBands");
+//        return ratingBandRepository.findAll();
+//    }
     /**
      * GET  /rating-bands/:id : get the "id" ratingBand.
      *

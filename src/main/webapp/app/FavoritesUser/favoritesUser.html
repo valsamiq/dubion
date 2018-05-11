@@ -2,10 +2,15 @@
     <div class="col-xs-12">
         <div class="">
             <h2 class="left white">Artistes Favorits</h2>
-            <div style="margin-top: 50px" ng-repeat="img in vm.artist track by img.id">
-
-                <div class="col-xs-2 center compl"><img src="{{img.photo}}" alt="Album" style="width:200px"/>
-                    <h5 class="white">Lorem</h5><h6 class="grey">Ipsum</h6>
+            <div ng-if="vm.sbands.length === 0">
+                <h4>Aun no hay Artistas favoritos</h4>
+            </div>
+            <div ng-if="vm.sbands.length > 0" style="margin-top: 50px" ng-repeat="img in vm.sbands track by img.id">
+                <div class="col-xs-2 center compl"><!--<i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>-->
+                    <a href="#/bandPage/{{img.id}}">
+                        <img src="{{img.photo}}" alt="Band" style="width:220px; padding-right: 60px;"/>
+                        <h5 class="white">{{img.band.name}}</h5><h6 class="grey">{{img.name}}</h6>
+                    </a>
                 </div>
 
             </div>

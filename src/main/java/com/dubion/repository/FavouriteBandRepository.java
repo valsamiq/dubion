@@ -2,6 +2,7 @@ package com.dubion.repository;
 
 import com.dubion.domain.Band;
 import com.dubion.domain.FavouriteBand;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -19,6 +20,10 @@ public interface FavouriteBandRepository extends JpaRepository<FavouriteBand, Lo
     List<FavouriteBand> findByUserIsCurrentUser();
 
 
-    FavouriteBand findByBandAndUserLogin(Band band, String login);
+//    FavouriteBand findByBandAndUserLogin(Band band, String login);
+    Optional<FavouriteBand> findByBandAndUserLogin(Band band, String login);
     Optional<FavouriteBand> findByBandIdAndUserLogin(Long bandId, String login);
+
+    @Query("select favourite_band.band from FavouriteBand favourite_band where favourite_band.liked = true AND favourite_band.user.login=:login")
+    List<Band> findByFavoriteBand(@Param("login") String login);
 }

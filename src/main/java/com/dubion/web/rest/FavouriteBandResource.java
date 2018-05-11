@@ -114,7 +114,13 @@ public class FavouriteBandResource {
         return ResponseEntity.ok().body(entityList);
         }
 
-
+    @GetMapping("/favourite-bands-like")
+    @Timed
+    public ResponseEntity<List<Band>> findByFavoriteBand() {
+        log.debug("REST request to get all FavouriteBands by criteria: {}");
+        List<Band> entityList = favouriteBandRepository.findByFavoriteBand(SecurityUtils.getCurrentUserLogin());
+        return ResponseEntity.ok().body(entityList);
+    }
     /**
      * GET  /favourite-bands/:id : get the "id" favouriteBand.
      *
@@ -135,8 +141,16 @@ public class FavouriteBandResource {
         log.debug("REST request to get FavouriteBand : {}", id);
         Band band = bandService.findOne(id);
 
-        return new ResponseEntity<>(favouriteBandRepository.findByBandAndUserLogin(band, SecurityUtils.getCurrentUserLogin()), HttpStatus.OK);
+        return ResponseUtil.wrapOrNotFound(
+            Optional.ofNullable(
+                favouriteBandRepository.findByBandAndUserLogin(band,SecurityUtils.getCurrentUserLogin()).get()));
     }
+//    public ResponseEntity<FavouriteBand> getFavouriteByBand(@PathVariable Long id) {
+//        log.debug("REST request to get FavouriteBand : {}", id);
+//        Band band = bandService.findOne(id);
+//
+//        return new ResponseEntity<>(favouriteBandRepository.findByBandAndUserLogin(band, SecurityUtils.getCurrentUserLogin()), HttpStatus.OK);
+//    }
 
     /**
      * DELETE  /favourite-bands/:id : delete the "id" favouriteBand.
