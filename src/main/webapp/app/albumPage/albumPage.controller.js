@@ -26,11 +26,22 @@
         vm.ratingAlbums = [];
         vm.ratingAlbum= {};
 
-        vm.page = 0;
-        vm.songsPageble = songsPageable();
 
-        vm.nextPage = nextPage();
-        vm.anteriorPage = anteriorPage();
+        //kelvin paginacion//
+        vm.page = 0;
+        vm.songsPageble = songsPageable;
+
+        vm.songsInAlbum = 0;
+        vm.paginasAlbum = 0;
+
+        vm.minPaginas = 0;
+        vm.maxPaginas = 0;
+
+
+        //---//
+        vm.next = false;
+        vm.back = true;
+        //================//
 
         Album.get({id : $stateParams.id}, function(data) {
 
@@ -41,6 +52,7 @@
             vm.albumName = vm.albumActual.name;
             vm.albumId = vm.albumActual.id;
             songByName();
+            songsPageable();
             vm.imatgeAlbum = '<img  src="data:image/jpg;base64, '+vm.albumActual.photo+'" />';
             // $scope.apply();
 
@@ -152,34 +164,98 @@
 
         function songByName(){
             Album.getSongsByName({idAlbum : vm.albumId}, function (data) {
-                vm.songs = data;
+                vm.songsInAlbum = data.length;
+                vm.paginasAlbum = Math.ceil(vm.songsInAlbum/10);
+
+                vm.maxPaginas = vm.paginasAlbum-1;
+
+                console.log("=====================================================");
+                console.log("Numero de songs en album",vm.songsInAlbum);
+                console.log("Numero de paginas",vm.paginasAlbum);
+                console.log("Max paginas(segun java)",vm.maxPaginas);
+                console.log("Pagina Actual",vm.page);
+                console.log("=====================================================");
+                vm.checkPagina();
             });
         };
+
+
 
         function songsPageable(){
             Album.getSongsByIdPageble({idAlbum : vm.albumId,page : vm.page}, function (data){
                 vm.songs = data;
+                console.log('songs',vm.songs);
             })
             console.log("songsByNamePageable");
             console.log(vm.page);
+            vm.checkPagina();
         };
 
-        function nextPage(){
+        vm.nextPage=function () {
+            console.log("===========");
+            console.log("Next Page");
             vm.page++;
+
             Album.getSongsByIdPageble({idAlbum : vm.albumId,page : vm.page}, function (data){
                 vm.songs = data;
             })
+
             console.log("nextPage");
             console.log(vm.page);
+            vm.checkPagina();
         }
 
-        function anteriorPage(){
-            vm.page--;
+        vm.anteriorPage=function () {
+            console.log("===========");
+            console.log("Anterior Page");
+                vm.page--;
+
             Album.getSongsByIdPageble({idAlbum : vm.albumId,page : vm.page}, function (data){
                 vm.songs = data;
             })
             console.log("anteriorPage");
             console.log(vm.page);
+            vm.checkPagina();
+        }
+
+        vm.checkPagina=function () {
+            console.log("checkpage");
+            if(vm.page==vm.minPaginas){
+                vm.back = true;
+                console.log("1");
+                console.log("next", vm.next);
+                console.log("back",vm.back);
+                console.log(vm.page);
+            }
+            if(vm.page==vm.maxPaginas){
+                vm.next = true;
+                console.log("2");
+                console.log("next", vm.next);
+                console.log("back",vm.back);
+                console.log(vm.page);
+            }
+            if(vm.page>vm.minPaginas){
+                vm.back = false;
+                console.log("3");
+                console.log("next", vm.next);
+                console.log("back",vm.back);
+                console.log(vm.page);
+            }
+            if(vm.page<vm.maxPaginas){
+                vm.next = false;
+                console.log("4");
+                console.log("next", vm.next);
+                console.log("back",vm.back);
+                console.log(vm.page);
+            }
+            console.log("=========================");
+            console.log("check paginacion:");
+            console.log("status page",vm.page);
+            console.log("paginas maximas",vm.maxPaginas);
+            console.log("paginas minimas",vm.minPaginas);
+            console.log("status next",vm.next);
+            console.log("status back",vm.back);
+            console.log("=========================");
         }
 
         loadAll();

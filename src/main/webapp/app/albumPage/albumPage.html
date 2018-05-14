@@ -19,13 +19,13 @@
                 <div class="col-md-12 trackListAlbum">
                     <ol type="1">
                         <div ng-repeat="song in vm.songs">
-                            <a class="songLinkAlbum" ng-click="vm.setSong(song)"><li>{{song.name}}</li></a>
+                            <a class="songLinkAlbum" ng-click="vm.setSong(song)"> {{$index+1+(vm.page*10)}}. {{song.name}}</a>
                         </div>
                     </ol>
-                    <!--
-                    <button ng-click="vm.anteriorPage">Back</button>
-                    <button ng-click="vm.nextPage">Next</button>
-                    -->
+
+                    <button ng-click="vm.anteriorPage()" ng-disabled="vm.back">Back</button>
+                    <button ng-click="vm.nextPage()" ng-disabled="vm.next">Next</button>
+
                 </div>
             </div>
         </div>
