@@ -1,139 +1,37 @@
-<style>
-    div.scrollmenu {
-        position: relative;
-        background-color: #b6b6b6;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-    div.scrollmenu a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px;
-        text-decoration: none;
-    }
-    div.scrollmenu a:hover .new{
-        background-color: rgba(140,130,130,0.5);
-        color:white;
-    }
-    .new {
-        background-color: transparent;
-        width:200px;
-        height: 60px;
-        color:transparent;
-        z-index: 3;
-        bottom: 14px;
-        left: 14px;
-        position: absolute;
-    }
-    .pictr{
-        position:absolute;
-        left: 2%;
-        top: 50%;
-        width: 30px !important;
-        height: 30px !important;
-        z-index: 5;
-    }
-    .pictl{
-        position:absolute;
-        right: 2%;
-        bottom: 40%;
-        width: 30px !important;
-        height: 30px !important;
-        z-index: 5;
-    }
-</style>
-
-
 <div class="row">
-    <div class="col-md-4 col-sm-2 hidden-xs"></div>
-    <div class="col-md-4 col-sm-8 col-xs-12" align="center">
-        <img src="data:image/jpg;base64, {{vm.bandActual.photo}}" alt="Album" style="height:350px"/>
-    </div>
-    <div class="col-md-4 col-sm-2 hidden-xs"></div>
-    <div class="col-xs-12"align="center">
-        <h4>Band</h4>
-        <h2>{{vm.band.name}}</h2>
-    </div>
-</div>
-<!-- Scrolls: -->
-<div class="row">
-    <div class="col-xs-12">
-        <h2 class="left white">Artists</h2>
-        {{vm.bandActual.name}}
-        <div class="scrollmenu scrollslick">
-            <a style="position: relative" href="#home"><img src="/content/images/Sia Cover.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#news"><img src="/content/images/Sia Cover2.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#contact"><img src="/content/images/Sia Cover3.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Some People </br>Have Real Problems</div></a>
-            <a style="position: relative" href="#about"><img src="/content/images/Sia Cover4.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>The Greatest</div></a>
-            <a style="position: relative" href="#support"><img src="/content/images/Sia Cover5.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Everyday Is Christmas</div></a>
-            <a style="position: relative" href="#blog"><img src="/content/images/Sia Cover6.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>We are Born</div></a>
-            <a style="position: relative" href="#tools"><img src="/content/images/Sia Cover7.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#base"><img src="/content/images/Sia Cover8.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>1000 Forms of Fear</div></a>
-            <a style="position: relative" href="#base"><img src="/content/images/Sia Cover9.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Colour the Small One</div></a>
+    <div class="col-md-12 marginAlbum" style="background-color: #b6b6b6">
+        <div class="col-md-4 imageAlbum" align="center" style="text-align: center">
+            <img src="{{vm.bandActual.photo}}" alt="Album" style="width:300px"/>
+            <br/>
+            <div class="favZoneAlbum">
+                Add to your FavList
+                <i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>
+            </div>
         </div>
-        <script>
-            $(document).ready(function(){
-                $('.scrollslick').slick({
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 2000,
-                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
-                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
-                    responsive: [
-                        {
-                            breakpoint: 1200,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 4,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                arrows: false,
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-
-                            }
-                        }
-
-                    ]
-                });
-            });
-        </script>
+        <div class="col-md-8" align="center" style="list-style: none">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="titleArtistAlbum">{{vm.bandActual.name}}</h2>
+                </div>
+                <div class="col-sm-4">
+                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
+                </div>
+                <div class="col-md-12 trackListAlbum">
+                    <p>{{vm.bandActual.bio}}
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h2 class="left white">Albums</h2>
-        <div class="scrollmenu scrollslick">
-            <a style="position: relative" href="#home"><img src="/content/images/Sia Cover.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#news"><img src="/content/images/Sia Cover2.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#contact"><img src="/content/images/Sia Cover3.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Some People </br>Have Real Problems</div></a>
-            <a style="position: relative" href="#about"><img src="/content/images/Sia Cover4.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>The Greatest</div></a>
-            <a style="position: relative" href="#support"><img src="/content/images/Sia Cover5.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Everyday Is Christmas</div></a>
-            <a style="position: relative" href="#blog"><img src="/content/images/Sia Cover6.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>We are Born</div></a>
-            <a style="position: relative" href="#tools"><img src="/content/images/Sia Cover7.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>This is Acting</div></a>
-            <a style="position: relative" href="#base"><img src="/content/images/Sia Cover8.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>1000 Forms of Fear</div></a>
-            <a style="position: relative" href="#base"><img src="/content/images/Sia Cover9.jpg" alt="Musica" style="width:200px"><div class="new">Sia</br>Colour the Small One</div></a>
-        </div>
+        <h2 class="left white">Novedades</h2>
+        <slick settings="vm.slickConfig" ng-if="vm.bandsLoaded">
+            <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
+                <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="data:image/jpg;base64, {{img.photo}}" alt="Band" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
+            </div>
+        </slick>
+        <br/>
     </div>
 </div>

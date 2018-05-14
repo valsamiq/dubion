@@ -90,11 +90,7 @@ public class BandResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, band.getId().toString()))
             .body(result);
     }
-//    @GetMapping("/artist/search/{artistName}")
-//    public List<com.dubion.service.dto.NapsterAPI.Search.Artists> getBandSearch(@PathVariable String artistName){
-//        Search band = napsterDTOService.searchBands(artistName);
-//        return band.getSearch().getData().getArtists();
-//    }
+
 
     /**
      * GET  /bands : get all the bands.
