@@ -5,15 +5,13 @@
         .module('dubionApp')
         .controller('BandController', BandController);
 
-    BandController.$inject = ['DataUtils', 'Band'];
+    BandController.$inject = ['Band'];
 
-    function BandController(DataUtils, Band) {
+    function BandController(Band) {
 
         var vm = this;
 
         vm.bands = [];
-        vm.openFile = DataUtils.openFile;
-        vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 

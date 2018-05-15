@@ -1,22 +1,35 @@
 package com.dubion.service.dto;
 
+import java.io.Serializable;
+import com.dubion.domain.enumeration.Status;
+import io.github.jhipster.service.filter.BooleanFilter;
+import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
-import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.FloatFilter;
+import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
 
-import java.io.Serializable;
+
+import io.github.jhipster.service.filter.LocalDateFilter;
+
 
 
 /**
  * Criteria class for the Band entity. This class is used in BandResource to
  * receive all the possible filtering options from the Http GET request parameters.
  * For example the following could be a valid requests:
- * <code> /band-pruebas?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
+ * <code> /bands?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
  * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
  * fix type specific filters.
  */
 public class BandCriteria implements Serializable {
+    /**
+     * Class for filtering Status
+     */
+    public static class StatusFilter extends Filter<Status> {
+    }
+
     private static final long serialVersionUID = 1L;
 
 
@@ -24,19 +37,29 @@ public class BandCriteria implements Serializable {
 
     private StringFilter name;
 
-    private LocalDateFilter birthdate;
+    private LocalDateFilter birthDate;
 
     private StringFilter bio;
 
-    private LongFilter genreId;
+    private StatusFilter status;
 
-    private StringFilter genreName;
+    private StringFilter photo;
+
+    private StringFilter napsterId;
+
+    private LongFilter countryId;
 
     private LongFilter labelId;
 
-    private StringFilter labelName;
+    private LongFilter socialId;
 
-//    private StringFilter label;
+    private LongFilter genreId;
+
+    private LongFilter ratingId;
+
+    private LongFilter favouriteId;
+
+    private LongFilter artistId;
 
     public BandCriteria() {
     }
@@ -57,12 +80,12 @@ public class BandCriteria implements Serializable {
         this.name = name;
     }
 
-    public LocalDateFilter getBirthdate() {
-        return birthdate;
+    public LocalDateFilter getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDateFilter birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDateFilter birthDate) {
+        this.birthDate = birthDate;
     }
 
     public StringFilter getBio() {
@@ -73,29 +96,38 @@ public class BandCriteria implements Serializable {
         this.bio = bio;
     }
 
-    public LongFilter getGenreId() {
-        return genreId;
+    public StatusFilter getStatus() {
+        return status;
     }
 
-    public void setGenreId(LongFilter genreId) {
-        this.genreId = genreId;
+    public void setStatus(StatusFilter status) {
+        this.status = status;
     }
 
-    public StringFilter getGenreName() {
-        return genreName;
+    public StringFilter getPhoto() {
+        return photo;
     }
 
-    public void setGenreName(StringFilter genreName) {
-        this.genreName = genreName;
+    public void setPhoto(StringFilter photo) {
+        this.photo = photo;
     }
 
-    //    public StringFilter getLabel() {
-//        return label;
-//    }
-//
-//    public void setLabel(StringFilter label) {
-//        this.label = label;
-//    }
+    public StringFilter getNapsterId() {
+        return napsterId;
+    }
+
+    public void setNapsterId(StringFilter napsterId) {
+        this.napsterId = napsterId;
+    }
+
+    public LongFilter getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(LongFilter countryId) {
+        this.countryId = countryId;
+    }
+
     public LongFilter getLabelId() {
         return labelId;
     }
@@ -104,12 +136,44 @@ public class BandCriteria implements Serializable {
         this.labelId = labelId;
     }
 
-    public StringFilter getLabelName() {
-        return labelName;
+    public LongFilter getSocialId() {
+        return socialId;
     }
 
-    public void setLabelName(StringFilter labelName) {
-        this.labelName = labelName;
+    public void setSocialId(LongFilter socialId) {
+        this.socialId = socialId;
+    }
+
+    public LongFilter getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(LongFilter genreId) {
+        this.genreId = genreId;
+    }
+
+    public LongFilter getRatingId() {
+        return ratingId;
+    }
+
+    public void setRatingId(LongFilter ratingId) {
+        this.ratingId = ratingId;
+    }
+
+    public LongFilter getFavouriteId() {
+        return favouriteId;
+    }
+
+    public void setFavouriteId(LongFilter favouriteId) {
+        this.favouriteId = favouriteId;
+    }
+
+    public LongFilter getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(LongFilter artistId) {
+        this.artistId = artistId;
     }
 
     @Override
@@ -117,9 +181,18 @@ public class BandCriteria implements Serializable {
         return "BandCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
-                (birthdate != null ? "birthdate=" + birthdate + ", " : "") +
+                (birthDate != null ? "birthDate=" + birthDate + ", " : "") +
                 (bio != null ? "bio=" + bio + ", " : "") +
-//                (label != null ? "label=" + label + ", " : "") +
+                (status != null ? "status=" + status + ", " : "") +
+                (photo != null ? "photo=" + photo + ", " : "") +
+                (napsterId != null ? "napsterId=" + napsterId + ", " : "") +
+                (countryId != null ? "countryId=" + countryId + ", " : "") +
+                (labelId != null ? "labelId=" + labelId + ", " : "") +
+                (socialId != null ? "socialId=" + socialId + ", " : "") +
+                (genreId != null ? "genreId=" + genreId + ", " : "") +
+                (ratingId != null ? "ratingId=" + ratingId + ", " : "") +
+                (favouriteId != null ? "favouriteId=" + favouriteId + ", " : "") +
+                (artistId != null ? "artistId=" + artistId + ", " : "") +
             "}";
     }
 

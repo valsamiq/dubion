@@ -1,12 +1,8 @@
 package com.dubion.service;
 
-import com.dubion.domain.Band;
-import com.dubion.domain.Band_;
-import com.dubion.domain.Genre_;
-import com.dubion.domain.Label_;
-import com.dubion.repository.BandRepository;
-import com.dubion.service.dto.BandCriteria;
-import io.github.jhipster.service.QueryService;
+import java.time.LocalDate;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,8 +11,14 @@ import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import io.github.jhipster.service.QueryService;
 
+import com.dubion.domain.Band;
+import com.dubion.domain.*; // for static metamodels
+import com.dubion.repository.BandRepository;
+import com.dubion.service.dto.BandCriteria;
+
+import com.dubion.domain.enumeration.Status;
 
 /**
  * Service for executing complex queries for Band entities in the database.
@@ -74,27 +76,41 @@ public class BandQueryService extends QueryService<Band> {
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Band_.name));
             }
-            if (criteria.getBirthdate() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getBirthdate(), Band_.birthDate));
+            if (criteria.getBirthDate() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getBirthDate(), Band_.birthDate));
             }
             if (criteria.getBio() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getBio(), Band_.bio));
             }
-//            if (criteria.getLabel() != null) {
-//                specification = specification.and(buildStringSpecification(criteria.getLabel(), Band_.label));
-//            }
-            if (criteria.getGenreId() != null) {
-                specification = specification.and(buildReferringEntitySpecification(criteria.getGenreId(), Band_.genres, Genre_.id));
+            if (criteria.getStatus() != null) {
+                specification = specification.and(buildSpecification(criteria.getStatus(), Band_.status));
             }
-
-            if (criteria.getGenreName() != null) {
-                specification = specification.and(buildReferringEntitySpecification(criteria.getGenreName(), Band_.genres, Genre_.name));
+            if (criteria.getPhoto() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getPhoto(), Band_.photo));
+            }
+            if (criteria.getNapsterId() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getNapsterId(), Band_.napsterId));
+            }
+            if (criteria.getCountryId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getCountryId(), Band_.country, Country_.id));
             }
             if (criteria.getLabelId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getLabelId(), Band_.label, Label_.id));
             }
-            if (criteria.getLabelName() != null) {
-                specification = specification.and(buildReferringEntitySpecification(criteria.getLabelName(), Band_.label, Label_.name));
+            if (criteria.getSocialId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getSocialId(), Band_.social, Social_.id));
+            }
+            if (criteria.getGenreId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getGenreId(), Band_.genres, Genre_.id));
+            }
+            if (criteria.getRatingId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getRatingId(), Band_.ratings, RatingBand_.id));
+            }
+            if (criteria.getFavouriteId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getFavouriteId(), Band_.favourites, FavouriteBand_.id));
+            }
+            if (criteria.getArtistId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getArtistId(), Band_.artists, Artist_.id));
             }
         }
         return specification;

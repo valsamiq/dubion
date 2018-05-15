@@ -22,6 +22,7 @@
                     <th><span data-translate="dubionApp.album.name">Name</span></th>
                     <th><span data-translate="dubionApp.album.releaseDate">Release Date</span></th>
                     <th><span data-translate="dubionApp.album.photo">Photo</span></th>
+                    <th><span data-translate="dubionApp.album.napsterId">Napster Id</span></th>
                     <th><span data-translate="dubionApp.album.band">Band</span></th>
                     <th><span data-translate="dubionApp.album.genre">Genre</span></th>
                     <th></th>
@@ -33,6 +34,7 @@
                     <td>{{album.name}}</td>
                         <td>{{album.releaseDate | date:'mediumDate'}}</td>
                     <td>{{album.photo}}</td>
+                    <td>{{album.napsterId}}</td>
                     <td>
                         <a ui-sref="band-detail({id:album.band.id})">{{album.band.name}}</a>
                     </td>

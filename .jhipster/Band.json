@@ -61,20 +61,23 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "photo",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "image"
-        },
-        {
             "fieldName": "status",
             "fieldType": "Status",
             "fieldValues": "ACTIVE,INACTIVE,DISSOLVED"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "napsterId",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20171130104626",
-    "entityTableName": "band",
     "dto": "no",
-    "pagination": "no",
     "service": "serviceClass",
-    "jpaMetamodelFiltering": true
+    "entityTableName": "band",
+    "jpaMetamodelFiltering": true,
+    "pagination": "no"
 }

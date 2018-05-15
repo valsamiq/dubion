@@ -78,6 +78,9 @@ public class SongQueryService extends QueryService<Song> {
             if (criteria.getUrl() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getUrl(), Song_.url));
             }
+            if (criteria.getNapsterId() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getNapsterId(), Song_.napsterId));
+            }
             if (criteria.getAlbumId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getAlbumId(), Song_.albums, Album_.id));
             }

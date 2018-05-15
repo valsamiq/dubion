@@ -18,6 +18,7 @@
             "name": "Name",
             "releaseDate": "Release Date",
             "photo": "Photo",
+            "napsterId": "Napster Id",
             "band": "Band",
             "genre": "Genre",
             "rating": "Rating",

@@ -106,6 +106,7 @@
                             return {
                                 name: null,
                                 url: null,
+                                napsterId: null,
                                 id: null
                             };
                         }

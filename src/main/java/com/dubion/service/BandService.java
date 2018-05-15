@@ -43,7 +43,7 @@ public class BandService {
     @Transactional(readOnly = true)
     public List<Band> findAll() {
         log.debug("Request to get all Bands");
-        return bandRepository.findAll();
+        return bandRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -55,7 +55,7 @@ public class BandService {
     @Transactional(readOnly = true)
     public Band findOne(Long id) {
         log.debug("Request to get Band : {}", id);
-        return bandRepository.findOne(id);
+        return bandRepository.findOneWithEagerRelationships(id);
     }
 
     /**

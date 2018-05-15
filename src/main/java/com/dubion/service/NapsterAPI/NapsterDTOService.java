@@ -344,7 +344,7 @@ public class NapsterDTOService {
                             System.out.println("artist "+artist);
 
                         }else{
-                            topArtist.add(bandRepository.findByName(t.getName()));
+                            topArtist.add(bandRepository.findByName(eraserNA(t.getName())));
                         }
                     }
                     a.setBand(guardar);
@@ -377,13 +377,13 @@ public class NapsterDTOService {
                         Song s = new Song();
                         s.setUrl(g.getPreviewURL());
                         s.setName(g.getName());
-                        s.setAlbums(albumRepository.findByNameCR(g.getAlbumName()));
+                        s.setAlbums(albumRepository.findByNameCR(eraserNA(g.getAlbumName())));
                         System.out.println(s.getAlbums());
                         s=songRepository.save(s);
                         topSongs.add(s);
                         System.out.println("cacion "+s);
                     }else{
-                        topSongs.add(songRepository.findByName(t.getName()));
+                        topSongs.add(songRepository.findByName(eraserNA(t.getName())));
                     }
                 }
             }else{

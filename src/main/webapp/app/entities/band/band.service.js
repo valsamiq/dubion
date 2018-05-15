@@ -11,7 +11,6 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
-            'queryByName': { method: 'GET', isArray: true, url: 'api/bands/by-name/:name'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

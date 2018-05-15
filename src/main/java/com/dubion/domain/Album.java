@@ -34,6 +34,9 @@ public class Album implements Serializable {
     @Column(name = "photo")
     private String photo;
 
+    @Column(name = "napster_id")
+    private String napsterId;
+
     @ManyToOne
     private Band band;
 
@@ -105,6 +108,19 @@ public class Album implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getNapsterId() {
+        return napsterId;
+    }
+
+    public Album napsterId(String napsterId) {
+        this.napsterId = napsterId;
+        return this;
+    }
+
+    public void setNapsterId(String napsterId) {
+        this.napsterId = napsterId;
     }
 
     public Band getBand() {
@@ -248,6 +264,7 @@ public class Album implements Serializable {
             ", name='" + getName() + "'" +
             ", releaseDate='" + getReleaseDate() + "'" +
             ", photo='" + getPhoto() + "'" +
+            ", napsterId='" + getNapsterId() + "'" +
             "}";
     }
 }

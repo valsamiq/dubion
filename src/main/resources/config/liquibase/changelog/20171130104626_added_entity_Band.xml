@@ -30,18 +30,19 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="bio" type="longtext">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="photo" type="longblob">
-                <constraints nullable="true" />
-            </column>
-            <column name="photo_content_type" type="varchar(255)">
+            <column name="bio" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
             <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="photo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="napster_id" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -59,7 +60,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
+        
         <createTable tableName="band_genre">
             <column name="genres_id" type="bigint">
                 <constraints nullable="false"/>
@@ -70,7 +71,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="bands_id, genres_id" tableName="band_genre"/>
-
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

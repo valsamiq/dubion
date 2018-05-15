@@ -30,6 +30,9 @@ public class Song implements Serializable {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "napster_id")
+    private String napsterId;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "song_album",
@@ -80,6 +83,19 @@ public class Song implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getNapsterId() {
+        return napsterId;
+    }
+
+    public Song napsterId(String napsterId) {
+        this.napsterId = napsterId;
+        return this;
+    }
+
+    public void setNapsterId(String napsterId) {
+        this.napsterId = napsterId;
     }
 
     public Set<Album> getAlbums() {
@@ -184,6 +200,7 @@ public class Song implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", url='" + getUrl() + "'" +
+            ", napsterId='" + getNapsterId() + "'" +
             "}";
     }
 }

@@ -34,6 +34,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="napster_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="band_id" type="bigint">
                 <constraints nullable="true" />
             </column>

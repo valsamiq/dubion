@@ -34,6 +34,8 @@ public class AlbumCriteria implements Serializable {
 
     private StringFilter photo;
 
+    private StringFilter napsterId;
+
     private LongFilter bandId;
 
     private LongFilter genreId;
@@ -77,6 +79,14 @@ public class AlbumCriteria implements Serializable {
 
     public void setPhoto(StringFilter photo) {
         this.photo = photo;
+    }
+
+    public StringFilter getNapsterId() {
+        return napsterId;
+    }
+
+    public void setNapsterId(StringFilter napsterId) {
+        this.napsterId = napsterId;
     }
 
     public LongFilter getBandId() {
@@ -126,6 +136,7 @@ public class AlbumCriteria implements Serializable {
                 (name != null ? "name=" + name + ", " : "") +
                 (releaseDate != null ? "releaseDate=" + releaseDate + ", " : "") +
                 (photo != null ? "photo=" + photo + ", " : "") +
+                (napsterId != null ? "napsterId=" + napsterId + ", " : "") +
                 (bandId != null ? "bandId=" + bandId + ", " : "") +
                 (genreId != null ? "genreId=" + genreId + ", " : "") +
                 (ratingId != null ? "ratingId=" + ratingId + ", " : "") +

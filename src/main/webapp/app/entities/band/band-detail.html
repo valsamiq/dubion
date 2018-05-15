@@ -1,9 +1,6 @@
 
 <div>
     <h2><span data-translate="dubionApp.band.detail.title">Band</span> {{vm.band.id}}</h2>
-    <label for="input-1" class="control-label">Rate This</label>
-    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
-    <i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
@@ -19,18 +16,17 @@
         <dd>
             <span>{{vm.band.bio}}</span>
         </dd>
-        <dt><span data-translate="dubionApp.band.photo">Photo</span></dt>
-        <dd>
-            <div ng-if="vm.band.photo">
-                <a ng-click="vm.openFile(vm.band.photoContentType, vm.band.photo)">
-                    <img data-ng-src="{{'data:' + vm.band.photoContentType + ';base64,' + vm.band.photo}}" style="max-width: 100%;" alt="band image"/>
-                </a>
-                {{vm.band.photoContentType}}, {{vm.byteSize(vm.band.photo)}}
-            </div>
-        </dd>
         <dt><span data-translate="dubionApp.band.status">Status</span></dt>
         <dd>
             <span data-translate="{{'dubionApp.Status.' + vm.band.status}}">{{vm.band.status}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.band.photo">Photo</span></dt>
+        <dd>
+            <span>{{vm.band.photo}}</span>
+        </dd>
+        <dt><span data-translate="dubionApp.band.napsterId">Napster Id</span></dt>
+        <dd>
+            <span>{{vm.band.napsterId}}</span>
         </dd>
         <dt><span data-translate="dubionApp.band.country">Country</span></dt>
         <dd>

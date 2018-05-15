@@ -36,16 +36,15 @@ public class Band implements Serializable {
     @Column(name = "bio")
     private String bio;
 
-    @Lob
-    @Column(name = "photo")
-    private byte[] photo;
-
-    @Column(name = "photo_content_type")
-    private String photoContentType;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+
+    @Column(name = "photo")
+    private String photo;
+
+    @Column(name = "napster_id")
+    private String napsterId;
 
     @ManyToOne
     private Country country;
@@ -56,7 +55,7 @@ public class Band implements Serializable {
     @ManyToOne
     private Social social;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "band_genre",
                joinColumns = @JoinColumn(name="bands_id", referencedColumnName="id"),
@@ -126,32 +125,6 @@ public class Band implements Serializable {
         this.bio = bio;
     }
 
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public Band photo(byte[] photo) {
-        this.photo = photo;
-        return this;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    public String getPhotoContentType() {
-        return photoContentType;
-    }
-
-    public Band photoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
-        return this;
-    }
-
-    public void setPhotoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -163,6 +136,32 @@ public class Band implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public Band photo(String photo) {
+        this.photo = photo;
+        return this;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getNapsterId() {
+        return napsterId;
+    }
+
+    public Band napsterId(String napsterId) {
+        this.napsterId = napsterId;
+        return this;
+    }
+
+    public void setNapsterId(String napsterId) {
+        this.napsterId = napsterId;
     }
 
     public Country getCountry() {
@@ -332,9 +331,9 @@ public class Band implements Serializable {
             ", name='" + getName() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
             ", bio='" + getBio() + "'" +
-            ", photo='" + getPhoto() + "'" +
-            ", photoContentType='" + photoContentType + "'" +
             ", status='" + getStatus() + "'" +
+            ", photo='" + getPhoto() + "'" +
+            ", napsterId='" + getNapsterId() + "'" +
             "}";
     }
 }

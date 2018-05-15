@@ -30,6 +30,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="napster_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

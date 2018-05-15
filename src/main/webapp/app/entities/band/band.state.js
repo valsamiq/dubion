@@ -109,9 +109,9 @@
                                 name: null,
                                 birthDate: null,
                                 bio: null,
-                                photo: null,
-                                photoContentType: null,
                                 status: null,
+                                photo: null,
+                                napsterId: null,
                                 id: null
                             };
                         }

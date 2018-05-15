@@ -81,6 +81,9 @@ public class AlbumQueryService extends QueryService<Album> {
             if (criteria.getPhoto() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPhoto(), Album_.photo));
             }
+            if (criteria.getNapsterId() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getNapsterId(), Album_.napsterId));
+            }
             if (criteria.getBandId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getBandId(), Album_.band, Band_.id));
             }

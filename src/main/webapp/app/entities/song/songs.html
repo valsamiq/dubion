@@ -21,6 +21,7 @@
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="dubionApp.song.name">Name</span></th>
                     <th><span data-translate="dubionApp.song.url">Url</span></th>
+                    <th><span data-translate="dubionApp.song.napsterId">Napster Id</span></th>
                     <th><span data-translate="dubionApp.song.album">Album</span></th>
                     <th></th>
                 </tr>
@@ -30,6 +31,7 @@
                     <td><a ui-sref="song-detail({id:song.id})">{{song.id}}</a></td>
                     <td>{{song.name}}</td>
                     <td>{{song.url}}</td>
+                    <td>{{song.napsterId}}</td>
                     <td>
                         <span ng-repeat="album in song.albums">
                             <a class="form-control-static" ui-sref="album-detail({id: album.id})">{{album.name}}</a>{{$last ? '' : ', '}}

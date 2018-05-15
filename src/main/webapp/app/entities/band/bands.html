@@ -22,8 +22,9 @@
                     <th><span data-translate="dubionApp.band.name">Name</span></th>
                     <th><span data-translate="dubionApp.band.birthDate">Birth Date</span></th>
                     <th><span data-translate="dubionApp.band.bio">Bio</span></th>
-                    <th><span data-translate="dubionApp.band.photo">Photo</span></th>
                     <th><span data-translate="dubionApp.band.status">Status</span></th>
+                    <th><span data-translate="dubionApp.band.photo">Photo</span></th>
+                    <th><span data-translate="dubionApp.band.napsterId">Napster Id</span></th>
                     <th><span data-translate="dubionApp.band.country">Country</span></th>
                     <th><span data-translate="dubionApp.band.label">Label</span></th>
                     <th><span data-translate="dubionApp.band.social">Social</span></th>
@@ -37,13 +38,9 @@
                     <td>{{band.name}}</td>
                         <td>{{band.birthDate | date:'mediumDate'}}</td>
                     <td>{{band.bio}}</td>
-                    <td>
-                        <a ng-if="band.photo" ng-click="vm.openFile(band.photoContentType, band.photo)">
-                            <img data-ng-src="{{'data:' + band.photoContentType + ';base64,' + band.photo}}" style="max-height: 30px;" alt="band image"/>
-                        </a>
-                        <span ng-if="band.photo">{{band.photoContentType}}, {{vm.byteSize(band.photo)}}</span>
-                    </td>
                     <td data-translate="{{'dubionApp.Status.' + band.status}}">{{band.status}}</td>
+                    <td>{{band.photo}}</td>
+                    <td>{{band.napsterId}}</td>
                     <td>
                         <a ui-sref="country-detail({id:band.country.id})">{{band.country.name}}</a>
                     </td>

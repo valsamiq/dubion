@@ -32,6 +32,8 @@ public class SongCriteria implements Serializable {
 
     private StringFilter url;
 
+    private StringFilter napsterId;
+
     private LongFilter albumId;
 
     private LongFilter ratingId;
@@ -65,6 +67,14 @@ public class SongCriteria implements Serializable {
         this.url = url;
     }
 
+    public StringFilter getNapsterId() {
+        return napsterId;
+    }
+
+    public void setNapsterId(StringFilter napsterId) {
+        this.napsterId = napsterId;
+    }
+
     public LongFilter getAlbumId() {
         return albumId;
     }
@@ -95,6 +105,7 @@ public class SongCriteria implements Serializable {
                 (id != null ? "id=" + id + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
                 (url != null ? "url=" + url + ", " : "") +
+                (napsterId != null ? "napsterId=" + napsterId + ", " : "") +
                 (albumId != null ? "albumId=" + albumId + ", " : "") +
                 (ratingId != null ? "ratingId=" + ratingId + ", " : "") +
                 (favouriteId != null ? "favouriteId=" + favouriteId + ", " : "") +

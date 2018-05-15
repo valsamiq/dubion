@@ -30,6 +30,10 @@
         {
             "fieldName": "url",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "napsterId",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20171130104629",

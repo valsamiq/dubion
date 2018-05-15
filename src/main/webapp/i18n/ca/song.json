@@ -17,6 +17,7 @@
             },
             "name": "Name",
             "url": "Url",
+            "napsterId": "Napster Id",
             "album": "Album",
             "rating": "Rating",
             "favourite": "Favourite"

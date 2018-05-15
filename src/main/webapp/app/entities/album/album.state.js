@@ -107,6 +107,7 @@
                                 name: null,
                                 releaseDate: null,
                                 photo: null,
+                                napsterId: null,
                                 id: null
                             };
                         }
