@@ -13,23 +13,6 @@
                 .carousel .item {
                     height: auto !important;
                 }
-                .blue{
-                    color:#1682fb;
-                    text-align: center;
-                }
-                .parallax {
-                    /* The image used */
-                    background-image: url("/content/images/concertcrowd.jpg");
-
-                    /* Set a specific height */
-                    height: 100%;
-
-                    /* Create the parallax scrolling effect */
-                    background-attachment: fixed;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                }
                 div.scrollmenu {
                     position: relative;
                     background-color: #b6b6b6;
@@ -49,9 +32,6 @@
                     background-color: rgba(140,130,130,0.5);
                     color:white;
                 }
-                .info{
-                    background-color: #0A0A0A;
-                }
                 .new {
                     background-color: transparent;
                     width:200px;
@@ -62,16 +42,6 @@
                     left: 14px;
                     position: absolute;
 
-                }
-                .new2{
-                    background-color: rgba(140,130,130,0.5);
-                    width:200px;
-                    height: 50px;
-                    color:white;
-                    z-index: 3;
-                    bottom: 14px;
-                    left: 14px;
-                    position: absolute;
                 }
                 .pictr{
                     position:absolute;
@@ -155,7 +125,8 @@
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
             </div>
-        </slick><br/>
+        </slick>
+        <br/>
 
         <div style="font-size: large;font-weight: bold">Groups you may like</div><br/>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
@@ -164,7 +135,8 @@
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
             </div>
-        </slick><br/>
+        </slick>
+        <br/>
         <!--<div class="scrollmenu scrollslick">-->
             <!--<a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
             <!--<a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->

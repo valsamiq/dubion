@@ -163,7 +163,6 @@ public class SongResource {
     @Transactional
     public ResponseEntity<List<Song>> getSongAlbums2(@PathVariable Long idAlbum) {
         log.debug("REST request to get Song : {}", idAlbum);
-
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(songRepository.findByAlbumsContaining(albumRepository.findOne(idAlbum))));
     }
 

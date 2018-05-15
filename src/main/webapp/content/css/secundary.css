@@ -122,11 +122,7 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background-color: #1682fb /*rgba(0, 0, 0, 0.3)*/;
 }
-
 /*-------Stop Amazing ScrollBar----------*/
-
-
-
 /*-------Start Amazing SideBar----------*/
 td, th {
     vertical-align: middle !important;

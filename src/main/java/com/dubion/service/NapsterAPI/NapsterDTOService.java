@@ -66,7 +66,6 @@ public class NapsterDTOService {
         return genres;
     }
 
-
     public NapsterArtist getTopArtistNap(){
         NapsterArtist topArtist = null;
         Call<NapsterArtist> callTopArtists = apiService.getTopArtists(10,"ES",apiKey);
@@ -277,7 +276,6 @@ public class NapsterDTOService {
             }else{
                 genres.add( genreRepository.findByName(t.getName()));
             }
-
         }
     }
     private void importAlbum(NapsterAlbum napsterAlbum, List<Album> albums) throws IOException {

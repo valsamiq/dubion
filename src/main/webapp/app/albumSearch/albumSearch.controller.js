@@ -10,7 +10,7 @@
     function albumSearchController ($scope, Principal, LoginService, $state, Album,$stateParams) {
 
         var vm = this;
-        vm.byName = byName;
+        vm.AlbumByName = AlbumByName;
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -36,17 +36,15 @@
             $state.go('register');
         }
 
-        function byName(){
+        function AlbumByName(){
             Album.queryByName({name : vm.name}, function (data) {
                 vm.albums = data;
             });
         }
 
-       // vm.images = ['/content/images/Sia%20Cover8.jpg', '/content/images/Sia%20Cover9.jpg', '/content/images/Sia%20Cover7.jpg'];
         vm.salbums=[];
 
         loadAll();
-
 
         function loadAll() {
             vm.albumsLoaded=false;
@@ -93,10 +91,8 @@
                                arrows: false,
                                slidesToShow: 1,
                                slidesToScroll: 1
-
                            }
                        }
-
                    ],
                    method: {},
                    event: {
@@ -105,9 +101,7 @@
                    }
                };
                vm.albumsLoaded=true;
-
             });
         }
-
     }
 })();

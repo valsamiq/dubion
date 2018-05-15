@@ -8,9 +8,9 @@
 
     function Song ($resource) {
         var resourceUrl =  'api/songs/:id';
-
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'queryByName': { method: 'GET', isArray: true, url: '/api/songs/search/:name'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

@@ -10,6 +10,10 @@
     function HomeController ($scope, Principal, LoginService, $state, Album) {
         var vm = this;
 
+        vm.top10Slick = {};
+        vm.lasReleasesSlick = {};
+        vm.userFavSlick = {};
+
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -79,15 +83,13 @@
                                 arrows: false,
                                 slidesToShow: 1,
                                 slidesToScroll: 1
-
                             }
                         }
-
                     ],
                     method: {},
                     event: {
                         //beforeChange: function (event, slick, currentSlide, nextSlide){},
-                        //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
+                        //  afterChange: function (event, slick, currentSlide, nextSlide) {}
                     }
                 };
                 vm.albumsLoaded=true;
