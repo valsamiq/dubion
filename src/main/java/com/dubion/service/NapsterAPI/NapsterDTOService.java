@@ -330,11 +330,11 @@ public class NapsterDTOService {
                             if(g.getBlurbs().size()!=0){
                                 for (String bios: g.getBlurbs()){
                                     System.out.println(bios);
-                                    bio = bio+" "+bios;
+                                    bio = bio+' '+bios;
                                     System.out.println(bio);
                                 }
-
-                                artist.setBio(eraserEvilBytes(bio));
+                                System.out.println("\n\n\n" + bio + "\n\n\n");
+                                artist.setBio(eraserNA(bio));
                             }else{
                                 artist.setBio(null);
                             }
