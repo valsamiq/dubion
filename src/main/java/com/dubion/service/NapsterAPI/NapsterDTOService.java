@@ -322,13 +322,14 @@ public class NapsterDTOService {
                             Band artist = new Band();
 
                             artist.setName(g.getName());
+                            artist.setNapsterId(g.getId());
                             String bio;
                             bio ="";
 
                             if(g.getBlurbs().size()!=0){
                                 for (String bios: g.getBlurbs()){
                                     System.out.println(bios);
-                                    bio = bio+' '+bios;
+                                    bio = bio+" "+bios;
                                     System.out.println(bio);
                                 }
                                 System.out.println("\n\n\n" + bio + "\n\n\n");
@@ -350,7 +351,7 @@ public class NapsterDTOService {
 
 
                 a.setName(t.getName());
-
+                a.setNapsterId(t.getId());
                 a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
                 a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 a.setGenres(genreRepository.findByNames(name));
@@ -375,6 +376,7 @@ public class NapsterDTOService {
                         Song s = new Song();
                         s.setUrl(g.getPreviewURL());
                         s.setName(g.getName());
+                        s.setNapsterId(g.getId());
                         s.setAlbums(albumRepository.findByNameCR(eraserNA(g.getAlbumName())));
                         System.out.println(s.getAlbums());
                         s=songRepository.save(s);
