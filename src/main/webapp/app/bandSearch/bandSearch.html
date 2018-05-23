@@ -146,7 +146,7 @@
         <h2 class="left white">Novedades</h2>
             <slick settings="vm.slickConfig" ng-if="vm.bandsLoaded">
                 <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
-                    <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="data:image/jpg;base64, {{img.photo}}" alt="Band" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
+                    <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="{{img.photo}}" alt="Band" style="width:200px"/><div class="new"></br>{{img.name}}</div></a>
                 </div>
             </slick>
         <br/>
