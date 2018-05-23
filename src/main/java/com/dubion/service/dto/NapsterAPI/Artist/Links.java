@@ -1,6 +1,7 @@
 
 package com.dubion.service.dto.NapsterAPI.Artist;
 
+import com.dubion.service.dto.NapsterAPI.Artist.images.Images;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

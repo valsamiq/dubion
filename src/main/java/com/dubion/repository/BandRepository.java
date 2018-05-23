@@ -1,5 +1,6 @@
 package com.dubion.repository;
 
+import com.dubion.domain.Album;
 import com.dubion.domain.Band;
 import com.dubion.domain.Genre;
 import com.dubion.domain.Song;
@@ -27,4 +28,5 @@ public interface BandRepository extends JpaRepository<Band, Long>, JpaSpecificat
     Band findByName(@Param("name")String name);
 
     List<Band> findByNameContaining(String name);
+
 }
