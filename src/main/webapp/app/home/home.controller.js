@@ -30,11 +30,13 @@
             $state.go('register');
         }
 
+
         vm.salbums=[];
         vm.salbumstop=[];
         vm.sbands=[];
 
         loadAll();
+
 
         function loadAll() {
             vm.albumsLoaded=false;
