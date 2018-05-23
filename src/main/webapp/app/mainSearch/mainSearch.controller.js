@@ -5,18 +5,20 @@
         .module('dubionApp')
         .controller('mainSearchController', mainSearchController);
 
-    mainSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$stateParams','Song','Album','MainSearch'];
+    mainSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$stateParams','Song','Album','Artist','MainSearch'];
 
-    function mainSearchController ($scope, Principal, LoginService, $state, $stateParams, Song, Album, MainSearch) {
+    function mainSearchController ($scope, Principal, LoginService, $state, $stateParams, Song, Album, Artist, MainSearch) {
         var vm = this;
         vm.AlbumByName = AlbumByName;
         vm.SongByName = SongByName;
+        vm.ArtistByName = ArtistByName;
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.name;
         vm.albums=[];
         vm.songs=[];
+        vm.artists=[];
         vm.loading=false;
         vm.register = register;
         $scope.$on('authenticationSuccess', function() {
@@ -41,25 +43,22 @@
             vm.loading=true;
             console.log("Searhing by Album");
             AlbumByName();
-            //$('#SearchModalAlbum').modal({})
         }
         vm.goToAlbum= function(name) {
             vm.albums = [];
             console.log(name);
-            window.location.href='#/albumPage/'+id;
         }
         // ============SearchByArtist==========
         vm.searchArtist=function(){
-            console.log("Searching By Artist!");
+            vm.loading=true;
+            console.log("Searching by Artist!");
+            ArtistByName();
         }
-        vm.artists = [];
-
-        //window.location.href='#/albumPage/'+id;
-        // Album.get({id : $stateParams.id}, function(data) {
-        //     vm.albumActual = data;
-        // });
+        vm.goToArtist= function(name) {
+            vm.artists = [];
+            console.log(name);
+        }
         getAccount();
-
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
@@ -73,12 +72,17 @@
             Song.queryByName({name : vm.name}, function (data) {
                 vm.songs = data;
                 vm.loading = false;
-            })
+            });
         }
-
         function AlbumByName(){
-            Album.queryByName({name : vm.name}, function (data) {
+            MainSearch.queryAlbumByName({name : vm.name}, function (data) {
                 vm.albums = data;
+                vm.loading=false;
+            });
+        }
+        function ArtistByName(){
+            MainSearch.queryArtistByName({name : vm.name}, function (data) {
+                vm.band=data;
                 vm.loading=false;
             });
         }

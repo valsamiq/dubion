@@ -11,7 +11,6 @@
                 <button type="button" ng-click="vm.searchArtist()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-user"></span></button>
             </div>
         </div>
-
     </div>
     <div class="col-sm-3">
         <img style="width: 40px; text-align: left" ng-if="vm.loading" src="../../content/images/loader.gif" />
@@ -32,7 +31,8 @@
             <tbody>
                 <tr ng-if="vm.albums.length === 0"></tr>
                 <tr ng-if="vm.albums.length > 0" ng-repeat="album in vm.albums track by album.id">
-                    <td><a ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>
+                    <!--<td><a ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>-->
+                    <td><a href="#/albumPage/{{album.id}}" ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>
                 </tr>
             </tbody>
         </table>

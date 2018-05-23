@@ -80,12 +80,10 @@ body{
         -moz-appearance: none !important;
         background-color: rgb(0,0,255) !important;
     }
-
     thumb:hover,scrollbarbutton:hover {
         -moz-appearance: none !important;
         background-color: rgb(255,0,0) !important;
     }
-
     scrollbarbutton {
         display: none !important;
     }
@@ -285,7 +283,7 @@ div.scrollmenu a:hover .new{
 }
 .formSearch{
     position: absolute;;
-    z-index: 3;
+    z-index: 4;
     width: 100%;
 }
 .widthMax{
@@ -413,15 +411,14 @@ div.scrollmenu a:hover .new {
 /*====*/
 .resultSearch{
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     width: 100%;
-    margin-top: 33px;
+    margin-top: 14px;
 }
 .table-custom{
     background-color: #3c3c3c;
     border-radius: 0 0 10px 10px;
 }
-
 .white{
     color: #ece6f2;
 }

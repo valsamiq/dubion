@@ -48,7 +48,6 @@ public class BandResource {
         this.napsterDTOService = napsterDTOService;
 
     }
-
     /**
      * POST  /bands : Create a new band.
      *
@@ -68,7 +67,6 @@ public class BandResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
-
     /**
      * PUT  /bands : Updates an existing band.
      *
@@ -90,8 +88,6 @@ public class BandResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, band.getId().toString()))
             .body(result);
     }
-
-
     /**
      * GET  /bands : get all the bands.
      *
@@ -130,11 +126,8 @@ public class BandResource {
         bandService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
     @GetMapping("/bands/by-name/{bandName}")
     public List<Band> getBandByName(@PathVariable String bandName) {
         return bandRepository.findByNameContaining(bandName);
     }
-
-
 }

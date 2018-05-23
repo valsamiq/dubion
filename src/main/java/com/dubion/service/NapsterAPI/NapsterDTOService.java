@@ -27,7 +27,6 @@ public class NapsterDTOService {
     public static final String apiKey = "MjM4OWE1MzQtNTUyMy00ODIzLWEyNTMtNDQ1MzFlN2ExYzll";
     static NapsterDTORepository apiService = NapsterDTORepository.retrofit.create(NapsterDTORepository.class);
 
-
     @Autowired
     private SongRepository songRepository;
 

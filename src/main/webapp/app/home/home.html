@@ -65,10 +65,8 @@
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbumstop track by img.id">
 
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
-
             </div>
         </slick><br/>
-
         <script>
             $(document).ready(function(){
                 $('.scrollslick').slick({
@@ -108,7 +106,6 @@
                                 arrows: false,
                                 slidesToShow: 1,
                                 slidesToScroll: 1
-
                             }
                         }
 
@@ -121,13 +118,10 @@
 
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
-
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
-
             </div>
         </slick>
         <br/>
-
         <div style="font-size: large;font-weight: bold">Groups you may like</div><br/>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded3">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
@@ -137,22 +131,5 @@
             </div>
         </slick>
         <br/>
-        <!--<div class="scrollmenu scrollslick">-->
-            <!--<a style="position: relative" href="#home"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#news"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#contact"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#about"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#support"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#blog"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#tools"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#base"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#custom"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#more"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#logo"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#friends"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#partners"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#people"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-            <!--<a style="position: relative" href="#work"><img src="/content/images/listening.jpg" alt="Musica" style="width:200px"><div class="new">Hola</div></a>-->
-        <!--</div>-->
     </div>
 </div>
