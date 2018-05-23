@@ -79,6 +79,25 @@ public class Band implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Artist> artists = new HashSet<>();
 
+    public Band(String name, LocalDate birthDate, String bio, Status status, String photo, String napsterId, Country country, Label label, Social social, Set<Genre> genres, Set<RatingBand> ratings, Set<FavouriteBand> favourites, Set<Artist> artists) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.bio = bio;
+        this.status = status;
+        this.photo = photo;
+        this.napsterId = napsterId;
+        this.country = country;
+        this.label = label;
+        this.social = social;
+        this.genres = genres;
+        this.ratings = ratings;
+        this.favourites = favourites;
+        this.artists = artists;
+    }
+
+    public Band() {
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
