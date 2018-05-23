@@ -41,12 +41,7 @@
 
         loadAll();
 
-
-        function loadAll() {
-            vm.albumsLoaded=false;
-            vm.albumsLoaded2=false;
-            vm.albumsLoaded3=false;
-
+        function fullAlbum() {
             Album.query(function(result) {
                 vm.salbums = result;
                 vm.searchQuery = null;
@@ -98,60 +93,6 @@
                     }
                 };
                 vm.albumsLoaded=true;
-            });
-            Album.querytop(function(result) {
-                vm.salbumstop = result;
-                vm.searchQuery = null;
-
-                vm.slickConfig = {
-                    enabled: true,
-                    autoplay: true,
-                    draggable: false,
-                    autoplaySpeed: 2000,
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    responsive: [
-                        {
-                            breakpoint: 1200,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 4,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                arrows: false,
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-
-                            }
-                        }
-
-                    ],
-                    method: {},
-                    event: {
-                        //beforeChange: function (event, slick, currentSlide, nextSlide){},
-                        //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
-                    }
-                };
-                vm.albumsLoaded2=true;
             });
             Band.query(function(result) {
                 vm.sbands = result;
@@ -206,6 +147,71 @@
                     }
                 };
                 vm.albumsLoaded3=true;
+            });
+        }
+
+
+
+        function loadAll() {
+            vm.albumsLoaded=false;
+            vm.albumsLoaded2=false;
+            vm.albumsLoaded3=false;
+
+
+            Album.querytop(function(result) {
+                vm.salbumstop = result;
+                vm.searchQuery = null;
+
+                vm.slickConfig = {
+                    enabled: true,
+                    autoplay: true,
+                    draggable: false,
+                    autoplaySpeed: 2000,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 4,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                arrows: false,
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+
+                            }
+                        }
+
+                    ],
+                    method: {},
+                    event: {
+                        //beforeChange: function (event, slick, currentSlide, nextSlide){},
+                        //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
+                    }
+                };
+                vm.albumsLoaded2=true;
+                fullAlbum();
             });
         }
 
