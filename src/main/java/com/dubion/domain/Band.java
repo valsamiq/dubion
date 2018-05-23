@@ -1,5 +1,6 @@
 package com.dubion.domain;
 
+import com.dubion.service.dto.NapsterAPI.Napster;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -12,6 +13,7 @@ import java.util.Set;
 import java.util.Objects;
 
 import com.dubion.domain.enumeration.Status;
+import retrofit2.Call;
 
 /**
  * A Band.

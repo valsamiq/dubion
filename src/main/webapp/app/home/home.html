@@ -8,7 +8,7 @@
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                 </div>
             </div>
-            <div style="font-size: large;font-weight: bold">Last Releases</div><br/>
+            <div style="font-size: large;font-weight: bold">Top Albums</div><br/>
             <style>
                 .carousel .item {
                     height: auto !important;
@@ -61,8 +61,8 @@
                 }
             </style>
 
-        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
-            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
+        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded2">
+            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbumstop track by img.id">
 
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
 
@@ -117,7 +117,7 @@
             });
         </script>
 
-            <div style="font-size: large;font-weight: bold">Incomming Albums</div><br/>
+            <div style="font-size: large;font-weight: bold">Your Albums</div><br/>
 
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
@@ -129,10 +129,10 @@
         <br/>
 
         <div style="font-size: large;font-weight: bold">Groups you may like</div><br/>
-        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
-            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
+        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded3">
+            <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
 
-                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
+                <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.name}}</div></a>
 
             </div>
         </slick>

@@ -1,6 +1,8 @@
 package com.dubion.service.NapsterAPI;
 
 import com.dubion.service.dto.NapsterAPI.*;
+import com.dubion.service.dto.NapsterAPI.Artist.images.Image;
+import com.dubion.service.dto.NapsterAPI.Artist.images.Images;
 import com.dubion.service.dto.NapsterAPI.Search.Search;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
@@ -49,6 +51,10 @@ public interface NapsterDTORepository {
 
     @GET("albums/{albumId}/tracks")
     Call<Napster> getSongsByAlbum(@Path("albumId") String albumId
+        , @Query("apikey") String apiKey);
+
+    @GET("artists/{id}/images")
+    Call <Images> getArtistImages(@Path("id") String albumId
         , @Query("apikey") String apiKey);
 
     @GET("albums/new")

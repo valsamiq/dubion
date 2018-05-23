@@ -138,10 +138,6 @@ public class AlbumResource {
         log.debug("REST request to get all Albums by Criteria {}", criteria);
         List<Album> entityList = albumQueryService.findByCriteria(criteria);
 
-        DiscogsApiService.getDisc(3);
-
-        DiscogsApiService.findByReleasetitle("nevermind");
-
         return ResponseEntity.ok().body(entityList);
     }
 

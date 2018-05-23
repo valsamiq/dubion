@@ -47,7 +47,7 @@
         loadAll();
 
         function loadAll() {
-            vm.albumsLoaded=false;
+             vm.albumsLoaded=false;
 
            Album.query(function(result) {
                 vm.salbums = result;
