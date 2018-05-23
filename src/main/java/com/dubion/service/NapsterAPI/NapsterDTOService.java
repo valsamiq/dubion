@@ -310,66 +310,82 @@ public class NapsterDTOService {
                 System.out.println("id artista: "+t.getContributingArtists().getPrimaryArtist());
                 String id = t.getContributingArtists().getPrimaryArtist();
                 id.length();
-                Call<NapsterArtist> artists = apiService.getArtistByAlbum(id,apiKey);
-                System.out.println("songs  "+artists);
-                callartist = artists.execute().body();
-                System.out.println("adivina    "+callartist);
-                for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
-                    callartist.getArtists()) {
-                    if(bandRepository.findByName(eraserNA(g.getName()))==null){
-                    Band guardar = new Band();
-                    List<Band> topArtist = new ArrayList<>();
-                    for (com.dubion.service.dto.NapsterAPI.Artist.Artist art:
-                        callartist.getArtists()) {
-                        if (songRepository.findByName(eraserNA(art.getName())) == null) {
+                if(!id.equalsIgnoreCase("")){
+                    Call<NapsterArtist> artists = apiService.getArtistByAlbum(id,apiKey);
+                    System.out.println("songs  "+artists);
+                    callartist = artists.execute().body();
+                    System.out.println("adivina    "+callartist);
+                    if(callartist==null){
+                        Band desconocido = new Band();
+                        if(bandRepository.findByNameContaining("Desconocido")==null){
+                            desconocido = new Band("Desconocido",null,"No tiene bio, sry", null, "http://static.rhap.com/img/1500x1000/4/4/0/6/8756044_1500x1000.jpg", null,null,null,null,null,null,null,null);
+                            bandRepository.save(desconocido);
+                        }
+                        a.setBand(desconocido);
 
-                            Band artist = new Band();
+                    }else{
+                        for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
+                            callartist.getArtists()) {
+                            if(bandRepository.findByName(eraserNA(g.getName()))==null){
+                                Band guardar = new Band();
+                                List<Band> topArtist = new ArrayList<>();
+                                for (com.dubion.service.dto.NapsterAPI.Artist.Artist art:
+                                    callartist.getArtists()) {
+                                    if (songRepository.findByName(eraserNA(art.getName())) == null) {
 
-                            artist.setName(g.getName());
-                            artist.setNapsterId(g.getId());
-                            Napster ca = null;
+                                        Band artist = new Band();
 
-                            Images callartistImages = null;
-                            Call <Images> artistsImages = apiService.getArtistImages(g.getId(),apiKey);
-                            System.out.println(artistsImages);
-                            callartistImages = artistsImages.execute().body();
-                            System.out.println(callartistImages);
-                            System.out.println("\n\n\n" +callartistImages+ "\n\n\n");
-                            if(callartistImages.getImages().size()!=0){
-                                for (Image artistImages:
-                                    callartistImages.getImages()) {
-                                    artist.setPhoto(artistImages.getUrl());
+                                        artist.setName(g.getName());
+                                        artist.setNapsterId(g.getId());
+                                        Napster ca = null;
+
+                                        Images callartistImages = null;
+                                        Call <Images> artistsImages = apiService.getArtistImages(g.getId(),apiKey);
+                                        System.out.println(artistsImages);
+                                        callartistImages = artistsImages.execute().body();
+                                        System.out.println(callartistImages);
+                                        System.out.println("\n\n\n" +callartistImages+ "\n\n\n");
+                                        if(callartistImages.getImages().size()!=0){
+                                            for (Image artistImages:
+                                                callartistImages.getImages()) {
+                                                artist.setPhoto(artistImages.getUrl());
+                                            }
+                                        }else{
+                                            artist.setPhoto("https://secure.gravatar.com/avatar/755ba87e0a9949e846b042a8ac44723e?s=600&d=mm&r=g");
+                                        }
+                                        String bio;
+                                        bio = "";
+
+                                        if (g.getBlurbs().size() != 0) {
+                                            for (String bios : g.getBlurbs()) {
+                                                System.out.println(bios);
+                                                bio = bio + " " + bios;
+                                                System.out.println(bio);
+                                            }
+                                            System.out.println("\n\n\n" + bio + "\n\n\n");
+                                            artist.setBio(eraserNA(bio));
+                                        } else {
+                                            artist.setBio(null);
+                                        }
+                                        artist = bandRepository.save(artist);
+                                        topArtist.add(artist);
+                                        guardar = artist;
+                                        System.out.println("artist " + artist);
+
+                                    } else {
+                                        topArtist.add(bandRepository.findByName(eraserNA(t.getName())));
+                                    }
                                 }
-                            }else{
-                                artist.setPhoto("https://secure.gravatar.com/avatar/755ba87e0a9949e846b042a8ac44723e?s=600&d=mm&r=g");
+                                a.setBand(guardar);
                             }
-                            String bio;
-                            bio = "";
 
-                            if (g.getBlurbs().size() != 0) {
-                                for (String bios : g.getBlurbs()) {
-                                    System.out.println(bios);
-                                    bio = bio + " " + bios;
-                                    System.out.println(bio);
-                                }
-                                System.out.println("\n\n\n" + bio + "\n\n\n");
-                                artist.setBio(eraserNA(bio));
-                            } else {
-                                artist.setBio(null);
-                            }
-                            artist = bandRepository.save(artist);
-                            topArtist.add(artist);
-                            guardar = artist;
-                            System.out.println("artist " + artist);
-
-                        } else {
-                            topArtist.add(bandRepository.findByName(eraserNA(t.getName())));
                         }
                     }
-                        a.setBand(guardar);
-                    }
-
+                }else{
+                    System.out.println("Artista sin id");
                 }
+
+
 
 
                 a.setName(t.getName());
