@@ -282,7 +282,9 @@ public class NapsterDTOService {
     private void importAlbum(NapsterAlbum napsterAlbum, List<Album> albums) throws IOException {
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             napsterAlbum.getAlbums()) {
-            if(albumRepository.findByName(t.getName())==null){
+
+
+            if(albumRepository.findByNapsterId(t.getId())==null){
                 Album a = new Album();
 
                 String genre = t.getLinks().getGenres().getIds().get(0);
@@ -430,7 +432,7 @@ public class NapsterDTOService {
         }
     }
 
-    public Search searchAlbums(String search){
+    public Search searchAndImportAlbums(String search){
         Search topAlbums = null;
         Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"album",10);
         try {

@@ -12,15 +12,15 @@
         vm.AlbumByName = AlbumByName;
         vm.SongByName = SongByName;
         vm.ArtistByName = ArtistByName;
-        vm.optionSearch;
+        vm.optionSearch = null;
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
-        vm.name;
-        vm.albums=[];
-        vm.songs=[];
-        vm.artists=[];
-        vm.loading=false;
+        vm.name = null;
+        vm.albums = [];
+        vm.songs = [];
+        vm.artists = [];
+        vm.loading = false;
         vm.register = register;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
@@ -57,6 +57,7 @@
             vm.optionSearch="band";
             console.log("Searching by Artist!");
             ArtistByName();
+            //Plan B:
             ArtistByNameLocal();
         }
         vm.goToArtist= function(name) {

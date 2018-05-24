@@ -38,4 +38,6 @@ public interface AlbumRepository extends JpaRepository<Album, Long>, JpaSpecific
     @Query("SELECT a.songs from Album a WHERE a.id=:id")
     List<Song> findSongsByAlbumPageble(@Param("id") Long id, Pageable pageable);
 
+    Album findByNapsterId(String idNapster);
+
 }

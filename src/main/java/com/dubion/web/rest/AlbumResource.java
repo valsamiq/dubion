@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.http.Path;
 
 import java.io.IOException;
 import java.net.URI;
@@ -181,8 +180,16 @@ public class AlbumResource {
     }
     @GetMapping("/albums/search/{albumName}")
     public List<com.dubion.service.dto.NapsterAPI.Search.Album> getAlbumSearch(@PathVariable String albumName){
-        Search album = napsterDTOService.searchAlbums(albumName);
-        return album.getSearch().getData().getAlbums();
+        Search search = napsterDTOService.searchAndImportAlbums(albumName);
+
+        search.getSearch().getData().getAlbums().
+            stream().
+            filter(album -> album != null)
+            .forEach(
+            album -> album.setIdDubion(albumRepository.findByNapsterId(album.getId()).getId())
+            );
+
+        return search.getSearch().getData().getAlbums();
     }/**
      * GET  /songs/:id : get the "id" song.
      *

@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Album {
 
+    private long idDubion;
+
+
     @SerializedName("type")
     @Expose
     private String type;
@@ -70,6 +73,14 @@ public class Album {
     @SerializedName("isStreamable")
     @Expose
     private Boolean isStreamable;
+
+    public long getIdDubion() {
+        return idDubion;
+    }
+
+    public void setIdDubion(long idDubion) {
+        this.idDubion = idDubion;
+    }
 
     public String getType() {
         return type;
