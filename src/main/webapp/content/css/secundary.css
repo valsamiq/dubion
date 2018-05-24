@@ -403,6 +403,7 @@ div.scrollmenu a:hover .new {
     background-color: #777777;
     margin: auto;
     padding-top: 4px;
+    border-radius: 0px 0px 10px 10px;
 }
 .imageAlbum{
     text-align: center;
@@ -412,8 +413,8 @@ div.scrollmenu a:hover .new {
 .resultSearch{
     position: absolute;
     z-index: 2;
-    width: 100%;
-    margin-top: 14px;
+    width: 99%;
+    margin-top: 34px;
 }
 .table-custom{
     background-color: #3c3c3c;

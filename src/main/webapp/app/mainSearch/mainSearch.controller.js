@@ -5,13 +5,14 @@
         .module('dubionApp')
         .controller('mainSearchController', mainSearchController);
 
-    mainSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$stateParams','Song','Album','Artist','MainSearch'];
+    mainSearchController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$stateParams','Song','Album','Artist','Band','MainSearch'];
 
-    function mainSearchController ($scope, Principal, LoginService, $state, $stateParams, Song, Album, Artist, MainSearch) {
+    function mainSearchController ($scope, Principal, LoginService, $state, $stateParams, Song, Album, Artist, Band, MainSearch) {
         var vm = this;
         vm.AlbumByName = AlbumByName;
         vm.SongByName = SongByName;
         vm.ArtistByName = ArtistByName;
+        vm.optionSearch;
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -27,6 +28,7 @@
         // ============SearchByTrack==========
         vm.searchTrack = function(){
             vm.loading=true;
+            vm.optionSearch="track";
             console.log("Sarching by Track");
             SongByName();
             /*MainSearch.query(function(result){
@@ -41,6 +43,7 @@
         // ============SearchByAlbum==========
         vm.searchAlbum=function(){
             vm.loading=true;
+            vm.optionSearch="album";
             console.log("Searhing by Album");
             AlbumByName();
         }
@@ -51,8 +54,10 @@
         // ============SearchByArtist==========
         vm.searchArtist=function(){
             vm.loading=true;
+            vm.optionSearch="band";
             console.log("Searching by Artist!");
             ArtistByName();
+            ArtistByNameLocal();
         }
         vm.goToArtist= function(name) {
             vm.artists = [];
@@ -77,13 +82,18 @@
         function AlbumByName(){
             MainSearch.queryAlbumByName({name : vm.name}, function (data) {
                 vm.albums = data;
-                vm.loading=false;
+                vm.loading = false;
             });
         }
         function ArtistByName(){
             MainSearch.queryArtistByName({name : vm.name}, function (data) {
-                vm.band=data;
-                vm.loading=false;
+                ArtistByNameLocal();
+            });
+        }
+        function ArtistByNameLocal() {
+            MainSearch.queryArtistByNameLocal({name : vm.name}, function (data){
+                vm.artists = data;
+               vm.loading = false;
             });
         }
     }

@@ -2,38 +2,50 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <div class="col-md-8 col-sm-12 paddingZero">
-            <input type="text" class="form-control" placeholder="Search..." ng-model="vm.name" aria-describedby="btnGroupAddon">
+            <input type="text" class="form-control" placeholder="Search..." ng-model="vm.name"
+                   aria-describedby="btnGroupAddon">
         </div>
         <div class="col-md-4 col-sm-12 paddingZero">
             <div class="btn-group widthMax">
-                <button type="button" ng-click="vm.searchTrack()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-music"></span></button>
-                <button type="button" ng-click="vm.searchAlbum()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-cd"></span></button>
-                <button type="button" ng-click="vm.searchArtist()" class="btn btn-secondary widthThird"><span class="glyphicon glyphicon-user"></span></button>
+                <button type="button" ng-click="vm.searchTrack()" class="btn btn-secondary widthThird"><span
+                    class="glyphicon glyphicon-music"></span></button>
+                <button type="button" ng-click="vm.searchAlbum()" class="btn btn-secondary widthThird"><span
+                    class="glyphicon glyphicon-cd"></span></button>
+                <button type="button" ng-click="vm.searchArtist()" class="btn btn-secondary widthThird"><span
+                    class="glyphicon glyphicon-user"></span></button>
             </div>
         </div>
     </div>
     <div class="col-sm-3">
-        <img style="width: 40px; text-align: left" ng-if="vm.loading" src="../../content/images/loader.gif" />
+        <img style="width: 40px; text-align: left" ng-if="vm.loading" src="../../content/images/loader.gif"/>
     </div>
 </form>
 <div class="resultSearch">
     <div class="col-md-3 hidden-xs hidden-sm"></div>
     <div class="col-md-6 col-sm-12">
-        <table class="jh-table table table-custom">
+        <table ng-if="vm.optionSearch==='track'" class="jh-table table table-custom">
             <tbody>
-                <tr ng-if="vm.songs.length === 0"></tr>
-                <tr ng-if="vm.songs.length > 0" ng-repeat="song in vm.songs track by song.id">
-                    <td><a ng-click="vm.goToSong(song.name)">{{song.name}}</a></td>
-                </tr>
+            <tr ng-if="vm.songs.length === 0"></tr>
+            <tr ng-if="vm.songs.length > 0" ng-repeat="song in vm.songs track by song.id">
+                <td><a ng-click="vm.goToSong(song.name)">{{song.name}}</a></td>
+            </tr>
             </tbody>
         </table>
-        <table class="jh-table table table-custom">
+        <table ng-if="vm.optionSearch==='album'" class="jh-table table table-custom">
             <tbody>
-                <tr ng-if="vm.albums.length === 0"></tr>
-                <tr ng-if="vm.albums.length > 0" ng-repeat="album in vm.albums track by album.id">
-                    <!--<td><a ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>-->
-                    <td><a href="#/albumPage/{{album.id}}" ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>
-                </tr>
+            <tr ng-if="vm.albums.length === 0"></tr>
+            <tr ng-if="vm.albums.length > 0" ng-repeat="album in vm.albums track by album.id">
+                <!--<td><a ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>-->
+                <td><a href="#/albumPage/{{album.id}}" ng-click="vm.goToAlbum(album.name)">{{album.name}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <table ng-if="vm.optionSearch==='band'" class="jh-table table table-custom">
+            <tbody>
+            <tr ng-if="vm.artists.length === 0"></tr>
+            <tr ng-if="vm.artists.length > 0" ng-repeat="band in vm.artists track by band.id">
+                <td><a href="#/bandPage/{{band.id}}" ng-click="vm.goToArtist(band.name)">{{band.name}}</a></td>
+            </tr>
             </tbody>
         </table>
     </div>

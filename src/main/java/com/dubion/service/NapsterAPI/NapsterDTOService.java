@@ -350,7 +350,7 @@ public class NapsterDTOService {
                                                 artist.setPhoto(artistImages.getUrl());
                                             }
                                         }else{
-                                            artist.setPhoto("https://secure.gravatar.com/avatar/755ba87e0a9949e846b042a8ac44723e?s=600&d=mm&r=g");
+                                            artist.setPhoto("content/images/artists/unknown.png");
                                         }
                                         String bio;
                                         bio = "";
