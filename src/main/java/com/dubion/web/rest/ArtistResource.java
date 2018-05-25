@@ -3,6 +3,7 @@ package com.dubion.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.Album;
 import com.dubion.domain.Artist;
+import com.dubion.repository.BandRepository;
 import com.dubion.service.ArtistService;
 import com.dubion.repository.ArtistRepository;
 import com.dubion.service.NapsterAPI.NapsterDTOService;
@@ -38,14 +39,17 @@ public class ArtistResource {
 
     private final ArtistRepository artistRepository;
 
+    private final BandRepository bandRepository;
+
     private final ArtistService artistService;
 
     private final ArtistQueryService artistQueryService;
 
     private final NapsterDTOService napsterDTOService;
 
-    public ArtistResource(ArtistRepository artistRepository, ArtistService artistService, ArtistQueryService artistQueryService, NapsterDTOService napsterDTOService){
+    public ArtistResource(ArtistRepository artistRepository, BandRepository bandRepository, ArtistService artistService, ArtistQueryService artistQueryService, NapsterDTOService napsterDTOService){
         this.artistRepository = artistRepository;
+        this.bandRepository = bandRepository;
         this.artistService = artistService;
         this.artistQueryService = artistQueryService;
         this.napsterDTOService = napsterDTOService;
@@ -146,8 +150,15 @@ public class ArtistResource {
      */
     @GetMapping("/artist/search/{artistName}")
     public List<com.dubion.service.dto.NapsterAPI.Search.Artists> getBandSearch(@PathVariable String artistName){
-        Search band = napsterDTOService.searchBands(artistName);
-        return band.getSearch().getData().getArtists();
+        Search search = napsterDTOService.searchBands(artistName);
+            search.getSearch().getData().getArtists().
+                stream().
+                filter(artist -> artist != null)
+                .forEach(
+                 artist -> artist.setIdDubion(bandRepository.findByNapsterId(artist.getId()).getId())
+            );
+
+        return search.getSearch().getData().getArtists();
     }
     /**
      * DELETE  /artists/:id : delete the "id" artist.

@@ -58,7 +58,7 @@
             console.log("Searching by Artist!");
             ArtistByName();
             //Plan B:
-            ArtistByNameLocal();
+            //ArtistByNameLocal();
         }
         vm.goToArtist= function(name) {
             vm.artists = [];

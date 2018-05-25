@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
 public class Artists {
 
 
-    public long idDubion;
+    public Long idDubion;
 
     @SerializedName("type")
     @Expose
@@ -45,9 +45,9 @@ public class Artists {
     @Expose
     private com.dubion.service.dto.NapsterAPI.Artist.Links links;
 
-    public long getIdDubion() {return idDubion;}
+    public Long getIdDubion() {return idDubion;}
 
-    public void setIdDubion(long idDubion) {this.idDubion = idDubion;}
+    public void setIdDubion(Long idDubion) {this.idDubion = idDubion;}
 
     public String getType() {
         return type;
