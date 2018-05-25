@@ -24,6 +24,7 @@
                     </ol>
 
                     <button ng-click="vm.anteriorPage()" ng-disabled="vm.back">Back</button>
+                    {{vm.page+1}}/{{vm.maxPaginas+1}}
                     <button ng-click="vm.nextPage()" ng-disabled="vm.next">Next</button>
 
                 </div>

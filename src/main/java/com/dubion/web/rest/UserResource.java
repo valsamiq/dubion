@@ -5,6 +5,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.dubion.domain.User;
 import com.dubion.repository.UserRepository;
 import com.dubion.security.AuthoritiesConstants;
+import com.dubion.security.SecurityUtils;
 import com.dubion.service.MailService;
 import com.dubion.service.UserService;
 import com.dubion.service.dto.UserDTO;
@@ -188,5 +189,17 @@ public class UserResource {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
+    }
+
+    /**
+     *
+     * GET user
+     * kelvin
+     */
+    @GetMapping("/users/activeUser")
+    @Timed
+    public ResponseEntity<User> getOneUserById(){
+        User entity = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        return ResponseEntity.ok().body(entity);
     }
 }

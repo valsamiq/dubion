@@ -1,9 +1,12 @@
 package com.dubion.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dubion.domain.User;
 import com.dubion.domain.UserExt;
 
 import com.dubion.repository.UserExtRepository;
+import com.dubion.repository.UserRepository;
+import com.dubion.security.SecurityUtils;
 import com.dubion.web.rest.errors.BadRequestAlertException;
 import com.dubion.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,8 +34,12 @@ public class UserExtResource {
 
     private final UserExtRepository userExtRepository;
 
-    public UserExtResource(UserExtRepository userExtRepository) {
+    private final UserRepository userRepository;
+
+    public UserExtResource(UserExtRepository userExtRepository, UserRepository userRepository) {
+
         this.userExtRepository = userExtRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -116,4 +123,21 @@ public class UserExtResource {
         userExtRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * GET userExt via user
+     * kelvin
+     */
+
+
+
+    @GetMapping("/user-exts/getUserExtData")
+    @Timed
+    public ResponseEntity<UserExt> getOneUserById(){
+
+        User userTemp = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        UserExt userExtTemp = userExtRepository.findByUser(userTemp).get();
+        return ResponseEntity.ok().body(userExtTemp);
+    }
+
 }

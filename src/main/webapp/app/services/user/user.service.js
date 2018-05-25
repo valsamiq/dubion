@@ -3,7 +3,7 @@
 
     angular
         .module('dubionApp')
-        .factory('User', User);
+        .factory(   'User', User);
 
     User.$inject = ['$resource'];
 

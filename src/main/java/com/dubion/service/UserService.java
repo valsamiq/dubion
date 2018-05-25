@@ -56,6 +56,8 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
+
+
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -285,4 +287,14 @@ public class UserService {
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
+
+    /**
+     *Get one user by id
+    * */
+    @Transactional(readOnly = true)
+    public User findOne(Long id){
+        log.debug("Requesto to get User : {}", id);
+        return userRepository.findOne(id);
+    }
+
 }
