@@ -161,7 +161,7 @@ public class NapsterDTOService {
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             topAlbumNapster.getAlbums()) {
             importAlbumById(t.getId());
-            if(albumRepository.findByName(t.getName())==null){
+            if(albumRepository.findByNapsterId(t.getId())==null){
                 Album s = new Album();
 
 
@@ -187,7 +187,7 @@ public class NapsterDTOService {
                 s=albumRepository.save(s);
                 topAlbums.add(s);
             }else{
-                topAlbums.add(albumRepository.findByName(t.getName()));
+                topAlbums.add(albumRepository.findByNapsterId(t.getId()));
             }
 
         }
@@ -426,7 +426,7 @@ public class NapsterDTOService {
                     }
                 }
             }else{
-                albums.add( albumRepository.findByName(t.getName()));
+                albums.add( albumRepository.findByNapsterId(t.getId()));
             }
 
         }

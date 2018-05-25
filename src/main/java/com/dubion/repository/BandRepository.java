@@ -29,4 +29,6 @@ public interface BandRepository extends JpaRepository<Band, Long>, JpaSpecificat
 
     List<Band> findByNameContaining(String name);
 
+    Band findByNapsterId(String idNapster);
+
 }
