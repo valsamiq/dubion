@@ -1,8 +1,8 @@
 package com.dubion.service.NapsterAPI;
 
 import com.dubion.service.dto.NapsterAPI.*;
-import com.dubion.service.dto.NapsterAPI.Artist.images.Image;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Images;
+import com.dubion.service.dto.NapsterAPI.Search.Artists;
 import com.dubion.service.dto.NapsterAPI.Search.Search;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
@@ -71,5 +71,12 @@ public interface NapsterDTORepository {
     Call<Search> searchAlbum  (@Query("query") String query
         , @Query("apikey") String apiKey
         , @Query("type") String type
-        , @Query("per_type_limit") Integer per_type_limit);
+        , @Query("per_type_limit") Integer per_type_limit);@Headers({
+        "Accept-Encoding: identity"
+    })
+    @GET("search")
+    Call<Search> searchBandNapster  (@Query("query") String query
+            , @Query("apikey") String apiKey
+            , @Query("type") String type
+            , @Query("per_type_limit") Integer per_type_limit);
 }

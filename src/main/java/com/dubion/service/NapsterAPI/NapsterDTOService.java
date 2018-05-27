@@ -5,6 +5,7 @@ import com.dubion.repository.*;
 import com.dubion.service.dto.NapsterAPI.*;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Image;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Images;
+import com.dubion.service.dto.NapsterAPI.Search.Artists;
 import com.dubion.service.dto.NapsterAPI.Search.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -283,28 +285,30 @@ public class NapsterDTOService {
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             napsterAlbum.getAlbums()) {
 
-
+            String name ="";
             if(albumRepository.findByNapsterId(t.getId())==null){
                 Album a = new Album();
-
-                String genre = t.getLinks().getGenres().getIds().get(0);
-                System.out.println(genre);
-                NapsterGenre callgenres = null; String name ="";
-                Call<NapsterGenre> genres = apiService.getGenresById("ES", apiKey,genre);
-                callgenres = genres.execute().body();
-                for (com.dubion.service.dto.NapsterAPI.Genre.Genre g:
-                    callgenres.getGenre()) {
-                    name = g.getName();}
-                System.out.println(name);
-                System.out.println(genreRepository.findByName(name));
-                if (genreRepository.findByName(name)!=null){
+                if(!t.getLinks().getGenres().equals(null)){
+                    String genre = t.getLinks().getGenres().getIds().get(0);
+                    System.out.println(genre);
+                    NapsterGenre callgenres = null;
+                    Call<NapsterGenre> genres = apiService.getGenresById("ES", apiKey,genre);
+                    callgenres = genres.execute().body();
+                    for (com.dubion.service.dto.NapsterAPI.Genre.Genre g:
+                        callgenres.getGenre()) {
+                        name = g.getName();}
+                    System.out.println(name);
                     System.out.println(genreRepository.findByName(name));
-                    a.setGenres(genreRepository.findByNames(name));
-                    System.out.println(a.getGenres());
-                }else{
-                    importGenreByName(genre);
-                    a.setGenres(genreRepository.findByNames(name));
+                    if (genreRepository.findByName(name)!=null){
+                        System.out.println(genreRepository.findByName(name));
+                        a.setGenres(genreRepository.findByNames(name));
+                        System.out.println(a.getGenres());
+                    }else{
+                        importGenreByName(genre);
+                        a.setGenres(genreRepository.findByNames(name));
+                    }
                 }
+
 
 
                 NapsterArtist callartist = null;
@@ -327,7 +331,7 @@ public class NapsterDTOService {
                     }else{
                         for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
                             callartist.getArtists()) {
-                            if(bandRepository.findByName(eraserNA(g.getName()))==null){
+                            if(bandRepository.findByNapsterId(eraserNA(g.getId()))==null){
                                 Band guardar = new Band();
                                 List<Band> topArtist = new ArrayList<>();
                                 for (com.dubion.service.dto.NapsterAPI.Artist.Artist art:
@@ -468,19 +472,19 @@ public class NapsterDTOService {
         }
         return topAlbums;
     }
-    public Search searchBands(String search){
-        Search artist = null;
-        Call<Search> callArtist = apiService.searchAlbum(search,apiKey,"artists",10);
+    public List<Search> searchBands(String search){
+        List<Search > artist = null;
+        Call <Search> callArtist = apiService.searchBandNapster(search,apiKey,"artists",10);
         try {
-            Response<Search> response=callArtist.execute();
+            Response <Search> response=callArtist.execute();
             if(response.isSuccessful()){
-                artist = response.body();
+                artist = Collections.singletonList(response.body());
                 System.out.println("topAlbums "+artist);
             }
-            System.out.println(artist.getSearch().getData().getAlbums());
-            for (com.dubion.service.dto.NapsterAPI.Search.Tracks album: artist.getSearch().getData().getTracks()){
-                System.out.println(album.getAlbumId());
-                importAlbumById(album.getAlbumId());
+
+            for (com.dubion.service.dto.NapsterAPI.Search.Search album: artist){
+                for (com.dubion.service.dto.NapsterAPI.Search.Tracks albums: album.getSearch().getData().getTracks())
+                importAlbumById(albums.getAlbumId());
             }
 
         } catch (IOException e) {
