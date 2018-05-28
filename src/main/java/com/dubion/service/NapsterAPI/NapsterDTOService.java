@@ -422,7 +422,7 @@ public class NapsterDTOService {
                 List<Song> topSongs = new ArrayList<>();
                 for (Track g:
                     callsongs.getTracks()) {
-                    if(songRepository.findByName(eraserNA(t.getName()))==null){
+                    if(songRepository.findByNapsterId(eraserNA(t.getId()))==null){
 
                         Song s = new Song();
                         s.setUrl(g.getPreviewURL());
