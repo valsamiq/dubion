@@ -29,7 +29,9 @@
             getFavoriteBand(data.id);
             vm.bandName = vm.bandActual.name;
             vm.bandId = vm.bandActual.id;
+            loadAll();
             vm.imatgeBand = '<img  src="data:image/jpg;base64, '+vm.bandActual.photo+'" />';
+
 
         });
 
@@ -126,17 +128,18 @@
             $state.go('register');
         }
         vm.sbands=[];
+        vm.salbums=[];
 
 
-        loadAll();
+
 
         function loadAll() {
 
-
-
+            vm.bandsLoaded=false;
+            vm.albumsLoaded=false;
 
             Band.query(function(result) {
-                vm.bandsLoaded=false;
+
 
                 vm.sbands = result;
                 vm.searchQuery = null;
@@ -190,6 +193,62 @@
                     }
                 };
                 vm.bandsLoaded=true;
+            });
+            Band.albumBand({bandId : vm.bandId}, function(result) {
+
+
+                vm.salbums = result;
+                vm.searchQuery = null;
+
+                vm.slickConfig = {
+                    enabled: true,
+                    autoplay: true,
+                    draggable: false,
+                    autoplaySpeed: 2000,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 4,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                dots: false,
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                arrows: false,
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+
+                            }
+                        }
+
+                    ],
+                    method: {},
+                    event: {
+                        //beforeChange: function (event, slick, currentSlide, nextSlide){},
+                        //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
+                    }
+                };
+                vm.albumsLoaded=true;
             });
         }
 

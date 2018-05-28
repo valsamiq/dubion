@@ -40,4 +40,6 @@ public interface AlbumRepository extends JpaRepository<Album, Long>, JpaSpecific
 
     Album findByNapsterId(String idNapster);
 
+    @Query("SELECT a FROM Album a WHERE a.band.id = :id")
+    List<Album> findByBandId(@Param("id") Long id);
 }

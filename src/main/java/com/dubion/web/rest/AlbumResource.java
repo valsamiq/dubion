@@ -190,7 +190,13 @@ public class AlbumResource {
             );
 
         return search.getSearch().getData().getAlbums();
-    }/**
+    }
+    @GetMapping("/albums/band/{bandId}")
+    public List<Album> getAlbumBand(@PathVariable Long bandId){
+
+        return albumRepository.findByBandId(bandId);
+    }
+    /**
      * GET  /songs/:id : get the "id" song.
      *
      *

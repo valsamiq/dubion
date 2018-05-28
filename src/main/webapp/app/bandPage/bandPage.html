@@ -26,6 +26,13 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
+        <h2 class="left white">Albumes de {{vm.bandActual.name}}</h2>
+        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
+            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
+                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
+            </div>
+        </slick>
+        <br/>
         <h2 class="left white">Otros Artistas</h2>
         <slick settings="vm.slickConfig" ng-if="vm.bandsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
