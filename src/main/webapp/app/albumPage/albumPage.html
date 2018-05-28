@@ -21,22 +21,20 @@
 
                 <div class="col-md-12 trackListAlbum">
                     <ul class="list-group">
-
-                            <li class="list-group-item songLinkAlbum" ng-click="vm.setSong(song)" ng-repeat="song in vm.songs">
-                                {{$index+1+(vm.page*10)}}. {{song.name}}
-                            </li>
-
+                        <li class="list-group-item songLinkAlbum" ng-click="vm.setSong(song)" ng-repeat="song in vm.songs" style="padding: 4px;">
+                            {{$index+1+(vm.page*10)}}.{{song.name}}
+                        </li>
                     </ul>
                     <div class="row">
                         <div class="col-lg-4"></div>
                         <div class="col-lg-5">
                             <div class="btn-group">
                                 <button ng-click="vm.anteriorPage()" ng-disabled="vm.back" type="button" data-translate="activate.back" translate-compile
-                                        class="btn btn-default">Back
+                                        class="btn btn-default"><img src="content/images/iconos/left-chevron.png">Back
                                 </button>
                                 <button class="btn btn-default" disabled>{{vm.page+1}}/{{vm.maxPaginas+1}}</button>
                                 <button ng-click="vm.nextPage()" ng-disabled="vm.next" type="button" data-translate="activate.next" translate-compile
-                                        class="btn btn-default">Next
+                                        class="btn btn-default">Next<img src="content/images/iconos/right-chevron.png">
                                 </button>
                             </div>
                         </div>
