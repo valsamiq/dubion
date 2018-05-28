@@ -1,135 +1,156 @@
 <div ng-cloak>
-    <div class="row">
-            <div ng-switch="vm.isAuthenticated()">
-                <!--<div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">-->
-                    <!--You are logged in as user "{{vm.account.login}}".-->
-                <!--</div>-->
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+    <div class="row" ng-switch="vm.isAuthenticated()">
+        <div ng-switch-when="false">
+            <!--<div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">-->
+            <!--You are logged in as user "{{vm.account.login}}".-->
+            <!--</div>-->
+            <div class="alert alert-warning" data-translate="global.messages.info.notauth" translate-compile>
+                You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+            </div>
+            <div class="alert alert-warning" data-translate="global.messages.info.register" translate-compile>
+                You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+            </div>
+        </div>
+        <div ng-switch-when="true">
+            <div style="font-size: large;font-weight: bold">Top Albums</div>
+            <br/>
+            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded2">
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbumstop track by img.id">
+
+                    <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
+                                                                                     style="width:200px"/>
+                        <div class="new">{{img.band.name}}</br>{{img.name}}</div>
+                    </a>
                 </div>
-            </div>
-            <div style="font-size: large;font-weight: bold">Top Albums</div><br/>
-            <style>
-                .carousel .item {
-                    height: auto !important;
-                }
-                div.scrollmenu {
-                    position: relative;
-                    background-color: #b6b6b6;
-                    overflow: hidden;
-                    white-space: nowrap;
-                }
+            </slick>
+            <br/>
+            <div style="font-size: large;font-weight: bold">Your Albums</div>
+            <br/>
 
-                div.scrollmenu a {
-                    display: inline-block;
-                    color: white;
-                    text-align: center;
-                    padding: 14px;
-                    text-decoration: none;
-                }
+            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
+                    <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
+                                                                                     style="width:200px"/>
+                        <div class="new">{{img.band.name}}</br>{{img.name}}</div>
+                    </a>
+                </div>
+            </slick>
+            <br/>
+            <div style="font-size: large;font-weight: bold">Groups you may like</div>
+            <br/>
+            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded3">
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
 
-                div.scrollmenu a:hover .new{
-                    background-color: rgba(140,130,130,0.5);
-                    color:white;
-                }
-                .new {
-                    background-color: transparent;
-                    width:200px;
-                    height: 50px;
-                    color:transparent;
-                    z-index: 3;
-                    bottom: 14px;
-                    left: 14px;
-                    position: absolute;
+                    <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
+                                                                                    style="width:200px"/>
+                        <div class="new">{{img.name}}</div>
+                    </a>
 
-                }
-                .pictr{
-                    position:absolute;
-                    left: 2%;
-                    top: 50%;
-                    width: 30px !important;
-                    height: 30px !important;
-                    z-index: 5;
-                }
-                .pictl{
-                    position:absolute;
-                    right: 2%;
-                    bottom: 40%;
-                    width: 30px !important;
-                    height: 30px !important;
-                    z-index: 5;
-                }
-            </style>
-
-        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded2">
-            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbumstop track by img.id">
-
-                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
-            </div>
-        </slick><br/>
-        <script>
-            $(document).ready(function(){
-                $('.scrollslick').slick({
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 2000,
-                    nextArrow:'<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
-                    prevArrow:'<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
-                    responsive: [
-                        {
-                            breakpoint: 1200,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 4,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                arrows: false,
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-                            }
-                        }
-
-                    ]
-                });
-            });
-        </script>
-
-            <div style="font-size: large;font-weight: bold">Your Albums</div><br/>
-
-        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
-            <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
-                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.band.name}}</br>{{img.name}}</div></a>
-            </div>
-        </slick>
-        <br/>
-        <div style="font-size: large;font-weight: bold">Groups you may like</div><br/>
-        <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded3">
-            <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
-
-                <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/><div class="new">{{img.name}}</div></a>
-
-            </div>
-        </slick>
-        <br/>
+                </div>
+            </slick>
+            <br/>
+        </div>
     </div>
+
+    <style>
+        .carousel .item {
+            height: auto !important;
+        }
+
+        div.scrollmenu {
+            position: relative;
+            background-color: #b6b6b6;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        div.scrollmenu a:hover .new {
+            background-color: rgba(140, 130, 130, 0.5);
+            color: white;
+        }
+
+        .new {
+            background-color: transparent;
+            width: 200px;
+            height: 50px;
+            color: transparent;
+            z-index: 3;
+            bottom: 14px;
+            left: 14px;
+            position: absolute;
+
+        }
+
+        .pictr {
+            position: absolute;
+            left: 2%;
+            top: 50%;
+            width: 30px !important;
+            height: 30px !important;
+            z-index: 5;
+        }
+
+        .pictl {
+            position: absolute;
+            right: 2%;
+            bottom: 40%;
+            width: 30px !important;
+            height: 30px !important;
+            z-index: 5;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('.scrollslick').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                nextArrow: '<img class="pictl" src="/content/images/arrowleft.png" alt="next"/>',
+                prevArrow: '<img class="pictr" src="/content/images/rightarrow.png" alt="preview"/>',
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            dots: false,
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            dots: false,
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: false,
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+
+                ]
+            });
+        });
+    </script>
 </div>

@@ -28,6 +28,11 @@
             Principal.identity().then(function(account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
+                if(vm.account==null){
+                    console.log("hola que tal");
+                }
+
+                loadAll();
             });
         }
         function register () {
@@ -39,7 +44,7 @@
         vm.salbumstop=[];
         vm.sbands=[];
 
-        loadAll();
+
 
         function fullAlbum() {
             Album.query(function(result) {
