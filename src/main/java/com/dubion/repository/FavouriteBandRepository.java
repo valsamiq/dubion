@@ -26,4 +26,6 @@ public interface FavouriteBandRepository extends JpaRepository<FavouriteBand, Lo
 
     @Query("select favourite_band.band from FavouriteBand favourite_band where favourite_band.liked = true AND favourite_band.user.login=:login")
     List<Band> findByFavoriteBand(@Param("login") String login);
+
+
 }
