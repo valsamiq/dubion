@@ -18,14 +18,11 @@
                     <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                            data-step="1" data-show-clear="false" data-show-caption="false">
                 </div>
-
                 <div class="col-md-12 trackListAlbum">
                     <ul class="list-group">
-
-                            <li class="list-group-item songLinkAlbum" ng-click="vm.setSong(song)" ng-repeat="song in vm.songs">
-                                {{$index+1+(vm.page*10)}}. {{song.name}}
-                            </li>
-
+                        <li class="list-group-item songLinkAlbum" ng-click="vm.setSong(song)" ng-repeat="song in vm.songs" style="padding: 4px;">
+                            {{$index+1+(vm.page*10)}}.{{song.name}}
+                        </li>
                     </ul>
                     <div class="row">
                         <div class="col-lg-4"></div>
