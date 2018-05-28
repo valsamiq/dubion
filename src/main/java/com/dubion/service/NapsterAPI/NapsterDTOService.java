@@ -3,6 +3,7 @@ package com.dubion.service.NapsterAPI;
 import com.dubion.domain.*;
 import com.dubion.repository.*;
 import com.dubion.service.dto.NapsterAPI.*;
+import com.dubion.service.dto.NapsterAPI.Artist.Bio;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Image;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Images;
 import com.dubion.service.dto.NapsterAPI.Search.Artists;
@@ -370,8 +371,13 @@ public class NapsterDTOService {
                                             }
                                             System.out.println("\n\n\n" + bio + "\n\n\n");
                                             artist.setBio(eraserNA(bio));
-                                        } else {
-                                            artist.setBio(null);
+                                        }else if(g.getBios()!=null) {
+                                            for (Bio bios: g.getBios()){
+                                                artist.setBio(bios.getBio());
+                                            }
+                                            System.out.println(artist.getId());
+                                        }else{
+                                            artist.setBio("No tiene bio, sry    ");
                                         }
                                         artist = bandRepository.save(artist);
                                         topArtist.add(artist);
