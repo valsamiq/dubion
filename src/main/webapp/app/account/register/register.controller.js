@@ -11,6 +11,7 @@
     function RegisterController ($translate, $timeout, Auth, LoginService, errorConstants,Sex) {
         var vm = this;
 
+        vm.registerForm;
         vm.doNotMatch = null;
         vm.error = null;
         vm.errorUserExists = null;

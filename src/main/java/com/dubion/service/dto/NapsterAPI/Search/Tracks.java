@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Tracks {
 
+    private long idDubion;
+
     @SerializedName("href")
     @Expose
     private String href;
@@ -28,6 +30,14 @@ public class Tracks {
 
     public void setHref(String href) {
         this.href = href;
+    }
+
+    public long getIdDubion() {
+        return idDubion;
+    }
+
+    public void setIdDubion(long idDubion) {
+        this.idDubion = idDubion;
     }
 
     public void setAlbumId(String albumId) {

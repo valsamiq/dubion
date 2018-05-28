@@ -28,6 +28,7 @@ public interface SongRepository extends JpaRepository<Song, Long>, JpaSpecificat
 
     List<Song> findByAlbumsNameContaining(String name, Pageable pageable);
 
+    Song findByNapsterId(String idNapster);
 
 
 }
