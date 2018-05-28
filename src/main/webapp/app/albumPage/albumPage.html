@@ -11,24 +11,40 @@
         <div class="col-md-8" align="center" style="list-style: none">
             <div class="row">
                 <div class="col-md-8">
-                    <h2 class="titleArtistAlbum"><a style="color:#333" href="#/bandPage/{{vm.albumActual.band.id}}">{{vm.albumActual.band.name}}</a> - {{vm.albumActual.name}}</h2>
+                    <h2 class="titleArtistAlbum"><a style="color:#333" href="#/bandPage/{{vm.albumActual.band.id}}">{{vm.albumActual.band.name}}</a>
+                        - {{vm.albumActual.name}}</h2>
                 </div>
                 <div class="col-sm-4">
-                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false" data-show-caption="false">
+                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
+                           data-step="1" data-show-clear="false" data-show-caption="false">
                 </div>
+
                 <div class="col-md-12 trackListAlbum">
-                    <ol type="1">
-                        <div ng-repeat="song in vm.songs">
-                            <a class="songLinkAlbum" ng-click="vm.setSong(song)"> {{$index+1+(vm.page*10)}}. {{song.name}}</a>
+                    <ul class="list-group">
+
+                            <li class="list-group-item songLinkAlbum" ng-click="vm.setSong(song)" ng-repeat="song in vm.songs">
+                                {{$index+1+(vm.page*10)}}. {{song.name}}
+                            </li>
+
+                    </ul>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-5">
+                            <div class="btn-group">
+                                <button ng-click="vm.anteriorPage()" ng-disabled="vm.back" type="button"
+                                        class="btn btn-default">Back
+                                </button>
+                                <button class="btn btn-default" disabled>{{vm.page+1}}/{{vm.maxPaginas+1}}</button>
+                                <button ng-click="vm.nextPage()" ng-disabled="vm.next" type="button"
+                                        class="btn btn-default">Next
+                                </button>
+                            </div>
                         </div>
-                    </ol>
 
-                    <button ng-click="vm.anteriorPage()" ng-disabled="vm.back">Back</button>
-                    {{vm.page+1}}/{{vm.maxPaginas+1}}
-                    <button ng-click="vm.nextPage()" ng-disabled="vm.next">Next</button>
-
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
     <div class="col-xs-12 audioPlayer">
@@ -42,7 +58,8 @@
         <h2 class="left white">Disfruta de más música</h2>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
-                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album" style="width:200px"/>
+                <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
+                                                                                 style="width:200px"/>
                     <div class="new">{{img.band.name}}</br>{{img.name}}</div>
                 </a>
             </div>
