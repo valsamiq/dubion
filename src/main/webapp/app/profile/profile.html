@@ -1,8 +1,20 @@
-<div>
-    Pagina de Usuario
-    <br>Username:{{vm.userData.login}}
-    <br>Email:{{vm.userData.email}}
-    <br>Nombre:{{vm.userData.firstName}}
-    <br>Apellido:{{vm.userData.lastName}}
-    <br>Localizacion:{{vm.userDataExt.location}}
+<div class="row">
+    <div class="col-sm-4">
+        <img src="/content/images/artists/mrDubion.png" style="width: 250px;">
+    </div>
+    <div class="col-md-6">
+        <h2>Hello, {{vm.userData.login}}</h2>
+        {{vm.userData.firstName}} {{vm.userData.lastName}}, from {{vm.userDataExt.location}}<br>
+        Contact email: {{vm.userData.email}}<br><br>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" ui-sref="password">
+                Change password
+                <span class="glyphicon glyphicon-lock"></span>
+            </button>
+            <button type="button" class="btn btn-secondary" ui-sref="settings">
+                User settings
+                <span class="glyphicon glyphicon-wrench"></span>
+            </button>
+        </div>
+    </div>
 </div>
