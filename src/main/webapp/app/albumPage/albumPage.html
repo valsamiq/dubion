@@ -31,11 +31,11 @@
                         <div class="col-lg-4"></div>
                         <div class="col-lg-5">
                             <div class="btn-group">
-                                <button ng-click="vm.anteriorPage()" ng-disabled="vm.back" type="button"
+                                <button ng-click="vm.anteriorPage()" ng-disabled="vm.back" type="button" data-translate="activate.back" translate-compile
                                         class="btn btn-default">Back
                                 </button>
                                 <button class="btn btn-default" disabled>{{vm.page+1}}/{{vm.maxPaginas+1}}</button>
-                                <button ng-click="vm.nextPage()" ng-disabled="vm.next" type="button"
+                                <button ng-click="vm.nextPage()" ng-disabled="vm.next" type="button" data-translate="activate.next" translate-compile
                                         class="btn btn-default">Next
                                 </button>
                             </div>
@@ -55,7 +55,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h2 class="left white">Disfruta de más música</h2>
+        <h2 class="left white" data-translate="activate.moremusic" translate-compile>Disfruta de más música</h2>
         <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
             <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
                 <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"

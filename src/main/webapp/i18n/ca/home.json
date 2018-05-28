@@ -14,6 +14,9 @@
             "follow": "Contacte @java_hipster a Twitter"
         },
         "like": "Si li agrada JHipster, no oblidi donar-nos una estrella",
-        "github": "GitHub"
+        "github": "GitHub",
+        "topalbum": "Top Àlbums",
+        "allalbum": "Els teus Àlbums",
+        "topbands": "Grups que et poden agradar"
     }
 }
