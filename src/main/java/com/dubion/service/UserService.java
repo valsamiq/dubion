@@ -140,8 +140,8 @@ public class UserService {
         newUserExt.setSex(newUserSex);
         newUserExt.setUser(newUser);
         newUserExt.setLocation(userDTO. getLocation());
-        newUserExt.setLatitude(userDTO.getLatitude());
-        newUserExt.setLongitude(userDTO.getLongitude());
+        //newUserExt.setLatitude(userDTO.getLatitude());
+        //newUserExt.setLongitude(userDTO.getLongitude());
 
 
         userExtRepository.save(newUserExt);

@@ -1,5 +1,6 @@
 package com.dubion.repository;
 
+import com.dubion.domain.Band;
 import com.dubion.domain.Genre;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

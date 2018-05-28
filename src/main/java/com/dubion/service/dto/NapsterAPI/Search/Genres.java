@@ -7,12 +7,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class Genres {
 
+    private long idDubion;
+
     @SerializedName("ids")
     @Expose
     private List<String> ids = null;
     @SerializedName("href")
     @Expose
     private String href;
+
+    public long getIdDubion() {
+        return idDubion;
+    }
+
+    public void setIdDubion(long idDubion) {
+        this.idDubion = idDubion;
+    }
 
     public List<String> getIds() {
         return ids;

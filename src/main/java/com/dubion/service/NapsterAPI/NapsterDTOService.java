@@ -383,7 +383,7 @@ public class NapsterDTOService {
                                 }
                                 a.setBand(guardar);
                             }
-
+                            a.setBand(bandRepository.findByNapsterId(eraserNA(g.getId())));
                         }
                     }
                 }else{
@@ -474,7 +474,7 @@ public class NapsterDTOService {
     }
     public List<Search> searchBands(String search){
         List<Search > artist = null;
-        Call <Search> callArtist = apiService.searchBandNapster(search,apiKey,"artists",10);
+        Call <Search> callArtist = apiService.searchBandNapster(search,apiKey,"artists",15);
         try {
             Response <Search> response=callArtist.execute();
             if(response.isSuccessful()){
@@ -492,4 +492,5 @@ public class NapsterDTOService {
         }
         return artist;
     }
+
 }
