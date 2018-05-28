@@ -7,6 +7,7 @@ import com.dubion.service.dto.NapsterAPI.Artist.images.Image;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Images;
 import com.dubion.service.dto.NapsterAPI.Search.Artists;
 import com.dubion.service.dto.NapsterAPI.Search.Search;
+import com.dubion.service.dto.NapsterAPI.Search.Tracks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -314,19 +315,19 @@ public class NapsterDTOService {
                 NapsterArtist callartist = null;
                 System.out.println("id artista: "+t.getContributingArtists().getPrimaryArtist());
                 String id = t.getContributingArtists().getPrimaryArtist();
-                id.length();
-                if(!id.equalsIgnoreCase("")){
+                System.out.println(id);
+                if(id!=null){
                     Call<NapsterArtist> artists = apiService.getArtistByAlbum(id,apiKey);
                     System.out.println("songs  "+artists);
                     callartist = artists.execute().body();
                     System.out.println("adivina    "+callartist);
                     if(callartist==null){
                         Band desconocido = new Band();
-                        if(bandRepository.findByNameContaining("Desconocido")==null){
+                        if(!bandRepository.findByNameOptional("Desconocido").isPresent()){
                             desconocido = new Band("Desconocido",null,"No tiene bio, sry", null, "http://static.rhap.com/img/1500x1000/4/4/0/6/8756044_1500x1000.jpg", null,null,null,null,null,null,null,null);
                             bandRepository.save(desconocido);
                         }
-                        a.setBand(desconocido);
+                        a.setBand(bandRepository.findByName("Desconocido"));
 
                     }else{
                         for (com.dubion.service.dto.NapsterAPI.Artist.Artist g:
@@ -387,7 +388,14 @@ public class NapsterDTOService {
                         }
                     }
                 }else{
-                    System.out.println("Artista sin id");
+                    Band desconocido = new Band();
+                    if(!bandRepository.findByNameOptional("Desconocido").isPresent()){
+                        desconocido = new Band("Desconocido",null,"No tiene bio, sry", null, "http://static.rhap.com/img/1500x1000/4/4/0/6/8756044_1500x1000.jpg", "11111",null,null,null,null,null,null,null);
+                        bandRepository.save(desconocido);
+                    }
+                    bandRepository.findByName(desconocido.getName());
+                    a.setBand(bandRepository.findByName(desconocido.getName()));
+                    System.out.println(a.getBand());
                 }
 
 
@@ -491,6 +499,39 @@ public class NapsterDTOService {
             e.printStackTrace();
         }
         return artist;
+    }
+    public void importArtist(String id){
+        NapsterArtist artist = null;
+        Call <NapsterArtist> callArtist = apiService.getArtistByAlbum(id,apiKey);
+        List<Band> topBand = new ArrayList<>();
+        try {
+            Response <NapsterArtist> response=callArtist.execute();
+            if(response.isSuccessful()){
+                artist = response.body();
+                System.out.println("topAlbums "+artist);
+                for(com.dubion.service.dto.NapsterAPI.Artist.Artist a: artist.getArtists()){
+                    if(bandRepository.findByNapsterId(a.getId())==null){
+                        Band s = new Band();
+                        String a1="";
+                        for (String b: a.getBlurbs()){
+                            a1= b;
+                        }
+                        s.setName(a.getName());
+                        s.setBio(a1);
+                        s.setPhoto("http://direct.napster.com/imageserver/v2/artists/"+a.getId()+"/images/356x237.jpg");
+                        s.setNapsterId(a.getId());
+                        s=bandRepository.save(s);
+                        topBand.add(s);
+
+                    }else{
+                        topBand.add(bandRepository.findByNapsterId(a.getId()));
+                    }
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

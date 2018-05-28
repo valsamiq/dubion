@@ -157,8 +157,18 @@ public class ArtistResource {
                 stream().
                 filter(artist -> artist != null)
                 .forEach(
-                    artist -> artist.setIdDubion(bandRepository.findByNapsterId(artist.getContributingArtists().getPrimaryArtist()).getId())
 
+                    artist -> {
+                        System.out.println(artist.getContributingArtists().getPrimaryArtist());
+                        System.out.println(artist.getContributingArtists().getPrimaryArtist());
+                        String a = artist.getContributingArtists().getPrimaryArtist();
+                        if(!bandRepository.findByNapsterIdOptional(a).isPresent()){
+                            System.out.println(artist.getContributingArtists().getPrimaryArtist());
+                            napsterDTOService.importArtist(artist.getContributingArtists().getPrimaryArtist());
+                        }else{
+                            artist.setIdDubion(bandRepository.findByNapsterId(artist.getContributingArtists().getPrimaryArtist()).getId());
+                        }
+                        }
                 );
 
         }

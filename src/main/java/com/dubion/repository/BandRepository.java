@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -27,8 +28,14 @@ public interface BandRepository extends JpaRepository<Band, Long>, JpaSpecificat
     @Query("select a from Band a where a.name=:name")
     Band findByName(@Param("name")String name);
 
+    @Query("select a from Band a where a.name=:name")
+    Optional<Band> findByNameOptional(@Param("name")String name);
+
     List<Band> findByNameContaining(String name);
 
     Band findByNapsterId(String idNapster);
+
+    @Query("select b from Band b where b.napsterId = :idNapster")
+    Optional<Band> findByNapsterIdOptional(@Param("idNapster") String idNapster);
 
 }
