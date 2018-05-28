@@ -1,4 +1,5 @@
-<div role="navigation" class="lefto" ng-switch="vm.isAuthenticated()" ng-mouseleave="dropOne = false;dropTwo = false;dropThree = false">
+<div role="navigation" class="lefto" ng-switch="vm.isAuthenticated()"
+     ng-mouseleave="dropOne = false;dropTwo = false;dropThree = false">
     <div class="item" ui-sref="home">
         <span><img class="glyphlogo" src="app/layouts/navbar/dubion-glyphicon.png" alt=""/></span>
         Dubion
@@ -7,54 +8,14 @@
         <span class="glyphicon glyphicon-home"></span>
         <a ui-sref="home">Home</a>
     </div>
-    <div ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
-        <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu" ng-click="dropOne = !dropOne">
-            <span class="glyphicon glyphicon-user"></span>
-            <span>
-                Account
-            </span>
-            <b class="caret"></b>
-        </a>
-        <div ng-show="dropOne" class="secundaryNav">
-            <div ui-sref-active="active" ng-switch-when="true" class="sectionNavbarHover">
-                <a ui-sref="settings" ng-click="vm.collapseNavbar()">
-                    <span class="glyphicon glyphicon-wrench"></span>&nbsp;
-                    <span data-translate="global.menu.account.settings">Settings</span>
-                </a>
-            </div>
-            <div ui-sref-active="active" ng-switch-when="true" class="sectionNavbarHover">
-                <a ui-sref="password" ng-click="vm.collapseNavbar()">
-                    <span class="glyphicon glyphicon-lock"></span>&nbsp;
-                    <span data-translate="global.menu.account.password">Password</span>
-                </a>
-            </div>
-            <div ui-sref-active="active" ng-switch-when="true" class="sectionNavbarHover">
-                <a href="" ng-click="vm.logout()" id="logout">
-                    <span class="glyphicon glyphicon-log-out"></span>&nbsp;
-                    <span data-translate="global.menu.account.logout">Sign out</span>
-                </a>
-            </div>
-            <div ui-sref-active="active" ng-switch-when="false" class="sectionNavbarHover">
-                <a href="" ng-click="vm.login()" id="login">
-                    <span class="glyphicon glyphicon-log-in"></span>&nbsp;
-                    <span data-translate="global.menu.account.login">Sign in</span>
-                </a>
-            </div>
-            <div ui-sref-active="active" ng-switch-when="false" class="sectionNavbarHover">
-                <a ui-sref="register" ng-click="vm.collapseNavbar()">
-                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;
-                    <span data-translate="global.menu.account.register">Register</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div ng-class="{active: vm.$state.includes('admin')}"  uib-dropdown class="dropdown pointer" has-authority="ROLE_ADMIN">
+    <div ng-class="{active: vm.$state.includes('admin')}" uib-dropdown class="dropdown pointer"
+         has-authority="ROLE_ADMIN">
         <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu" ng-click="dropTwo = !dropTwo">
-                        <span>
-                            <span class="glyphicon glyphicon-tower"></span>
-                            <span data-translate="global.menu.admin.main">Administration</span>
-                            <b class="caret"></b>
-                        </span>
+            <span>
+                <span class="glyphicon glyphicon-tower"></span>
+                <span data-translate="global.menu.admin.main">Administration</span>
+                <b class="caret"></b>
+            </span>
         </a>
         <div ng-show="dropTwo" class="secundaryNav">
             <div class="dropdown pointer">
@@ -231,30 +192,35 @@
         </div>
     </div>
     <div class="separator"></div>
-        <div>
-            <a ui-sref="favoritesUser">
-                <span class="glyphicon glyphicon-heart"></span>&nbsp;
-                <span>Favourite</span>
-            </a>
-        </div>
-    <!--This comment section below will be here for two weeks aprox, then will be deleted.-->
-        <!--<div>-->
-            <!--<a ui-sref="albumSearch">-->
-                <!--<span class="glyphicon glyphicon-list-alt"></span>&nbsp;-->
-                <!--<span>Album</span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div>-->
-            <!--<a ui-sref="bandSearch">-->
-                <!--<span class="glyphicon glyphicon-king"></span>&nbsp;-->
-                <!--<span>Banda</span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <div>
-            <a ui-sref="profile">
-                <span class="glyphicon glyphicon-user"></span>&nbsp;
-                <span>Profile</span>
-            </a>
-        </div>
+    <div class="sectionNavbarHover">
+        <a ui-sref="favoritesUser">
+            <span class="glyphicon glyphicon-heart"></span>&nbsp;
+            <span>Favourite</span>
+        </a>
     </div>
+    <div class="sectionNavbarHover">
+        <a ui-sref="profile">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;
+            <span>Profile</span>
+        </a>
+    </div>
+    <div ui-sref-active="active" ng-switch-when="true" class="sectionNavbarHover">
+        <a href="" ng-click="vm.logout()" id="logout">
+            <span class="glyphicon glyphicon-log-out"></span>&nbsp;
+            <span data-translate="global.menu.account.logout">Sign out</span>
+        </a>
+    </div>
+    <div ui-sref-active="active" ng-switch-when="false" class="sectionNavbarHover">
+        <a href="" ng-click="vm.login()" id="login">
+            <span class="glyphicon glyphicon-log-in"></span>&nbsp;
+            <span data-translate="global.menu.account.login">Sign in</span>
+        </a>
+    </div>
+    <div ui-sref-active="active" ng-switch-when="false" class="sectionNavbarHover">
+        <a ui-sref="register" ng-click="vm.collapseNavbar()">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;
+            <span data-translate="global.menu.account.register">Register</span>
+        </a>
+    </div>
+</div>
 </div>

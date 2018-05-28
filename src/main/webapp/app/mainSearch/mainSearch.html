@@ -44,7 +44,7 @@
             <tbody>
             <tr ng-if="vm.artists.length === 0"></tr>
             <tr ng-if="vm.artists.length > 0" ng-repeat="band in vm.artists track by band.id">
-                <td><a href="#/bandPage/{{band.idDubion}}" ng-click="vm.goToArtist(band.name)">{{band.name}}</a></td>
+                <td><a href="#/bandPage/{{band.id}}" ng-click="vm.goToArtist(band.name)">{{band.name}}</a></td>
             </tr>
             </tbody>
         </table>
