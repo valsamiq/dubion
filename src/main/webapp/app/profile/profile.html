@@ -3,16 +3,16 @@
         <img src="/content/images/artists/mrDubion.png" style="width: 250px;">
     </div>
     <div class="col-md-6">
-        <h2>Hello, {{vm.userData.login}}</h2>
+        <h2><span data-translate="activate.hello" translate-compile>Hello, </span>{{vm.userData.login}}</h2>
         {{vm.userData.firstName}} {{vm.userData.lastName}}, from {{vm.userDataExt.location}}<br>
         Contact email: {{vm.userData.email}}<br><br>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary" ui-sref="password">
-                Change password
+                <span data-translate="activate.password" translate-compile>Change password</span>
                 <span class="glyphicon glyphicon-lock"></span>
             </button>
             <button type="button" class="btn btn-secondary" ui-sref="settings">
-                User settings
+                <span data-translate="activate.settings" translate-compile>User settings</span>
                 <span class="glyphicon glyphicon-wrench"></span>
             </button>
         </div>
