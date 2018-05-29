@@ -290,7 +290,8 @@ public class NapsterDTOService {
             String name ="";
             if(albumRepository.findByNapsterId(t.getId())==null){
                 Album a = new Album();
-                if(!t.getLinks().getGenres().equals(null)){
+                System.out.println(t.getLinks().getGenres());
+                if(t.getLinks().getGenres()!=null){
                     String genre = t.getLinks().getGenres().getIds().get(0);
                     System.out.println(genre);
                     NapsterGenre callgenres = null;
@@ -407,9 +408,11 @@ public class NapsterDTOService {
 
 
 
-                a.setName(t.getName());
+                a.setName(eraserEvilBytes(eraserNA(t.getName())));
                 a.setNapsterId(t.getId());
-                a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
+                if(!t.getReleased().equalsIgnoreCase("")){
+                    a.setReleaseDate(LocalDate.from(ZonedDateTime.parse(t.getReleased())));
+                }
                 a.setPhoto("http://direct.napster.com/imageserver/v2/albums/"+t.getId()+"/images/500x500.jpg");
                 a.setGenres(genreRepository.findByNames(name));
 
@@ -432,7 +435,7 @@ public class NapsterDTOService {
 
                         Song s = new Song();
                         s.setUrl(g.getPreviewURL());
-                        s.setName(g.getName());
+                        s.setName(eraserEvilBytes(eraserNA(g.getName())));
                         s.setNapsterId(g.getId());
                         s.setAlbums(albumRepository.findByNameCR(eraserNA(g.getAlbumName())));
                         System.out.println(s.getAlbums());
@@ -528,6 +531,20 @@ public class NapsterDTOService {
                         s.setNapsterId(a.getId());
                         s=bandRepository.save(s);
                         topBand.add(s);
+                        if(a.getAlbumGroups().getSinglesAndEPs()!=null){
+                            for(String album: a.getAlbumGroups().getSinglesAndEPs())importAlbumById(album);
+                        }else if(a.getAlbumGroups().getCompilations()!=null){
+                            for(String album: a.getAlbumGroups().getCompilations())importAlbumById(album);
+                        }else if (a.getAlbumGroups().getOthers()!=null){
+                            for(String album: a.getAlbumGroups().getSinglesAndEPs())importAlbumById(album);
+                        }else if (a.getAlbumGroups().getMain()!=null){
+                            for(String album: a.getAlbumGroups().getSinglesAndEPs())importAlbumById(album);
+                        }else{
+
+                        }
+
+
+
 
                     }else{
                         topBand.add(bandRepository.findByNapsterId(a.getId()));
