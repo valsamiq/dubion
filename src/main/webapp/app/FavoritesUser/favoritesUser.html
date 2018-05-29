@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="">
-            <h2 class="left white">Artistes Favorits</h2>
+            <h2 class="left white" data-translate="activate.favbandtitle" translate-compile>Artistes Favorits</h2>
             <div ng-if="vm.sbands.length === 0">
-                <h4>Aun no hay Artistas favoritos</h4>
+                <h4 data-translate="activate.favband" translate-compile>Aun no hay Artistas favoritos</h4>
             </div>
             <div ng-if="vm.sbands.length > 0" style="margin-top: 50px" ng-repeat="img in vm.sbands track by img.id">
                 <div class="col-xs-2 center compl"><!--<i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>-->
@@ -19,9 +19,9 @@
     </div>
     <div class="col-xs-12">
         <div class="orange">
-            <h2 class="left white">Albums Favorits</h2>
+            <h2 class="left white" data-translate="activate.favalbumtitle" translate-compile>Albums Favorits</h2>
             <div ng-if="vm.salbums.length === 0">
-                <h4>Aun no hay Albumes favoritos</h4>
+                <h4 data-translate="activate.favalbum" translate-compile>Aun no hay Albumes favoritos</h4>
             </div>
             <div ng-if="vm.salbums.length > 0" style="margin-top: 50px" ng-repeat="img in vm.salbums track by img.id">
                 <div class="col-xs-2 center compl"><!--<i ng-click="vm.likeDislike()" class="fa{{vm.likeUpDown}} fa-heart"></i>-->
