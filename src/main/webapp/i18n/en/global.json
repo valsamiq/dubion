@@ -42,7 +42,9 @@
                 "sessions": "Sessions",
                 "login": "Sign in",
                 "logout": "Sign out",
-                "register": "Register"
+                "register": "Register",
+                "favorite": "Favourites",
+                "profile": "Profile"
             },
             "admin": {
                 "main": "Administration",

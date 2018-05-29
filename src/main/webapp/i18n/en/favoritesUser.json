@@ -1,6 +1,10 @@
 {
     "activate": {
         "title": "Activació",
+        "favband": "There aren't still favourite Artists",
+        "favalbum": "There aren't still favourite Albums",
+        "favbandtitle": "Favourite Artists",
+        "favalbumtitle": "Favourite Albums",
         "messages": {
             "success": "<strong>S'ha activat el seu usuari.</strong> Si us plau <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">accedeix-hi</a>.",
             "error": "<strong>No s'ha pogut activar el seu usuari.</strong> Si us plau utilitzi el formulari de registre per obtenir un compte."
