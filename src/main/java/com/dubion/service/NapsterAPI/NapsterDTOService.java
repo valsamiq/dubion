@@ -476,12 +476,14 @@ public class NapsterDTOService {
         Call<Search> callTopAlbums = apiService.searchAlbum(search,apiKey,"tracks",10);
         try {
             Response<Search> response=callTopAlbums.execute();
-            if(response.isSuccessful()){
+            if(response.isSuccessful()) {
                 topAlbums = response.body();
-            }
-            for (com.dubion.service.dto.NapsterAPI.Search.Tracks album: topAlbums.getSearch().getData().getTracks()){
-                System.out.println(album.getAlbumId());
-                importAlbumById(album.getAlbumId());
+
+                for (com.dubion.service.dto.NapsterAPI.Search.Tracks album : topAlbums.getSearch().getData().getTracks()) {
+                    System.out.println(album.getAlbumId());
+                    importAlbumById(album.getAlbumId());
+
+                }
             }
 
         } catch (IOException e) {
