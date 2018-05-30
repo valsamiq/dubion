@@ -11,8 +11,9 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
+            'queryAlbumBySong': { method: 'GET', isArray: true, url: '/api/songs/search/:name'},
+            'queryAlbumByNameLocal': {method: 'GET', isArray: true, url: '/api/albums/by-name/:name'},
             'queryAlbumByName': { method: 'GET', isArray: true, url: 'api/albums/search/:name'},
-            //'queryAlbumById': { method: 'GET', isArray: true, url: ''},
             'queryArtistByName': {method: 'GET', isArray: true, url: 'api/artist/search/:name'},
             'queryArtistByNameLocal': {method: 'GET', isArray: true, url: 'api/bands/by-name/:name'},
             'get': {

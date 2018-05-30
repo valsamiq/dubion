@@ -26,6 +26,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Song.
@@ -127,9 +128,21 @@ public class SongResource {
     * GET SONG BY SONGNAME
     * */
     @GetMapping("/songs/search/{songName}")
-    public List<com.dubion.service.dto.NapsterAPI.Search.Tracks> getAlbumSearch(@PathVariable String songName){
-        Search album = napsterDTOService.searchSongs(songName);
-        return album.getSearch().getData().getTracks();
+    public List<com.dubion.service.dto.NapsterAPI.Search.Album> getAlbumSearch(@PathVariable String songName){
+        Search search = napsterDTOService.searchSongs(songName);
+
+        return search.getSearch().getData().getAlbums().
+            stream().
+            filter(album -> album != null && albumRepository.findByNapsterId(album.getId()) != null)
+            .map(
+                album -> {
+                    album.setIdDubion(albumRepository.findByNapsterId(album.getId()).getId());
+                    return album;
+                }
+            )
+            .filter(album -> album.getIdDubion() != 0)
+            .collect(Collectors.toList());
+
     }
 
 

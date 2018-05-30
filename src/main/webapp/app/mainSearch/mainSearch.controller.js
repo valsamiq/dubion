@@ -10,7 +10,7 @@
     function mainSearchController ($scope, Principal, LoginService, $state, $stateParams, Song, Album, Artist, Band, MainSearch) {
         var vm = this;
         vm.AlbumByName = AlbumByName;
-        vm.SongByName = SongByName;
+        vm.AlbumBySong = AlbumBySong;
         vm.ArtistByName = ArtistByName;
         vm.optionSearch = null;
         vm.account = null;
@@ -29,15 +29,12 @@
         vm.searchTrack = function(){
             vm.loading=true;
             vm.optionSearch="track";
-            console.log("Sarching by Track");
-            SongByName();
-            /*MainSearch.query(function(result){
-                console.log(result)
-                vm.albums=result;
-            });*/
+            console.log("Sarching Album by Track");
+            AlbumBySong();
+            ///api/songs/search/:name
         }
         vm.goToSong = function(name){
-            vm.songs = [];
+            vm.albums = [];
             console.log(name);
         }
         // ============SearchByAlbum==========
@@ -74,11 +71,18 @@
         function register () {
             $state.go('register');
         }
-        function SongByName(){
-            Song.queryByName({name : vm.name}, function (data) {
-                vm.songs = data;
+        function AlbumBySong(){
+            MainSearch.queryAlbumBySong({name : vm.name}, function (data) {
+                vm.albums = data;
                 vm.loading = false;
+                //AlbumByNameLocal();
             });
+        }
+        function AlbumByNameLocal(){
+            MainSearch.queryAlbumByNameLocal({name : vm.name}), function (data){
+                vm.albums = data;
+                vm.loading = false;
+            }
         }
         function AlbumByName(){
             MainSearch.queryAlbumByName({name : vm.name}, function (data) {
@@ -94,7 +98,7 @@
         function ArtistByNameLocal() {
             MainSearch.queryArtistByNameLocal({name : vm.name}, function (data){
                 vm.artists = data;
-               vm.loading = false;
+                vm.loading = false;
             });
         }
     }
