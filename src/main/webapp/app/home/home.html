@@ -24,7 +24,8 @@
                 </div>
             </slick>
             <br/>
-            <div style="font-size: large;font-weight: bold" data-translate="home.allalbum" translate-compile>Your Albums</div>
+            <div style="font-size: large;font-weight: bold" data-translate="home.allalbum" translate-compile>{{vm.albumLoaded}}</div>
+            {{vm.albumLoaded}}
             <br/>
 
             <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
@@ -35,8 +36,10 @@
                     </a>
                 </div>
             </slick>
+
             <br/>
-            <div style="font-size: large;font-weight: bold" data-translate="home.topbands" translate-compile>Groups you may like</div>
+            <div style="font-size: large;font-weight: bold" data-translate="home.topbands" translate-compile>{{vm.bandsLoaded}}</div>
+            {{vm.bandsLoaded}}
             <br/>
             <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded3">
                 <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
