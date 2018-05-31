@@ -29,7 +29,7 @@
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
                 if(vm.account==null){
-                    console.log("hola que tal");
+                  //  console.log("hola que tal");
                 }
 
                 loadAll();

@@ -184,7 +184,7 @@
         function songsPageable(){
             Album.getSongsByIdPageble({idAlbum : vm.albumId,page : vm.page}, function (data){
                 vm.songs = data;
-                console.log('songs',vm.songs);
+                //console.log('songs',vm.songs);
             })
             // console.log("songsByNamePageable");
             // console.log(vm.page);
