@@ -337,9 +337,9 @@ public class NapsterDTOService {
                             if(bandRepository.findByNapsterId(eraserNA(g.getId()))==null){
                                 Band guardar = new Band();
                                 List<Band> topArtist = new ArrayList<>();
-                                for (com.dubion.service.dto.NapsterAPI.Artist.Artist art:
-                                    callartist.getArtists()) {
-                                    if (songRepository.findByName(eraserNA(art.getName())) == null) {
+                               // for (com.dubion.service.dto.NapsterAPI.Artist.Artist art:
+                               //     callartist.getArtists()) {
+                                    if (songRepository.findByNapsterId(eraserNA(g.getId())) == null) {
 
                                         Band artist = new Band();
 
@@ -387,7 +387,7 @@ public class NapsterDTOService {
 
                                     } else {
                                         topArtist.add(bandRepository.findByName(eraserNA(t.getName())));
-                                    }
+
                                 }
                                 a.setBand(guardar);
                             }
@@ -435,9 +435,9 @@ public class NapsterDTOService {
 
                         Song s = new Song();
                         s.setUrl(g.getPreviewURL());
-                        s.setName(eraserEvilBytes(eraserNA(g.getName())));
+                        s.setName(eraserEvilBytes(g.getName()));
                         s.setNapsterId(g.getId());
-                        s.setAlbums(albumRepository.findByNameCR(eraserNA(g.getAlbumName())));
+                        s.setAlbums(albumRepository.findByNameCR(eraserEvilBytes(eraserNA(g.getAlbumName()))));
                         System.out.println(s.getAlbums());
                         s=songRepository.save(s);
                         topSongs.add(s);
@@ -479,9 +479,9 @@ public class NapsterDTOService {
             if(response.isSuccessful()) {
                 topAlbums = response.body();
 
-                for (com.dubion.service.dto.NapsterAPI.Search.Tracks album : topAlbums.getSearch().getData().getTracks()) {
-                    System.out.println(album.getAlbumId());
-                    importAlbumById(album.getAlbumId());
+                for (com.dubion.service.dto.NapsterAPI.Search.Album album : topAlbums.getSearch().getData().getAlbums()) {
+                    System.out.println(album.getId());
+                    importAlbumById(album.getId());
 
                 }
             }
@@ -524,14 +524,26 @@ public class NapsterDTOService {
                     if(bandRepository.findByNapsterId(a.getId())==null){
                         Band s = new Band();
                         String a1="";
-                        for (String b: a.getBlurbs()){
-                            a1= b;
+                        if (a.getBlurbs().size() != 0) {
+                            for (String bios : a.getBlurbs()) {
+                                System.out.println(bios);
+                                a1 = a1 + " " + bios;
+                                System.out.println(a1);
+                            }
+                            System.out.println("\n\n\n" + a1 + "\n\n\n");
+                            s.setBio(eraserNA(a1));
+                        }else if(a.getBios()!=null) {
+                            for (Bio bios: a.getBios()){
+                                s.setBio(bios.getBio());
+                            }
+                            System.out.println(s.getId());
+                        }else{
+                            s.setBio("No tiene bio, sry    ");
                         }
                         s.setName(a.getName());
-                        s.setBio(a1);
                         s.setPhoto("http://direct.napster.com/imageserver/v2/artists/"+a.getId()+"/images/356x237.jpg");
                         s.setNapsterId(a.getId());
-                        s=bandRepository.save(s);
+                            s=bandRepository.save(s);
                         topBand.add(s);
                         if(a.getAlbumGroups().getSinglesAndEPs()!=null){
                             for(String album: a.getAlbumGroups().getSinglesAndEPs())importAlbumById(album);
@@ -540,9 +552,9 @@ public class NapsterDTOService {
                         }else if (a.getAlbumGroups().getOthers()!=null){
                             for(String album: a.getAlbumGroups().getSinglesAndEPs())importAlbumById(album);
                         }else if (a.getAlbumGroups().getMain()!=null){
-                            for(String album: a.getAlbumGroups().getSinglesAndEPs())importAlbumById(album);
+                            for(String album: a.getAlbumGroups().getMain())importAlbumById(album);
                         }else{
-
+                            System.out.println("nada");
                         }
 
 

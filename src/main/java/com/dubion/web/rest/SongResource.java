@@ -133,7 +133,7 @@ public class SongResource {
 
         return search.getSearch().getData().getAlbums().
             stream().
-            filter(album -> album != null && albumRepository.findByNapsterId(album.getId()) != null)
+            filter(album -> album != null)
             .map(
                 album -> {
                     album.setIdDubion(albumRepository.findByNapsterId(album.getId()).getId());
