@@ -4,8 +4,8 @@
     </div>
     <div class="col-md-6">
         <h2><span data-translate="activate.hello" translate-compile>Hello, </span>{{vm.userData.login}}</h2>
-        {{vm.userData.firstName}} {{vm.userData.lastName}}, from {{vm.userDataExt.location}}<br>
-        Contact email: {{vm.userData.email}}<br><br>
+        {{vm.userData.firstName}} {{vm.userData.lastName}}<span data-translate="activate.from" translate-compile>, from </span>{{vm.userDataExt.location}}<br>
+        <span data-translate="activate.contact" translate-compile>Contact email: </span>{{vm.userData.email}}<br><br>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary" ui-sref="password">
                 <span data-translate="activate.password" translate-compile>Change password</span>

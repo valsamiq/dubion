@@ -6,6 +6,8 @@
         "next": "Next",
         "favlist": "Add to your Favourite List",
         "hello": "Hello, ",
+        "contact": "Contact email: ",
+        "from": ", from ",
         "password": "Change password",
         "settings": "User settings",
         "messages": {
