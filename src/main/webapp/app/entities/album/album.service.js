@@ -15,6 +15,7 @@
             'getSongsByName': { method: 'GET', isArray: true, url: 'api/songs/:idAlbum/albums-song'},
             'getSongsByIdPageble' : {method: 'GET', isArray: true, url: 'api/albums/:idAlbum/page/:page'},
             'querytop' : {method: 'GET', isArray: true, url: 'api/albums/top2'},
+            'querylast' : {method: 'GET', isArray: true, url: 'api/albumsNew'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

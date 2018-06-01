@@ -42,16 +42,14 @@
         }
 
 
-        vm.salbums1 = [];
-        vm.salbums2 = [];
+        vm.salbums = [];
         vm.salbumstop = [];
-        vm.sbands1 = [];
-        vm.sbands2 = [];
+        vm.sbands = [];
 
 
-        function fullAlbum() {
-            Album.query(function(result) {
-                vm.salbums1 = result;
+        function releaseAlbum(){
+            Album.querylast(function(result) {
+                vm.salbums = result;
                 vm.searchQuery = null;
                 vm.slickConfig = {
                     enabled: true,
@@ -99,9 +97,14 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {}
                     }
                 };
-                vm.albumsLoaded1=true;
+                vm.albumsLoaded2=true;
             });
-            FavouriteAlbum.favoriteByAlbumlike(function (result) {
+        }
+
+        function fullAlbum() {
+
+
+  /*          FavouriteAlbum.favoriteByAlbumlike(function (result) {
                 vm.salbums2 = result;
                 vm.searchQuery = null;
                 vm.slickConfig = {
@@ -204,9 +207,9 @@
                     }
                 };
                 vm.albumsLoaded4 = true;
-            });
+            });*/
             Band.query(function(result) {
-                vm.sbands2 = result;
+                vm.sbands = result;
                 vm.searchQuery = null;
 
                 vm.slickConfig = {
@@ -257,7 +260,8 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
                     }
                 };
-                vm.albumsLoaded5=true;
+                vm.bandsLoaded=true;
+                releaseAlbum();
             });
         }
 
@@ -265,7 +269,7 @@
         function loadAll() {
             vm.albumsLoaded = false;
             vm.albumsLoaded2 = false;
-            vm.albumsLoaded3 = false;
+            vm.bandsLoaded = false;
 
 
             Album.querytop(function (result) {
@@ -320,7 +324,7 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
                     }
                 };
-                vm.albumsLoaded2 = true;
+                vm.albumsLoaded = true;
                 fullAlbum();
             });
         }
