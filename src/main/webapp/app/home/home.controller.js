@@ -13,8 +13,6 @@
         vm.top10Slick = {};
         vm.lasReleasesSlick = {};
         vm.userFavSlick = {};
-        vm.bandsLoaded = "Les teves bands";
-        vm.albumLoaded = "Els teus albums";
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -105,7 +103,6 @@
                 console.log(vm.salbums);
                 vm.searchQuery = null;
                 if (vm.salbums.length == 0) {
-                    vm.albumLoaded = "Todas los albums";
                     Album.query(function (result) {
                         vm.salbums = result;
 
@@ -162,66 +159,119 @@
                 vm.albumsLoaded = true;
 
             });
-            FavouriteBand.favoriteByBandlike(function (result) {
+            // FavouriteBand.favoriteByBandlike(function (result) {
+            //     vm.sbands = result;
+            //     vm.searchQuery = null;
+            //     if (vm.sbands.length == 0) {
+            //         Band.query(function (result) {
+            //             vm.sbands = result;
+            //             vm.slickConfig = {
+            //                 enabled: true,
+            //                 autoplay: true,
+            //                 draggable: false,
+            //                 autoplaySpeed: 2000,
+            //                 slidesToShow: 5,
+            //                 slidesToScroll: 1,
+            //                 responsive: [
+            //                     {
+            //                         breakpoint: 1200,
+            //                         settings: {
+            //                             dots: false,
+            //                             slidesToShow: 4,
+            //                             slidesToScroll: 1
+            //                         }
+            //                     },
+            //                     {
+            //                         breakpoint: 1024,
+            //                         settings: {
+            //                             dots: false,
+            //                             slidesToShow: 3,
+            //                             slidesToScroll: 1
+            //                         }
+            //                     },
+            //                     {
+            //                         breakpoint: 600,
+            //                         settings: {
+            //                             slidesToShow: 2,
+            //                             slidesToScroll: 1
+            //                         }
+            //                     },
+            //                     {
+            //                         breakpoint: 480,
+            //                         settings: {
+            //                             arrows: false,
+            //                             slidesToShow: 1,
+            //                             slidesToScroll: 1
+            //
+            //                         }
+            //                     }
+            //
+            //                 ],
+            //                 method: {},
+            //                 event: {
+            //                     //beforeChange: function (event, slick, currentSlide, nextSlide){},
+            //                     //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
+            //                 }
+            //             };
+            //
+            //         });
+            //
+            //
+            //     }
+            //
+            //     vm.slickConfig = {
+            //         enabled: true,
+            //         autoplay: true,
+            //         draggable: false,
+            //         autoplaySpeed: 2000,
+            //         slidesToShow: 5,
+            //         slidesToScroll: 1,
+            //         responsive: [
+            //             {
+            //                 breakpoint: 1200,
+            //                 settings: {
+            //                     dots: false,
+            //                     slidesToShow: 4,
+            //                     slidesToScroll: 1
+            //                 }
+            //             },
+            //             {
+            //                 breakpoint: 1024,
+            //                 settings: {
+            //                     dots: false,
+            //                     slidesToShow: 3,
+            //                     slidesToScroll: 1
+            //                 }
+            //             },
+            //             {
+            //                 breakpoint: 600,
+            //                 settings: {
+            //                     slidesToShow: 2,
+            //                     slidesToScroll: 1
+            //                 }
+            //             },
+            //             {
+            //                 breakpoint: 480,
+            //                 settings: {
+            //                     arrows: false,
+            //                     slidesToShow: 1,
+            //                     slidesToScroll: 1
+            //
+            //                 }
+            //             }
+            //
+            //         ],
+            //         method: {},
+            //         event: {
+            //             //beforeChange: function (event, slick, currentSlide, nextSlide){},
+            //             //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
+            //         }
+            //     };
+            //     vm.albumsLoaded3 = true;
+            // });
+            Band.query(function(result) {
                 vm.sbands = result;
                 vm.searchQuery = null;
-                if (vm.sbands.length == 0) {
-                    vm.bandsLoaded = "Todas las bands";
-                    Band.query(function (result) {
-                        vm.sbands = result;
-                        vm.slickConfig = {
-                            enabled: true,
-                            autoplay: true,
-                            draggable: false,
-                            autoplaySpeed: 2000,
-                            slidesToShow: 5,
-                            slidesToScroll: 1,
-                            responsive: [
-                                {
-                                    breakpoint: 1200,
-                                    settings: {
-                                        dots: false,
-                                        slidesToShow: 4,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 1024,
-                                    settings: {
-                                        dots: false,
-                                        slidesToShow: 3,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 600,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        arrows: false,
-                                        slidesToShow: 1,
-                                        slidesToScroll: 1
-
-                                    }
-                                }
-
-                            ],
-                            method: {},
-                            event: {
-                                //beforeChange: function (event, slick, currentSlide, nextSlide){},
-                                //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
-                            }
-                        };
-
-                    });
-
-
-                }
 
                 vm.slickConfig = {
                     enabled: true,
@@ -271,62 +321,8 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
                     }
                 };
-                vm.albumsLoaded3 = true;
+                vm.albumsLoaded3=true;
             });
-            /*Band.query(function(result) {
-                vm.sbands = result;
-                vm.searchQuery = null;
-
-                vm.slickConfig = {
-                    enabled: true,
-                    autoplay: true,
-                    draggable: false,
-                    autoplaySpeed: 2000,
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    responsive: [
-                        {
-                            breakpoint: 1200,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 4,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                dots: false,
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                arrows: false,
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-
-                            }
-                        }
-
-                    ],
-                    method: {},
-                    event: {
-                        //beforeChange: function (event, slick, currentSlide, nextSlide){},
-                        //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
-                    }
-                };
-                vm.albumsLoaded5=true;
-            });*/
         }
 
 
