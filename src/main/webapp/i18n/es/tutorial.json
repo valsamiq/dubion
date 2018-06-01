@@ -1,0 +1,20 @@
+{
+    "activate": {
+        "title": "Activació",
+        "text1": "Qué es Dubion?",
+        "text2": "Dubion es una aplicación web donde puedes buscar los álbumes, canciones y artistas que deseas ver.",
+        "text3": "Su diseño sencillo permite a los usuarios encontrar fácilmente lo que buscan. Además, pueden escuchar una muestra de cualquier canción de un álbum y guardar sus álbumes y artistas favoritos.",
+        "text4": "Guía rápida:",
+        "text5": "Para buscar cualquier tipo de canción, álbum o artista, sólo tiene que utilizar el menú de búsqueda y seleccionar la categoría correspondiente:",
+        "text6": "Puede acceder a la artista del álbum haciendo clic en el nombre del artista aquí:",
+        "text7": "O ir a un álbum de la artista haciendo clic en cualquiera de ellos:",
+        "text8": "Puede añadir un álbum o artista a sus favoritos haciendo clic aquí:",
+        "text9": "A continuación, puede acceder a sus artistas y álbumes favoritos haciendo clic aquí:",
+        "text10": "Puedes editar tu perfil haciendo clic aquí:",
+        "text11": "Finalmente, puedes cambiar el idioma de la página escogiendo uno aquí:",
+        "messages": {
+            "success": "<strong>S'ha activat el seu usuari.</strong> Si us plau <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">accedeix-hi</a>.",
+            "error": "<strong>No s'ha pogut activar el seu usuari.</strong> Si us plau utilitzi el formulari de registre per obtenir un compte."
+        }
+    }
+}

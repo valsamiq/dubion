@@ -1,4 +1,4 @@
-entity Band {
+
 entity Band {
 	name String,
     birthDate LocalDate,
@@ -93,7 +93,10 @@ entity FavouriteBand{
     date LocalDate
 }
 
-ifd
+entity FavouriteAlbum{
+	liked Boolean,
+    date LocalDate
+}
 
 entity FavouriteSong{
 	liked Boolean,
