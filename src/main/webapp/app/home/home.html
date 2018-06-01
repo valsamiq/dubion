@@ -27,22 +27,41 @@
             <div style="font-size: large;font-weight: bold" data-translate="home.allalbum" translate-compile>{{vm.albumLoaded}}</div>
             {{vm.albumLoaded}}
             <br/>
-
-            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded">
-                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums track by img.id">
+            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded1&&vm.salbums2.length==0">
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums1 track by img.id">
                     <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
                                                                                      style="width:200px"/>
                         <div class="new">{{img.band.name}}</br>{{img.name}}</div>
                     </a>
                 </div>
             </slick>
-
             <br/>
+            <slick settings="vm.slickConfig" ng-if="vm.salbums2.length!=0">
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums2 track by img.id">
+                    <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
+                                                                                     style="width:200px"/>
+                        <div class="new">{{img.band.name}}</br>{{img.name}}</div>
+                    </a>
+                </div>
+            </slick>
             <div style="font-size: large;font-weight: bold" data-translate="home.topbands" translate-compile>{{vm.bandsLoaded}}</div>
             {{vm.bandsLoaded}}
             <br/>
-            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded3">
-                <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands track by img.id">
+            <slick settings="vm.slickConfig" ng-if="vm.sbands1.length!=0">
+
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands1 track by img.id">
+
+                    <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
+                                                                                    style="width:200px"/>
+                        <div class="new">{{img.name}}</div>
+                    </a>
+
+                </div>
+            </slick>
+            <br/>
+            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded5 && vm.sbands1.length==0">
+
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.sbands2 track by img.id">
 
                     <a style="position: relative" href="#/bandPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
                                                                                     style="width:200px"/>

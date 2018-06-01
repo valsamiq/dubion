@@ -42,16 +42,17 @@
         }
 
 
-        vm.salbums = [];
+        vm.salbums1 = [];
+        vm.salbums2 = [];
         vm.salbumstop = [];
-        vm.sbands = [];
+        vm.sbands1 = [];
+        vm.sbands2 = [];
 
 
         function fullAlbum() {
-            /*Album.query(function(result) {
-                vm.salbums = result;
+            Album.query(function(result) {
+                vm.salbums1 = result;
                 vm.searchQuery = null;
-
                 vm.slickConfig = {
                     enabled: true,
                     autoplay: true,
@@ -98,20 +99,11 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {}
                     }
                 };
-                vm.albumsLoaded=true;
-            });*/
+                vm.albumsLoaded1=true;
+            });
             FavouriteAlbum.favoriteByAlbumlike(function (result) {
-                vm.salbums = result;
-                console.log(vm.salbums);
+                vm.salbums2 = result;
                 vm.searchQuery = null;
-                if (vm.salbums.length == 0) {
-                    vm.albumLoaded = "Todas los albums";
-                    Album.query(function (result) {
-                        vm.salbums = result;
-
-                    });
-                }
-                    // console.dir(vm.salbums);
                 vm.slickConfig = {
                     enabled: true,
                     autoplay: true,
@@ -158,71 +150,11 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {}
                     }
                 };
-
-                vm.albumsLoaded = true;
-
+                vm.albumsLoaded3=true;
             });
             FavouriteBand.favoriteByBandlike(function (result) {
-                vm.sbands = result;
+                vm.sbands1 = result;
                 vm.searchQuery = null;
-                if (vm.sbands.length == 0) {
-                    vm.bandsLoaded = "Todas las bands";
-                    Band.query(function (result) {
-                        vm.sbands = result;
-                        vm.slickConfig = {
-                            enabled: true,
-                            autoplay: true,
-                            draggable: false,
-                            autoplaySpeed: 2000,
-                            slidesToShow: 5,
-                            slidesToScroll: 1,
-                            responsive: [
-                                {
-                                    breakpoint: 1200,
-                                    settings: {
-                                        dots: false,
-                                        slidesToShow: 4,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 1024,
-                                    settings: {
-                                        dots: false,
-                                        slidesToShow: 3,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 600,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 1
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        arrows: false,
-                                        slidesToShow: 1,
-                                        slidesToScroll: 1
-
-                                    }
-                                }
-
-                            ],
-                            method: {},
-                            event: {
-                                //beforeChange: function (event, slick, currentSlide, nextSlide){},
-                                //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
-                            }
-                        };
-
-                    });
-
-
-                }
-
                 vm.slickConfig = {
                     enabled: true,
                     autoplay: true,
@@ -271,10 +203,10 @@
                         //  afterChange: function (event, slick, currentSlide, nextSlide) {              }
                     }
                 };
-                vm.albumsLoaded3 = true;
+                vm.albumsLoaded4 = true;
             });
-            /*Band.query(function(result) {
-                vm.sbands = result;
+            Band.query(function(result) {
+                vm.sbands2 = result;
                 vm.searchQuery = null;
 
                 vm.slickConfig = {
@@ -326,7 +258,7 @@
                     }
                 };
                 vm.albumsLoaded5=true;
-            });*/
+            });
         }
 
 
