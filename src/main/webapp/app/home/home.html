@@ -27,6 +27,18 @@
             <div style="font-size: large;font-weight: bold" data-translate="home.allalbum" translate-compile>{{vm.albumLoaded}}</div>
             {{vm.albumLoaded}}
             <br/>
+            <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded6">
+                {{vm.salbumsnew.length}}
+                <div class="slick-item scrollmenu" ng-repeat="img in vm.salbumsnew">
+                    <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
+                                                                                     style="width:200px"/>
+                        <div class="new">{{img.band.name}}</br>{{img.name}}</div>
+                    </a>
+                </div>
+            </slick>
+            <div style="font-size: large;font-weight: bold" data-translate="home.allalbum" translate-compile>{{vm.albumLoaded}}</div>
+            {{vm.albumLoaded}}
+            <br/>
             <slick settings="vm.slickConfig" ng-if="vm.albumsLoaded1&&vm.salbums2.length==0">
                 <div class="slick-item scrollmenu" ng-repeat="img in vm.salbums1 track by img.id">
                     <a style="position: relative" href="#/albumPage/{{img.id}}"><img src="{{img.photo}}" alt="Album"
@@ -44,6 +56,7 @@
                     </a>
                 </div>
             </slick>
+
             <div style="font-size: large;font-weight: bold" data-translate="home.topbands" translate-compile>{{vm.bandsLoaded}}</div>
             {{vm.bandsLoaded}}
             <br/>

@@ -6,9 +6,7 @@ import com.dubion.service.dto.NapsterAPI.*;
 import com.dubion.service.dto.NapsterAPI.Artist.Bio;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Image;
 import com.dubion.service.dto.NapsterAPI.Artist.images.Images;
-import com.dubion.service.dto.NapsterAPI.Search.Artists;
 import com.dubion.service.dto.NapsterAPI.Search.Search;
-import com.dubion.service.dto.NapsterAPI.Search.Tracks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -204,10 +202,11 @@ public class NapsterDTOService {
         newAlbum = newAlbums.execute().body();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             newAlbum.getAlbums()) {
-            if (songRepository.findByName(eraserNA(t.getName())) == null) {
+            if (songRepository.findByNapsterId(eraserNA(t.getId())) == null) {
+                importAlbumById(t.getId());
 
+                    ListNewAlbums.add(albumRepository.findByNapsterId(t.getId()));
 
-                importAlbum(newAlbum, ListNewAlbums);
             }
         }
         return ListNewAlbums;
