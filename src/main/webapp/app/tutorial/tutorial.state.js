@@ -13,7 +13,6 @@
                 parent: 'entity',
                 url: '/tutorial',
                 data: {
-                    authorities: ['ROLE_USER'],
                     pageTitle: 'tutorial'
                 },
                 views: {
