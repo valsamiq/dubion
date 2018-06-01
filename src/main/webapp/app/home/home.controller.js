@@ -47,7 +47,9 @@
         vm.sbands = [];
 
 
-        function releaseAlbum(){
+
+        function fullAlbum() {
+
             Album.querylast(function(result) {
                 vm.salbums = result;
                 vm.searchQuery = null;
@@ -99,11 +101,6 @@
                 };
                 vm.albumsLoaded2=true;
             });
-        }
-
-        function fullAlbum() {
-
-
   /*          FavouriteAlbum.favoriteByAlbumlike(function (result) {
                 vm.salbums2 = result;
                 vm.searchQuery = null;
@@ -261,7 +258,6 @@
                     }
                 };
                 vm.bandsLoaded=true;
-                releaseAlbum();
             });
         }
 
