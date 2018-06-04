@@ -58,7 +58,8 @@ public interface NapsterDTORepository {
         , @Query("apikey") String apiKey);
 
     @GET("albums/new")
-    Call<NapsterAlbum> getAlbumNew (@Query("apikey") String apiKey);
+    Call<NapsterAlbum> getAlbumNew (@Query("apikey") String apiKey
+        , @Query("limit") Integer limit);
 
     @GET("artists/")
     Call<NapsterArtist> getArtistByAlbum(@Query("id") String id

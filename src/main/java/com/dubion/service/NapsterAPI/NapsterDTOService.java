@@ -198,7 +198,7 @@ public class NapsterDTOService {
     public List<Album> importAlbumNew () throws IOException {
         NapsterAlbum newAlbum = null;
         List<Album> ListNewAlbums = new ArrayList<>();
-        Call<NapsterAlbum> newAlbums = apiService.getAlbumNew( apiKey);
+        Call<NapsterAlbum> newAlbums = apiService.getAlbumNew( apiKey, 6);
         newAlbum = newAlbums.execute().body();
         for (com.dubion.service.dto.NapsterAPI.Albums.Album t:
             newAlbum.getAlbums()) {
